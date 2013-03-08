@@ -29,7 +29,9 @@ class Subsystem{
 		mqd_t sys_mq; //message queue descriptor
 		unsigned int prio;// Priority 
 		int iret_mq_receiver;
-		pthread_t tMQReceiver;		
+		pthread_t tMQReceiver;
+		char sys_message_buffer[MSG_SIZE];
+		char subsys_message_buffer[MSG_SIZE];
 };
 
 #endif

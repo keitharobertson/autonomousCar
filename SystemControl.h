@@ -13,18 +13,18 @@ class SystemControl {
 	public:
 		SystemControl();
 		~SystemControl();
-		void init();
-		void recieve_sys_messages();
+		void init(); //initialize the subsystems
+		void recieve_sys_messages();//recieve task for system mq
 	private:
-		struct mq_attr attr, old_attr; //queue attributes
-		struct sigevent sigevent;// For notification
+		struct mq_attr attr; //queue attributes
+		//struct sigevent sigevent;// For notification
 		char buf[MSG_SIZE];// A good-sized buffer
 		unsigned int prio;// Priority
 		mqd_t sys_mq; //system mq
 		mqd_t subsys_mq[NUM_SUBSYSTEMS];//subsys mq
-		Subsystem* subsys[NUM_SUBSYSTEMS];
+		Subsystem* subsys[NUM_SUBSYSTEMS]; //array of subsystems
 		int iret_mq_receiver;
-		pthread_t tMQReceiver;
+		pthread_t tMQReceiver; //sys mq receiver task
 		
 };
 

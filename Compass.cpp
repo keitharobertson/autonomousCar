@@ -33,6 +33,6 @@ void Compass::analysis(){
 }
 
 void Compass::handle_message(char* message){
-	std::cout << "Message Recieved:" << std::endl;
-	std::cout << message <<std::endl;
+	std::cout << "Compass Recieved Message:" << std::endl;
+	std::cout << message <<std::endl << std::endl;
 }

@@ -14,7 +14,6 @@ class Compass : public Sensor {
 		void analysis();
 		void control();
 	protected:
-		std::string subsys_name;
 		void handle_message(char* message);
 };
 

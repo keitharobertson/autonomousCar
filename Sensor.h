@@ -12,7 +12,6 @@ class Sensor : public Subsystem {
 		virtual void collector() = 0;
 		virtual void analysis() = 0;
 	protected:
-		std::string subsys_name;
 		pthread_t tCollector, tAnalysis;
 		int  iret_Collector, iret_Analysis;
 		virtual void handle_message(char* message) = 0;
