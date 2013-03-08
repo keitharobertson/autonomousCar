@@ -22,16 +22,12 @@ class Subsystem{
 	protected:
 		virtual void handle_message(char* message) = 0;
 		
-		struct mq_attr attr, old_attr; //queue attributes
-		struct sigevent sigevent;// For notification
-		char buf[MSG_SIZE];// A good-sized buffer
+		struct mq_attr attr; //queue attributes
 		mqd_t subsys_mq; //message queue descriptor
 		mqd_t sys_mq; //message queue descriptor
 		unsigned int prio;// Priority 
 		int iret_mq_receiver;
 		pthread_t tMQReceiver;
-		char sys_message_buffer[MSG_SIZE];
-		char subsys_message_buffer[MSG_SIZE];
 };
 
 #endif

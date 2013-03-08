@@ -16,7 +16,7 @@ Subsystem::Subsystem(){
 	attr.mq_msgsize = MSG_SIZE;
 	attr.mq_flags = 0;
 	// Open message queues
-	subsys_mq = mq_open( (char*)((std::string("/aMQ_").append(subsys_name)).c_str()), O_RDWR | O_CREAT, 0664, &attr);
+	subsys_mq = mq_open( (char*)((std::string("/MQ_").append(subsys_name)).c_str()), O_RDWR | O_CREAT, 0664, &attr);
 	if(subsys_mq == ERROR){
 		perror("failed to open subsys mq");
 		exit(-1);
@@ -32,18 +32,20 @@ Subsystem::Subsystem(){
 Subsystem::~Subsystem(){
 	pthread_cancel(tMQReceiver);
 	mq_close(subsys_mq);
-	mq_unlink((char*)((std::string("/aMQ_").append(subsys_name)).c_str()));
+	//mq_unlink((char*)((std::string("/aMQ_").append(subsys_name)).c_str()));
+	mq_unlink((char*)((std::string("/MQ_").append(subsys_name)).c_str()));
 }
 
 void Subsystem::recieve_subsys_messages() {
-	char message[MSG_SIZE];
+	char message[sizeof(char*)];
 	unsigned int priority;
 	ssize_t size;
 	while(1){
 		if((size = mq_receive(subsys_mq, message, MSG_SIZE, &priority)) == ERROR){
-			perror("Recieve Failed!");
+			perror("Subsystem Recieve Failed!");
 		}else{
-			handle_message(message);
+			handle_message(*((char**)message));
+			delete *((char**)message);
 		}
 	}
 }
@@ -52,7 +54,7 @@ void Subsystem::send_message(char* message){
 	char* buffer = new char[MSG_SIZE];
 	strcpy(buffer,message);
 	buffer[MSG_SIZE-1] = '\0';
-	if(mq_send (subsys_mq, buffer, MSG_SIZE, prio) == ERROR) {
+	if(mq_send (subsys_mq, (char*)&buffer, MSG_SIZE, prio) == ERROR) {
 		perror("Subsystem message failed to send!");
 		std::cout << "Message length: " << MSG_SIZE << std::endl;
 		std::cout << "Message:" <<std::endl << buffer << std::endl;
@@ -61,13 +63,14 @@ void Subsystem::send_message(char* message){
 }
 
 void Subsystem::send_sys_message(char* message){
-	strcpy(sys_message_buffer,message);
-	sys_message_buffer[MSG_SIZE-2] = '\0';
-	sys_message_buffer[MSG_SIZE-1] = (char)subsys_num;
-	if(mq_send (sys_mq, sys_message_buffer, MSG_SIZE, prio) == ERROR) {
+	char* buffer = new char[MSG_SIZE];
+	strcpy(buffer,message);
+	buffer[MSG_SIZE-2] = '\0';
+	buffer[MSG_SIZE-1] = (char)subsys_num;
+	if(mq_send (sys_mq, (char*)&buffer, MSG_SIZE, prio) == ERROR) {
 		perror("System message failed to send!");
 		std::cout << "Message length: " << MSG_SIZE << std::endl;
-		std::cout << "Message:" <<std::endl << sys_message_buffer << std::endl;
+		std::cout << "Message:" <<std::endl << buffer << std::endl;
 		exit(-1);
 	}
 }

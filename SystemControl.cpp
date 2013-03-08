@@ -35,21 +35,26 @@ SystemControl::~SystemControl() {
 void SystemControl::init() {
 	subsys[SUBSYS_COMPASS] = new Compass();
 	subsys[SUBSYS_COMPASS]->init();
-	subsys[SUBSYS_COMPASS]->send_message((char *)std::string("hello").c_str());
+	//subsys[SUBSYS_COMPASS]->send_message((char *)std::string("hello").c_str());
 }
 
 void SystemControl::recieve_sys_messages() {
-	char message[MSG_SIZE];
+	char message[sizeof(char*)];
 	unsigned int priority;
 	ssize_t size;
+	char* mess;
 	while(1){
 		if((size = mq_receive(sys_mq, message, MSG_SIZE, &priority)) == ERROR){
-			perror("Recieve Failed!");
+			perror("System Recieve Failed!");
 		}else{
 			//handle_message(message);
-			unsigned int subsys_num = (unsigned int)message[MSG_SIZE-1];
+			//unsigned int subsys_num = (unsigned int)((*((char**)message))[MSG_SIZE-1]);
+			unsigned int subsys_num = 0;
+			mess = *((char**)message);
 			std::cout << "Sys message received from " << subsys[subsys_num]->subsys_name<< " (" << subsys_num << "):" << std::endl;
-			std::cout << message << std::endl<<std::endl;
+			std::cout << mess << std::endl<<std::endl;
+			delete mess;
 		}
 	}
 }
+
