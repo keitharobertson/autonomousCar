@@ -9,11 +9,41 @@
 
 #define NUM_SUBSYSTEMS	1
 
+/**
+ * \class SystemControl
+ * \brief System control module
+ * 
+ * Initializes subsystems, manages subsytem state, manages
+ * inter-subsystem communication
+ */
 class SystemControl {
 	public:
+		/**
+		 * \brief SystemControl default constructor
+		 * 
+		 * sets up system message queue and set up system message receiver task
+		 */
 		SystemControl();
+		
+		/**
+		 * \brief SystemControl destructor
+		 * 
+		 * cancels system receiver task, closes message queue, and unlinks message queue
+		 */
 		~SystemControl();
+		
+		/**
+		 * \brief System initialization
+		 * 
+		 * initializes all the subsystems
+		 */
 		void init(); //initialize the subsystems
+		
+		/**
+		 * \brief System message receiver task
+		 * 
+		 * receivers and handles system messages
+		 */
 		void recieve_sys_messages();//recieve task for system mq
 	private:
 		struct mq_attr attr; //queue attributes

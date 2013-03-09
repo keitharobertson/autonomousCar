@@ -7,7 +7,7 @@
 static void* subsys_receive_task(void* c) {
 	setup_rt_task(10);
 	Subsystem* s = (Subsystem*)c;
-	s->recieve_subsys_messages();
+	s->receive_subsys_messages();
 }
 
 Subsystem::Subsystem(){
@@ -36,7 +36,7 @@ Subsystem::~Subsystem(){
 	mq_unlink((char*)((std::string("/MQ_").append(subsys_name)).c_str()));
 }
 
-void Subsystem::recieve_subsys_messages() {
+void Subsystem::receive_subsys_messages() {
 	char message[sizeof(char*)];
 	unsigned int priority;
 	ssize_t size;
