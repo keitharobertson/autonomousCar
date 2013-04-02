@@ -17,6 +17,7 @@ static void* analysis_task(void* c) {
 }
 
 void Sensor::init(){
+	init_sensor();
 	iret_Collector = pthread_create( &tCollector, NULL, &collector_task, (void *)(this));
 	iret_Collector = pthread_create( &tAnalysis, NULL, &analysis_task, (void *)(this));
 }

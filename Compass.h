@@ -28,7 +28,9 @@ class Compass : public Sensor {
 		 * 
 		 * Gets data from compass over I2C
 		 */
-		void data_grab();
+		float data_grab();
+		
+		void init_sensor();
 		
 		/**
 		 * \brief collects compass data
@@ -50,6 +52,9 @@ class Compass : public Sensor {
 		 * \brief handles messages sent to the compass subsystem
 		 */
 		void handle_message(char* message);
+		
+		int compass_fd;
+		char compass_filepath[40];
 };
 
 #endif

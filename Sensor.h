@@ -42,9 +42,10 @@ class Sensor : public Subsystem {
 		/**
 		 * \brief data grabber
 		 * 
-		 * virtual fuction defined at the specific sensor level
+		 * virtual fuction defined at the specific sensor level that initializes the sensor
 		 */
-		virtual void data_grab() = 0;
+		virtual void init_sensor() = 0;
+		
 		
 		/**
 		 * \brief data collector
