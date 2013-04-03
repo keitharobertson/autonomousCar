@@ -3,6 +3,7 @@
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
 #include <stdio.h>
+#include <unistd.h>
 
 #include "Compass.h"
 
