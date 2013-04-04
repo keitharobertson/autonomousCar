@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <string>
 #include "MQ_PARAMS.h"
+#include "SUBSYS_COMMANDS.h"
 
 /**
  * \class Subsystem.h
@@ -46,7 +47,7 @@ class Subsystem{
 		 * 
 		 * sends a message using subsystem heap message queue
 		 */
-		void send_message(char* message);
+		void send_message(MESSAGE* message);
 		
 		/**
 		 * \brief send message to system

@@ -4,6 +4,7 @@
 #include "Compass.h"
 #include "shirtt.h"
 #include "Motor.h"
+#include "SUBSYS_COMMANDS.h"
 
 static void* sys_receive_task(void* c) {
 	setup_rt_task(5);
@@ -44,10 +45,10 @@ void SystemControl::init() {
 }
 
 void SystemControl::recieve_sys_messages() {
-	char message[sizeof(char*)];
+	char message[sizeof(MESSAGE*)];
 	unsigned int priority;
 	ssize_t size;
-	char* mess;
+	MESSAGE* mess;
 	while(1){
 		if((size = mq_receive(sys_mq, message, MSG_SIZE, &priority)) == ERROR){
 			perror("System Recieve Failed!");
@@ -55,10 +56,14 @@ void SystemControl::recieve_sys_messages() {
 			//handle_message(message);
 			//unsigned int subsys_num = (unsigned int)((*((char**)message))[MSG_SIZE-1]);
 			unsigned int subsys_num = 0;
-			mess = *((char**)message);
-			std::cout << "Sys message received from " << subsys[subsys_num]->subsys_name<< " (" << subsys_num << "):" << std::endl;
-			std::cout << mess << std::endl<<std::endl;
-			delete mess;
+			mess = ((MESSAGE*)message);
+			std::cout << "Sys message received from " << subsys[mess->from]->subsys_name<< " (" << mess->from << "):" << std::endl;
+			std::cout << "Message to: " << subsys[mess->to]->subsys_name<< " (" << mess->to << ")" << std::endl;
+			std::cout << "Command: " << mess->command << std::endl;
+			std::cout << "Data: " << mess->data << std::endl;
+			std::cout << std::endl;
+			//send message to recipient
+			subsys[mess->to]->send_message(mess);
 		}
 	}
 }

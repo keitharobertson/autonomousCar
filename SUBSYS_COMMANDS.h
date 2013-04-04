@@ -2,10 +2,11 @@
 #define	_SUBSYS_COMMANDS_H_
 
 typedef struct {
+	int from;
 	int to;
 	int command;
 	int data;
-} COMMAND;
+} MESSAGE;
 
 //Steering Servo
 #define	STR_HARD_LEFT		0	//hard left turn

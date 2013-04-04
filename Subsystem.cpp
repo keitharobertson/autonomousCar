@@ -50,14 +50,14 @@ void Subsystem::receive_subsys_messages() {
 	}
 }
 
-void Subsystem::send_message(char* message){
-	char* buffer = new char[MSG_SIZE];
-	strcpy(buffer,message);
-	buffer[MSG_SIZE-1] = '\0';
-	if(mq_send (subsys_mq, (char*)&buffer, MSG_SIZE, prio) == ERROR) {
-		perror("Subsystem message failed to send!");
-		std::cout << "Message length: " << MSG_SIZE << std::endl;
-		std::cout << "Message:" <<std::endl << buffer << std::endl;
+void Subsystem::send_message(MESSAGE* message){
+	if(mq_send (subsys_mq, (char*)message, MSG_SIZE, prio) == ERROR) {
+		perror("Subsystem message failed to send!\n");
+		std::cout << "--Message:--" << std::endl;
+		std::cout << "To: " << subsys_name << std::endl;
+		std::cout << "From: " << message->from << std::endl;
+		std::cout << "Command: " << message->command << std::endl;
+		std::cout << "Data: " << message->data << std::endl;
 		exit(-1);
 	}
 }
