@@ -1,6 +1,8 @@
 #ifndef _motor_h_
 #define _motor_h_
 
+#include <stdint.h>
+
 #include "Actuator.h"
 
 #define MOTOR	"MOTOR"
@@ -32,7 +34,7 @@ class Motor : public Actuator {
 		 */
 		void mech_control();
 		
-		void mech_command(char value);
+		void mech_command(char *value);
 		
 		
 	protected:
@@ -44,6 +46,7 @@ class Motor : public Actuator {
 		
 		int motor_fd;
 		char motor_filepath[40];
+		volatile uint32_t* gptimer_reg;
 };
 
 #endif

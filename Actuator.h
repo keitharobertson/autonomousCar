@@ -16,7 +16,7 @@ class Actuator : public Subsystem {
 		void shutdown();
 		virtual void init_device() = 0;
 		virtual void mech_control() = 0;
-		virtual void mech_command(char value) = 0;
+		virtual void mech_command(char *value) = 0;
 	protected:
 		pthread_t tmech_control;//mech control thread
 		int  iret_mech_control;
