@@ -7,7 +7,7 @@
 #include "MQ_PARAMS.h"
 #include "Subsystem.h"
 
-#define NUM_SUBSYSTEMS	1
+#define NUM_SUBSYSTEMS	2
 
 /**
  * \class SystemControl

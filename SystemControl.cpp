@@ -3,6 +3,7 @@
 #include "SystemControl.h"
 #include "Compass.h"
 #include "shirtt.h"
+#include "Motor.h"
 
 static void* sys_receive_task(void* c) {
 	setup_rt_task(5);
@@ -35,6 +36,10 @@ SystemControl::~SystemControl() {
 void SystemControl::init() {
 	subsys[SUBSYS_COMPASS] = new Compass();
 	subsys[SUBSYS_COMPASS]->init();
+	
+	subsys[SUBSYS_MOTOR] = new Motor();
+	subsys[SUBSYS_MOTOR]->init();
+	
 	//subsys[SUBSYS_COMPASS]->send_message((char *)std::string("hello").c_str());
 }
 

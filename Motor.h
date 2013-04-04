@@ -21,6 +21,8 @@ class Motor : public Actuator {
 		 */
 		Motor();
 		
+		~Motor();
+		
 		void init_device();
 		
 		/**
@@ -29,6 +31,8 @@ class Motor : public Actuator {
 		 * 
 		 */
 		void mech_control();
+		
+		void mech_command(char value);
 		
 		
 	protected:

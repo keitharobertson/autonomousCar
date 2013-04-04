@@ -76,7 +76,10 @@ void Compass::collector(){
 		}
 		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
 		heading = data_grab();
-		std::cout << "Compass Heading: " << heading << std::endl;
+		
+		#ifdef COMPASS_DEBUG
+			std::cout << "Compass Heading: " << heading << std::endl;
+		#endif
 	}
 }
 
