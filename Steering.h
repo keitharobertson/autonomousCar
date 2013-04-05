@@ -1,18 +1,18 @@
-#ifndef _motor_h_
-#define _motor_h_
+#ifndef _steering_h_
+#define _steering_h_
 
 #include <stdint.h>
 
 #include "Actuator.h"
 
-#define MOTOR	"MOTOR"
+#define STEERING	"STEERING"
 /**
- * \class Motor
- * \brief motor control
+ * \class Steering
+ * \brief Steering control
  * 
- * receives motor control commands and commands the motor accordingly
+ * receives steering control commands and commands the servo accordingly
  */
-class Motor : public Actuator {
+class Steering : public Actuator {
 	public:
 	
 		/**
@@ -20,9 +20,9 @@ class Motor : public Actuator {
 		 * 
 		 * sets subsystem parameters
 		 */
-		Motor();
+		Steering();
 		
-		~Motor();
+		~Steering();
 		
 		void init_device();
 		
@@ -42,8 +42,8 @@ class Motor : public Actuator {
 		
 	protected:
 		
-		int motor_fd;
-		char motor_filepath[40];
+		int steering_fd;
+		char steering_filepath[40];
 		volatile uint32_t* gptimer_reg;
 };
 

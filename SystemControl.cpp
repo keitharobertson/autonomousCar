@@ -4,6 +4,7 @@
 #include "Compass.h"
 #include "shirtt.h"
 #include "Motor.h"
+#include "Steering.h"
 #include "SUBSYS_COMMANDS.h"
 
 static void* sys_receive_task(void* c) {
@@ -35,17 +36,22 @@ SystemControl::~SystemControl() {
 }
 
 void SystemControl::init() {
-	subsys[SUBSYS_COMPASS] = new Compass();
-	subsys[SUBSYS_COMPASS]->init();
 	
 	subsys[SUBSYS_MOTOR] = new Motor();
 	subsys[SUBSYS_MOTOR]->init();
+	
+	subsys[SUBSYS_STEERING] = new Steering();
+	subsys[SUBSYS_STEERING]->init();
+	
+	subsys[SUBSYS_COMPASS] = new Compass();
+	subsys[SUBSYS_COMPASS]->init();
+	subsys[SUBSYS_COMPASS]->enabled = 1;
 	
 	//subsys[SUBSYS_COMPASS]->send_message((char *)std::string("hello").c_str());
 }
 
 void SystemControl::recieve_sys_messages() {
-	char message[sizeof(MESSAGE*)];
+	char message[4];
 	unsigned int priority;
 	ssize_t size;
 	MESSAGE* mess;
@@ -53,17 +59,20 @@ void SystemControl::recieve_sys_messages() {
 		if((size = mq_receive(sys_mq, message, MSG_SIZE, &priority)) == ERROR){
 			perror("System Recieve Failed!");
 		}else{
-			//handle_message(message);
-			//unsigned int subsys_num = (unsigned int)((*((char**)message))[MSG_SIZE-1]);
 			unsigned int subsys_num = 0;
-			mess = ((MESSAGE*)message);
-			std::cout << "Sys message received from " << subsys[mess->from]->subsys_name<< " (" << mess->from << "):" << std::endl;
-			std::cout << "Message to: " << subsys[mess->to]->subsys_name<< " (" << mess->to << ")" << std::endl;
-			std::cout << "Command: " << mess->command << std::endl;
-			std::cout << "Data: " << mess->data << std::endl;
-			std::cout << std::endl;
+			mess = ( (MESSAGE*)(*((unsigned int*)message)) );
+			#ifdef DEBUG_SYS_MESSAGES
+				std::cout << "Sys message received from " << subsys[mess->from]->subsys_name<< " (" << mess->from << "):" << std::endl;
+				std::cout << "to: " << mess->to << std::endl;
+				std::cout << "size of subsys array=" << sizeof(subsys)/sizeof(Subsystem*) << std::endl;
+				std::cout << "subsys enabled: " << subsys[mess->to]->enabled << std::endl;
+				std::cout << "Message to: " << subsys[mess->to]->subsys_name<< " (" << mess->to << ")" << std::endl;
+				std::cout << "Command: " << mess->command << std::endl;
+				std::cout << "Data: " << mess->data << std::endl;
+				std::cout << std::endl;
+			#endif
 			//send message to recipient
-			subsys[mess->to]->send_message(mess);
+			subsys[mess->to]->handle_message(mess);
 		}
 	}
 }

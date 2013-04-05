@@ -55,15 +55,10 @@ void GPS::collector(){
 }
 
 void GPS::analysis(){
-	struct timespec t;
-	send_sys_message((char *)std::string("hello from GPS analysis").c_str());
-	clock_gettime(CLOCK_MONOTONIC ,&t);
-	t.tv_sec++;
-	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
-	send_sys_message((char *)std::string("hello from GPS analysis 1 second later").c_str());
+	
 }
 
-void GPS::handle_message(char* message){
+void GPS::handle_message(MESSAGE* message){
 	std::cout << "GPS Recieved Message:" << std::endl;
 	std::cout << message <<std::endl << std::endl;
 }

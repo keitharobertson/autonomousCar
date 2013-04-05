@@ -1,10 +1,11 @@
 #ifndef	COMPASS_H_
 #define	COMPASS_H_
 
+#include <semaphore.h>
+
 #include "Sensor.h"
 
 #define COMPASS	"COMPASS"
-#define SUBSYS_COMPASS	0
 
 /**
  * \class Compass
@@ -46,12 +47,24 @@ class Compass : public Sensor {
 		 */
 		void analysis();
 		
-	protected:
-	
 		/**
 		 * \brief handles messages sent to the compass subsystem
 		 */
-		void handle_message(char* message);
+		void handle_message(MESSAGE* message);
+		
+		MESSAGE hard_right;
+		MESSAGE slight_right;
+		
+		MESSAGE straight;
+		
+		MESSAGE hard_left;
+		MESSAGE slight_left;
+		
+	protected:
+		
+		float desired_heading;
+		float meas_heading;
+		sem_t collect_analysis_sync;
 		
 		int compass_fd;
 		char compass_filepath[40];

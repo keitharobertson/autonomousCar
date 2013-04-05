@@ -1,11 +1,26 @@
 #ifndef _SUBSYS_COMMANDS_H_
 #define	_SUBSYS_COMMANDS_H_
 
-typedef struct {
+//subsystems:
+#define SUBSYS_COMPASS	0
+#define SUBSYS_GPS		1
+#define SUBSYS_SONAR	2
+#define SUBSYS_CAMERA	3
+#define SUBSYS_MOTOR	4
+#define SUBSYS_STEERING	5
+
+typedef struct _MESSAGE {
 	int from;
 	int to;
 	int command;
-	int data;
+	void* data;
+	
+	_MESSAGE(){}
+	_MESSAGE(int from, int to, int command)
+		: from(from), to(to), command(command) { }
+	_MESSAGE(int from, int to, int command, void* data)
+		: from(from), to(to), command(command), data(data) { }
+	
 } MESSAGE;
 
 //Steering Servo

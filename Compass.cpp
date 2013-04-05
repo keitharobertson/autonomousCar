@@ -16,12 +16,20 @@
 #define NS_PER_S	1000000000
 #define DATA_COL_PERIOD_MS	50
 
+#define	HARD_TURN_THRESH	45
+#define	SLIGHT_TURN_THRESH	20
+#define STRAIGHT_THRESH		5
+
 
 //Compass class
 
 Compass::Compass() {
 	subsys_name = COMPASS;
 	subsys_num = SUBSYS_COMPASS;
+	desired_heading = 0;
+	if(sem_init(&collect_analysis_sync, 0, 0) != 0){
+		perror("Failed to init the compass collector/analysis sync sem \n");
+	}
 }
 
 void Compass::init_sensor() {
@@ -67,7 +75,6 @@ float Compass::data_grab(){
 }
 
 void Compass::collector(){
-	float heading;
 	struct timespec t;
 	clock_gettime(CLOCK_MONOTONIC ,&t);
 	while(1){
@@ -77,24 +84,81 @@ void Compass::collector(){
 			t.tv_nsec -= NS_PER_S;
 		}
 		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
-		heading = data_grab();
-		
-		#ifdef COMPASS_DEBUG
-			std::cout << "Compass Heading: " << heading << std::endl;
-		#endif
+		if(enabled){
+			meas_heading = data_grab();
+			#ifdef COMPASS_DEBUG
+				std::cout << "Compass Heading: " << meas_heading << std::endl;
+			#endif
+			sem_post(&collect_analysis_sync);
+		}
 	}
 }
 
 void Compass::analysis(){
-	struct timespec t;
-	send_sys_message((char *)std::string("hello from compass analysis").c_str());
-	clock_gettime(CLOCK_MONOTONIC ,&t);
-	t.tv_sec++;
-	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
-	send_sys_message((char *)std::string("hello from compass analysis 1 second later").c_str());
+	
+	hard_right = MESSAGE(subsys_num, SUBSYS_STEERING, STR_HARD_RIGHT);
+	slight_right = MESSAGE(subsys_num, SUBSYS_STEERING, STR_SLIGHT_RIGHT);
+	
+	straight = MESSAGE(subsys_num, SUBSYS_STEERING, STR_STRAIGHT);
+	
+	hard_left = MESSAGE(subsys_num, SUBSYS_STEERING, STR_HARD_LEFT);
+	slight_left = MESSAGE(subsys_num, SUBSYS_STEERING, STR_SLIGHT_LEFT);
+	
+	while(1) {
+		//wait for data
+		sem_wait(&collect_analysis_sync);
+		//analyze data
+		float diff = desired_heading - meas_heading;
+		if(diff < 0){diff+=360;}
+		if(diff<180){
+			//turn right
+			if(diff < STRAIGHT_THRESH){
+				send_sys_message(&straight);
+			}else if(diff > HARD_TURN_THRESH) {
+				send_sys_message(&hard_right);
+			}else {
+				send_sys_message(&slight_right);
+			}
+		}else{
+			//turn left
+			diff = 360 - diff;
+			if(diff < STRAIGHT_THRESH){
+				send_sys_message(&straight);
+			}else if(diff > HARD_TURN_THRESH) {
+				send_sys_message(&hard_left);
+			}else {
+				send_sys_message(&slight_left);
+			}
+		}
+	}
 }
 
-void Compass::handle_message(char* message){
-	std::cout << "Compass Recieved Message:" << std::endl;
-	std::cout << message <<std::endl << std::endl;
+void Compass::handle_message(MESSAGE* message){
+	switch(message->command){
+		case CPS_SET_HEADING:
+			desired_heading = *(float*)message->data;
+			delete (float *)message->data;
+			break;
+		case CPS_LEFT_90:
+			desired_heading -= 90;
+			if(desired_heading<0){desired_heading+=360;}
+			break;
+		case CPS_RIGHT_90:
+			desired_heading += 90;
+			if(desired_heading>360){desired_heading-=360;}
+			break;
+		case CPS_180:
+			desired_heading += 180;
+			if(desired_heading>360){desired_heading-=360;}
+			break;
+		case CPS_DISABLE:
+			enabled = 0;
+			break;
+		case CPS_ENABLE:
+			enabled = 1;
+			break;
+		default:
+			std::cout << "Unknown command passed to compass subsystem! Command was : " << message->command << std::endl;
+			break;
+	}
 }

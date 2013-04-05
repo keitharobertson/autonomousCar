@@ -54,7 +54,7 @@ class Subsystem{
 		 * 
 		 * sends a message to the system using system heap message queue
 		 */
-		void send_sys_message(char* message);
+		void send_sys_message(MESSAGE* message);
 		
 		/**
 		 * \brief Shutdown subsystem
@@ -70,20 +70,21 @@ class Subsystem{
 		 * subsystem messages. Sends messages on to subsystem
 		 * handle_message.
 		 */
-		void receive_subsys_messages();
+		/*void receive_subsys_messages();*/
 		
-		std::string subsys_name;//subsystem name
-		int subsys_num;//subsystem number;
-		
-	protected:
-	
 		/**
 		 * \brief handles messages sent to the subsystem
 		 * 
 		 * virtual function defined at the specific subsystem level
 		 */
-		virtual void handle_message(char* message) = 0;
+		virtual void handle_message(MESSAGE* message) = 0;
 		
+		std::string subsys_name;//subsystem name
+		int subsys_num;//subsystem number;
+		int enabled;
+		
+		
+	protected:
 		struct mq_attr attr; //queue attributes
 		mqd_t subsys_mq; //message queue descriptor
 		mqd_t sys_mq; //message queue descriptor

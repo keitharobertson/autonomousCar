@@ -60,16 +60,18 @@ class Sensor : public Subsystem {
 		 * virtual fuction defined at the specific sensor level
 		 */
 		virtual void analysis() = 0;
-	protected:
-		pthread_t tCollector, tAnalysis;//collector and analysis threads
-		int  iret_Collector, iret_Analysis;
 		
 		/**
 		 * \brief message handler
 		 * 
 		 * virtual fuction defined at the specific sensor level
 		 */
-		virtual void handle_message(char* message) = 0;
+		virtual void handle_message(MESSAGE* message) = 0;
+		
+	protected:
+		pthread_t tCollector, tAnalysis;//collector and analysis threads
+		int  iret_Collector, iret_Analysis;
+		
 };
 
 #endif

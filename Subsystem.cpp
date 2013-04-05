@@ -4,17 +4,21 @@
 #include "Subsystem.h"
 #include "shirtt.h"
 
+/*
 static void* subsys_receive_task(void* c) {
 	setup_rt_task(10);
 	Subsystem* s = (Subsystem*)c;
 	s->receive_subsys_messages();
 }
+* */
 
 Subsystem::Subsystem(){
 	 // setup message queue attributes
 	attr.mq_maxmsg = MAX_MSG;
 	attr.mq_msgsize = MSG_SIZE;
 	attr.mq_flags = 0;
+	// disable subsystem by default
+	enabled = 0;
 	// Open message queues
 	subsys_mq = mq_open( (char*)((std::string("/MQ_").append(subsys_name)).c_str()), O_RDWR | O_CREAT, 0664, &attr);
 	if(subsys_mq == ERROR){
@@ -26,7 +30,7 @@ Subsystem::Subsystem(){
 		perror("failed to open sys mq");
 		exit(-1);
 	}
-	iret_mq_receiver = pthread_create( &tMQReceiver, NULL, &subsys_receive_task, (void *)(this));
+	//iret_mq_receiver = pthread_create( &tMQReceiver, NULL, &subsys_receive_task, (void *)(this));
 }
 
 Subsystem::~Subsystem(){
@@ -36,6 +40,7 @@ Subsystem::~Subsystem(){
 	mq_unlink((char*)((std::string("/MQ_").append(subsys_name)).c_str()));
 }
 
+/*
 void Subsystem::receive_subsys_messages() {
 	char message[sizeof(char*)];
 	unsigned int priority;
@@ -49,6 +54,7 @@ void Subsystem::receive_subsys_messages() {
 		}
 	}
 }
+* */
 
 void Subsystem::send_message(MESSAGE* message){
 	if(mq_send (subsys_mq, (char*)message, MSG_SIZE, prio) == ERROR) {
@@ -62,15 +68,11 @@ void Subsystem::send_message(MESSAGE* message){
 	}
 }
 
-void Subsystem::send_sys_message(char* message){
-	char* buffer = new char[MSG_SIZE];
-	strcpy(buffer,message);
-	buffer[MSG_SIZE-2] = '\0';
-	buffer[MSG_SIZE-1] = (char)subsys_num;
-	if(mq_send (sys_mq, (char*)&buffer, MSG_SIZE, prio) == ERROR) {
+void Subsystem::send_sys_message(MESSAGE* message){
+	char* mess = new char[4];
+	memcpy(mess, &message, sizeof(MESSAGE*));
+	if(mq_send (sys_mq, mess, MSG_SIZE, prio) == ERROR) {
 		perror("System message failed to send!");
-		std::cout << "Message length: " << MSG_SIZE << std::endl;
-		std::cout << "Message:" <<std::endl << buffer << std::endl;
 		exit(-1);
 	}
 }

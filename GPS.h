@@ -4,7 +4,6 @@
 #include "Sensor.h"
 
 #define GPS_NAME	"GPS"
-#define SUBSYS_GPS	1
 
 /**
  * \class GPS
@@ -48,12 +47,12 @@ class GPS : public Sensor {
 		 */
 		void analysis();
 		
-	protected:
-	
 		/**
 		 * \brief handles messages sent to the GPS subsystem
 		 */
-		void handle_message(char* message);
+		void handle_message(MESSAGE* message);
+		
+	protected:
 		
 		int gps_fd;
 		char gps_filepath[40];
