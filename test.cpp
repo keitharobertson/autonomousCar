@@ -8,29 +8,12 @@
 #define MAIN_PRIORITY (49)/* we use 49 as the PRREMPT_RT use 50
                             as the priority of kernel tasklets
                             and interrupt handler by default */
-                            
-// setup message queue attributes
-attr.mq_maxmsg = MAX_MSG;
-attr.mq_msgsize = MSG_SIZE;
-attr.mq_flags = 0;
-// disable subsystem by default
-enabled = 0;
-// Open message queues
-subsys_mq = mq_open( (char*)((std::string("/MQ_").append(subsys_name)).c_str()), O_RDWR | O_CREAT, 0664, &attr);
-if(subsys_mq == ERROR){
-	perror("failed to open subsys mq");
-	exit(-1);
-}
-sys_mq = mq_open((char*)MQ_SYSTEM, O_RDWR | O_CREAT, 0664, &attr);
-if(sys_mq == ERROR){
-	perror("failed to open sys mq");
-	exit(-1);
-}
-                            
-void Subsystem::send_sys_message(MESSAGE* message){
+                        
+void send_message_to_subsys(SystemControl *c, MESSAGE* message){
 	char* mess = new char[4];
 	memcpy(mess, &message, sizeof(MESSAGE*));
-	if(mq_send (sys_mq, mess, MSG_SIZE, prio) == ERROR) {
+	int prio = 1;
+	if(mq_send (c->sys_mq, mess, MSG_SIZE, prio) == ERROR) {
 		perror("System message failed to send!");
 		exit(-1);
 	}
@@ -41,6 +24,11 @@ int main() {
 	c.init();
 	std::string input;
 	int subsys_num;
+	int has_data;
+	int command;
+	int data;
+	MESSAGE subsys_mess;
+	subsys_mess.from = 7;
 	while(1) {
 		std::cout << "Command> ";
 		std::cin >> input;
@@ -62,6 +50,14 @@ int main() {
 				c.subsys[subsys_num]->enabled = 0;
 				std::cout << "Subsystem " << c.subsys[subsys_num]->subsys_name << " (" << subsys_num << ") disabled" << std::endl;
 			}
+		}else if(input == "subsys"){
+			std::cin >> has_data;
+			std::cin >> subsys_mess.to;
+			std::cin >> subsys_mess.command;
+			if(has_data){
+				std::cin >> subsys_mess.data;
+			}
+			
 		}else if(input == "exit") {
 			c.shutdown();
 			exit(0);

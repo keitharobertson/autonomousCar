@@ -79,5 +79,29 @@ void Motor::mech_control(){
 }
 
 void Motor::handle_message(MESSAGE* message){
-	
+	switch(message->command) {
+		case MOT_FAST:
+			
+			break;
+		case MOT_SLOW:
+			break;
+		case MOT_STOP:
+			break;
+		case MOT_MID:
+			break;
+		case MOT_INC_FASTER:
+			break;
+		case MOT_INC_SLOWER:
+			break;
+		case MOT_SET_SPEED:
+			break;
+		case MOT_DISABLE:
+			break;
+		case MOT_ENABLE:
+			break;
+		case MOT_SET_MIN_PRIO:
+			break;
+		default:
+			break;
+	}
 }
