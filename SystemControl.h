@@ -32,6 +32,8 @@ class SystemControl {
 		 */
 		~SystemControl();
 		
+		void shutdown();
+		
 		/**
 		 * \brief System initialization
 		 * 
@@ -45,6 +47,9 @@ class SystemControl {
 		 * receivers and handles system messages
 		 */
 		void recieve_sys_messages();//recieve task for system mq
+		
+		Subsystem* subsys[NUM_SUBSYSTEMS]; //array of subsystems
+		
 	private:
 		struct mq_attr attr; //queue attributes
 		//struct sigevent sigevent;// For notification
@@ -52,7 +57,6 @@ class SystemControl {
 		unsigned int prio;// Priority
 		mqd_t sys_mq; //system mq
 		mqd_t subsys_mq[NUM_SUBSYSTEMS];//subsys mq
-		Subsystem* subsys[NUM_SUBSYSTEMS]; //array of subsystems
 		int iret_mq_receiver;
 		pthread_t tMQReceiver; //sys mq receiver task
 		

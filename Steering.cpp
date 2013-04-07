@@ -1,10 +1,12 @@
 #include <iostream>
 #include <time.h>
+#include <stdlib.h>
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
 #include <stdio.h>
 #include <unistd.h>
  #include <sys/mman.h>
+ #include <string.h>
 
 #include "Steering.h"
 									
@@ -12,10 +14,21 @@
 #define GPTIMER10_OFFSET		0x86000
 #define TIMER_LOAD_REG			0x02c
 
+#define HARD_LEFT		"90"
+#define HARD_RIGHT		"10"
+#define SLIGHT_LEFT		"75"
+#define SLIGHT_RIGHT	"25"
+#define FINE_LEFT		"60"
+#define FINE_RIGHT		"40"
+#define	STRAIGHT		"50"
+
 
 Steering::Steering(){
 	subsys_name = STEERING;
 	subsys_num = SUBSYS_STEERING;
+	if(sem_init(&steer_cmd_ctrl, 0, 0) != 0){
+		perror("Failed to init the steering subsys command / mech control sync sem \n");
+	}
 }
 
 Steering::~Steering() {
@@ -49,10 +62,8 @@ void Steering::init_device(){
 	
 	//ioctl(motor_fd, PWM_IOCTL_SET_FREQ, 256);
 
-	char command[1];
-	
-	command[0] = 50;
-	write(steering_fd,command,1);
+	const char* command = STRAIGHT;
+	write(steering_fd,command,2);
 }
 
 void Steering::mech_command(char *value){
@@ -60,53 +71,75 @@ void Steering::mech_command(char *value){
 }
 
 void Steering::mech_control(){
-	struct timespec t;
-	clock_gettime(CLOCK_MONOTONIC ,&t);
-	char value1[2];
-	sprintf(value1,"90");
-	char value2[2];
-	sprintf(value2,"60");
 	while(1){
-		std::cout << "Motor flip" << std::endl;
-		t.tv_sec++;
-		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
-		mech_command(value1);
-		t.tv_sec++;
-		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
-		mech_command(value2);
+		sem_wait(&steer_cmd_ctrl);
+		if(enabled){
+			mech_command(steering_duty_cycle);
+		}
 	}
+}
+
+void Steering::set_new_pwm_duty_cycle(const char* value){
+	memcpy(steering_duty_cycle,value,2);
+	sem_post(&steer_cmd_ctrl);
 }
 
 void Steering::handle_message(MESSAGE* message){
 	switch(message->command){
 		case STR_HARD_LEFT:
-			std::cout << "hard left!" << std::endl;
+			set_new_pwm_duty_cycle(HARD_LEFT);
+			#ifdef STR_DEBUG
+				std::cout << "hard left!" << std::endl;
+			#endif
 			break;
 		case STR_HARD_RIGHT:
-			std::cout << "hard right!" << std::endl;
+			set_new_pwm_duty_cycle(HARD_RIGHT);
+			#ifdef STR_DEBUG
+				std::cout << "hard right!" << std::endl;
+			#endif
 			break;
 		case STR_SLIGHT_LEFT:
-			std::cout << "slight left!" << std::endl;
+			set_new_pwm_duty_cycle(SLIGHT_LEFT);
+			#ifdef STR_DEBUG
+				std::cout << "slight left!" << std::endl;
+			#endif
 			break;
 		case STR_SLIGHT_RIGHT:
-			std::cout << "slight right!" << std::endl;
+			set_new_pwm_duty_cycle(SLIGHT_RIGHT);
+			#ifdef STR_DEBUG
+				std::cout << "slight right!" << std::endl;
+			#endif
 			break;
-		case STR_INCR_LEFT:
-			std::cout << "inc left!" << std::endl;
+		case STR_FINE_LEFT:
+			set_new_pwm_duty_cycle(FINE_LEFT);
+			#ifdef STR_DEBUG
+				std::cout << "fine left!" << std::endl;
+			#endif
 			break;
-		case STR_INCR_RIGHT:
-			std::cout << "inc right!" << std::endl;
+		case STR_FINE_RIGHT:
+			set_new_pwm_duty_cycle(FINE_RIGHT);
+			#ifdef STR_DEBUG
+				std::cout << "fine right!" << std::endl;
+			#endif
 			break;
 		case STR_STRAIGHT:
-			std::cout << "inc straight!" << std::endl;
+			set_new_pwm_duty_cycle(STRAIGHT);
+			#ifdef STR_DEBUG
+				std::cout << "straight!" << std::endl;
+			#endif
 			break;
 		case STR_SET_STEERING:
+			set_new_pwm_duty_cycle((const char*)message->data);
 			break;
 		case STR_DISABLE:
+			set_new_pwm_duty_cycle(STRAIGHT);
+			enabled = 0;
 			break;
 		case STR_ENABLE:
+			enabled = 1;
 			break;
 		case STR_SET_MIN_PRIO:
+			min_priority = (int)message->data;
 			break;
 		default:
 			std::cout << "Unknown command passed to steering subsystem! Command was : " << message->command << std::endl;

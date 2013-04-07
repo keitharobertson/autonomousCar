@@ -68,7 +68,7 @@ void Motor::mech_control(){
 	char value2[2];
 	sprintf(value2,"60");
 	while(1){
-		std::cout << "Motor flip" << std::endl;
+		//std::cout << "Motor flip" << std::endl;
 		t.tv_sec++;
 		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
 		mech_command(value1);

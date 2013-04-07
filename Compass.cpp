@@ -7,8 +7,6 @@
 
 #include "Compass.h"
 
-#define COMPASS_DEBUG
-
 
 #define	COMPASS_ADDR	0x21
 

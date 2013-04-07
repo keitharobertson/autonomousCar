@@ -28,8 +28,8 @@ typedef struct _MESSAGE {
 #define	STR_HARD_RIGHT		1	//hard right turn
 #define	STR_SLIGHT_LEFT		2	//slight left turn
 #define STR_SLIGHT_RIGHT	3	//slight right turn
-#define STR_INCR_LEFT		4	//incremental left turn
-#define STR_INCR_RIGHT		5	//incremental right turn
+#define STR_FINE_LEFT		4	//incremental left turn
+#define STR_FINE_RIGHT		5	//incremental right turn
 #define	STR_STRAIGHT		6	//go straight
 #define STR_SET_STEERING	7	//set steering to value between 0 and 100. Straight is ~50. 
 #define	STR_DISABLE			8	//disable steering control

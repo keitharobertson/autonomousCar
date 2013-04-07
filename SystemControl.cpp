@@ -27,6 +27,10 @@ SystemControl::SystemControl() {
 }
 
 SystemControl::~SystemControl() {
+	shutdown();
+}
+
+void SystemControl::shutdown() {
 	for(int i=0;i<NUM_SUBSYSTEMS;i++){
 		delete[] subsys[i];
 	}
