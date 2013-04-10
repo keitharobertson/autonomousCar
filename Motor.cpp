@@ -46,7 +46,7 @@ void Motor::init_device(){
 	
 	sprintf(motor_filepath,"/dev/pwm11");
 	if ((motor_fd = open(motor_filepath,O_RDWR)) < 0) {
-		perror("Failed to open the bus for compass read.\n");
+		perror("Failed to open the bus for motor.\n");
 	}
 	
 	//ioctl(motor_fd, PWM_IOCTL_SET_FREQ, 256);
