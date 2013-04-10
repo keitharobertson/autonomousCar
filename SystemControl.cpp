@@ -7,7 +7,7 @@
 #include "Steering.h"
 #include "Sonar.h"
 #include "SUBSYS_COMMANDS.h"
-
+ 
 static void* sys_receive_task(void* c) {
 	setup_rt_task(5);
 	SystemControl* s = (SystemControl*)c;
