@@ -78,6 +78,36 @@ void Motor::mech_control(){
 	}
 }
 
+void* Motor::read_data(int command) {
+	int data;
+	switch(command){
+		case MOT_FAST:
+		case MOT_SLOW:
+		case MOT_STOP:
+		case MOT_MID:
+		case MOT_INC_FASTER:
+		case MOT_INC_SLOWER:
+			return NULL;
+			break;
+		case MOT_SET_SPEED:
+			std::cin >> data;
+			return *((void**)(&data)); 
+			break;
+		case MOT_DISABLE:
+		case MOT_ENABLE:
+			return NULL;
+			break;
+		case MOT_SET_MIN_PRIO:
+			std::cin >> data;
+			return *((void**)(&data)); 
+			break;
+		default:
+			std::cout << "Unknown command passed to motor subsystem for reading data! Command was : " << command << std::endl;
+			return NULL;
+			break;
+	}
+}
+
 void Motor::handle_message(MESSAGE* message){
 	switch(message->command) {
 		case MOT_FAST:

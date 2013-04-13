@@ -41,6 +41,8 @@ class SystemControl {
 		 */
 		void init(); //initialize the subsystems
 		
+		void* read_data(int subsys_num, int command);
+		
 		/**
 		 * \brief System message receiver task
 		 * 

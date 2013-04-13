@@ -15,6 +15,7 @@ class Actuator : public Subsystem {
 		void init();
 		void shutdown();
 		virtual void init_device() = 0;
+		virtual void* read_data(int command) = 0;
 		virtual void mech_control() = 0;
 		virtual void mech_command(char *value) = 0;
 		virtual void handle_message(MESSAGE* message) = 0;

@@ -59,6 +59,10 @@ void SystemControl::init() {
 	//subsys[SUBSYS_COMPASS]->send_message((char *)std::string("hello").c_str());
 }
 
+void* SystemControl::read_data(int subsys_num, int command){
+	return subsys[subsys_num]->read_data(command);
+}
+
 void SystemControl::recieve_sys_messages() {
 	char message[4];
 	unsigned int priority;

@@ -63,6 +63,8 @@ class Subsystem{
 		 */
 		virtual void shutdown() = 0;
 		
+		virtual void* read_data(int command) = 0;
+		
 		/**
 		 * \brief subsystem message queue receiver task 
 		 * 

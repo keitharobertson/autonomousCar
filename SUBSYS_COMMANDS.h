@@ -55,6 +55,7 @@ typedef struct _MESSAGE {
 #define	CPS_180				3	//add 180 to compass heading
 #define	CPS_DISABLE			4	//disable compass subsystem
 #define	CPS_ENABLE			5	//enable compass subsystem
+#define	CPS_GET_READING		6	//output current compass reading
 
 //GPS
 #define	GPS_SET_LAT			0	//set destination latitude
@@ -66,5 +67,6 @@ typedef struct _MESSAGE {
 #define SNR_SET_DIST_THR	0	//set the sonar distance threshold - the maximum distance at which the subsystem takes control to avoid an obstacle. 
 #define SNR_DISABLE			1	//diable sonar control
 #define SNR_ENABLE			2	//enable sonar control
+#define	SNR_GET_READING		3	//output sonar reading
 
 #endif

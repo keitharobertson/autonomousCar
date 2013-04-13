@@ -84,6 +84,37 @@ void Steering::set_new_pwm_duty_cycle(const char* value){
 	sem_post(&steer_cmd_ctrl);
 }
 
+void* Steering::read_data(int command) {
+	int data;
+	switch(command){
+		case STR_HARD_LEFT:
+		case STR_HARD_RIGHT:
+		case STR_SLIGHT_LEFT:
+		case STR_SLIGHT_RIGHT:
+		case STR_FINE_LEFT:
+		case STR_FINE_RIGHT:
+		case STR_STRAIGHT:
+			return NULL;
+			break;
+		case STR_SET_STEERING:
+			std::cin >> data;
+			return *((void**)(&data)); 
+			break;
+		case STR_DISABLE:
+		case STR_ENABLE:
+			return NULL;
+			break;
+		case STR_SET_MIN_PRIO:
+			std::cin >> data;
+			return *((void**)(&data)); 
+			break;
+		default:
+			std::cout << "Unknown command passed to steering subsystem for reading data! Command was : " << command << std::endl;
+			return NULL;
+			break;
+	}
+}
+
 void Steering::handle_message(MESSAGE* message){
 	switch(message->command){
 		case STR_HARD_LEFT:

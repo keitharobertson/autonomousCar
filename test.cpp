@@ -10,7 +10,7 @@
                             and interrupt handler by default */
                         
 void send_message_to_subsys(SystemControl *c, MESSAGE* message){
-	char* mess = new char[4];
+	char* mess = new char[sizeof(MESSAGE*)];
 	memcpy(mess, &message, sizeof(MESSAGE*));
 	int prio = 1;
 	if(mq_send (c->sys_mq, mess, MSG_SIZE, prio) == ERROR) {
@@ -55,9 +55,10 @@ int main() {
 			std::cin >> subsys_mess.to;
 			std::cin >> subsys_mess.command;
 			if(has_data){
-				std::cin >> subsys_mess.data;
+				subsys_mess.data = c.read_data(subsys_mess.to, subsys_mess.command);
 			}
-			
+			//send sys message
+			send_message_to_subsys(&c, &subsys_mess);
 		}else if(input == "exit") {
 			c.shutdown();
 			exit(0);

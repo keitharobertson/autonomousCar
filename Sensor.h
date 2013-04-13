@@ -39,6 +39,8 @@ class Sensor : public Subsystem {
 		 */
 		void shutdown();
 		
+		virtual void* read_data(int command) = 0;
+		
 		/**
 		 * \brief data grabber
 		 * 
@@ -60,6 +62,8 @@ class Sensor : public Subsystem {
 		 * virtual fuction defined at the specific sensor level
 		 */
 		virtual void analysis() = 0;
+		
+		
 		
 		/**
 		 * \brief message handler

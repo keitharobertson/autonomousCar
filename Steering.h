@@ -36,6 +36,8 @@ class Steering : public Actuator {
 		
 		void mech_command(char *value);
 		
+		void* read_data(int command);
+		
 		/**
 		 * \brief handles messages sent to the compass subsystem
 		 */

@@ -58,6 +58,15 @@ void GPS::analysis(){
 	
 }
 
+void* GPS::read_data(int command) {
+	switch(command){
+		default:
+			std::cout << "Unknown command passed to GPS subsystem for reading data! Command was : " << command << std::endl;
+			return NULL;
+			break;
+	}
+}
+
 void GPS::handle_message(MESSAGE* message){
 	std::cout << "GPS Recieved Message:" << std::endl;
 	std::cout << message <<std::endl << std::endl;

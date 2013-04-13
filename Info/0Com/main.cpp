@@ -54,7 +54,7 @@ void sigint_handler(int sig);
 
 #define MAX_COMMAND_LENGTH 10
 
-static const char *PORT_NAME = "/dev/ttyO2";  // for default RS232 console at BB
+static const char *PORT_NAME = "/dev/ttyO1";  // for default RS232 console at BB
 
 int serial_port;
 struct termios options_original;

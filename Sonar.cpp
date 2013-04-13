@@ -8,6 +8,8 @@
 
 #include "Sonar.h"
 
+#define SONAR_DEBUG
+
 
 #define	SONAR_ADDR	0x21
 
@@ -68,12 +70,15 @@ float Sonar::data_grab(){
 	
 	tx_buf[0] = 0b01101000;
 	tx_buf[1] = 0xFF;
-	printf("tx buff: %x\n",(int)tx_buf[0]);
+	#ifdef SONAR_DEBUG
+		printf("tx buff: %x\n",(int)tx_buf[0]);
+	#endif
 	if(ioctl(sonar_fd, SPI_IOC_MESSAGE(1), msg) < 0) {
 		perror("Error requesting data from ADC (SPI IOC MESSAGE failed)\n");
 	}
-	
-	std::cout << "sonar reading: " << ( (((int)(rx_buf[0] & 0b00000011)) << 8) + ((int)(rx_buf[1])) ) << std::endl;
+	#ifdef SONAR_DEBUG
+		std::cout << "sonar reading: " << ( (((int)(rx_buf[0] & 0b00000011)) << 8) + ((int)(rx_buf[1])) ) << std::endl;
+	#endif
 	return 0.0;
 }
 
@@ -105,8 +110,28 @@ void Sonar::analysis(){
 	}
 }
 
+void* Sonar::read_data(int command) {
+	switch(command){
+		default:
+			std::cout << "Unknown command passed to sonar subsystem for reading data! Command was : " << command << std::endl;
+			return NULL;
+			break;
+	}
+}
+
 void Sonar::handle_message(MESSAGE* message){
 	switch(message->command){
+		case SNR_SET_DIST_THR:
+			break;
+		case SNR_DISABLE:
+			enabled=0;
+			break;
+		case SNR_ENABLE:
+			enabled=1;
+			break;
+		case SNR_GET_READING:
+			std::cout << "Sonar Reading: " << sonar_reading << std::endl;
+			break;
 		default:
 			std::cout << "Unknown command passed to soar subsystem! Command was : " << message->command << std::endl;
 			break;

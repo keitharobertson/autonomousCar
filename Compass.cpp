@@ -131,11 +131,31 @@ void Compass::analysis(){
 	}
 }
 
+void* Compass::read_data(int command) {
+	switch(command){
+		case CPS_SET_HEADING:
+			float data;
+			std::cin >> data;
+			return *((void**)(&data));
+			//return (void*)data; 
+		case CPS_LEFT_90:
+		case CPS_RIGHT_90:
+		case CPS_180:
+		case CPS_DISABLE:
+		case CPS_ENABLE:
+			return NULL;
+			break;
+		default:
+			std::cout << "Unknown command passed to compass subsystem for reading data! Command was : " << command << std::endl;
+			return NULL;
+			break;
+	}
+}
+
 void Compass::handle_message(MESSAGE* message){
 	switch(message->command){
 		case CPS_SET_HEADING:
-			desired_heading = *(float*)message->data;
-			delete (float *)message->data;
+			desired_heading = (*(float*)&message->data);
 			break;
 		case CPS_LEFT_90:
 			desired_heading -= 90;
@@ -154,6 +174,9 @@ void Compass::handle_message(MESSAGE* message){
 			break;
 		case CPS_ENABLE:
 			enabled = 1;
+			break;
+		case CPS_GET_READING:
+			std::cout << "Compass reading: " << meas_heading << std::endl;
 			break;
 		default:
 			std::cout << "Unknown command passed to compass subsystem! Command was : " << message->command << std::endl;

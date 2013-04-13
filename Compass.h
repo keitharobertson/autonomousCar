@@ -52,6 +52,8 @@ class Compass : public Sensor {
 		 */
 		void handle_message(MESSAGE* message);
 		
+		void* read_data(int command);
+		
 		MESSAGE hard_right;
 		MESSAGE slight_right;
 		

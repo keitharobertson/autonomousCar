@@ -47,6 +47,8 @@ class Sonar : public Sensor {
 		 */
 		void analysis();
 		
+		void* read_data(int command);
+		
 		/**
 		 * \brief handles messages sent to the sonar subsystem
 		 */
