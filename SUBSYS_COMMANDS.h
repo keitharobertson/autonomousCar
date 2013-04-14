@@ -5,9 +5,9 @@
 #define SUBSYS_COMPASS	0
 #define SUBSYS_GPS		1
 #define SUBSYS_SONAR	2
-#define SUBSYS_CAMERA	3
-#define SUBSYS_MOTOR	4
-#define SUBSYS_STEERING	5
+#define SUBSYS_MOTOR	3
+#define SUBSYS_STEERING	4
+#define SUBSYS_CAMERA	5
 
 typedef struct _MESSAGE {
 	int from;
@@ -41,12 +41,11 @@ typedef struct _MESSAGE {
 #define	MOT_SLOW			1	//slow speed
 #define	MOT_STOP			2	//stop the motors
 #define	MOT_MID				3	//medium speed
-#define	MOT_INC_FASTER		4	//increment faster
-#define	MOT_INC_SLOWER		5	//increment slower
-#define	MOT_SET_SPEED		6	//set speed to value between 0 and 100
-#define	MOT_DISABLE			7	//disable motor control
-#define	MOT_ENABLE			8	//enable motor control
-#define MOT_SET_MIN_PRIO	9	//set minimum command priority (uses posix mq priority) - useful for obstacle avoidance when you want to disable compass and gps commands while navigating around obstacle
+#define	MOT_SET_SPEED		4	//set speed to value between 0 and 100
+#define	MOT_DISABLE			5	//disable motor control
+#define	MOT_ENABLE			6	//enable motor control
+#define MOT_SET_MIN_PRIO	7	//set minimum command priority (uses posix mq priority) - useful for obstacle avoidance when you want to disable compass and gps commands while navigating around obstacle
+#define MOT_DIRECTION		8	//set direction of motor (1=forward, 0=backward)
 
 //COMPASS
 #define	CPS_SET_HEADING		0	//set the desired compass heading

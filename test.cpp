@@ -19,6 +19,11 @@ void send_message_to_subsys(SystemControl *c, MESSAGE* message){
 	}
 }
 
+void test_exit(SystemControl* c){
+	c->shutdown();
+	exit(0);
+}
+
 int main() {
 	SystemControl c;
 	c.init();
@@ -31,7 +36,11 @@ int main() {
 	subsys_mess.from = 7;
 	while(1) {
 		std::cout << "Command> ";
+		input[0]='\0';
 		std::cin >> input;
+		if(input[0] == '\0'){
+			test_exit(&c);
+		}
 		std::cout << std::endl;
 		std::cout << "Command: " << input << std::endl;
 		
@@ -59,8 +68,7 @@ int main() {
 			}
 			
 		}else if(input == "exit") {
-			c.shutdown();
-			exit(0);
+			test_exit(&c);
 		}else{
 			std::cout << "unknown command!" << std::endl;
 		}		

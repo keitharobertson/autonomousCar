@@ -1,12 +1,11 @@
 #include <iostream>
 #include <time.h>
 #include <stdlib.h>
-#include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
 #include <stdio.h>
 #include <unistd.h>
- #include <sys/mman.h>
- #include <string.h>
+#include <sys/mman.h>
+#include <string.h>
 
 #include "Steering.h"
 									

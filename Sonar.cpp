@@ -68,12 +68,15 @@ float Sonar::data_grab(){
 	
 	tx_buf[0] = 0b01101000;
 	tx_buf[1] = 0xFF;
-	printf("tx buff: %x\n",(int)tx_buf[0]);
+	#ifdef SONAR_DEBUG
+		printf("tx buff: %x\n",(int)tx_buf[0]);
+	#endif
 	if(ioctl(sonar_fd, SPI_IOC_MESSAGE(1), msg) < 0) {
 		perror("Error requesting data from ADC (SPI IOC MESSAGE failed)\n");
 	}
-	
-	std::cout << "sonar reading: " << ( (((int)(rx_buf[0] & 0b00000011)) << 8) + ((int)(rx_buf[1])) ) << std::endl;
+	#ifdef SONAR_DEBUG
+		std::cout << "sonar reading: " << ( (((int)(rx_buf[0] & 0b00000011)) << 8) + ((int)(rx_buf[1])) ) << std::endl;
+	#endif
 	return 0.0;
 }
 

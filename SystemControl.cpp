@@ -6,6 +6,7 @@
 #include "Motor.h"
 #include "Steering.h"
 #include "Sonar.h"
+#include "GPS.h"
 #include "SUBSYS_COMMANDS.h"
  
 static void* sys_receive_task(void* c) {
@@ -50,11 +51,14 @@ void SystemControl::init() {
 	
 	subsys[SUBSYS_COMPASS] = new Compass();
 	subsys[SUBSYS_COMPASS]->init();
-	subsys[SUBSYS_COMPASS]->enabled = 1;
-	
+
 	subsys[SUBSYS_SONAR] = new Sonar();
 	subsys[SUBSYS_SONAR]->init();
-	subsys[SUBSYS_SONAR]->enabled = 1;
+	
+	subsys[SUBSYS_GPS] = new GPS();
+	subsys[SUBSYS_GPS]->init();
+	
+	
 	
 	//subsys[SUBSYS_COMPASS]->send_message((char *)std::string("hello").c_str());
 }
