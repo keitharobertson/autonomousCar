@@ -36,11 +36,7 @@ int main() {
 	subsys_mess.from = 7;
 	while(1) {
 		std::cout << "Command> ";
-		//input="";
 		std::cin >> input;
-		//if(input == ""){
-		//	test_exit(&c);
-		//}
 		std::cout << std::endl;
 		std::cout << "Command: " << input << std::endl;
 		
@@ -74,8 +70,7 @@ int main() {
 		}else{
 			std::cout << "unknown command!" << std::endl;
 		}
-		std::cin.ignore(10, '\n');
-		
+		std::cin.ignore(10, '\n');		
 	}
 	return 0;
 }

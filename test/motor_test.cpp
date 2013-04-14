@@ -15,4 +15,6 @@ int main() {
 	
 	std::cout << "subsys 0 " << SUBSYS_MOTOR << " " << MOT_STOP << std::endl;
 	
+	std::cout << "exit" << std::endl;
+	
 }

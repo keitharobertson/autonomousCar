@@ -9,6 +9,7 @@
 #include "Motor.h"
 
 #define MOTOR_DEBUG
+#define MOTOR_READ_DEBUG
 
 #define PWM_IOCTL_SET_FREQ         (1) 
 									
@@ -94,6 +95,11 @@ void Motor::mech_control(){
 }
 void* Motor::read_data(int command) {
 	int data;
+	char chardat[3];
+	void* ret = 0;
+	#ifdef MOTOR_READ_DEBUG
+		char* read_test;
+	#endif
 	switch(command){
 		case MOT_FAST:
 		case MOT_SLOW:
@@ -104,6 +110,18 @@ void* Motor::read_data(int command) {
 			return NULL;
 			break;
 		case MOT_SET_SPEED:
+			std::cin >> chardat;
+			chardat[2] = '\0';
+			#ifdef MOTOR_READ_DEBUG
+				std::cout << "data set to: " << chardat << std::endl;
+			#endif
+			memcpy(&data, chardat, 2);
+			#ifdef MOTOR_READ_DEBUG
+				read_test = ((char*)&data);
+				std::cout << "memory copied to void* ret: "<< read_test[0] << read_test[1] << std::endl;
+			#endif
+			return *((void**)(&data)); 
+			break;
 		case MOT_DIRECTION:
 		case MOT_SET_MIN_PRIO:
 			std::cin >> data;
@@ -122,6 +140,10 @@ void Motor::set_new_pwm_duty_cycle(const char* value){
 }
 
 void Motor::handle_message(MESSAGE* message){
+	#ifdef MOTOR_DEBUG
+		char* data_test;
+	#endif
+	
 	switch(message->command) {
 		case MOT_FAST:
 			#ifdef MOTOR_DEBUG
@@ -139,10 +161,15 @@ void Motor::handle_message(MESSAGE* message){
 			set_new_pwm_duty_cycle((direction==1) ? FORWARD_MID : BACKWARD_MID);
 			break;
 		case MOT_DIRECTION:
-		
+			direction = (*(int*)&message->data);
 			break;
 		case MOT_SET_SPEED:
-			
+			#ifdef MOTOR_DEBUG
+				std::cout << "Motor set speed: reading message data" << std::endl;
+				data_test = ((char*)&message->data);
+				std::cout << "Setting motor speed manually: " << data_test[0] << data_test[1] << std::endl;
+			#endif
+			set_new_pwm_duty_cycle(((char*)&message->data));
 			break;
 		case MOT_DISABLE:
 			enabled = 0;

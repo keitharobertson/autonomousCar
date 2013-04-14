@@ -4,6 +4,8 @@
 #include "Subsystem.h"
 #include "shirtt.h"
 
+#define SHUTDOWN_DEBUG
+
 /*
 static void* subsys_receive_task(void* c) {
 	setup_rt_task(10);
@@ -34,7 +36,10 @@ Subsystem::Subsystem(){
 }
 
 Subsystem::~Subsystem(){
-	pthread_cancel(tMQReceiver);
+	#ifdef SHUTDOWN_DEBUG
+		std::cout << "Subsystem destructor" << std::endl;
+	#endif
+	//pthread_cancel(tMQReceiver);
 	mq_close(subsys_mq);
 	//mq_unlink((char*)((std::string("/aMQ_").append(subsys_name)).c_str()));
 	mq_unlink((char*)((std::string("/MQ_").append(subsys_name)).c_str()));

@@ -1,5 +1,8 @@
 #include <iostream>
 #include <stdlib.h>
+
+#define SHUTDOWN_DEBUG
+
 #include "SystemControl.h"
 #include "Compass.h"
 #include "shirtt.h"
@@ -34,10 +37,26 @@ SystemControl::~SystemControl() {
 
 void SystemControl::shutdown() {
 	for(int i=0;i<NUM_SUBSYSTEMS;i++){
-		delete[] subsys[i];
+		#ifdef SHUTDOWN_DEBUG
+			std::cout << "shutting down subsystem " << i << std::endl;
+		#endif
+		subsys[i]->shutdown();
+		delete subsys[i];
+		#ifdef SHUTDOWN_DEBUG
+			std::cout << "subsystem " << i << " successfully shut down" << std::endl;
+		#endif
 	}
+	#ifdef SHUTDOWN_DEBUG
+		std::cout << "cancelling system mq receive function " << std::endl;
+	#endif
 	pthread_cancel(tMQReceiver);
+	#ifdef SHUTDOWN_DEBUG
+		std::cout << "closing system message queue" << std::endl;
+	#endif
 	mq_close(sys_mq);
+	#ifdef SHUTDOWN_DEBUG
+		std::cout << "deleting system message queue" << std::endl;
+	#endif
 	mq_unlink(MQ_SYSTEM);
 }
 

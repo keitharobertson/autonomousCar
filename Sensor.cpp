@@ -3,6 +3,8 @@
 #include "Sensor.h"
 #include "shirtt.h"
 
+#define SHUTDOWN_DEBUG
+
 
 //Task Spawning ( called from Compass::init() )
 static void* collector_task(void* c) {
@@ -23,10 +25,15 @@ void Sensor::init(){
 }
 
 void Sensor::shutdown() {
+	#ifdef SHUTDOWN_DEBUG
+		std::cout << "Sensor Shutdown" << std::endl;
+	#endif
 	pthread_cancel(tCollector);
 	pthread_cancel(tAnalysis);
 }
 
 Sensor::~Sensor(){
-	shutdown();
+	#ifdef SHUTDOWN_DEBUG
+		std::cout << "Sensor Destructor" << std::endl;
+	#endif
 }
