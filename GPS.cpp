@@ -49,8 +49,12 @@ void GPS::collector(){
 			t.tv_nsec -= NS_PER_S;
 		}
 		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
-		gps_reading = data_grab();
-		std::cout << "GPS Heading: " << gps_reading << std::endl;
+		if(enabled){
+			gps_reading = data_grab();
+			#ifdef GPS_DEBUG
+				std::cout << "GPS Heading: " << gps_reading << std::endl;
+			#endif
+		}
 	}
 }
 

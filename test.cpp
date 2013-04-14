@@ -74,7 +74,7 @@ int main() {
 		}else{
 			std::cout << "unknown command!" << std::endl;
 		}
-		std::cin.ignore(1, '\n');
+		std::cin.ignore(10, '\n');
 		
 	}
 	return 0;

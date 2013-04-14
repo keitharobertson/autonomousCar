@@ -99,18 +99,12 @@ void* Motor::read_data(int command) {
 		case MOT_SLOW:
 		case MOT_STOP:
 		case MOT_MID:
-		case MOT_INC_FASTER:
-		case MOT_INC_SLOWER:
-			return NULL;
-			break;
-		case MOT_SET_SPEED:
-			std::cin >> data;
-			return *((void**)(&data)); 
-			break;
 		case MOT_DISABLE:
 		case MOT_ENABLE:
 			return NULL;
 			break;
+		case MOT_SET_SPEED:
+		case MOT_DIRECTION:
 		case MOT_SET_MIN_PRIO:
 			std::cin >> data;
 			return *((void**)(&data)); 
@@ -120,6 +114,7 @@ void* Motor::read_data(int command) {
 			return NULL;
 			break;
 	}
+}
 
 void Motor::set_new_pwm_duty_cycle(const char* value){
 	memcpy(motor_duty_cycle,value,2);
