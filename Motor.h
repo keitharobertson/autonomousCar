@@ -2,6 +2,7 @@
 #define _motor_h_
 
 #include <stdint.h>
+#include <semaphore.h>
 
 #include "Actuator.h"
 
@@ -43,6 +44,13 @@ class Motor : public Actuator {
 		void handle_message(MESSAGE* message);		
 		
 	protected:
+	
+		void set_new_pwm_duty_cycle(const char* value);
+		
+		int min_priority;
+		char motor_duty_cycle[2];
+		int direction;
+		sem_t motor_cmd_ctrl;
 		
 		int motor_fd;
 		char motor_filepath[40];
