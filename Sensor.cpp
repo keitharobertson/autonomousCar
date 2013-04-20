@@ -20,8 +20,12 @@ static void* analysis_task(void* c) {
 
 void Sensor::init(){
 	init_sensor();
-	iret_Collector = pthread_create( &tCollector, NULL, &collector_task, (void *)(this));
-	iret_Collector = pthread_create( &tAnalysis, NULL, &analysis_task, (void *)(this));
+	if(pthread_create( &tCollector, NULL, &collector_task, (void *)(this)) != 0) {
+		perror("Error creating collector thread for sensor! ");
+	}
+	if(pthread_create( &tAnalysis, NULL, &analysis_task, (void *)(this)) != 0) {
+		perror("Error creating analysis thread for sensor! ");
+	}
 }
 
 void Sensor::shutdown() {

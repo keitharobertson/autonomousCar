@@ -42,7 +42,10 @@ class Actuator : public Subsystem {
 		/**
 		 * \brief Virtual function to initialize the actuator device.
 		 * 
-		 * Defined for each actuator, the init_device function is responsible for setting the actuator up for control by the mechanical control task.  For example in the case of the motor subsystem, the init_device task will set up the PWM, initialize the system variables, and perform other tasks necessary before the motor can be controlled. 
+		 * Implemented by each actuator, the init_device function is responsible for setting the 
+		 * actuator up for control by the mechanical control task.  For example in the case of the 
+		 * motor subsystem, the init_device task will set up the PWM, initialize the system variables, 
+		 * and perform other tasks necessary before the motor can be controlled. 
 		 */
 		virtual void init_device() = 0;
 		
