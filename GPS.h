@@ -4,7 +4,11 @@
 #include "Sensor.h"
 
 #define GPS_NAME	"GPS"
-
+#define GPS_MAX_LENGTH 100
+#define GPS_PORT_NAME "/dev/ttyO1"
+#define GPS_DEBUG false
+#define GPS_GPGAA "$GPGGA"
+#define GPS_GPGAA_L 6
 /**
  * \class GPS
  * \brief GPS data collection and analysis
@@ -29,7 +33,7 @@ class GPS : public Sensor {
 		 * 
 		 * Gets data from GPS over UART
 		 */
-		float data_grab();
+		void data_grab(float& output_lat,float& output_lon);
 		
 		void init_sensor();
 		
@@ -54,10 +58,18 @@ class GPS : public Sensor {
 		 */
 		void handle_message(MESSAGE* message);
 		
+		/**
+		 * \brief Converts the input command into lat/long and stores in output
+		 */
+		bool convert_data(char* input,int length,
+			float& output_lat,float& output_lon);
+
 	protected:
-		
-		int gps_fd;
-		char gps_filepath[40];
+		int enabled;
+		int output_heading;
+		float last_lat;
+		float last_lon;
+		int serial_port;
 };
 
 #endif
