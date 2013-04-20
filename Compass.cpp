@@ -137,7 +137,6 @@ void* Compass::read_data(int command) {
 			float data;
 			std::cin >> data;
 			return *((void**)(&data));
-			//return (void*)data; 
 		case CPS_LEFT_90:
 		case CPS_RIGHT_90:
 		case CPS_180:
@@ -153,6 +152,7 @@ void* Compass::read_data(int command) {
 }
 
 void Compass::handle_message(MESSAGE* message){
+	MESSAGE data_request = MESSAGE(subsys_num, 0, 0);
 	switch(message->command){
 		case CPS_SET_HEADING:
 			desired_heading = (*(float*)&message->data);
@@ -177,6 +177,11 @@ void Compass::handle_message(MESSAGE* message){
 			break;
 		case CPS_GET_READING:
 			std::cout << "Compass reading: " << meas_heading << std::endl;
+			break;
+		case CPS_RETURN_READING:
+			data_request.to = message->from;
+			data_request.command = CPS_RET_DES_HEADING;
+			send_sys_message(&data_request);
 			break;
 		default:
 			std::cout << "Unknown command passed to compass subsystem! Command was : " << message->command << std::endl;

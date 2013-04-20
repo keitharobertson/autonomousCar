@@ -27,6 +27,7 @@
 Sonar::Sonar() {
 	subsys_name = SONAR;
 	subsys_num = SUBSYS_SONAR;
+	avoidance_mode = false;
 	if(sem_init(&collect_analysis_sync, 0, 0) != 0){
 		perror("Failed to init the sonar collector/analysis sync sem \n");
 	}
@@ -102,16 +103,49 @@ void Sonar::collector(){
 	}
 }
 
+void Sonar::reset_heading() {
+	
+}
+
+void Sonar::avoid_obstacle() {
+	if(!avoidance_mode){
+		request_data = MESSAGE(SUBSYS_SONAR, SUBSYS_COMPASS, CPS_RETURN_READING);
+		send_sys_message(&request_data);
+		avoidance_mode = true;
+	}
+	inter_subsys_command = MESSAGE(SUBSYS_SONAR,SUBSYS_COMPASS,CPS_LEFT_90);
+	send_sys_message(&inter_subsys_command);
+}
+
 void Sonar::analysis(){
 	while(1) {
 		//wait for data
 		sem_wait(&collect_analysis_sync);
 		//analyze data
+		if(sonar_reading < threshold) {
+			#ifdef SONAR_DEBUG
+				std::cout << "Obstacle was detected! Sonar avoidance activated!" << std::endl;
+			#endif
+		}else{
+			#ifdef SONAR_DEBUG
+				std::cout << "No obstacles detected by sonar! No avoidance necessary." << std::endl;
+			#endif
+		}
 	}
 }
 
 void* Sonar::read_data(int command) {
 	switch(command){
+		case SNR_SET_DIST_THR:
+			float data;
+			std::cin >> data;
+			return *((void**)(&data));
+			break;
+		case SNR_DISABLE:
+		case SNR_ENABLE:
+		case SNR_GET_READING:
+			std::cout << "No data to read in for that command!" << std::endl;
+			break;
 		default:
 			std::cout << "Unknown command passed to sonar subsystem for reading data! Command was : " << command << std::endl;
 			return NULL;
@@ -122,6 +156,7 @@ void* Sonar::read_data(int command) {
 void Sonar::handle_message(MESSAGE* message){
 	switch(message->command){
 		case SNR_SET_DIST_THR:
+			threshold = (*(float*)&message->data);
 			break;
 		case SNR_DISABLE:
 			enabled=0;
@@ -132,8 +167,11 @@ void Sonar::handle_message(MESSAGE* message){
 		case SNR_GET_READING:
 			std::cout << "Sonar Reading: " << sonar_reading << std::endl;
 			break;
+		case CPS_RET_DES_HEADING:
+			old_compass_heading = (*(float*)&message->data);
+			break;
 		default:
-			std::cout << "Unknown command passed to soar subsystem! Command was : " << message->command << std::endl;
+			std::cout << "Unknown command passed to sonar subsystem! Command was : " << message->command << std::endl;
 			break;
 	}
 }

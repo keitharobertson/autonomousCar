@@ -79,14 +79,19 @@ void SystemControl::init() {
 	
 	subsys[SUBSYS_GPS] = new GPS();
 	subsys[SUBSYS_GPS]->init();
-	
-	
-	
-	//subsys[SUBSYS_COMPASS]->send_message((char *)std::string("hello").c_str());
 }
 
 void* SystemControl::read_data(int subsys_num, int command){
 	return subsys[subsys_num]->read_data(command);
+}
+
+void SystemControl::handle_sys_message(MESSAGE* mess) {
+	switch(mess->command) {
+		case 
+		default:
+			std::cout << "Message with unknown command sent to System Control! Ignoring..." << std::endl;
+			break;
+	}
 }
 
 void SystemControl::recieve_sys_messages() {
@@ -110,7 +115,7 @@ void SystemControl::recieve_sys_messages() {
 				std::cout << "Data: " << mess->data << std::endl;
 				std::cout << std::endl;
 			#endif
-			//send message to recipient
+			//send message to recipient subsystem
 			subsys[mess->to]->handle_message(mess);
 		}
 	}

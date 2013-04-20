@@ -64,7 +64,7 @@ class Sonar : public Sensor {
 		 * 
 		 * Will read data into appropriate data type and then cast to a void* and return.  The type of 
 		 * data received depends on the message command.  For example if trying to set the threashold distance,
-		 * an int is expected. This function will read the data in from standard in (using cin) 
+		 * a float is expected. This function will read the data in from standard in (using cin) 
 		 * into an appropriate datatype for the given command and will return the data to the system message 
 		 * handler for further processing.
 		 */
@@ -81,14 +81,41 @@ class Sonar : public Sensor {
 		
 	protected:
 		
+		/**
+		 * \brief Avoids an obstacle that was detected by the sonar system.
+		 * 
+		 * Performs tasks determined by the command part of the message.  For example the 
+		 * command SNR_SET_DIST_THR is used to set the distance threshold.  Messages could be 
+		 * from command line interface or from another subsystem. 
+		 */
+		void avoid_obstacle();
+		
+		/**
+		 * \brief Resets the compass heading to its original value.
+		 * 
+		 * Waits an amount of time and then resets the compass heading to its value prior to obstacle
+		 * avoidance (value stored in old_compass_heading).
+		 */
+		void reset_heading();
+		
 		/** The most recent sonar reading */
 		float sonar_reading;
+		/** Threshold distance for sonar avoidance.  If the sonar reading drops below this value, 
+		 * the sonar subsystem will take control of the actuators to avoid and obstacle */
+		 float threshold;
 		/** the colector/analysis sync semaphore used to sync the collector and analysis tasks */
 		sem_t collect_analysis_sync;
 		/** The sonar file descriptor (SPI file descriptor) */
 		int sonar_fd;
 		/** filepath for the SPI device (in /dev) */
 		char sonar_filepath[40];
+		/** whether avoidance mode has been entered into */
+		bool avoidance_mode;
+		/** original compass heading prior to avoidance mode */
+		float old_compass_heading;
+		/** message used for requesting data from other subsystems (usually compass)*/
+		MESSAGE request_data;
+		MESSAGE inter_subsys_command;
 };
 
 #endif

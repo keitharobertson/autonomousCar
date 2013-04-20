@@ -123,6 +123,8 @@ typedef struct _MESSAGE {
 #define	CPS_ENABLE			5
 /** output current compass reading */
 #define	CPS_GET_READING		6
+/** used for returning the compass desired heading (command can be sent to ANY subsystem that is configured to accept it) */
+#define CPS_RET_DES_HEADING	99
 /** @} */
 
 /** \defgroup gps_commands GPS Commands
