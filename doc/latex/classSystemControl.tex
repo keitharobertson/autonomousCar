@@ -3,7 +3,7 @@
 }
 
 
-System control module.  
+System control is the central controller.  
 
 
 
@@ -17,31 +17,27 @@ System control module.
 \begin{DoxyCompactList}\small\item\em \hyperlink{classSystemControl}{System\-Control} default constructor. \end{DoxyCompactList}\item 
 \hyperlink{classSystemControl_a431eb4f5fbb81a358a345653c7444874}{$\sim$\-System\-Control} ()
 \begin{DoxyCompactList}\small\item\em \hyperlink{classSystemControl}{System\-Control} destructor. \end{DoxyCompactList}\item 
-\hypertarget{classSystemControl_a682a998cbfceabd333584ee1006fbf05}{void {\bfseries shutdown} ()}\label{classSystemControl_a682a998cbfceabd333584ee1006fbf05}
-
-\item 
+void \hyperlink{classSystemControl_a682a998cbfceabd333584ee1006fbf05}{shutdown} ()
+\begin{DoxyCompactList}\small\item\em Shuts the system down. \end{DoxyCompactList}\item 
 void \hyperlink{classSystemControl_aeb2cd39e5a72b13e139b8bbefb726be6}{init} ()
 \begin{DoxyCompactList}\small\item\em System initialization. \end{DoxyCompactList}\item 
-\hypertarget{classSystemControl_ade77f999daab4a062327bbc1a8ad05ef}{void $\ast$ {\bfseries read\-\_\-data} (int subsys\-\_\-num, int command)}\label{classSystemControl_ade77f999daab4a062327bbc1a8ad05ef}
-
-\item 
+void $\ast$ \hyperlink{classSystemControl_ade77f999daab4a062327bbc1a8ad05ef}{read\-\_\-data} (int subsys\-\_\-num, int command)
+\begin{DoxyCompactList}\small\item\em Read in data from the command interface. \end{DoxyCompactList}\item 
 void \hyperlink{classSystemControl_a25f45e16b1d4dc69ce8c356741feb17d}{recieve\-\_\-sys\-\_\-messages} ()
 \begin{DoxyCompactList}\small\item\em System message receiver task. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classSystemControl_a7c4a251aec26da056dff1d51b5a149de}{\hyperlink{classSubsystem}{Subsystem} $\ast$ {\bfseries subsys} \mbox{[}N\-U\-M\-\_\-\-S\-U\-B\-S\-Y\-S\-T\-E\-M\-S\mbox{]}}\label{classSystemControl_a7c4a251aec26da056dff1d51b5a149de}
-
+\hyperlink{classSubsystem}{Subsystem} $\ast$ \hyperlink{classSystemControl_a7c4a251aec26da056dff1d51b5a149de}{subsys} \mbox{[}N\-U\-M\-\_\-\-S\-U\-B\-S\-Y\-S\-T\-E\-M\-S\mbox{]}
 \item 
-\hypertarget{classSystemControl_a0f1842f00f91fd17bd7be7508653c2e2}{mqd\-\_\-t {\bfseries sys\-\_\-mq}}\label{classSystemControl_a0f1842f00f91fd17bd7be7508653c2e2}
-
+mqd\-\_\-t \hyperlink{classSystemControl_a0f1842f00f91fd17bd7be7508653c2e2}{sys\-\_\-mq}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-System control module. 
+System control is the central controller. 
 
-Initializes subsystems, manages subsytem state, manages inter-\/subsystem communication 
+Initializes subsystems, manages subsytem state, and manages inter-\/subsystem communication. 
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classSystemControl_ae07ba4f7b5ee117619f376efd3b60fa9}{\index{System\-Control@{System\-Control}!System\-Control@{System\-Control}}
@@ -66,7 +62,7 @@ sets up system message queue and set up system message receiver task \hypertarge
 
 \hyperlink{classSystemControl}{System\-Control} destructor. 
 
-cancels system receiver task, closes message queue, and unlinks message queue 
+calls shutdown 
 
 \subsection{Member Function Documentation}
 \hypertarget{classSystemControl_aeb2cd39e5a72b13e139b8bbefb726be6}{\index{System\-Control@{System\-Control}!init@{init}}
@@ -80,7 +76,19 @@ cancels system receiver task, closes message queue, and unlinks message queue
 
 System initialization. 
 
-initializes all the subsystems \hypertarget{classSystemControl_a25f45e16b1d4dc69ce8c356741feb17d}{\index{System\-Control@{System\-Control}!recieve\-\_\-sys\-\_\-messages@{recieve\-\_\-sys\-\_\-messages}}
+Initializes all the subsystems and stores their references into the subsys array. Each subsystem's index in the array is given by its subsystem number assigned as in \hyperlink{SUBSYS__COMMANDS_8h}{S\-U\-B\-S\-Y\-S\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S.\-h} (see \hyperlink{group__subsys__nums}{Subsystem Numbers}). \hypertarget{classSystemControl_ade77f999daab4a062327bbc1a8ad05ef}{\index{System\-Control@{System\-Control}!read\-\_\-data@{read\-\_\-data}}
+\index{read\-\_\-data@{read\-\_\-data}!SystemControl@{System\-Control}}
+\subsubsection[{read\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ System\-Control\-::read\-\_\-data (
+\begin{DoxyParamCaption}
+\item[{int}]{subsys\-\_\-num, }
+\item[{int}]{command}
+\end{DoxyParamCaption}
+)}}\label{classSystemControl_ade77f999daab4a062327bbc1a8ad05ef}
+
+
+Read in data from the command interface. 
+
+Calls the read\-\_\-data specific to the subsystem being command and returns the result. \hypertarget{classSystemControl_a25f45e16b1d4dc69ce8c356741feb17d}{\index{System\-Control@{System\-Control}!recieve\-\_\-sys\-\_\-messages@{recieve\-\_\-sys\-\_\-messages}}
 \index{recieve\-\_\-sys\-\_\-messages@{recieve\-\_\-sys\-\_\-messages}!SystemControl@{System\-Control}}
 \subsubsection[{recieve\-\_\-sys\-\_\-messages}]{\setlength{\rightskip}{0pt plus 5cm}void System\-Control\-::recieve\-\_\-sys\-\_\-messages (
 \begin{DoxyParamCaption}
@@ -91,7 +99,27 @@ initializes all the subsystems \hypertarget{classSystemControl_a25f45e16b1d4dc69
 
 System message receiver task. 
 
-receivers and handles system messages 
+Receivers and handles system messages. Relay's inter-\/subsystem messages to their target destination. \hypertarget{classSystemControl_a682a998cbfceabd333584ee1006fbf05}{\index{System\-Control@{System\-Control}!shutdown@{shutdown}}
+\index{shutdown@{shutdown}!SystemControl@{System\-Control}}
+\subsubsection[{shutdown}]{\setlength{\rightskip}{0pt plus 5cm}void System\-Control\-::shutdown (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSystemControl_a682a998cbfceabd333584ee1006fbf05}
+
+
+Shuts the system down. 
+
+deletes the subsystems, cancels the system receiver task, closes the system message queue, and unlinks message queue. 
+
+\subsection{Member Data Documentation}
+\hypertarget{classSystemControl_a7c4a251aec26da056dff1d51b5a149de}{\index{System\-Control@{System\-Control}!subsys@{subsys}}
+\index{subsys@{subsys}!SystemControl@{System\-Control}}
+\subsubsection[{subsys}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Subsystem}$\ast$ System\-Control\-::subsys\mbox{[}N\-U\-M\-\_\-\-S\-U\-B\-S\-Y\-S\-T\-E\-M\-S\mbox{]}}}\label{classSystemControl_a7c4a251aec26da056dff1d51b5a149de}
+An array of references to the subsystems. Each subsystem's index in the array is given by its subsystem number assigned as in \hyperlink{SUBSYS__COMMANDS_8h}{S\-U\-B\-S\-Y\-S\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S.\-h} (see \hyperlink{group__subsys__nums}{Subsystem Numbers}). \hypertarget{classSystemControl_a0f1842f00f91fd17bd7be7508653c2e2}{\index{System\-Control@{System\-Control}!sys\-\_\-mq@{sys\-\_\-mq}}
+\index{sys\-\_\-mq@{sys\-\_\-mq}!SystemControl@{System\-Control}}
+\subsubsection[{sys\-\_\-mq}]{\setlength{\rightskip}{0pt plus 5cm}mqd\-\_\-t System\-Control\-::sys\-\_\-mq}}\label{classSystemControl_a0f1842f00f91fd17bd7be7508653c2e2}
+The system message queue 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 

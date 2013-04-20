@@ -10,11 +10,10 @@
 #define NUM_SUBSYSTEMS	5
 
 /**
- * \class SystemControl
- * \brief System control module
+ * \brief System control is the central controller.
  * 
- * Initializes subsystems, manages subsytem state, manages
- * inter-subsystem communication
+ * Initializes subsystems, manages subsytem state, and manages
+ * inter-subsystem communication.
  */
 class SystemControl {
 	public:
@@ -28,41 +27,58 @@ class SystemControl {
 		/**
 		 * \brief SystemControl destructor
 		 * 
-		 * cancels system receiver task, closes message queue, and unlinks message queue
+		 * calls shutdown
 		 */
 		~SystemControl();
 		
+		/**
+		 * \brief Shuts the system down
+		 * 
+		 * deletes the subsystems, cancels the system receiver task, closes the system message queue, and unlinks message queue.
+		 */
 		void shutdown();
 		
 		/**
 		 * \brief System initialization
 		 * 
-		 * initializes all the subsystems
+		 * Initializes all the subsystems and stores their references into the subsys array.  
+		 * Each subsystem's index in the array is given by its subsystem number assigned as in SUBSYS_COMMANDS.h 
+		 * (see \ref subsys_nums "Subsystem Numbers").
 		 */
-		void init(); //initialize the subsystems
+		void init();
 		
+		/**
+		 * \brief Read in data from the command interface
+		 * 
+		 * Calls the read_data specific to the subsystem being command and returns the result.
+		 */
 		void* read_data(int subsys_num, int command);
 		
 		/**
 		 * \brief System message receiver task
 		 * 
-		 * receivers and handles system messages
+		 * Receivers and handles system messages.  Relay's inter-subsystem messages to their target destination.
 		 */
-		void recieve_sys_messages();//recieve task for system mq
+		void recieve_sys_messages();
 		
-		Subsystem* subsys[NUM_SUBSYSTEMS]; //array of subsystems
+		/** An array of references to the subsystems.  Each subsystem's index in the array is given 
+		 * by its subsystem number assigned as in SUBSYS_COMMANDS.h 
+		 * (see \ref subsys_nums "Subsystem Numbers").
+		 */
+		Subsystem* subsys[NUM_SUBSYSTEMS];
 		
-		mqd_t sys_mq; //system mq
+		/** The system message queue */
+		mqd_t sys_mq;
 		
 	private:
-		struct mq_attr attr; //queue attributes
-		//struct sigevent sigevent;// For notification
-		char buf[MSG_SIZE];// A good-sized buffer
-		unsigned int prio;// Priority
-		mqd_t subsys_mq[NUM_SUBSYSTEMS];//subsys mq
-		int iret_mq_receiver;
-		pthread_t tMQReceiver; //sys mq receiver task
-		
+		/** Message queue attributes */
+		struct mq_attr attr;
+		/** Message queue Buffer */
+		char buf[MSG_SIZE];
+		/** message priority */
+		unsigned int prio;
+		/** System message queue receiver task */
+		pthread_t tMQReceiver;
 };
 
 #endif

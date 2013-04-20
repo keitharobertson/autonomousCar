@@ -30,7 +30,7 @@ void \hyperlink{classSubsystem_a2c33b82253ec4588067349e33247f504}{send\-\_\-sys\
 virtual void \hyperlink{classSubsystem_a510e18f972a3d86d7a47432dafa1ce4c}{shutdown} ()=0
 \begin{DoxyCompactList}\small\item\em Shutdown subsystem. \end{DoxyCompactList}\item 
 virtual void $\ast$ \hyperlink{classSubsystem_a85307df3e46421814204f77929e893aa}{read\-\_\-data} (int command)=0
-\begin{DoxyCompactList}\small\item\em Reads in data from message to the actuator. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Reads in data from message to the subsystem. \end{DoxyCompactList}\item 
 virtual void \hyperlink{classSubsystem_a6205bccfd4906044065d25d8ab1a7bfb}{handle\-\_\-message} (\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} $\ast$message)=0
 \begin{DoxyCompactList}\small\item\em Handles message sent to the subsystem. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
@@ -97,7 +97,7 @@ Handles message sent to the subsystem.
 
 Virtual function defined at the specific subsystem level. Will handle the messages sent to the \hyperlink{classSubsystem}{Subsystem} from the system controller. Messages could be from command line interface or from another subsystem. 
 
-Implemented in \hyperlink{classActuator_a733c6782030e224bcef26161c77a4d96}{Actuator}, \hyperlink{classSensor_a45533b253f81f85d1b6fcea902a5692b}{Sensor}, \hyperlink{classCompass_a1fb0f64b335e8f1d4f27dc2067312b4a}{Compass}, \hyperlink{classGPS_a803a498352e30044136502a9e036d380}{G\-P\-S}, \hyperlink{classSonar_a5f9b0f57b5a05b03b0dcb5ab830592ff}{Sonar}, \hyperlink{classMotor_add07c258d9b239633a3882a07dc9e4de}{Motor}, and \hyperlink{classSteering_a29e46d1b87ecda7807452ad67005efe1}{Steering}.
+Implemented in \hyperlink{classSensor_a45533b253f81f85d1b6fcea902a5692b}{Sensor}, \hyperlink{classActuator_a733c6782030e224bcef26161c77a4d96}{Actuator}, \hyperlink{classSonar_a5f9b0f57b5a05b03b0dcb5ab830592ff}{Sonar}, \hyperlink{classMotor_add07c258d9b239633a3882a07dc9e4de}{Motor}, \hyperlink{classSteering_a29e46d1b87ecda7807452ad67005efe1}{Steering}, \hyperlink{classCompass_a1fb0f64b335e8f1d4f27dc2067312b4a}{Compass}, and \hyperlink{classGPS_a803a498352e30044136502a9e036d380}{G\-P\-S}.
 
 \hypertarget{classSubsystem_a77a984e8a06bfebb924a6e7ba4f98363}{\index{Subsystem@{Subsystem}!init@{init}}
 \index{init@{init}!Subsystem@{Subsystem}}
@@ -123,11 +123,11 @@ Implemented in \hyperlink{classActuator_a0ab156ee6321eb413171e7a04ae4d1ca}{Actua
 )\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classSubsystem_a85307df3e46421814204f77929e893aa}
 
 
-Reads in data from message to the actuator. 
+Reads in data from message to the subsystem. 
 
 Virtual function implemented at the subsystem level. Will read data into appropriate data type and then cast to a void$\ast$ and return. The type of data received depends on the message command. For example if trying to set the motor pwm duty cycle, a three byte char$\ast$ is expected. This function will read the data in from standard in (using cin) into an appropriate datatype for the given command and will return the data to the system message handler for further processing. 
 
-Implemented in \hyperlink{classCompass_ab55d084e2d643df0a1970f5868d0c5a8}{Compass}, \hyperlink{classActuator_a65fe83ffd7895f3ab028b87a62b3af1d}{Actuator}, \hyperlink{classGPS_aa04076536ee9f7e2679895c69b07ad58}{G\-P\-S}, \hyperlink{classSonar_a54f55470741873f333ad8af8a98affc8}{Sonar}, \hyperlink{classSensor_acf4ff5c6c8f793ed47a8105b94ff7c3e}{Sensor}, \hyperlink{classMotor_a1727e2d2dfd483c9c85824915a6aeeb8}{Motor}, and \hyperlink{classSteering_afda4f2951e5be114abf988a8e5943a96}{Steering}.
+Implemented in \hyperlink{classCompass_ab55d084e2d643df0a1970f5868d0c5a8}{Compass}, \hyperlink{classSonar_a54f55470741873f333ad8af8a98affc8}{Sonar}, \hyperlink{classMotor_a1727e2d2dfd483c9c85824915a6aeeb8}{Motor}, \hyperlink{classSteering_afda4f2951e5be114abf988a8e5943a96}{Steering}, \hyperlink{classActuator_a65fe83ffd7895f3ab028b87a62b3af1d}{Actuator}, \hyperlink{classSensor_acf4ff5c6c8f793ed47a8105b94ff7c3e}{Sensor}, and \hyperlink{classGPS_aa04076536ee9f7e2679895c69b07ad58}{G\-P\-S}.
 
 \hypertarget{classSubsystem_a2c33b82253ec4588067349e33247f504}{\index{Subsystem@{Subsystem}!send\-\_\-sys\-\_\-message@{send\-\_\-sys\-\_\-message}}
 \index{send\-\_\-sys\-\_\-message@{send\-\_\-sys\-\_\-message}!Subsystem@{Subsystem}}

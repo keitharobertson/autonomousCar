@@ -28,29 +28,21 @@ void \hyperlink{classSensor_a84bc35cfba92eb579bc311b3c8b2980d}{init} ()
 void \hyperlink{classSensor_a2f08975182e98e644efb226435124047}{shutdown} ()
 \begin{DoxyCompactList}\small\item\em shuts down the sensor \end{DoxyCompactList}\item 
 virtual void $\ast$ \hyperlink{classSensor_acf4ff5c6c8f793ed47a8105b94ff7c3e}{read\-\_\-data} (int command)=0
-\begin{DoxyCompactList}\small\item\em Reads in data from message to the actuator. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Reads in data from message to the sensor. \end{DoxyCompactList}\item 
 virtual void \hyperlink{classSensor_a11b28f6bc91d6f69e734e13ab0e64f56}{init\-\_\-sensor} ()=0
-\begin{DoxyCompactList}\small\item\em data grabber \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Virtual function to initialize the sensor device. \end{DoxyCompactList}\item 
 virtual void \hyperlink{classSensor_ae4ec41b880d44feb898da5c62c3203c9}{collector} ()=0
-\begin{DoxyCompactList}\small\item\em data collector \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em collects data from the sensor \end{DoxyCompactList}\item 
 virtual void \hyperlink{classSensor_a595d8d9cd87dd3704fad2a313c709a7e}{analysis} ()=0
-\begin{DoxyCompactList}\small\item\em data analyzer \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Performs the analysis of the data collected from the sensor. \end{DoxyCompactList}\item 
 virtual void \hyperlink{classSensor_a45533b253f81f85d1b6fcea902a5692b}{handle\-\_\-message} (\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} $\ast$message)=0
-\begin{DoxyCompactList}\small\item\em message handler \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Handles message sent to the subsystem. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classSensor_a881761631861338b335680ab1e618277}{pthread\-\_\-t {\bfseries t\-Collector}}\label{classSensor_a881761631861338b335680ab1e618277}
-
+pthread\-\_\-t \hyperlink{classSensor_a881761631861338b335680ab1e618277}{t\-Collector}
 \item 
-\hypertarget{classSensor_afce21e3a689654c7d165f2a0e01ab86c}{pthread\-\_\-t {\bfseries t\-Analysis}}\label{classSensor_afce21e3a689654c7d165f2a0e01ab86c}
-
-\item 
-\hypertarget{classSensor_af6f47b6f9c15f82dc4f3e92325356763}{int {\bfseries iret\-\_\-\-Collector}}\label{classSensor_af6f47b6f9c15f82dc4f3e92325356763}
-
-\item 
-\hypertarget{classSensor_a7227460350eb55d36fae369eda16a774}{int {\bfseries iret\-\_\-\-Analysis}}\label{classSensor_a7227460350eb55d36fae369eda16a774}
-
+pthread\-\_\-t \hyperlink{classSensor_afce21e3a689654c7d165f2a0e01ab86c}{t\-Analysis}
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -95,11 +87,11 @@ shuts down the subsystem (cancels the collector and analysis tasks)
 )\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classSensor_a595d8d9cd87dd3704fad2a313c709a7e}
 
 
-data analyzer 
+Performs the analysis of the data collected from the sensor. 
 
-virtual fuction defined at the specific sensor level 
+Virtual function implemented at the specific sensor level. The analysis function executes in the analysis thread and is synced with the collector task by the collect\-\_\-analysis\-\_\-sync semaphore. Messages will be sent to the actuators using the system message queue. 
 
-Implemented in \hyperlink{classCompass_a4dd6402d0ece9203c6b92670265b4c8d}{Compass}, \hyperlink{classGPS_a4dca50736c5e49f831515219536823b2}{G\-P\-S}, and \hyperlink{classSonar_a11a32c64528f8e69fdde4722f3b3bc7b}{Sonar}.
+Implemented in \hyperlink{classSonar_a11a32c64528f8e69fdde4722f3b3bc7b}{Sonar}, \hyperlink{classCompass_a4dd6402d0ece9203c6b92670265b4c8d}{Compass}, and \hyperlink{classGPS_a4dca50736c5e49f831515219536823b2}{G\-P\-S}.
 
 \hypertarget{classSensor_ae4ec41b880d44feb898da5c62c3203c9}{\index{Sensor@{Sensor}!collector@{collector}}
 \index{collector@{collector}!Sensor@{Sensor}}
@@ -110,11 +102,11 @@ Implemented in \hyperlink{classCompass_a4dd6402d0ece9203c6b92670265b4c8d}{Compas
 )\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classSensor_ae4ec41b880d44feb898da5c62c3203c9}
 
 
-data collector 
+collects data from the sensor 
 
-virtual fuction defined at the specific sensor level 
+Virtual function implemented at the specific sensor level. The collector function executes in the collector thread and executes indefinitely at a set frequency. It calls the data\-\_\-grab to do the actual communication with the hardware to provide a layer of abstraction between the software and specifics of the hardware. It can optionally average data prior to analysis if the system is expected to be under heavy load and the tasks are not schedulable with the typical release frequencies (averaging will have the effect that the analysis task will be released less frequently). 
 
-Implemented in \hyperlink{classCompass_ae8d7f3417a27b1d18487b96ca07dd32b}{Compass}, \hyperlink{classGPS_a17383568c4ed86a0adfdd5c88b6591d4}{G\-P\-S}, and \hyperlink{classSonar_a38b0e409082be17e7098b2e471bab4a8}{Sonar}.
+Implemented in \hyperlink{classSonar_a38b0e409082be17e7098b2e471bab4a8}{Sonar}, \hyperlink{classCompass_ae8d7f3417a27b1d18487b96ca07dd32b}{Compass}, and \hyperlink{classGPS_a17383568c4ed86a0adfdd5c88b6591d4}{G\-P\-S}.
 
 \hypertarget{classSensor_a45533b253f81f85d1b6fcea902a5692b}{\index{Sensor@{Sensor}!handle\-\_\-message@{handle\-\_\-message}}
 \index{handle\-\_\-message@{handle\-\_\-message}!Sensor@{Sensor}}
@@ -125,15 +117,15 @@ Implemented in \hyperlink{classCompass_ae8d7f3417a27b1d18487b96ca07dd32b}{Compas
 )\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classSensor_a45533b253f81f85d1b6fcea902a5692b}
 
 
-message handler 
+Handles message sent to the subsystem. 
 
-virtual fuction defined at the specific sensor level 
+Virtual function defined at the specific subsystem level. Will handle the messages sent to the sensor from the system controller. Messages could be from command line interface or from another subsystem. 
 
 Implements \hyperlink{classSubsystem_a6205bccfd4906044065d25d8ab1a7bfb}{Subsystem}.
 
 
 
-Implemented in \hyperlink{classCompass_a1fb0f64b335e8f1d4f27dc2067312b4a}{Compass}, \hyperlink{classGPS_a803a498352e30044136502a9e036d380}{G\-P\-S}, and \hyperlink{classSonar_a5f9b0f57b5a05b03b0dcb5ab830592ff}{Sonar}.
+Implemented in \hyperlink{classSonar_a5f9b0f57b5a05b03b0dcb5ab830592ff}{Sonar}, \hyperlink{classCompass_a1fb0f64b335e8f1d4f27dc2067312b4a}{Compass}, and \hyperlink{classGPS_a803a498352e30044136502a9e036d380}{G\-P\-S}.
 
 \hypertarget{classSensor_a84bc35cfba92eb579bc311b3c8b2980d}{\index{Sensor@{Sensor}!init@{init}}
 \index{init@{init}!Sensor@{Sensor}}
@@ -159,11 +151,11 @@ Implements \hyperlink{classSubsystem_a77a984e8a06bfebb924a6e7ba4f98363}{Subsyste
 )\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classSensor_a11b28f6bc91d6f69e734e13ab0e64f56}
 
 
-data grabber 
+Virtual function to initialize the sensor device. 
 
-virtual fuction defined at the specific sensor level that initializes the sensor 
+Implemented by each sensor, the init\-\_\-sensor function is responsible for setting the sensor up for data collection. For example in the case of the compass subsystem, the init\-\_\-device task will set up the i2c bus, initialize the system variables, and perform other tasks necessary before data can be collected from the compass. 
 
-Implemented in \hyperlink{classCompass_a5cc2b71700af542b5aafadea4820a476}{Compass}, \hyperlink{classGPS_aebb999362899800a7e372e873bb5b943}{G\-P\-S}, and \hyperlink{classSonar_af91d04cbc441084ba608a49c2be88d5b}{Sonar}.
+Implemented in \hyperlink{classSonar_af91d04cbc441084ba608a49c2be88d5b}{Sonar}, \hyperlink{classCompass_a5cc2b71700af542b5aafadea4820a476}{Compass}, and \hyperlink{classGPS_aebb999362899800a7e372e873bb5b943}{G\-P\-S}.
 
 \hypertarget{classSensor_acf4ff5c6c8f793ed47a8105b94ff7c3e}{\index{Sensor@{Sensor}!read\-\_\-data@{read\-\_\-data}}
 \index{read\-\_\-data@{read\-\_\-data}!Sensor@{Sensor}}
@@ -174,7 +166,7 @@ Implemented in \hyperlink{classCompass_a5cc2b71700af542b5aafadea4820a476}{Compas
 )\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classSensor_acf4ff5c6c8f793ed47a8105b94ff7c3e}
 
 
-Reads in data from message to the actuator. 
+Reads in data from message to the sensor. 
 
 Virtual function implemented at the subsystem level. Will read data into appropriate data type and then cast to a void$\ast$ and return. The type of data received depends on the message command. For example if trying to set the motor pwm duty cycle, a three byte char$\ast$ is expected. This function will read the data in from standard in (using cin) into an appropriate datatype for the given command and will return the data to the system message handler for further processing. 
 
@@ -182,7 +174,7 @@ Implements \hyperlink{classSubsystem_a85307df3e46421814204f77929e893aa}{Subsyste
 
 
 
-Implemented in \hyperlink{classCompass_ab55d084e2d643df0a1970f5868d0c5a8}{Compass}, \hyperlink{classGPS_aa04076536ee9f7e2679895c69b07ad58}{G\-P\-S}, and \hyperlink{classSonar_a54f55470741873f333ad8af8a98affc8}{Sonar}.
+Implemented in \hyperlink{classCompass_ab55d084e2d643df0a1970f5868d0c5a8}{Compass}, \hyperlink{classSonar_a54f55470741873f333ad8af8a98affc8}{Sonar}, and \hyperlink{classGPS_aa04076536ee9f7e2679895c69b07ad58}{G\-P\-S}.
 
 \hypertarget{classSensor_a2f08975182e98e644efb226435124047}{\index{Sensor@{Sensor}!shutdown@{shutdown}}
 \index{shutdown@{shutdown}!Sensor@{Sensor}}
@@ -200,6 +192,15 @@ cancels the collector and analysis tasks
 Implements \hyperlink{classSubsystem_a510e18f972a3d86d7a47432dafa1ce4c}{Subsystem}.
 
 
+
+\subsection{Member Data Documentation}
+\hypertarget{classSensor_afce21e3a689654c7d165f2a0e01ab86c}{\index{Sensor@{Sensor}!t\-Analysis@{t\-Analysis}}
+\index{t\-Analysis@{t\-Analysis}!Sensor@{Sensor}}
+\subsubsection[{t\-Analysis}]{\setlength{\rightskip}{0pt plus 5cm}pthread\-\_\-t Sensor\-::t\-Analysis\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSensor_afce21e3a689654c7d165f2a0e01ab86c}
+analysis thread \hypertarget{classSensor_a881761631861338b335680ab1e618277}{\index{Sensor@{Sensor}!t\-Collector@{t\-Collector}}
+\index{t\-Collector@{t\-Collector}!Sensor@{Sensor}}
+\subsubsection[{t\-Collector}]{\setlength{\rightskip}{0pt plus 5cm}pthread\-\_\-t Sensor\-::t\-Collector\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSensor_a881761631861338b335680ab1e618277}
+collector thread 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 

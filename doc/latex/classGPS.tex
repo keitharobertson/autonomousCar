@@ -24,13 +24,13 @@ Inheritance diagram for G\-P\-S\-:\begin{figure}[H]
 float \hyperlink{classGPS_a2276d26044fb15e498c52b4ee5bcaa91}{data\-\_\-grab} ()
 \begin{DoxyCompactList}\small\item\em grabs data from \hyperlink{classGPS}{G\-P\-S} \end{DoxyCompactList}\item 
 void \hyperlink{classGPS_aebb999362899800a7e372e873bb5b943}{init\-\_\-sensor} ()
-\begin{DoxyCompactList}\small\item\em data grabber \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Virtual function to initialize the sensor device. \end{DoxyCompactList}\item 
 void \hyperlink{classGPS_a17383568c4ed86a0adfdd5c88b6591d4}{collector} ()
 \begin{DoxyCompactList}\small\item\em collects \hyperlink{classGPS}{G\-P\-S} data \end{DoxyCompactList}\item 
 void \hyperlink{classGPS_a4dca50736c5e49f831515219536823b2}{analysis} ()
 \begin{DoxyCompactList}\small\item\em data analysis \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{classGPS_aa04076536ee9f7e2679895c69b07ad58}{read\-\_\-data} (int command)
-\begin{DoxyCompactList}\small\item\em Reads in data from message to the actuator. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Reads in data from message to the sensor. \end{DoxyCompactList}\item 
 \hypertarget{classGPS_a803a498352e30044136502a9e036d380}{void \hyperlink{classGPS_a803a498352e30044136502a9e036d380}{handle\-\_\-message} (\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} $\ast$message)}\label{classGPS_a803a498352e30044136502a9e036d380}
 
 \begin{DoxyCompactList}\small\item\em handles messages sent to the \hyperlink{classGPS}{G\-P\-S} subsystem \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -116,9 +116,9 @@ Gets data from \hyperlink{classGPS}{G\-P\-S} over U\-A\-R\-T \hypertarget{classG
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classGPS_aebb999362899800a7e372e873bb5b943}
 
 
-data grabber 
+Virtual function to initialize the sensor device. 
 
-virtual fuction defined at the specific sensor level that initializes the sensor 
+Implemented by each sensor, the init\-\_\-sensor function is responsible for setting the sensor up for data collection. For example in the case of the compass subsystem, the init\-\_\-device task will set up the i2c bus, initialize the system variables, and perform other tasks necessary before data can be collected from the compass. 
 
 Implements \hyperlink{classSensor_a11b28f6bc91d6f69e734e13ab0e64f56}{Sensor}.
 
@@ -131,7 +131,7 @@ Implements \hyperlink{classSensor_a11b28f6bc91d6f69e734e13ab0e64f56}{Sensor}.
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classGPS_aa04076536ee9f7e2679895c69b07ad58}
 
 
-Reads in data from message to the actuator. 
+Reads in data from message to the sensor. 
 
 Virtual function implemented at the subsystem level. Will read data into appropriate data type and then cast to a void$\ast$ and return. The type of data received depends on the message command. For example if trying to set the motor pwm duty cycle, a three byte char$\ast$ is expected. This function will read the data in from standard in (using cin) into an appropriate datatype for the given command and will return the data to the system message handler for further processing. 
 

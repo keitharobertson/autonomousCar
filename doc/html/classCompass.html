@@ -118,7 +118,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae8d7f3417a27b1d18487b96ca07dd32b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#ae8d7f3417a27b1d18487b96ca07dd32b">collector</a> ()</td></tr>
 <tr class="memdesc:ae8d7f3417a27b1d18487b96ca07dd32b"><td class="mdescLeft">&#160;</td><td class="mdescRight">collects data from the <a class="el" href="classCompass.html" title="compass data collection and analysis">Compass</a>  <a href="#ae8d7f3417a27b1d18487b96ca07dd32b"></a><br/></td></tr>
 <tr class="memitem:a4dd6402d0ece9203c6b92670265b4c8d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#a4dd6402d0ece9203c6b92670265b4c8d">analysis</a> ()</td></tr>
-<tr class="memdesc:a4dd6402d0ece9203c6b92670265b4c8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the analysis of the data collected from the compass.  <a href="#a4dd6402d0ece9203c6b92670265b4c8d"></a><br/></td></tr>
+<tr class="memdesc:a4dd6402d0ece9203c6b92670265b4c8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the analysis of the data collected from the compass and commands the actuators.  <a href="#a4dd6402d0ece9203c6b92670265b4c8d"></a><br/></td></tr>
 <tr class="memitem:a1fb0f64b335e8f1d4f27dc2067312b4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#a1fb0f64b335e8f1d4f27dc2067312b4a">handle_message</a> (<a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a> *message)</td></tr>
 <tr class="memdesc:a1fb0f64b335e8f1d4f27dc2067312b4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles messages sent to the compass subsystem.  <a href="#a1fb0f64b335e8f1d4f27dc2067312b4a"></a><br/></td></tr>
 <tr class="memitem:ab55d084e2d643df0a1970f5868d0c5a8"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#ab55d084e2d643df0a1970f5868d0c5a8">read_data</a> (int command)</td></tr>
@@ -156,14 +156,8 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a44b0e4223918e3b139e54d54a0e3daad"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#a44b0e4223918e3b139e54d54a0e3daad">compass_fd</a></td></tr>
 <tr class="memitem:a6ff33d93efe79539c75dbee45efdc97c"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#a6ff33d93efe79539c75dbee45efdc97c">compass_filepath</a> [40]</td></tr>
 <tr class="inherit_header pro_attribs_classSensor"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classSensor')"><img src="closed.png" alt="-"/>&nbsp;Protected Attributes inherited from <a class="el" href="classSensor.html">Sensor</a></td></tr>
-<tr class="memitem:a881761631861338b335680ab1e618277 inherit pro_attribs_classSensor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a881761631861338b335680ab1e618277"></a>
-pthread_t&#160;</td><td class="memItemRight" valign="bottom"><b>tCollector</b></td></tr>
-<tr class="memitem:afce21e3a689654c7d165f2a0e01ab86c inherit pro_attribs_classSensor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afce21e3a689654c7d165f2a0e01ab86c"></a>
-pthread_t&#160;</td><td class="memItemRight" valign="bottom"><b>tAnalysis</b></td></tr>
-<tr class="memitem:af6f47b6f9c15f82dc4f3e92325356763 inherit pro_attribs_classSensor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af6f47b6f9c15f82dc4f3e92325356763"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>iret_Collector</b></td></tr>
-<tr class="memitem:a7227460350eb55d36fae369eda16a774 inherit pro_attribs_classSensor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7227460350eb55d36fae369eda16a774"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>iret_Analysis</b></td></tr>
+<tr class="memitem:a881761631861338b335680ab1e618277 inherit pro_attribs_classSensor"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensor.html#a881761631861338b335680ab1e618277">tCollector</a></td></tr>
+<tr class="memitem:afce21e3a689654c7d165f2a0e01ab86c inherit pro_attribs_classSensor"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensor.html#afce21e3a689654c7d165f2a0e01ab86c">tAnalysis</a></td></tr>
 <tr class="inherit_header pro_attribs_classSubsystem"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classSubsystem')"><img src="closed.png" alt="-"/>&nbsp;Protected Attributes inherited from <a class="el" href="classSubsystem.html">Subsystem</a></td></tr>
 <tr class="memitem:abbb7a2f8cb57fa70eaf65c1b7c353e08 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">struct mq_attr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#abbb7a2f8cb57fa70eaf65c1b7c353e08">attr</a></td></tr>
 <tr class="memitem:a3ef2ff7ded6b1623fae096828d549369 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">mqd_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a3ef2ff7ded6b1623fae096828d549369">sys_mq</a></td></tr>
@@ -213,7 +207,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>iret_Analysis</b></td>
 </table>
 </div><div class="memdoc">
 
-<p>Performs the analysis of the data collected from the compass. </p>
+<p>Performs the analysis of the data collected from the compass and commands the actuators. </p>
 <p>The analysis function executes in the analysis thread and is synced with the collector task by the collect_analysis_sync semaphore. Depending on the difference between the current and desired headings, messages will be sent to the <a class="el" href="classSteering.html" title="Steering control.">Steering</a> subsystem using the system message queue to change course. </p>
 
 <p>Implements <a class="el" href="classSensor.html#a595d8d9cd87dd3704fad2a313c709a7e">Sensor</a>.</p>
@@ -317,7 +311,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>iret_Analysis</b></td>
 </div><div class="memdoc">
 
 <p>Initializes the <a class="el" href="classCompass.html" title="compass data collection and analysis">Compass</a>. </p>
-<p>Init sensor is an abstract function declared in the <a class="el" href="classSensor.html" title="Sensor class manages sensor tasks.">Sensor</a> class. Its implementation for the <a class="el" href="classCompass.html" title="compass data collection and analysis">Compass</a> subsystem includes setting up the I2C driver and setting up the compass hardware to continuously spit out data at 20Hz. </p>
+<p>Sets up the I2C driver and sets up the compass hardware to continuously spit out data at 20Hz. </p>
 
 <p>Implements <a class="el" href="classSensor.html#a11b28f6bc91d6f69e734e13ab0e64f56">Sensor</a>.</p>
 
@@ -530,7 +524,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>iret_Analysis</b></td>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 19 2013 19:07:36 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 19 2013 20:32:18 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

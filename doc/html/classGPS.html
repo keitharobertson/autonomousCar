@@ -113,13 +113,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2276d26044fb15e498c52b4ee5bcaa91"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a2276d26044fb15e498c52b4ee5bcaa91">data_grab</a> ()</td></tr>
 <tr class="memdesc:a2276d26044fb15e498c52b4ee5bcaa91"><td class="mdescLeft">&#160;</td><td class="mdescRight">grabs data from <a class="el" href="classGPS.html" title="GPS data collection and analysis.">GPS</a>  <a href="#a2276d26044fb15e498c52b4ee5bcaa91"></a><br/></td></tr>
 <tr class="memitem:aebb999362899800a7e372e873bb5b943"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#aebb999362899800a7e372e873bb5b943">init_sensor</a> ()</td></tr>
-<tr class="memdesc:aebb999362899800a7e372e873bb5b943"><td class="mdescLeft">&#160;</td><td class="mdescRight">data grabber  <a href="#aebb999362899800a7e372e873bb5b943"></a><br/></td></tr>
+<tr class="memdesc:aebb999362899800a7e372e873bb5b943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual function to initialize the sensor device.  <a href="#aebb999362899800a7e372e873bb5b943"></a><br/></td></tr>
 <tr class="memitem:a17383568c4ed86a0adfdd5c88b6591d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a17383568c4ed86a0adfdd5c88b6591d4">collector</a> ()</td></tr>
 <tr class="memdesc:a17383568c4ed86a0adfdd5c88b6591d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">collects <a class="el" href="classGPS.html" title="GPS data collection and analysis.">GPS</a> data  <a href="#a17383568c4ed86a0adfdd5c88b6591d4"></a><br/></td></tr>
 <tr class="memitem:a4dca50736c5e49f831515219536823b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a4dca50736c5e49f831515219536823b2">analysis</a> ()</td></tr>
 <tr class="memdesc:a4dca50736c5e49f831515219536823b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">data analysis  <a href="#a4dca50736c5e49f831515219536823b2"></a><br/></td></tr>
 <tr class="memitem:aa04076536ee9f7e2679895c69b07ad58"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#aa04076536ee9f7e2679895c69b07ad58">read_data</a> (int command)</td></tr>
-<tr class="memdesc:aa04076536ee9f7e2679895c69b07ad58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads in data from message to the actuator.  <a href="#aa04076536ee9f7e2679895c69b07ad58"></a><br/></td></tr>
+<tr class="memdesc:aa04076536ee9f7e2679895c69b07ad58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads in data from message to the sensor.  <a href="#aa04076536ee9f7e2679895c69b07ad58"></a><br/></td></tr>
 <tr class="memitem:a803a498352e30044136502a9e036d380"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a803a498352e30044136502a9e036d380"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a803a498352e30044136502a9e036d380">handle_message</a> (<a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a> *message)</td></tr>
 <tr class="memdesc:a803a498352e30044136502a9e036d380"><td class="mdescLeft">&#160;</td><td class="mdescRight">handles messages sent to the <a class="el" href="classGPS.html" title="GPS data collection and analysis.">GPS</a> subsystem <br/></td></tr>
@@ -147,14 +147,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>gps_fd</b></td></tr>
 <tr class="memitem:a1c4a168a95c94aec4aab6c826e8cd3fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c4a168a95c94aec4aab6c826e8cd3fd"></a>
 char&#160;</td><td class="memItemRight" valign="bottom"><b>gps_filepath</b> [40]</td></tr>
 <tr class="inherit_header pro_attribs_classSensor"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classSensor')"><img src="closed.png" alt="-"/>&nbsp;Protected Attributes inherited from <a class="el" href="classSensor.html">Sensor</a></td></tr>
-<tr class="memitem:a881761631861338b335680ab1e618277 inherit pro_attribs_classSensor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a881761631861338b335680ab1e618277"></a>
-pthread_t&#160;</td><td class="memItemRight" valign="bottom"><b>tCollector</b></td></tr>
-<tr class="memitem:afce21e3a689654c7d165f2a0e01ab86c inherit pro_attribs_classSensor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afce21e3a689654c7d165f2a0e01ab86c"></a>
-pthread_t&#160;</td><td class="memItemRight" valign="bottom"><b>tAnalysis</b></td></tr>
-<tr class="memitem:af6f47b6f9c15f82dc4f3e92325356763 inherit pro_attribs_classSensor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af6f47b6f9c15f82dc4f3e92325356763"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>iret_Collector</b></td></tr>
-<tr class="memitem:a7227460350eb55d36fae369eda16a774 inherit pro_attribs_classSensor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7227460350eb55d36fae369eda16a774"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>iret_Analysis</b></td></tr>
+<tr class="memitem:a881761631861338b335680ab1e618277 inherit pro_attribs_classSensor"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensor.html#a881761631861338b335680ab1e618277">tCollector</a></td></tr>
+<tr class="memitem:afce21e3a689654c7d165f2a0e01ab86c inherit pro_attribs_classSensor"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensor.html#afce21e3a689654c7d165f2a0e01ab86c">tAnalysis</a></td></tr>
 <tr class="inherit_header pro_attribs_classSubsystem"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classSubsystem')"><img src="closed.png" alt="-"/>&nbsp;Protected Attributes inherited from <a class="el" href="classSubsystem.html">Subsystem</a></td></tr>
 <tr class="memitem:abbb7a2f8cb57fa70eaf65c1b7c353e08 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">struct mq_attr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#abbb7a2f8cb57fa70eaf65c1b7c353e08">attr</a></td></tr>
 <tr class="memitem:a3ef2ff7ded6b1623fae096828d549369 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">mqd_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a3ef2ff7ded6b1623fae096828d549369">sys_mq</a></td></tr>
@@ -285,8 +279,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>data grabber </p>
-<p>virtual fuction defined at the specific sensor level that initializes the sensor </p>
+<p>Virtual function to initialize the sensor device. </p>
+<p>Implemented by each sensor, the init_sensor function is responsible for setting the sensor up for data collection. For example in the case of the compass subsystem, the init_device task will set up the i2c bus, initialize the system variables, and perform other tasks necessary before data can be collected from the compass. </p>
 
 <p>Implements <a class="el" href="classSensor.html#a11b28f6bc91d6f69e734e13ab0e64f56">Sensor</a>.</p>
 
@@ -314,7 +308,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reads in data from message to the actuator. </p>
+<p>Reads in data from message to the sensor. </p>
 <p>Virtual function implemented at the subsystem level. Will read data into appropriate data type and then cast to a void* and return. The type of data received depends on the message command. For example if trying to set the motor pwm duty cycle, a three byte char* is expected. This function will read the data in from standard in (using cin) into an appropriate datatype for the given command and will return the data to the system message handler for further processing. </p>
 
 <p>Implements <a class="el" href="classSensor.html#acf4ff5c6c8f793ed47a8105b94ff7c3e">Sensor</a>.</p>
@@ -328,7 +322,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 19 2013 19:07:36 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 19 2013 20:32:19 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

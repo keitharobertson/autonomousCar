@@ -28,7 +28,10 @@ SystemControl::SystemControl() {
 		perror("failed to open sys mq from system");
 		exit(-1);
 	}
-	iret_mq_receiver = pthread_create( &tMQReceiver, NULL, &sys_receive_task, (void *)(this));
+	if(pthread_create( &tMQReceiver, NULL, &sys_receive_task, (void *)(this)) != 0) {
+		perror("Failed to create system message receiver task. Will exit now... " );
+		exit(-1);
+	}
 }
 
 SystemControl::~SystemControl() {

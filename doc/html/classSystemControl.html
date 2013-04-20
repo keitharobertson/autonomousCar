@@ -91,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>System control module.  
+<p>System control is the central controller.  
  <a href="classSystemControl.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="SystemControl_8h_source.html">SystemControl.h</a>&gt;</code></p>
@@ -99,28 +99,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae07ba4f7b5ee117619f376efd3b60fa9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemControl.html#ae07ba4f7b5ee117619f376efd3b60fa9">SystemControl</a> ()</td></tr>
-<tr class="memdesc:ae07ba4f7b5ee117619f376efd3b60fa9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classSystemControl.html" title="System control module.">SystemControl</a> default constructor.  <a href="#ae07ba4f7b5ee117619f376efd3b60fa9"></a><br/></td></tr>
+<tr class="memdesc:ae07ba4f7b5ee117619f376efd3b60fa9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classSystemControl.html" title="System control is the central controller.">SystemControl</a> default constructor.  <a href="#ae07ba4f7b5ee117619f376efd3b60fa9"></a><br/></td></tr>
 <tr class="memitem:a431eb4f5fbb81a358a345653c7444874"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemControl.html#a431eb4f5fbb81a358a345653c7444874">~SystemControl</a> ()</td></tr>
-<tr class="memdesc:a431eb4f5fbb81a358a345653c7444874"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classSystemControl.html" title="System control module.">SystemControl</a> destructor.  <a href="#a431eb4f5fbb81a358a345653c7444874"></a><br/></td></tr>
-<tr class="memitem:a682a998cbfceabd333584ee1006fbf05"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a682a998cbfceabd333584ee1006fbf05"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>shutdown</b> ()</td></tr>
+<tr class="memdesc:a431eb4f5fbb81a358a345653c7444874"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classSystemControl.html" title="System control is the central controller.">SystemControl</a> destructor.  <a href="#a431eb4f5fbb81a358a345653c7444874"></a><br/></td></tr>
+<tr class="memitem:a682a998cbfceabd333584ee1006fbf05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemControl.html#a682a998cbfceabd333584ee1006fbf05">shutdown</a> ()</td></tr>
+<tr class="memdesc:a682a998cbfceabd333584ee1006fbf05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuts the system down.  <a href="#a682a998cbfceabd333584ee1006fbf05"></a><br/></td></tr>
 <tr class="memitem:aeb2cd39e5a72b13e139b8bbefb726be6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemControl.html#aeb2cd39e5a72b13e139b8bbefb726be6">init</a> ()</td></tr>
 <tr class="memdesc:aeb2cd39e5a72b13e139b8bbefb726be6"><td class="mdescLeft">&#160;</td><td class="mdescRight">System initialization.  <a href="#aeb2cd39e5a72b13e139b8bbefb726be6"></a><br/></td></tr>
-<tr class="memitem:ade77f999daab4a062327bbc1a8ad05ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade77f999daab4a062327bbc1a8ad05ef"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>read_data</b> (int subsys_num, int command)</td></tr>
+<tr class="memitem:ade77f999daab4a062327bbc1a8ad05ef"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemControl.html#ade77f999daab4a062327bbc1a8ad05ef">read_data</a> (int subsys_num, int command)</td></tr>
+<tr class="memdesc:ade77f999daab4a062327bbc1a8ad05ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read in data from the command interface.  <a href="#ade77f999daab4a062327bbc1a8ad05ef"></a><br/></td></tr>
 <tr class="memitem:a25f45e16b1d4dc69ce8c356741feb17d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemControl.html#a25f45e16b1d4dc69ce8c356741feb17d">recieve_sys_messages</a> ()</td></tr>
 <tr class="memdesc:a25f45e16b1d4dc69ce8c356741feb17d"><td class="mdescLeft">&#160;</td><td class="mdescRight">System message receiver task.  <a href="#a25f45e16b1d4dc69ce8c356741feb17d"></a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a7c4a251aec26da056dff1d51b5a149de"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c4a251aec26da056dff1d51b5a149de"></a>
-<a class="el" href="classSubsystem.html">Subsystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>subsys</b> [NUM_SUBSYSTEMS]</td></tr>
-<tr class="memitem:a0f1842f00f91fd17bd7be7508653c2e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f1842f00f91fd17bd7be7508653c2e2"></a>
-mqd_t&#160;</td><td class="memItemRight" valign="bottom"><b>sys_mq</b></td></tr>
+<tr class="memitem:a7c4a251aec26da056dff1d51b5a149de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSubsystem.html">Subsystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemControl.html#a7c4a251aec26da056dff1d51b5a149de">subsys</a> [NUM_SUBSYSTEMS]</td></tr>
+<tr class="memitem:a0f1842f00f91fd17bd7be7508653c2e2"><td class="memItemLeft" align="right" valign="top">mqd_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemControl.html#a0f1842f00f91fd17bd7be7508653c2e2">sys_mq</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>System control module. </p>
-<p>Initializes subsystems, manages subsytem state, manages inter-subsystem communication </p>
+<div class="textblock"><p>System control is the central controller. </p>
+<p>Initializes subsystems, manages subsytem state, and manages inter-subsystem communication. </p>
 </div><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ae07ba4f7b5ee117619f376efd3b60fa9"></a>
 <div class="memitem">
@@ -135,7 +133,7 @@ mqd_t&#160;</td><td class="memItemRight" valign="bottom"><b>sys_mq</b></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classSystemControl.html" title="System control module.">SystemControl</a> default constructor. </p>
+<p><a class="el" href="classSystemControl.html" title="System control is the central controller.">SystemControl</a> default constructor. </p>
 <p>sets up system message queue and set up system message receiver task </p>
 
 </div>
@@ -153,8 +151,8 @@ mqd_t&#160;</td><td class="memItemRight" valign="bottom"><b>sys_mq</b></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classSystemControl.html" title="System control module.">SystemControl</a> destructor. </p>
-<p>cancels system receiver task, closes message queue, and unlinks message queue </p>
+<p><a class="el" href="classSystemControl.html" title="System control is the central controller.">SystemControl</a> destructor. </p>
+<p>calls shutdown </p>
 
 </div>
 </div>
@@ -173,7 +171,36 @@ mqd_t&#160;</td><td class="memItemRight" valign="bottom"><b>sys_mq</b></td></tr>
 </div><div class="memdoc">
 
 <p>System initialization. </p>
-<p>initializes all the subsystems </p>
+<p>Initializes all the subsystems and stores their references into the subsys array. Each subsystem's index in the array is given by its subsystem number assigned as in <a class="el" href="SUBSYS__COMMANDS_8h.html">SUBSYS_COMMANDS.h</a> (see <a class="el" href="group__subsys__nums.html">Subsystem Numbers</a>). </p>
+
+</div>
+</div>
+<a class="anchor" id="ade77f999daab4a062327bbc1a8ad05ef"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * SystemControl::read_data </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>subsys_num</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>command</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read in data from the command interface. </p>
+<p>Calls the read_data specific to the subsystem being command and returns the result. </p>
 
 </div>
 </div>
@@ -191,7 +218,52 @@ mqd_t&#160;</td><td class="memItemRight" valign="bottom"><b>sys_mq</b></td></tr>
 </div><div class="memdoc">
 
 <p>System message receiver task. </p>
-<p>receivers and handles system messages </p>
+<p>Receivers and handles system messages. Relay's inter-subsystem messages to their target destination. </p>
+
+</div>
+</div>
+<a class="anchor" id="a682a998cbfceabd333584ee1006fbf05"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SystemControl::shutdown </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Shuts the system down. </p>
+<p>deletes the subsystems, cancels the system receiver task, closes the system message queue, and unlinks message queue. </p>
+
+</div>
+</div>
+<h2>Member Data Documentation</h2>
+<a class="anchor" id="a7c4a251aec26da056dff1d51b5a149de"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSubsystem.html">Subsystem</a>* SystemControl::subsys[NUM_SUBSYSTEMS]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>An array of references to the subsystems. Each subsystem's index in the array is given by its subsystem number assigned as in <a class="el" href="SUBSYS__COMMANDS_8h.html">SUBSYS_COMMANDS.h</a> (see <a class="el" href="group__subsys__nums.html">Subsystem Numbers</a>). </p>
+
+</div>
+</div>
+<a class="anchor" id="a0f1842f00f91fd17bd7be7508653c2e2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">mqd_t SystemControl::sys_mq</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The system message queue </p>
 
 </div>
 </div>
@@ -202,7 +274,7 @@ mqd_t&#160;</td><td class="memItemRight" valign="bottom"><b>sys_mq</b></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 19 2013 19:07:37 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 19 2013 20:32:20 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

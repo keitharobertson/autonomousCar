@@ -11,8 +11,9 @@
  * \class Sonar
  * \brief sonar data collection and analysis
  * 
- * Collects data from the sonar and analyzes the data. Sends system 
- * messages to control actuators
+ * Collects data from the sonar and analyzes the data. Based on analysis of 
+ * collected data, sends messages (using the system message queue) to the
+ * control actuators (Steering and Motor).
  */
 class Sonar : public Sensor {
 	public:
@@ -20,45 +21,73 @@ class Sonar : public Sensor {
 		/**
 		 * \brief sonar default constructor
 		 * 
-		 * sets subsystem parameters
+		 * sets subsystem parameters and sets up the collect/analysis task sync semaphore.
 		 */
 		Sonar();
 		
 		/**
 		 * \brief grabs data from sonar
 		 * 
-		 * Gets data from sonar over SPI
+		 * Gets data from sonar over SPI.  Returns a distance as a float.
 		 */
 		float data_grab();
 		
+		/**
+		 * \brief Initializes the Sonar subsystem.
+		 * 
+		 * Sets up the SPI driver (to talk to the ADC) and sets up the ADC for sonar configuration.
+		 */
 		void init_sensor();
 		
 		/**
-		 * \brief collects sonar data
+		 * \brief collects data from Sonar
 		 * 
-		 * collects sonar data and averages data prior to analysis
+		 * The collector function executes in the collector thread and executes indefinitely at a frequency of 20Hz.  
+		 * It calls the data_grab to do the actual communication with the hardware to provide a layer of abstraction 
+		 * between the software and specifics of the hardware. It can optionally average data prior to analysis if 
+		 * the system is expected to be under heavy load and the tasks are not schedulable with the typical release 
+		 * frequencies (averaging will have the effect that the analysis task will be released less frequently).
 		 */
 		void collector();
 		
 		/**
-		 * \brief data analysis
+		 * \brief Performs the analysis of the data collected from the sonar and commands the actuators.
 		 * 
-		 * Issues commands to acuators based on sonar data
+		 * The analysis function executes in the analysis thread and is synced with the collector task by the 
+		 * collect_analysis_sync semaphore.  Depending on the distance reading from the sonar hardware,
+		 * messages will be sent to the Motor and Steering subsystems using the system message queue to change course.
 		 */
 		void analysis();
 		
+		/**
+		 * \brief Reads in data from message to Sonar.
+		 * 
+		 * Will read data into appropriate data type and then cast to a void* and return.  The type of 
+		 * data received depends on the message command.  For example if trying to set the threashold distance,
+		 * an int is expected. This function will read the data in from standard in (using cin) 
+		 * into an appropriate datatype for the given command and will return the data to the system message 
+		 * handler for further processing.
+		 */
 		void* read_data(int command);
 		
 		/**
-		 * \brief handles messages sent to the sonar subsystem
+		 * \brief Handles messages sent to the sonar subsystem.
+		 * 
+		 * Performs tasks determined by the command part of the message.  For example the 
+		 * command SNR_SET_DIST_THR is used to set the distance threshold.  Messages could be 
+		 * from command line interface or from another subsystem. 
 		 */
 		void handle_message(MESSAGE* message);
 		
 	protected:
-		float sonar_reading;
-		sem_t collect_analysis_sync;
 		
+		/** The most recent sonar reading */
+		float sonar_reading;
+		/** the colector/analysis sync semaphore used to sync the collector and analysis tasks */
+		sem_t collect_analysis_sync;
+		/** The sonar file descriptor (SPI file descriptor) */
 		int sonar_fd;
+		/** filepath for the SPI device (in /dev) */
 		char sonar_filepath[40];
 };
 

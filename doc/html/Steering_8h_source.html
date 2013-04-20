@@ -97,36 +97,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00016"></a><span class="lineno"><a class="code" href="classSteering.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSteering.html" title="Steering control.">Steering</a> : <span class="keyword">public</span> <a class="code" href="classActuator.html" title="Actuator class manages actuator tasks.">Actuator</a> {</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <a class="code" href="classSteering.html#a45a5ff1a1869073a2165680f853b9c41" title="Actuator default constructor.">Steering</a>();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <a class="code" href="classSteering.html#a45a5ff1a1869073a2165680f853b9c41" title="Steering default constructor.">Steering</a>();</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                ~<a class="code" href="classSteering.html" title="Steering control.">Steering</a>();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSteering.html#a57a8011d7d5a4ca608b1b140e21233cb" title="Virtual function to initialize the actuator device.">init_device</a>();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSteering.html#a5b7b0a053607ad891b7d2826093da6ac" title="controls the mechanical system">mech_control</a>();</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSteering.html#a0ae09490e872d21d211ddfdc446d14d1" title="The mechanical command function issues commands directly to hardware.">mech_command</a>(<span class="keywordtype">char</span> *value);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keywordtype">void</span>* <a class="code" href="classSteering.html#afda4f2951e5be114abf988a8e5943a96" title="Reads in data from message to the actuator.">read_data</a>(<span class="keywordtype">int</span> command);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSteering.html#a29e46d1b87ecda7807452ad67005efe1" title="handles messages sent to the compass subsystem">handle_message</a>(<a class="code" href="struct__MESSAGE.html" title="Defines the structure of a message to be sent to a subsystem.">MESSAGE</a>* message);          </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                <span class="keywordtype">void</span> set_new_pwm_duty_cycle(<span class="keyword">const</span> <span class="keywordtype">char</span>* value);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="keywordtype">int</span> min_priority;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <span class="keywordtype">char</span> steering_duty_cycle[2];</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                sem_t steer_cmd_ctrl;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                <span class="keywordtype">int</span> steering_fd;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="keywordtype">char</span> steering_filepath[40];</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <span class="keyword">volatile</span> uint32_t* gptimer_reg;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;};</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                <a class="code" href="classSteering.html#a0cf29a86402af78c57edd2d3aaeaf558" title="Steering destructor.">~Steering</a>();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSteering.html#a57a8011d7d5a4ca608b1b140e21233cb" title="initialize the steering">init_device</a>();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSteering.html#a5b7b0a053607ad891b7d2826093da6ac" title="the mechanical controller function for the steering.">mech_control</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSteering.html#a0ae09490e872d21d211ddfdc446d14d1" title="The mechanical command function issues commands directly to the steering hardware.">mech_command</a>(<span class="keywordtype">char</span> *value);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                <span class="keywordtype">void</span>* <a class="code" href="classSteering.html#afda4f2951e5be114abf988a8e5943a96" title="Reads in data from message to steering.">read_data</a>(<span class="keywordtype">int</span> command);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSteering.html#a29e46d1b87ecda7807452ad67005efe1" title="Handles message sent to steering.">handle_message</a>(<a class="code" href="struct__MESSAGE.html" title="Defines the structure of a message to be sent to a subsystem.">MESSAGE</a>* message);          </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSteering.html#aa0f0e87b925f860575429668a9a84e8d" title="Sets the steering PWM duty cycle.">set_new_pwm_duty_cycle</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* value);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                </div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="code" href="classSteering.html#ab31761e4665bf81e580f1bc32c9fff79">   89</a></span>&#160;                <span class="keywordtype">int</span> <a class="code" href="classSteering.html#ab31761e4665bf81e580f1bc32c9fff79">min_priority</a>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="code" href="classSteering.html#a3eb0bda8706c97d35c0ae31daeefa5a1">   92</a></span>&#160;                <span class="keywordtype">char</span> <a class="code" href="classSteering.html#a3eb0bda8706c97d35c0ae31daeefa5a1">steering_duty_cycle</a>[2];</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="code" href="classSteering.html#af9a4f30e9dc0dc37b31a421cb88ca8ba">   95</a></span>&#160;                sem_t <a class="code" href="classSteering.html#af9a4f30e9dc0dc37b31a421cb88ca8ba">steer_cmd_ctrl</a>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                </div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="code" href="classSteering.html#ae85b07902746525a57bf049d872b4f26">   98</a></span>&#160;                <span class="keywordtype">int</span> <a class="code" href="classSteering.html#ae85b07902746525a57bf049d872b4f26">steering_fd</a>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                </div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="code" href="classSteering.html#adfe05011b3442b1b24cd9dfc1e24ad70">  101</a></span>&#160;                <span class="keywordtype">char</span> <a class="code" href="classSteering.html#adfe05011b3442b1b24cd9dfc1e24ad70">steering_filepath</a>[40];</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;};</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 19 2013 19:07:35 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 19 2013 20:32:18 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

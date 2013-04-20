@@ -24,30 +24,25 @@ Inheritance diagram for Sonar\-:\begin{figure}[H]
 float \hyperlink{classSonar_aa4e807cbed15ce1d46ddcef05b6b59fb}{data\-\_\-grab} ()
 \begin{DoxyCompactList}\small\item\em grabs data from sonar \end{DoxyCompactList}\item 
 void \hyperlink{classSonar_af91d04cbc441084ba608a49c2be88d5b}{init\-\_\-sensor} ()
-\begin{DoxyCompactList}\small\item\em data grabber \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{classSonar}{Sonar} subsystem. \end{DoxyCompactList}\item 
 void \hyperlink{classSonar_a38b0e409082be17e7098b2e471bab4a8}{collector} ()
-\begin{DoxyCompactList}\small\item\em collects sonar data \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em collects data from \hyperlink{classSonar}{Sonar} \end{DoxyCompactList}\item 
 void \hyperlink{classSonar_a11a32c64528f8e69fdde4722f3b3bc7b}{analysis} ()
-\begin{DoxyCompactList}\small\item\em data analysis \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Performs the analysis of the data collected from the sonar and commands the actuators. \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{classSonar_a54f55470741873f333ad8af8a98affc8}{read\-\_\-data} (int command)
-\begin{DoxyCompactList}\small\item\em Reads in data from message to the actuator. \end{DoxyCompactList}\item 
-\hypertarget{classSonar_a5f9b0f57b5a05b03b0dcb5ab830592ff}{void \hyperlink{classSonar_a5f9b0f57b5a05b03b0dcb5ab830592ff}{handle\-\_\-message} (\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} $\ast$message)}\label{classSonar_a5f9b0f57b5a05b03b0dcb5ab830592ff}
-
-\begin{DoxyCompactList}\small\item\em handles messages sent to the sonar subsystem \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Reads in data from message to \hyperlink{classSonar}{Sonar}. \end{DoxyCompactList}\item 
+void \hyperlink{classSonar_a5f9b0f57b5a05b03b0dcb5ab830592ff}{handle\-\_\-message} (\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} $\ast$message)
+\begin{DoxyCompactList}\small\item\em Handles messages sent to the sonar subsystem. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classSonar_abd3f8ccfc42cacd700df9be06f70c6b2}{float {\bfseries sonar\-\_\-reading}}\label{classSonar_abd3f8ccfc42cacd700df9be06f70c6b2}
-
+float \hyperlink{classSonar_abd3f8ccfc42cacd700df9be06f70c6b2}{sonar\-\_\-reading}
 \item 
-\hypertarget{classSonar_a3dcf7c38af34539c68f123f073eb2f52}{sem\-\_\-t {\bfseries collect\-\_\-analysis\-\_\-sync}}\label{classSonar_a3dcf7c38af34539c68f123f073eb2f52}
-
+sem\-\_\-t \hyperlink{classSonar_a3dcf7c38af34539c68f123f073eb2f52}{collect\-\_\-analysis\-\_\-sync}
 \item 
-\hypertarget{classSonar_a4799c8b328d7735f7e6d62d741340c6c}{int {\bfseries sonar\-\_\-fd}}\label{classSonar_a4799c8b328d7735f7e6d62d741340c6c}
-
+int \hyperlink{classSonar_a4799c8b328d7735f7e6d62d741340c6c}{sonar\-\_\-fd}
 \item 
-\hypertarget{classSonar_a7db9106da9a50d06b5f25c35f799abe5}{char {\bfseries sonar\-\_\-filepath} \mbox{[}40\mbox{]}}\label{classSonar_a7db9106da9a50d06b5f25c35f799abe5}
-
+char \hyperlink{classSonar_a7db9106da9a50d06b5f25c35f799abe5}{sonar\-\_\-filepath} \mbox{[}40\mbox{]}
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -55,7 +50,7 @@ void $\ast$ \hyperlink{classSonar_a54f55470741873f333ad8af8a98affc8}{read\-\_\-d
 \subsection{Detailed Description}
 sonar data collection and analysis 
 
-Collects data from the sonar and analyzes the data. Sends system messages to control actuators 
+Collects data from the sonar and analyzes the data. Based on analysis of collected data, sends messages (using the system message queue) to the control actuators (\hyperlink{classSteering}{Steering} and \hyperlink{classMotor}{Motor}). 
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classSonar_a71ef009d138f1e372fc35ca0cb6e85e2}{\index{Sonar@{Sonar}!Sonar@{Sonar}}
@@ -69,7 +64,7 @@ Collects data from the sonar and analyzes the data. Sends system messages to con
 
 sonar default constructor 
 
-sets subsystem parameters 
+sets subsystem parameters and sets up the collect/analysis task sync semaphore. 
 
 \subsection{Member Function Documentation}
 \hypertarget{classSonar_a11a32c64528f8e69fdde4722f3b3bc7b}{\index{Sonar@{Sonar}!analysis@{analysis}}
@@ -81,9 +76,9 @@ sets subsystem parameters
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classSonar_a11a32c64528f8e69fdde4722f3b3bc7b}
 
 
-data analysis 
+Performs the analysis of the data collected from the sonar and commands the actuators. 
 
-Issues commands to acuators based on sonar data 
+The analysis function executes in the analysis thread and is synced with the collector task by the collect\-\_\-analysis\-\_\-sync semaphore. Depending on the distance reading from the sonar hardware, messages will be sent to the \hyperlink{classMotor}{Motor} and \hyperlink{classSteering}{Steering} subsystems using the system message queue to change course. 
 
 Implements \hyperlink{classSensor_a595d8d9cd87dd3704fad2a313c709a7e}{Sensor}.
 
@@ -96,9 +91,9 @@ Implements \hyperlink{classSensor_a595d8d9cd87dd3704fad2a313c709a7e}{Sensor}.
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classSonar_a38b0e409082be17e7098b2e471bab4a8}
 
 
-collects sonar data 
+collects data from \hyperlink{classSonar}{Sonar} 
 
-collects sonar data and averages data prior to analysis 
+The collector function executes in the collector thread and executes indefinitely at a frequency of 20\-Hz. It calls the data\-\_\-grab to do the actual communication with the hardware to provide a layer of abstraction between the software and specifics of the hardware. It can optionally average data prior to analysis if the system is expected to be under heavy load and the tasks are not schedulable with the typical release frequencies (averaging will have the effect that the analysis task will be released less frequently). 
 
 Implements \hyperlink{classSensor_ae4ec41b880d44feb898da5c62c3203c9}{Sensor}.
 
@@ -113,7 +108,22 @@ Implements \hyperlink{classSensor_ae4ec41b880d44feb898da5c62c3203c9}{Sensor}.
 
 grabs data from sonar 
 
-Gets data from sonar over S\-P\-I \hypertarget{classSonar_af91d04cbc441084ba608a49c2be88d5b}{\index{Sonar@{Sonar}!init\-\_\-sensor@{init\-\_\-sensor}}
+Gets data from sonar over S\-P\-I. Returns a distance as a float. \hypertarget{classSonar_a5f9b0f57b5a05b03b0dcb5ab830592ff}{\index{Sonar@{Sonar}!handle\-\_\-message@{handle\-\_\-message}}
+\index{handle\-\_\-message@{handle\-\_\-message}!Sonar@{Sonar}}
+\subsubsection[{handle\-\_\-message}]{\setlength{\rightskip}{0pt plus 5cm}void Sonar\-::handle\-\_\-message (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-E\-S\-S\-A\-G\-E} $\ast$}]{message}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classSonar_a5f9b0f57b5a05b03b0dcb5ab830592ff}
+
+
+Handles messages sent to the sonar subsystem. 
+
+Performs tasks determined by the command part of the message. For example the command S\-N\-R\-\_\-\-S\-E\-T\-\_\-\-D\-I\-S\-T\-\_\-\-T\-H\-R is used to set the distance threshold. Messages could be from command line interface or from another subsystem. 
+
+Implements \hyperlink{classSensor_a45533b253f81f85d1b6fcea902a5692b}{Sensor}.
+
+\hypertarget{classSonar_af91d04cbc441084ba608a49c2be88d5b}{\index{Sonar@{Sonar}!init\-\_\-sensor@{init\-\_\-sensor}}
 \index{init\-\_\-sensor@{init\-\_\-sensor}!Sonar@{Sonar}}
 \subsubsection[{init\-\_\-sensor}]{\setlength{\rightskip}{0pt plus 5cm}void Sonar\-::init\-\_\-sensor (
 \begin{DoxyParamCaption}
@@ -122,9 +132,9 @@ Gets data from sonar over S\-P\-I \hypertarget{classSonar_af91d04cbc441084ba608a
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classSonar_af91d04cbc441084ba608a49c2be88d5b}
 
 
-data grabber 
+Initializes the \hyperlink{classSonar}{Sonar} subsystem. 
 
-virtual fuction defined at the specific sensor level that initializes the sensor 
+Sets up the S\-P\-I driver (to talk to the A\-D\-C) and sets up the A\-D\-C for sonar configuration. 
 
 Implements \hyperlink{classSensor_a11b28f6bc91d6f69e734e13ab0e64f56}{Sensor}.
 
@@ -137,13 +147,28 @@ Implements \hyperlink{classSensor_a11b28f6bc91d6f69e734e13ab0e64f56}{Sensor}.
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classSonar_a54f55470741873f333ad8af8a98affc8}
 
 
-Reads in data from message to the actuator. 
+Reads in data from message to \hyperlink{classSonar}{Sonar}. 
 
-Virtual function implemented at the subsystem level. Will read data into appropriate data type and then cast to a void$\ast$ and return. The type of data received depends on the message command. For example if trying to set the motor pwm duty cycle, a three byte char$\ast$ is expected. This function will read the data in from standard in (using cin) into an appropriate datatype for the given command and will return the data to the system message handler for further processing. 
+Will read data into appropriate data type and then cast to a void$\ast$ and return. The type of data received depends on the message command. For example if trying to set the threashold distance, an int is expected. This function will read the data in from standard in (using cin) into an appropriate datatype for the given command and will return the data to the system message handler for further processing. 
 
 Implements \hyperlink{classSensor_acf4ff5c6c8f793ed47a8105b94ff7c3e}{Sensor}.
 
 
+
+\subsection{Member Data Documentation}
+\hypertarget{classSonar_a3dcf7c38af34539c68f123f073eb2f52}{\index{Sonar@{Sonar}!collect\-\_\-analysis\-\_\-sync@{collect\-\_\-analysis\-\_\-sync}}
+\index{collect\-\_\-analysis\-\_\-sync@{collect\-\_\-analysis\-\_\-sync}!Sonar@{Sonar}}
+\subsubsection[{collect\-\_\-analysis\-\_\-sync}]{\setlength{\rightskip}{0pt plus 5cm}sem\-\_\-t Sonar\-::collect\-\_\-analysis\-\_\-sync\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a3dcf7c38af34539c68f123f073eb2f52}
+the colector/analysis sync semaphore used to sync the collector and analysis tasks \hypertarget{classSonar_a4799c8b328d7735f7e6d62d741340c6c}{\index{Sonar@{Sonar}!sonar\-\_\-fd@{sonar\-\_\-fd}}
+\index{sonar\-\_\-fd@{sonar\-\_\-fd}!Sonar@{Sonar}}
+\subsubsection[{sonar\-\_\-fd}]{\setlength{\rightskip}{0pt plus 5cm}int Sonar\-::sonar\-\_\-fd\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a4799c8b328d7735f7e6d62d741340c6c}
+The sonar file descriptor (S\-P\-I file descriptor) \hypertarget{classSonar_a7db9106da9a50d06b5f25c35f799abe5}{\index{Sonar@{Sonar}!sonar\-\_\-filepath@{sonar\-\_\-filepath}}
+\index{sonar\-\_\-filepath@{sonar\-\_\-filepath}!Sonar@{Sonar}}
+\subsubsection[{sonar\-\_\-filepath}]{\setlength{\rightskip}{0pt plus 5cm}char Sonar\-::sonar\-\_\-filepath\mbox{[}40\mbox{]}\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a7db9106da9a50d06b5f25c35f799abe5}
+filepath for the S\-P\-I device (in /dev) \hypertarget{classSonar_abd3f8ccfc42cacd700df9be06f70c6b2}{\index{Sonar@{Sonar}!sonar\-\_\-reading@{sonar\-\_\-reading}}
+\index{sonar\-\_\-reading@{sonar\-\_\-reading}!Sonar@{Sonar}}
+\subsubsection[{sonar\-\_\-reading}]{\setlength{\rightskip}{0pt plus 5cm}float Sonar\-::sonar\-\_\-reading\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_abd3f8ccfc42cacd700df9be06f70c6b2}
+The most recent sonar reading 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 
