@@ -1,0 +1,139 @@
+\hypertarget{classMotor}{\section{Motor Class Reference}
+\label{classMotor}\index{Motor@{Motor}}
+}
+
+
+motor control  
+
+
+
+
+{\ttfamily \#include $<$Motor.\-h$>$}
+
+Inheritance diagram for Motor\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classMotor}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMotor_af6106b4c506411265c5face762b6c004}{Motor} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classActuator}{Actuator} default constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classMotor_a861cd4da09dd25fc02d711a34f25a988}{init\-\_\-device} ()
+\begin{DoxyCompactList}\small\item\em Virtual function to initialize the actuator device. \end{DoxyCompactList}\item 
+\hypertarget{classMotor_a9902b2c030a06ca8a4e2f10c3530dbec}{void \hyperlink{classMotor_a9902b2c030a06ca8a4e2f10c3530dbec}{mech\-\_\-control} ()}\label{classMotor_a9902b2c030a06ca8a4e2f10c3530dbec}
+
+\begin{DoxyCompactList}\small\item\em controls the mechanical system \end{DoxyCompactList}\item 
+void \hyperlink{classMotor_a3edca1dcb0f3df55eccc09ffb14426a4}{mech\-\_\-command} (char $\ast$value)
+\begin{DoxyCompactList}\small\item\em The mechanical command function issues commands directly to hardware. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{classMotor_a1727e2d2dfd483c9c85824915a6aeeb8}{read\-\_\-data} (int command)
+\begin{DoxyCompactList}\small\item\em Reads in data from message to the actuator. \end{DoxyCompactList}\item 
+\hypertarget{classMotor_add07c258d9b239633a3882a07dc9e4de}{void \hyperlink{classMotor_add07c258d9b239633a3882a07dc9e4de}{handle\-\_\-message} (\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} $\ast$message)}\label{classMotor_add07c258d9b239633a3882a07dc9e4de}
+
+\begin{DoxyCompactList}\small\item\em handles messages sent to the compass subsystem \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMotor_af6301006bc0b18d6a4b32d2be0cd93a7}{void {\bfseries set\-\_\-new\-\_\-pwm\-\_\-duty\-\_\-cycle} (const char $\ast$value)}\label{classMotor_af6301006bc0b18d6a4b32d2be0cd93a7}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMotor_a0125717053068acb08b430d820bfc413}{int {\bfseries min\-\_\-priority}}\label{classMotor_a0125717053068acb08b430d820bfc413}
+
+\item 
+\hypertarget{classMotor_aac6cb55808e4f1da0506d0cc6c314e41}{char {\bfseries motor\-\_\-duty\-\_\-cycle} \mbox{[}2\mbox{]}}\label{classMotor_aac6cb55808e4f1da0506d0cc6c314e41}
+
+\item 
+\hypertarget{classMotor_a7d7c98b5afa45656905708e54ff7fb9a}{int {\bfseries direction}}\label{classMotor_a7d7c98b5afa45656905708e54ff7fb9a}
+
+\item 
+\hypertarget{classMotor_a827a1d2b453a804d389cdafbf0685022}{sem\-\_\-t {\bfseries motor\-\_\-cmd\-\_\-ctrl}}\label{classMotor_a827a1d2b453a804d389cdafbf0685022}
+
+\item 
+\hypertarget{classMotor_acb2ac1bd2630b05c40a64154a87ea65d}{int {\bfseries motor\-\_\-fd}}\label{classMotor_acb2ac1bd2630b05c40a64154a87ea65d}
+
+\item 
+\hypertarget{classMotor_aed42ebef60a1374fc86dd2aff59af85e}{char {\bfseries motor\-\_\-filepath} \mbox{[}40\mbox{]}}\label{classMotor_aed42ebef60a1374fc86dd2aff59af85e}
+
+\item 
+\hypertarget{classMotor_aac1493320f015375f125a59b6428c5d3}{volatile uint32\-\_\-t $\ast$ {\bfseries gptimer\-\_\-reg}}\label{classMotor_aac1493320f015375f125a59b6428c5d3}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+motor control 
+
+receives motor control commands and commands the motor accordingly 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classMotor_af6106b4c506411265c5face762b6c004}{\index{Motor@{Motor}!Motor@{Motor}}
+\index{Motor@{Motor}!Motor@{Motor}}
+\subsubsection[{Motor}]{\setlength{\rightskip}{0pt plus 5cm}Motor\-::\-Motor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classMotor_af6106b4c506411265c5face762b6c004}
+
+
+\hyperlink{classActuator}{Actuator} default constructor. 
+
+sets subsystem parameters 
+
+\subsection{Member Function Documentation}
+\hypertarget{classMotor_a861cd4da09dd25fc02d711a34f25a988}{\index{Motor@{Motor}!init\-\_\-device@{init\-\_\-device}}
+\index{init\-\_\-device@{init\-\_\-device}!Motor@{Motor}}
+\subsubsection[{init\-\_\-device}]{\setlength{\rightskip}{0pt plus 5cm}void Motor\-::init\-\_\-device (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMotor_a861cd4da09dd25fc02d711a34f25a988}
+
+
+Virtual function to initialize the actuator device. 
+
+Defined for each actuator, the init\-\_\-device function is responsible for setting the actuator up for control by the mechanical control task. For example in the case of the motor subsystem, the init\-\_\-device task will set up the P\-W\-M, initialize the system variables, and perform other tasks necessary before the motor can be controlled. 
+
+Implements \hyperlink{classActuator_a13e33ed9c5e19a52bc6d0b7e3c0dd2d7}{Actuator}.
+
+\hypertarget{classMotor_a3edca1dcb0f3df55eccc09ffb14426a4}{\index{Motor@{Motor}!mech\-\_\-command@{mech\-\_\-command}}
+\index{mech\-\_\-command@{mech\-\_\-command}!Motor@{Motor}}
+\subsubsection[{mech\-\_\-command}]{\setlength{\rightskip}{0pt plus 5cm}void Motor\-::mech\-\_\-command (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMotor_a3edca1dcb0f3df55eccc09ffb14426a4}
+
+
+The mechanical command function issues commands directly to hardware. 
+
+The mechanical command function is typically called from the mech\-\_\-control function and will issue the actual commands to hardware necessary to control the actuator. For example, for the motor subsystem, this function will write to P\-W\-M. 
+
+Implements \hyperlink{classActuator_ad9c31f9e7f06684835ae526f29d7a096}{Actuator}.
+
+\hypertarget{classMotor_a1727e2d2dfd483c9c85824915a6aeeb8}{\index{Motor@{Motor}!read\-\_\-data@{read\-\_\-data}}
+\index{read\-\_\-data@{read\-\_\-data}!Motor@{Motor}}
+\subsubsection[{read\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ Motor\-::read\-\_\-data (
+\begin{DoxyParamCaption}
+\item[{int}]{command}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMotor_a1727e2d2dfd483c9c85824915a6aeeb8}
+
+
+Reads in data from message to the actuator. 
+
+Will read data into appropriate data type and then cast to a void$\ast$ and return. The type of data received depends on the message command. For example if trying to set the motor pwm duty cycle, a three byte char$\ast$ is expected. This function will read the data in from standard in (using cin) into an appropriate datatype for the given command and will return the data to the system message handler for further processing. 
+
+Implements \hyperlink{classActuator_a65fe83ffd7895f3ab028b87a62b3af1d}{Actuator}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/keith/realtime/Motor.\-h\item 
+/home/keith/realtime/Motor.\-cpp\end{DoxyCompactItemize}

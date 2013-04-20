@@ -1,0 +1,86 @@
+\hypertarget{struct__MESSAGE}{\section{\-\_\-\-M\-E\-S\-S\-A\-G\-E Struct Reference}
+\label{struct__MESSAGE}\index{\-\_\-\-M\-E\-S\-S\-A\-G\-E@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}}
+}
+
+
+Defines the structure of a message to be sent to a subsystem.  
+
+
+
+
+{\ttfamily \#include $<$S\-U\-B\-S\-Y\-S\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct__MESSAGE_a2a5d3cc8c779ab1b772254ba74513216}{\-\_\-\-M\-E\-S\-S\-A\-G\-E} ()
+\item 
+\hyperlink{struct__MESSAGE_a338496eed6001193e85da78bf142af54}{\-\_\-\-M\-E\-S\-S\-A\-G\-E} (int \hyperlink{struct__MESSAGE_ae5e8b5fe34c20f30b5bfb8d10f69ecfd}{from}, int \hyperlink{struct__MESSAGE_ac270d2c13a196e8440f1a074e0ac7560}{to}, int \hyperlink{struct__MESSAGE_a4d7f2b7e82139f257e40d456e56bd8ab}{command})
+\item 
+\hyperlink{struct__MESSAGE_a299014d8bd14ade470ec293e7bb35796}{\-\_\-\-M\-E\-S\-S\-A\-G\-E} (int \hyperlink{struct__MESSAGE_ae5e8b5fe34c20f30b5bfb8d10f69ecfd}{from}, int \hyperlink{struct__MESSAGE_ac270d2c13a196e8440f1a074e0ac7560}{to}, int \hyperlink{struct__MESSAGE_a4d7f2b7e82139f257e40d456e56bd8ab}{command}, void $\ast$\hyperlink{struct__MESSAGE_a53f90bcdb7c1d0ee7bb242aed3c120a7}{data})
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{struct__MESSAGE_ae5e8b5fe34c20f30b5bfb8d10f69ecfd}{from}
+\item 
+int \hyperlink{struct__MESSAGE_ac270d2c13a196e8440f1a074e0ac7560}{to}
+\item 
+int \hyperlink{struct__MESSAGE_a4d7f2b7e82139f257e40d456e56bd8ab}{command}
+\item 
+void $\ast$ \hyperlink{struct__MESSAGE_a53f90bcdb7c1d0ee7bb242aed3c120a7}{data}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Defines the structure of a message to be sent to a subsystem. 
+
+Struct containing message information. Message designed to be passed through P\-O\-S\-I\-X message queues. The \hyperlink{classSystemControl}{System\-Control} will relay the message according to the to parameter. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{struct__MESSAGE_a2a5d3cc8c779ab1b772254ba74513216}{\index{\-\_\-\-M\-E\-S\-S\-A\-G\-E@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}!\-\_\-\-M\-E\-S\-S\-A\-G\-E@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}}
+\index{\-\_\-\-M\-E\-S\-S\-A\-G\-E@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}!_MESSAGE@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}}
+\subsubsection[{\-\_\-\-M\-E\-S\-S\-A\-G\-E}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-M\-E\-S\-S\-A\-G\-E\-::\-\_\-\-M\-E\-S\-S\-A\-G\-E (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{struct__MESSAGE_a2a5d3cc8c779ab1b772254ba74513216}
+A default constructor for the message \hypertarget{struct__MESSAGE_a338496eed6001193e85da78bf142af54}{\index{\-\_\-\-M\-E\-S\-S\-A\-G\-E@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}!\-\_\-\-M\-E\-S\-S\-A\-G\-E@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}}
+\index{\-\_\-\-M\-E\-S\-S\-A\-G\-E@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}!_MESSAGE@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}}
+\subsubsection[{\-\_\-\-M\-E\-S\-S\-A\-G\-E}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-M\-E\-S\-S\-A\-G\-E\-::\-\_\-\-M\-E\-S\-S\-A\-G\-E (
+\begin{DoxyParamCaption}
+\item[{int}]{from, }
+\item[{int}]{to, }
+\item[{int}]{command}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{struct__MESSAGE_a338496eed6001193e85da78bf142af54}
+Constructor for the message \hypertarget{struct__MESSAGE_a299014d8bd14ade470ec293e7bb35796}{\index{\-\_\-\-M\-E\-S\-S\-A\-G\-E@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}!\-\_\-\-M\-E\-S\-S\-A\-G\-E@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}}
+\index{\-\_\-\-M\-E\-S\-S\-A\-G\-E@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}!_MESSAGE@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}}
+\subsubsection[{\-\_\-\-M\-E\-S\-S\-A\-G\-E}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-M\-E\-S\-S\-A\-G\-E\-::\-\_\-\-M\-E\-S\-S\-A\-G\-E (
+\begin{DoxyParamCaption}
+\item[{int}]{from, }
+\item[{int}]{to, }
+\item[{int}]{command, }
+\item[{void $\ast$}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{struct__MESSAGE_a299014d8bd14ade470ec293e7bb35796}
+Constructor for the message 
+
+\subsection{Member Data Documentation}
+\hypertarget{struct__MESSAGE_a4d7f2b7e82139f257e40d456e56bd8ab}{\index{\-\_\-\-M\-E\-S\-S\-A\-G\-E@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}!command@{command}}
+\index{command@{command}!_MESSAGE@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}}
+\subsubsection[{command}]{\setlength{\rightskip}{0pt plus 5cm}int \-\_\-\-M\-E\-S\-S\-A\-G\-E\-::command}}\label{struct__MESSAGE_a4d7f2b7e82139f257e40d456e56bd8ab}
+Specfies the command to be issued to the receiving subsystem \hypertarget{struct__MESSAGE_a53f90bcdb7c1d0ee7bb242aed3c120a7}{\index{\-\_\-\-M\-E\-S\-S\-A\-G\-E@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}!data@{data}}
+\index{data@{data}!_MESSAGE@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}}
+\subsubsection[{data}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ \-\_\-\-M\-E\-S\-S\-A\-G\-E\-::data}}\label{struct__MESSAGE_a53f90bcdb7c1d0ee7bb242aed3c120a7}
+Specifies data to be used in conjuction with the command. For example when setting a new compass heading, we need to know the new heading which would be passed in the message data \hypertarget{struct__MESSAGE_ae5e8b5fe34c20f30b5bfb8d10f69ecfd}{\index{\-\_\-\-M\-E\-S\-S\-A\-G\-E@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}!from@{from}}
+\index{from@{from}!_MESSAGE@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}}
+\subsubsection[{from}]{\setlength{\rightskip}{0pt plus 5cm}int \-\_\-\-M\-E\-S\-S\-A\-G\-E\-::from}}\label{struct__MESSAGE_ae5e8b5fe34c20f30b5bfb8d10f69ecfd}
+Specifies the subsystem from which the message was sent \hypertarget{struct__MESSAGE_ac270d2c13a196e8440f1a074e0ac7560}{\index{\-\_\-\-M\-E\-S\-S\-A\-G\-E@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}!to@{to}}
+\index{to@{to}!_MESSAGE@{\-\_\-\-M\-E\-S\-S\-A\-G\-E}}
+\subsubsection[{to}]{\setlength{\rightskip}{0pt plus 5cm}int \-\_\-\-M\-E\-S\-S\-A\-G\-E\-::to}}\label{struct__MESSAGE_ac270d2c13a196e8440f1a074e0ac7560}
+Specifies the destination subsystem for the message 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/home/keith/realtime/\hyperlink{SUBSYS__COMMANDS_8h}{S\-U\-B\-S\-Y\-S\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S.\-h}\end{DoxyCompactItemize}

@@ -1,0 +1,99 @@
+\hypertarget{classSystemControl}{\section{System\-Control Class Reference}
+\label{classSystemControl}\index{System\-Control@{System\-Control}}
+}
+
+
+System control module.  
+
+
+
+
+{\ttfamily \#include $<$System\-Control.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSystemControl_ae07ba4f7b5ee117619f376efd3b60fa9}{System\-Control} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classSystemControl}{System\-Control} default constructor. \end{DoxyCompactList}\item 
+\hyperlink{classSystemControl_a431eb4f5fbb81a358a345653c7444874}{$\sim$\-System\-Control} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classSystemControl}{System\-Control} destructor. \end{DoxyCompactList}\item 
+\hypertarget{classSystemControl_a682a998cbfceabd333584ee1006fbf05}{void {\bfseries shutdown} ()}\label{classSystemControl_a682a998cbfceabd333584ee1006fbf05}
+
+\item 
+void \hyperlink{classSystemControl_aeb2cd39e5a72b13e139b8bbefb726be6}{init} ()
+\begin{DoxyCompactList}\small\item\em System initialization. \end{DoxyCompactList}\item 
+\hypertarget{classSystemControl_ade77f999daab4a062327bbc1a8ad05ef}{void $\ast$ {\bfseries read\-\_\-data} (int subsys\-\_\-num, int command)}\label{classSystemControl_ade77f999daab4a062327bbc1a8ad05ef}
+
+\item 
+void \hyperlink{classSystemControl_a25f45e16b1d4dc69ce8c356741feb17d}{recieve\-\_\-sys\-\_\-messages} ()
+\begin{DoxyCompactList}\small\item\em System message receiver task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classSystemControl_a7c4a251aec26da056dff1d51b5a149de}{\hyperlink{classSubsystem}{Subsystem} $\ast$ {\bfseries subsys} \mbox{[}N\-U\-M\-\_\-\-S\-U\-B\-S\-Y\-S\-T\-E\-M\-S\mbox{]}}\label{classSystemControl_a7c4a251aec26da056dff1d51b5a149de}
+
+\item 
+\hypertarget{classSystemControl_a0f1842f00f91fd17bd7be7508653c2e2}{mqd\-\_\-t {\bfseries sys\-\_\-mq}}\label{classSystemControl_a0f1842f00f91fd17bd7be7508653c2e2}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+System control module. 
+
+Initializes subsystems, manages subsytem state, manages inter-\/subsystem communication 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classSystemControl_ae07ba4f7b5ee117619f376efd3b60fa9}{\index{System\-Control@{System\-Control}!System\-Control@{System\-Control}}
+\index{System\-Control@{System\-Control}!SystemControl@{System\-Control}}
+\subsubsection[{System\-Control}]{\setlength{\rightskip}{0pt plus 5cm}System\-Control\-::\-System\-Control (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSystemControl_ae07ba4f7b5ee117619f376efd3b60fa9}
+
+
+\hyperlink{classSystemControl}{System\-Control} default constructor. 
+
+sets up system message queue and set up system message receiver task \hypertarget{classSystemControl_a431eb4f5fbb81a358a345653c7444874}{\index{System\-Control@{System\-Control}!$\sim$\-System\-Control@{$\sim$\-System\-Control}}
+\index{$\sim$\-System\-Control@{$\sim$\-System\-Control}!SystemControl@{System\-Control}}
+\subsubsection[{$\sim$\-System\-Control}]{\setlength{\rightskip}{0pt plus 5cm}System\-Control\-::$\sim$\-System\-Control (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSystemControl_a431eb4f5fbb81a358a345653c7444874}
+
+
+\hyperlink{classSystemControl}{System\-Control} destructor. 
+
+cancels system receiver task, closes message queue, and unlinks message queue 
+
+\subsection{Member Function Documentation}
+\hypertarget{classSystemControl_aeb2cd39e5a72b13e139b8bbefb726be6}{\index{System\-Control@{System\-Control}!init@{init}}
+\index{init@{init}!SystemControl@{System\-Control}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void System\-Control\-::init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSystemControl_aeb2cd39e5a72b13e139b8bbefb726be6}
+
+
+System initialization. 
+
+initializes all the subsystems \hypertarget{classSystemControl_a25f45e16b1d4dc69ce8c356741feb17d}{\index{System\-Control@{System\-Control}!recieve\-\_\-sys\-\_\-messages@{recieve\-\_\-sys\-\_\-messages}}
+\index{recieve\-\_\-sys\-\_\-messages@{recieve\-\_\-sys\-\_\-messages}!SystemControl@{System\-Control}}
+\subsubsection[{recieve\-\_\-sys\-\_\-messages}]{\setlength{\rightskip}{0pt plus 5cm}void System\-Control\-::recieve\-\_\-sys\-\_\-messages (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSystemControl_a25f45e16b1d4dc69ce8c356741feb17d}
+
+
+System message receiver task. 
+
+receivers and handles system messages 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/keith/realtime/System\-Control.\-h\item 
+/home/keith/realtime/System\-Control.\-cpp\end{DoxyCompactItemize}

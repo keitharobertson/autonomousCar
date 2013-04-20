@@ -1,0 +1,136 @@
+\hypertarget{classSteering}{\section{Steering Class Reference}
+\label{classSteering}\index{Steering@{Steering}}
+}
+
+
+\hyperlink{classSteering}{Steering} control.  
+
+
+
+
+{\ttfamily \#include $<$Steering.\-h$>$}
+
+Inheritance diagram for Steering\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classSteering}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSteering_a45a5ff1a1869073a2165680f853b9c41}{Steering} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classActuator}{Actuator} default constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classSteering_a57a8011d7d5a4ca608b1b140e21233cb}{init\-\_\-device} ()
+\begin{DoxyCompactList}\small\item\em Virtual function to initialize the actuator device. \end{DoxyCompactList}\item 
+\hypertarget{classSteering_a5b7b0a053607ad891b7d2826093da6ac}{void \hyperlink{classSteering_a5b7b0a053607ad891b7d2826093da6ac}{mech\-\_\-control} ()}\label{classSteering_a5b7b0a053607ad891b7d2826093da6ac}
+
+\begin{DoxyCompactList}\small\item\em controls the mechanical system \end{DoxyCompactList}\item 
+void \hyperlink{classSteering_a0ae09490e872d21d211ddfdc446d14d1}{mech\-\_\-command} (char $\ast$value)
+\begin{DoxyCompactList}\small\item\em The mechanical command function issues commands directly to hardware. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{classSteering_afda4f2951e5be114abf988a8e5943a96}{read\-\_\-data} (int command)
+\begin{DoxyCompactList}\small\item\em Reads in data from message to the actuator. \end{DoxyCompactList}\item 
+\hypertarget{classSteering_a29e46d1b87ecda7807452ad67005efe1}{void \hyperlink{classSteering_a29e46d1b87ecda7807452ad67005efe1}{handle\-\_\-message} (\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} $\ast$message)}\label{classSteering_a29e46d1b87ecda7807452ad67005efe1}
+
+\begin{DoxyCompactList}\small\item\em handles messages sent to the compass subsystem \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classSteering_aa0f0e87b925f860575429668a9a84e8d}{void {\bfseries set\-\_\-new\-\_\-pwm\-\_\-duty\-\_\-cycle} (const char $\ast$value)}\label{classSteering_aa0f0e87b925f860575429668a9a84e8d}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classSteering_ab31761e4665bf81e580f1bc32c9fff79}{int {\bfseries min\-\_\-priority}}\label{classSteering_ab31761e4665bf81e580f1bc32c9fff79}
+
+\item 
+\hypertarget{classSteering_a3eb0bda8706c97d35c0ae31daeefa5a1}{char {\bfseries steering\-\_\-duty\-\_\-cycle} \mbox{[}2\mbox{]}}\label{classSteering_a3eb0bda8706c97d35c0ae31daeefa5a1}
+
+\item 
+\hypertarget{classSteering_af9a4f30e9dc0dc37b31a421cb88ca8ba}{sem\-\_\-t {\bfseries steer\-\_\-cmd\-\_\-ctrl}}\label{classSteering_af9a4f30e9dc0dc37b31a421cb88ca8ba}
+
+\item 
+\hypertarget{classSteering_ae85b07902746525a57bf049d872b4f26}{int {\bfseries steering\-\_\-fd}}\label{classSteering_ae85b07902746525a57bf049d872b4f26}
+
+\item 
+\hypertarget{classSteering_adfe05011b3442b1b24cd9dfc1e24ad70}{char {\bfseries steering\-\_\-filepath} \mbox{[}40\mbox{]}}\label{classSteering_adfe05011b3442b1b24cd9dfc1e24ad70}
+
+\item 
+\hypertarget{classSteering_a7182316ec06b0de5008653868d9fdb07}{volatile uint32\-\_\-t $\ast$ {\bfseries gptimer\-\_\-reg}}\label{classSteering_a7182316ec06b0de5008653868d9fdb07}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\hyperlink{classSteering}{Steering} control. 
+
+receives steering control commands and commands the servo accordingly 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classSteering_a45a5ff1a1869073a2165680f853b9c41}{\index{Steering@{Steering}!Steering@{Steering}}
+\index{Steering@{Steering}!Steering@{Steering}}
+\subsubsection[{Steering}]{\setlength{\rightskip}{0pt plus 5cm}Steering\-::\-Steering (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSteering_a45a5ff1a1869073a2165680f853b9c41}
+
+
+\hyperlink{classActuator}{Actuator} default constructor. 
+
+sets subsystem parameters 
+
+\subsection{Member Function Documentation}
+\hypertarget{classSteering_a57a8011d7d5a4ca608b1b140e21233cb}{\index{Steering@{Steering}!init\-\_\-device@{init\-\_\-device}}
+\index{init\-\_\-device@{init\-\_\-device}!Steering@{Steering}}
+\subsubsection[{init\-\_\-device}]{\setlength{\rightskip}{0pt plus 5cm}void Steering\-::init\-\_\-device (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classSteering_a57a8011d7d5a4ca608b1b140e21233cb}
+
+
+Virtual function to initialize the actuator device. 
+
+Defined for each actuator, the init\-\_\-device function is responsible for setting the actuator up for control by the mechanical control task. For example in the case of the motor subsystem, the init\-\_\-device task will set up the P\-W\-M, initialize the system variables, and perform other tasks necessary before the motor can be controlled. 
+
+Implements \hyperlink{classActuator_a13e33ed9c5e19a52bc6d0b7e3c0dd2d7}{Actuator}.
+
+\hypertarget{classSteering_a0ae09490e872d21d211ddfdc446d14d1}{\index{Steering@{Steering}!mech\-\_\-command@{mech\-\_\-command}}
+\index{mech\-\_\-command@{mech\-\_\-command}!Steering@{Steering}}
+\subsubsection[{mech\-\_\-command}]{\setlength{\rightskip}{0pt plus 5cm}void Steering\-::mech\-\_\-command (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classSteering_a0ae09490e872d21d211ddfdc446d14d1}
+
+
+The mechanical command function issues commands directly to hardware. 
+
+The mechanical command function is typically called from the mech\-\_\-control function and will issue the actual commands to hardware necessary to control the actuator. For example, for the motor subsystem, this function will write to P\-W\-M. 
+
+Implements \hyperlink{classActuator_ad9c31f9e7f06684835ae526f29d7a096}{Actuator}.
+
+\hypertarget{classSteering_afda4f2951e5be114abf988a8e5943a96}{\index{Steering@{Steering}!read\-\_\-data@{read\-\_\-data}}
+\index{read\-\_\-data@{read\-\_\-data}!Steering@{Steering}}
+\subsubsection[{read\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ Steering\-::read\-\_\-data (
+\begin{DoxyParamCaption}
+\item[{int}]{command}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classSteering_afda4f2951e5be114abf988a8e5943a96}
+
+
+Reads in data from message to the actuator. 
+
+Will read data into appropriate data type and then cast to a void$\ast$ and return. The type of data received depends on the message command. For example if trying to set the motor pwm duty cycle, a three byte char$\ast$ is expected. This function will read the data in from standard in (using cin) into an appropriate datatype for the given command and will return the data to the system message handler for further processing. 
+
+Implements \hyperlink{classActuator_a65fe83ffd7895f3ab028b87a62b3af1d}{Actuator}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/keith/realtime/Steering.\-h\item 
+/home/keith/realtime/Steering.\-cpp\end{DoxyCompactItemize}

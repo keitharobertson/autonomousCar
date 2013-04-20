@@ -1,0 +1,145 @@
+\hypertarget{classGPS}{\section{G\-P\-S Class Reference}
+\label{classGPS}\index{G\-P\-S@{G\-P\-S}}
+}
+
+
+\hyperlink{classGPS}{G\-P\-S} data collection and analysis.  
+
+
+
+
+{\ttfamily \#include $<$G\-P\-S.\-h$>$}
+
+Inheritance diagram for G\-P\-S\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classGPS}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGPS_a0c347a188512d0d5cf7ed5c91b145fc4}{G\-P\-S} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classGPS}{G\-P\-S} default constructor. \end{DoxyCompactList}\item 
+float \hyperlink{classGPS_a2276d26044fb15e498c52b4ee5bcaa91}{data\-\_\-grab} ()
+\begin{DoxyCompactList}\small\item\em grabs data from \hyperlink{classGPS}{G\-P\-S} \end{DoxyCompactList}\item 
+void \hyperlink{classGPS_aebb999362899800a7e372e873bb5b943}{init\-\_\-sensor} ()
+\begin{DoxyCompactList}\small\item\em data grabber \end{DoxyCompactList}\item 
+void \hyperlink{classGPS_a17383568c4ed86a0adfdd5c88b6591d4}{collector} ()
+\begin{DoxyCompactList}\small\item\em collects \hyperlink{classGPS}{G\-P\-S} data \end{DoxyCompactList}\item 
+void \hyperlink{classGPS_a4dca50736c5e49f831515219536823b2}{analysis} ()
+\begin{DoxyCompactList}\small\item\em data analysis \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{classGPS_aa04076536ee9f7e2679895c69b07ad58}{read\-\_\-data} (int command)
+\begin{DoxyCompactList}\small\item\em Reads in data from message to the actuator. \end{DoxyCompactList}\item 
+\hypertarget{classGPS_a803a498352e30044136502a9e036d380}{void \hyperlink{classGPS_a803a498352e30044136502a9e036d380}{handle\-\_\-message} (\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} $\ast$message)}\label{classGPS_a803a498352e30044136502a9e036d380}
+
+\begin{DoxyCompactList}\small\item\em handles messages sent to the \hyperlink{classGPS}{G\-P\-S} subsystem \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGPS_a0fbd88948b59f6decbd92e25d6a2ce6e}{int {\bfseries gps\-\_\-fd}}\label{classGPS_a0fbd88948b59f6decbd92e25d6a2ce6e}
+
+\item 
+\hypertarget{classGPS_a1c4a168a95c94aec4aab6c826e8cd3fd}{char {\bfseries gps\-\_\-filepath} \mbox{[}40\mbox{]}}\label{classGPS_a1c4a168a95c94aec4aab6c826e8cd3fd}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\hyperlink{classGPS}{G\-P\-S} data collection and analysis. 
+
+Collects data from the \hyperlink{classGPS}{G\-P\-S} and analyzes the data. Sends system messages to control actuators 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGPS_a0c347a188512d0d5cf7ed5c91b145fc4}{\index{G\-P\-S@{G\-P\-S}!G\-P\-S@{G\-P\-S}}
+\index{G\-P\-S@{G\-P\-S}!GPS@{G\-P\-S}}
+\subsubsection[{G\-P\-S}]{\setlength{\rightskip}{0pt plus 5cm}G\-P\-S\-::\-G\-P\-S (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGPS_a0c347a188512d0d5cf7ed5c91b145fc4}
+
+
+\hyperlink{classGPS}{G\-P\-S} default constructor. 
+
+sets subsystem parameters 
+
+\subsection{Member Function Documentation}
+\hypertarget{classGPS_a4dca50736c5e49f831515219536823b2}{\index{G\-P\-S@{G\-P\-S}!analysis@{analysis}}
+\index{analysis@{analysis}!GPS@{G\-P\-S}}
+\subsubsection[{analysis}]{\setlength{\rightskip}{0pt plus 5cm}void G\-P\-S\-::analysis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classGPS_a4dca50736c5e49f831515219536823b2}
+
+
+data analysis 
+
+Issues commands to acuators based on \hyperlink{classGPS}{G\-P\-S} data 
+
+Implements \hyperlink{classSensor_a595d8d9cd87dd3704fad2a313c709a7e}{Sensor}.
+
+\hypertarget{classGPS_a17383568c4ed86a0adfdd5c88b6591d4}{\index{G\-P\-S@{G\-P\-S}!collector@{collector}}
+\index{collector@{collector}!GPS@{G\-P\-S}}
+\subsubsection[{collector}]{\setlength{\rightskip}{0pt plus 5cm}void G\-P\-S\-::collector (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classGPS_a17383568c4ed86a0adfdd5c88b6591d4}
+
+
+collects \hyperlink{classGPS}{G\-P\-S} data 
+
+collects \hyperlink{classGPS}{G\-P\-S} data and averages data prior to analysis 
+
+Implements \hyperlink{classSensor_ae4ec41b880d44feb898da5c62c3203c9}{Sensor}.
+
+\hypertarget{classGPS_a2276d26044fb15e498c52b4ee5bcaa91}{\index{G\-P\-S@{G\-P\-S}!data\-\_\-grab@{data\-\_\-grab}}
+\index{data\-\_\-grab@{data\-\_\-grab}!GPS@{G\-P\-S}}
+\subsubsection[{data\-\_\-grab}]{\setlength{\rightskip}{0pt plus 5cm}float G\-P\-S\-::data\-\_\-grab (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGPS_a2276d26044fb15e498c52b4ee5bcaa91}
+
+
+grabs data from \hyperlink{classGPS}{G\-P\-S} 
+
+Gets data from \hyperlink{classGPS}{G\-P\-S} over U\-A\-R\-T \hypertarget{classGPS_aebb999362899800a7e372e873bb5b943}{\index{G\-P\-S@{G\-P\-S}!init\-\_\-sensor@{init\-\_\-sensor}}
+\index{init\-\_\-sensor@{init\-\_\-sensor}!GPS@{G\-P\-S}}
+\subsubsection[{init\-\_\-sensor}]{\setlength{\rightskip}{0pt plus 5cm}void G\-P\-S\-::init\-\_\-sensor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classGPS_aebb999362899800a7e372e873bb5b943}
+
+
+data grabber 
+
+virtual fuction defined at the specific sensor level that initializes the sensor 
+
+Implements \hyperlink{classSensor_a11b28f6bc91d6f69e734e13ab0e64f56}{Sensor}.
+
+\hypertarget{classGPS_aa04076536ee9f7e2679895c69b07ad58}{\index{G\-P\-S@{G\-P\-S}!read\-\_\-data@{read\-\_\-data}}
+\index{read\-\_\-data@{read\-\_\-data}!GPS@{G\-P\-S}}
+\subsubsection[{read\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ G\-P\-S\-::read\-\_\-data (
+\begin{DoxyParamCaption}
+\item[{int}]{command}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classGPS_aa04076536ee9f7e2679895c69b07ad58}
+
+
+Reads in data from message to the actuator. 
+
+Virtual function implemented at the subsystem level. Will read data into appropriate data type and then cast to a void$\ast$ and return. The type of data received depends on the message command. For example if trying to set the motor pwm duty cycle, a three byte char$\ast$ is expected. This function will read the data in from standard in (using cin) into an appropriate datatype for the given command and will return the data to the system message handler for further processing. 
+
+Implements \hyperlink{classSensor_acf4ff5c6c8f793ed47a8105b94ff7c3e}{Sensor}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/keith/realtime/G\-P\-S.\-h\item 
+/home/keith/realtime/G\-P\-S.\-cpp\end{DoxyCompactItemize}

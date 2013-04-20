@@ -1,0 +1,203 @@
+\hypertarget{classActuator}{\section{Actuator Class Reference}
+\label{classActuator}\index{Actuator@{Actuator}}
+}
+
+
+\hyperlink{classActuator}{Actuator} class manages actuator tasks.  
+
+
+
+
+{\ttfamily \#include $<$Actuator.\-h$>$}
+
+Inheritance diagram for Actuator\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classActuator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classActuator_ad08f81ed90eb01f4654acb47eff38be6}{Actuator} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classActuator}{Actuator} default constructor. \end{DoxyCompactList}\item 
+\hyperlink{classActuator_a3c19e3031076395a918ab72e1acc8a3c}{$\sim$\-Actuator} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classActuator}{Actuator} destructor. \end{DoxyCompactList}\item 
+void \hyperlink{classActuator_a0ab156ee6321eb413171e7a04ae4d1ca}{init} ()
+\begin{DoxyCompactList}\small\item\em initializes the actuator \end{DoxyCompactList}\item 
+void \hyperlink{classActuator_abd625b1dfd7dd296e814751e821eae4b}{shutdown} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classActuator}{Actuator} Shutdown. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classActuator_a13e33ed9c5e19a52bc6d0b7e3c0dd2d7}{init\-\_\-device} ()=0
+\begin{DoxyCompactList}\small\item\em Virtual function to initialize the actuator device. \end{DoxyCompactList}\item 
+virtual void $\ast$ \hyperlink{classActuator_a65fe83ffd7895f3ab028b87a62b3af1d}{read\-\_\-data} (int command)=0
+\begin{DoxyCompactList}\small\item\em Reads in data from message to the actuator. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classActuator_a05dd923b5162ebad197fc04d07d9771f}{mech\-\_\-control} ()=0
+\begin{DoxyCompactList}\small\item\em the mechanical controller function for the actuator. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classActuator_ad9c31f9e7f06684835ae526f29d7a096}{mech\-\_\-command} (char $\ast$value)=0
+\begin{DoxyCompactList}\small\item\em The mechanical command function issues commands directly to hardware. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classActuator_a733c6782030e224bcef26161c77a4d96}{handle\-\_\-message} (\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} $\ast$message)=0
+\begin{DoxyCompactList}\small\item\em Handles message sent to the subsystem. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+pthread\-\_\-t \hyperlink{classActuator_a0097e8667426ce3300ad60bdb6cd9d81}{tmech\-\_\-control}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\hyperlink{classActuator}{Actuator} class manages actuator tasks. 
+
+Sets up collector and analysis tasks on init and cancels tasks on shutdown 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classActuator_ad08f81ed90eb01f4654acb47eff38be6}{\index{Actuator@{Actuator}!Actuator@{Actuator}}
+\index{Actuator@{Actuator}!Actuator@{Actuator}}
+\subsubsection[{Actuator}]{\setlength{\rightskip}{0pt plus 5cm}Actuator\-::\-Actuator (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classActuator_ad08f81ed90eb01f4654acb47eff38be6}
+
+
+\hyperlink{classActuator}{Actuator} default constructor. 
+
+Sets up subsystem and system message queues and receiver task \hypertarget{classActuator_a3c19e3031076395a918ab72e1acc8a3c}{\index{Actuator@{Actuator}!$\sim$\-Actuator@{$\sim$\-Actuator}}
+\index{$\sim$\-Actuator@{$\sim$\-Actuator}!Actuator@{Actuator}}
+\subsubsection[{$\sim$\-Actuator}]{\setlength{\rightskip}{0pt plus 5cm}Actuator\-::$\sim$\-Actuator (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classActuator_a3c19e3031076395a918ab72e1acc8a3c}
+
+
+\hyperlink{classActuator}{Actuator} destructor. 
+
+shuts down the actuator subsystem. Calls shutdown. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classActuator_a733c6782030e224bcef26161c77a4d96}{\index{Actuator@{Actuator}!handle\-\_\-message@{handle\-\_\-message}}
+\index{handle\-\_\-message@{handle\-\_\-message}!Actuator@{Actuator}}
+\subsubsection[{handle\-\_\-message}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Actuator\-::handle\-\_\-message (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-E\-S\-S\-A\-G\-E} $\ast$}]{message}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classActuator_a733c6782030e224bcef26161c77a4d96}
+
+
+Handles message sent to the subsystem. 
+
+Virtual function defined at the specific subsystem level. Will handle the messages sent to the actuator from the system controller. Messages could be from command line interface or from another subsystem. 
+
+Implements \hyperlink{classSubsystem_a6205bccfd4906044065d25d8ab1a7bfb}{Subsystem}.
+
+
+
+Implemented in \hyperlink{classMotor_add07c258d9b239633a3882a07dc9e4de}{Motor}, and \hyperlink{classSteering_a29e46d1b87ecda7807452ad67005efe1}{Steering}.
+
+\hypertarget{classActuator_a0ab156ee6321eb413171e7a04ae4d1ca}{\index{Actuator@{Actuator}!init@{init}}
+\index{init@{init}!Actuator@{Actuator}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void Actuator\-::init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classActuator_a0ab156ee6321eb413171e7a04ae4d1ca}
+
+
+initializes the actuator 
+
+calls the virtual init\-\_\-device function and creates the mechanical control task. 
+
+Implements \hyperlink{classSubsystem_a77a984e8a06bfebb924a6e7ba4f98363}{Subsystem}.
+
+\hypertarget{classActuator_a13e33ed9c5e19a52bc6d0b7e3c0dd2d7}{\index{Actuator@{Actuator}!init\-\_\-device@{init\-\_\-device}}
+\index{init\-\_\-device@{init\-\_\-device}!Actuator@{Actuator}}
+\subsubsection[{init\-\_\-device}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Actuator\-::init\-\_\-device (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classActuator_a13e33ed9c5e19a52bc6d0b7e3c0dd2d7}
+
+
+Virtual function to initialize the actuator device. 
+
+Defined for each actuator, the init\-\_\-device function is responsible for setting the actuator up for control by the mechanical control task. For example in the case of the motor subsystem, the init\-\_\-device task will set up the P\-W\-M, initialize the system variables, and perform other tasks necessary before the motor can be controlled. 
+
+Implemented in \hyperlink{classMotor_a861cd4da09dd25fc02d711a34f25a988}{Motor}, and \hyperlink{classSteering_a57a8011d7d5a4ca608b1b140e21233cb}{Steering}.
+
+\hypertarget{classActuator_ad9c31f9e7f06684835ae526f29d7a096}{\index{Actuator@{Actuator}!mech\-\_\-command@{mech\-\_\-command}}
+\index{mech\-\_\-command@{mech\-\_\-command}!Actuator@{Actuator}}
+\subsubsection[{mech\-\_\-command}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Actuator\-::mech\-\_\-command (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classActuator_ad9c31f9e7f06684835ae526f29d7a096}
+
+
+The mechanical command function issues commands directly to hardware. 
+
+The mechanical command function is typically called from the mech\-\_\-control function and will issue the actual commands to hardware necessary to control the actuator. For example, for the motor subsystem, this function will write to P\-W\-M. 
+
+Implemented in \hyperlink{classMotor_a3edca1dcb0f3df55eccc09ffb14426a4}{Motor}, and \hyperlink{classSteering_a0ae09490e872d21d211ddfdc446d14d1}{Steering}.
+
+\hypertarget{classActuator_a05dd923b5162ebad197fc04d07d9771f}{\index{Actuator@{Actuator}!mech\-\_\-control@{mech\-\_\-control}}
+\index{mech\-\_\-control@{mech\-\_\-control}!Actuator@{Actuator}}
+\subsubsection[{mech\-\_\-control}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Actuator\-::mech\-\_\-control (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classActuator_a05dd923b5162ebad197fc04d07d9771f}
+
+
+the mechanical controller function for the actuator. 
+
+Run in the mech\-\_\-control thread and waits for a sync semaphore before issuing a mechanical command if the subsystem is enabled. 
+
+Implemented in \hyperlink{classMotor_a9902b2c030a06ca8a4e2f10c3530dbec}{Motor}, and \hyperlink{classSteering_a5b7b0a053607ad891b7d2826093da6ac}{Steering}.
+
+\hypertarget{classActuator_a65fe83ffd7895f3ab028b87a62b3af1d}{\index{Actuator@{Actuator}!read\-\_\-data@{read\-\_\-data}}
+\index{read\-\_\-data@{read\-\_\-data}!Actuator@{Actuator}}
+\subsubsection[{read\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}virtual void$\ast$ Actuator\-::read\-\_\-data (
+\begin{DoxyParamCaption}
+\item[{int}]{command}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classActuator_a65fe83ffd7895f3ab028b87a62b3af1d}
+
+
+Reads in data from message to the actuator. 
+
+Will read data into appropriate data type and then cast to a void$\ast$ and return. The type of data received depends on the message command. For example if trying to set the motor pwm duty cycle, a three byte char$\ast$ is expected. This function will read the data in from standard in (using cin) into an appropriate datatype for the given command and will return the data to the system message handler for further processing. 
+
+Implements \hyperlink{classSubsystem_a85307df3e46421814204f77929e893aa}{Subsystem}.
+
+
+
+Implemented in \hyperlink{classMotor_a1727e2d2dfd483c9c85824915a6aeeb8}{Motor}, and \hyperlink{classSteering_afda4f2951e5be114abf988a8e5943a96}{Steering}.
+
+\hypertarget{classActuator_abd625b1dfd7dd296e814751e821eae4b}{\index{Actuator@{Actuator}!shutdown@{shutdown}}
+\index{shutdown@{shutdown}!Actuator@{Actuator}}
+\subsubsection[{shutdown}]{\setlength{\rightskip}{0pt plus 5cm}void Actuator\-::shutdown (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classActuator_abd625b1dfd7dd296e814751e821eae4b}
+
+
+\hyperlink{classActuator}{Actuator} Shutdown. 
+
+shuts down the actuator subsystem. Cancels the mechanical control thread. 
+
+Implements \hyperlink{classSubsystem_a510e18f972a3d86d7a47432dafa1ce4c}{Subsystem}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classActuator_a0097e8667426ce3300ad60bdb6cd9d81}{\index{Actuator@{Actuator}!tmech\-\_\-control@{tmech\-\_\-control}}
+\index{tmech\-\_\-control@{tmech\-\_\-control}!Actuator@{Actuator}}
+\subsubsection[{tmech\-\_\-control}]{\setlength{\rightskip}{0pt plus 5cm}pthread\-\_\-t Actuator\-::tmech\-\_\-control\hspace{0.3cm}{\ttfamily [protected]}}}\label{classActuator_a0097e8667426ce3300ad60bdb6cd9d81}
+the mech\-\_\-control thread 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/keith/realtime/Actuator.\-h\item 
+/home/keith/realtime/Actuator.\-cpp\end{DoxyCompactItemize}

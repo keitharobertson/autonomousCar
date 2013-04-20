@@ -1,0 +1,151 @@
+\hypertarget{classSonar}{\section{Sonar Class Reference}
+\label{classSonar}\index{Sonar@{Sonar}}
+}
+
+
+sonar data collection and analysis  
+
+
+
+
+{\ttfamily \#include $<$Sonar.\-h$>$}
+
+Inheritance diagram for Sonar\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classSonar}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSonar_a71ef009d138f1e372fc35ca0cb6e85e2}{Sonar} ()
+\begin{DoxyCompactList}\small\item\em sonar default constructor \end{DoxyCompactList}\item 
+float \hyperlink{classSonar_aa4e807cbed15ce1d46ddcef05b6b59fb}{data\-\_\-grab} ()
+\begin{DoxyCompactList}\small\item\em grabs data from sonar \end{DoxyCompactList}\item 
+void \hyperlink{classSonar_af91d04cbc441084ba608a49c2be88d5b}{init\-\_\-sensor} ()
+\begin{DoxyCompactList}\small\item\em data grabber \end{DoxyCompactList}\item 
+void \hyperlink{classSonar_a38b0e409082be17e7098b2e471bab4a8}{collector} ()
+\begin{DoxyCompactList}\small\item\em collects sonar data \end{DoxyCompactList}\item 
+void \hyperlink{classSonar_a11a32c64528f8e69fdde4722f3b3bc7b}{analysis} ()
+\begin{DoxyCompactList}\small\item\em data analysis \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{classSonar_a54f55470741873f333ad8af8a98affc8}{read\-\_\-data} (int command)
+\begin{DoxyCompactList}\small\item\em Reads in data from message to the actuator. \end{DoxyCompactList}\item 
+\hypertarget{classSonar_a5f9b0f57b5a05b03b0dcb5ab830592ff}{void \hyperlink{classSonar_a5f9b0f57b5a05b03b0dcb5ab830592ff}{handle\-\_\-message} (\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} $\ast$message)}\label{classSonar_a5f9b0f57b5a05b03b0dcb5ab830592ff}
+
+\begin{DoxyCompactList}\small\item\em handles messages sent to the sonar subsystem \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classSonar_abd3f8ccfc42cacd700df9be06f70c6b2}{float {\bfseries sonar\-\_\-reading}}\label{classSonar_abd3f8ccfc42cacd700df9be06f70c6b2}
+
+\item 
+\hypertarget{classSonar_a3dcf7c38af34539c68f123f073eb2f52}{sem\-\_\-t {\bfseries collect\-\_\-analysis\-\_\-sync}}\label{classSonar_a3dcf7c38af34539c68f123f073eb2f52}
+
+\item 
+\hypertarget{classSonar_a4799c8b328d7735f7e6d62d741340c6c}{int {\bfseries sonar\-\_\-fd}}\label{classSonar_a4799c8b328d7735f7e6d62d741340c6c}
+
+\item 
+\hypertarget{classSonar_a7db9106da9a50d06b5f25c35f799abe5}{char {\bfseries sonar\-\_\-filepath} \mbox{[}40\mbox{]}}\label{classSonar_a7db9106da9a50d06b5f25c35f799abe5}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+sonar data collection and analysis 
+
+Collects data from the sonar and analyzes the data. Sends system messages to control actuators 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classSonar_a71ef009d138f1e372fc35ca0cb6e85e2}{\index{Sonar@{Sonar}!Sonar@{Sonar}}
+\index{Sonar@{Sonar}!Sonar@{Sonar}}
+\subsubsection[{Sonar}]{\setlength{\rightskip}{0pt plus 5cm}Sonar\-::\-Sonar (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSonar_a71ef009d138f1e372fc35ca0cb6e85e2}
+
+
+sonar default constructor 
+
+sets subsystem parameters 
+
+\subsection{Member Function Documentation}
+\hypertarget{classSonar_a11a32c64528f8e69fdde4722f3b3bc7b}{\index{Sonar@{Sonar}!analysis@{analysis}}
+\index{analysis@{analysis}!Sonar@{Sonar}}
+\subsubsection[{analysis}]{\setlength{\rightskip}{0pt plus 5cm}void Sonar\-::analysis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classSonar_a11a32c64528f8e69fdde4722f3b3bc7b}
+
+
+data analysis 
+
+Issues commands to acuators based on sonar data 
+
+Implements \hyperlink{classSensor_a595d8d9cd87dd3704fad2a313c709a7e}{Sensor}.
+
+\hypertarget{classSonar_a38b0e409082be17e7098b2e471bab4a8}{\index{Sonar@{Sonar}!collector@{collector}}
+\index{collector@{collector}!Sonar@{Sonar}}
+\subsubsection[{collector}]{\setlength{\rightskip}{0pt plus 5cm}void Sonar\-::collector (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classSonar_a38b0e409082be17e7098b2e471bab4a8}
+
+
+collects sonar data 
+
+collects sonar data and averages data prior to analysis 
+
+Implements \hyperlink{classSensor_ae4ec41b880d44feb898da5c62c3203c9}{Sensor}.
+
+\hypertarget{classSonar_aa4e807cbed15ce1d46ddcef05b6b59fb}{\index{Sonar@{Sonar}!data\-\_\-grab@{data\-\_\-grab}}
+\index{data\-\_\-grab@{data\-\_\-grab}!Sonar@{Sonar}}
+\subsubsection[{data\-\_\-grab}]{\setlength{\rightskip}{0pt plus 5cm}float Sonar\-::data\-\_\-grab (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSonar_aa4e807cbed15ce1d46ddcef05b6b59fb}
+
+
+grabs data from sonar 
+
+Gets data from sonar over S\-P\-I \hypertarget{classSonar_af91d04cbc441084ba608a49c2be88d5b}{\index{Sonar@{Sonar}!init\-\_\-sensor@{init\-\_\-sensor}}
+\index{init\-\_\-sensor@{init\-\_\-sensor}!Sonar@{Sonar}}
+\subsubsection[{init\-\_\-sensor}]{\setlength{\rightskip}{0pt plus 5cm}void Sonar\-::init\-\_\-sensor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classSonar_af91d04cbc441084ba608a49c2be88d5b}
+
+
+data grabber 
+
+virtual fuction defined at the specific sensor level that initializes the sensor 
+
+Implements \hyperlink{classSensor_a11b28f6bc91d6f69e734e13ab0e64f56}{Sensor}.
+
+\hypertarget{classSonar_a54f55470741873f333ad8af8a98affc8}{\index{Sonar@{Sonar}!read\-\_\-data@{read\-\_\-data}}
+\index{read\-\_\-data@{read\-\_\-data}!Sonar@{Sonar}}
+\subsubsection[{read\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ Sonar\-::read\-\_\-data (
+\begin{DoxyParamCaption}
+\item[{int}]{command}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classSonar_a54f55470741873f333ad8af8a98affc8}
+
+
+Reads in data from message to the actuator. 
+
+Virtual function implemented at the subsystem level. Will read data into appropriate data type and then cast to a void$\ast$ and return. The type of data received depends on the message command. For example if trying to set the motor pwm duty cycle, a three byte char$\ast$ is expected. This function will read the data in from standard in (using cin) into an appropriate datatype for the given command and will return the data to the system message handler for further processing. 
+
+Implements \hyperlink{classSensor_acf4ff5c6c8f793ed47a8105b94ff7c3e}{Sensor}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/keith/realtime/Sonar.\-h\item 
+/home/keith/realtime/Sonar.\-cpp\end{DoxyCompactItemize}

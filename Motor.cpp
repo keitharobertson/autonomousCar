@@ -152,6 +152,9 @@ void Motor::handle_message(MESSAGE* message){
 			set_new_pwm_duty_cycle((direction==1) ? FORWARD_FAST : BACKWARD_FAST);
 			break;
 		case MOT_SLOW:
+			#ifdef MOTOR_DEBUG
+				std::cout << "Setting motor slow!" << std::endl;
+			#endif
 			set_new_pwm_duty_cycle((direction==1) ? FORWARD_SLOW : BACKWARD_SLOW);
 			break;
 		case MOT_STOP:
