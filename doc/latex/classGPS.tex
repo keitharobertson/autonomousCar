@@ -21,7 +21,7 @@ Inheritance diagram for G\-P\-S\-:\begin{figure}[H]
 \item 
 \hyperlink{classGPS_a0c347a188512d0d5cf7ed5c91b145fc4}{G\-P\-S} ()
 \begin{DoxyCompactList}\small\item\em \hyperlink{classGPS}{G\-P\-S} default constructor. \end{DoxyCompactList}\item 
-float \hyperlink{classGPS_a2276d26044fb15e498c52b4ee5bcaa91}{data\-\_\-grab} ()
+void \hyperlink{classGPS_a669ad6e30c411499d069fcb9ffeea876}{data\-\_\-grab} (float \&output\-\_\-lat, float \&output\-\_\-lon)
 \begin{DoxyCompactList}\small\item\em grabs data from \hyperlink{classGPS}{G\-P\-S} \end{DoxyCompactList}\item 
 void \hyperlink{classGPS_aebb999362899800a7e372e873bb5b943}{init\-\_\-sensor} ()
 \begin{DoxyCompactList}\small\item\em Virtual function to initialize the sensor device. \end{DoxyCompactList}\item 
@@ -33,14 +33,26 @@ void $\ast$ \hyperlink{classGPS_aa04076536ee9f7e2679895c69b07ad58}{read\-\_\-dat
 \begin{DoxyCompactList}\small\item\em Reads in data from message to the sensor. \end{DoxyCompactList}\item 
 \hypertarget{classGPS_a803a498352e30044136502a9e036d380}{void \hyperlink{classGPS_a803a498352e30044136502a9e036d380}{handle\-\_\-message} (\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} $\ast$message)}\label{classGPS_a803a498352e30044136502a9e036d380}
 
-\begin{DoxyCompactList}\small\item\em handles messages sent to the \hyperlink{classGPS}{G\-P\-S} subsystem \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em handles messages sent to the \hyperlink{classGPS}{G\-P\-S} subsystem \end{DoxyCompactList}\item 
+\hypertarget{classGPS_a41dc6041167ef4e2860274629392c300}{bool \hyperlink{classGPS_a41dc6041167ef4e2860274629392c300}{convert\-\_\-data} (char $\ast$input, int length, float \&output\-\_\-lat, float \&output\-\_\-lon)}\label{classGPS_a41dc6041167ef4e2860274629392c300}
+
+\begin{DoxyCompactList}\small\item\em Converts the input command into lat/long and stores in output. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classGPS_a0fbd88948b59f6decbd92e25d6a2ce6e}{int {\bfseries gps\-\_\-fd}}\label{classGPS_a0fbd88948b59f6decbd92e25d6a2ce6e}
+\hypertarget{classGPS_a8e7d8703e1974afe9819e29da13350c1}{int {\bfseries enabled}}\label{classGPS_a8e7d8703e1974afe9819e29da13350c1}
 
 \item 
-\hypertarget{classGPS_a1c4a168a95c94aec4aab6c826e8cd3fd}{char {\bfseries gps\-\_\-filepath} \mbox{[}40\mbox{]}}\label{classGPS_a1c4a168a95c94aec4aab6c826e8cd3fd}
+\hypertarget{classGPS_a14c36e0dcc27dfa5e1381b9a4b25c2ce}{int {\bfseries output\-\_\-heading}}\label{classGPS_a14c36e0dcc27dfa5e1381b9a4b25c2ce}
+
+\item 
+\hypertarget{classGPS_a2a3644aa4c6f60c59905b3050e4dc935}{float {\bfseries last\-\_\-lat}}\label{classGPS_a2a3644aa4c6f60c59905b3050e4dc935}
+
+\item 
+\hypertarget{classGPS_a5be7ea29b18ea3f78cbe0323a63bc3f4}{float {\bfseries last\-\_\-lon}}\label{classGPS_a5be7ea29b18ea3f78cbe0323a63bc3f4}
+
+\item 
+\hypertarget{classGPS_a62ebacee895a13c211bfd372b818b680}{int {\bfseries serial\-\_\-port}}\label{classGPS_a62ebacee895a13c211bfd372b818b680}
 
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
@@ -96,13 +108,14 @@ collects \hyperlink{classGPS}{G\-P\-S} data and averages data prior to analysis
 
 Implements \hyperlink{classSensor_ae4ec41b880d44feb898da5c62c3203c9}{Sensor}.
 
-\hypertarget{classGPS_a2276d26044fb15e498c52b4ee5bcaa91}{\index{G\-P\-S@{G\-P\-S}!data\-\_\-grab@{data\-\_\-grab}}
+\hypertarget{classGPS_a669ad6e30c411499d069fcb9ffeea876}{\index{G\-P\-S@{G\-P\-S}!data\-\_\-grab@{data\-\_\-grab}}
 \index{data\-\_\-grab@{data\-\_\-grab}!GPS@{G\-P\-S}}
-\subsubsection[{data\-\_\-grab}]{\setlength{\rightskip}{0pt plus 5cm}float G\-P\-S\-::data\-\_\-grab (
+\subsubsection[{data\-\_\-grab}]{\setlength{\rightskip}{0pt plus 5cm}void G\-P\-S\-::data\-\_\-grab (
 \begin{DoxyParamCaption}
-{}
+\item[{float \&}]{output\-\_\-lat, }
+\item[{float \&}]{output\-\_\-lon}
 \end{DoxyParamCaption}
-)}}\label{classGPS_a2276d26044fb15e498c52b4ee5bcaa91}
+)}}\label{classGPS_a669ad6e30c411499d069fcb9ffeea876}
 
 
 grabs data from \hyperlink{classGPS}{G\-P\-S} 

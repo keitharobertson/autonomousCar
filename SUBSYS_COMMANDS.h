@@ -123,6 +123,8 @@ typedef struct _MESSAGE {
 #define	CPS_ENABLE			5
 /** output current compass reading */
 #define	CPS_GET_READING		6
+/** sends back the desired compass heading */
+#define CPS_RETURN_DES_HEADING	7
 /** used for returning the compass desired heading (command can be sent to ANY subsystem that is configured to accept it) */
 #define CPS_RET_DES_HEADING	99
 /** @} */
@@ -155,6 +157,8 @@ typedef struct _MESSAGE {
 #define SNR_ENABLE			2
 /** output sonar reading */
 #define	SNR_GET_READING		3
+/** print sonar data every time it is collected for testing/debugging. Turn on, data=1; turn off, data=0 */
+#define SNR_PRINT_DATA		4
 /**@}*/
 
 #endif

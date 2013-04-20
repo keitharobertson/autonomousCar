@@ -16,18 +16,29 @@
 #define NS_PER_MS	1000000
 #define NS_PER_S	1000000000
 #define DATA_COL_PERIOD_MS	50
+#define AVOIDANCE_TIME_SEC	3
 
 #define	HARD_TURN_THRESH	45
 #define	SLIGHT_TURN_THRESH	20
 #define STRAIGHT_THRESH		5
 
+#define MV_PER_INCH			6.4
 
-//Sonar class
+//Task Spawning ( called from Sonar::init() )
+static void* reset_heading_task(void* c) {
+	setup_rt_task(10);
+	Sonar* s = (Sonar*)c;
+	s->reset_heading();
+}
+
+//Sonar class Implementation
 
 Sonar::Sonar() {
 	subsys_name = SONAR;
 	subsys_num = SUBSYS_SONAR;
 	avoidance_mode = false;
+	threshold = 20.0;
+	print_data = false;
 	if(sem_init(&collect_analysis_sync, 0, 0) != 0){
 		perror("Failed to init the sonar collector/analysis sync sem \n");
 	}
@@ -77,10 +88,16 @@ float Sonar::data_grab(){
 	if(ioctl(sonar_fd, SPI_IOC_MESSAGE(1), msg) < 0) {
 		perror("Error requesting data from ADC (SPI IOC MESSAGE failed)\n");
 	}
-	#ifdef SONAR_DEBUG
-		std::cout << "sonar reading: " << ( (((int)(rx_buf[0] & 0b00000011)) << 8) + ((int)(rx_buf[1])) ) << std::endl;
-	#endif
-	return 0.0;
+	
+	int reading = ( (((int)(rx_buf[0] & 0b00000011)) << 8) + ((int)(rx_buf[1])) );	
+	float distance = (float)reading / 1023.0 * 3300.0 / MV_PER_INCH;
+	
+	if(print_data) {
+		std::cout << "sonar reading: " << reading << std::endl;
+		std::cout << "Sonar Distance (in): " << distance << std::endl;
+	}
+	
+	return distance;
 }
 
 void Sonar::collector(){
@@ -104,17 +121,58 @@ void Sonar::collector(){
 }
 
 void Sonar::reset_heading() {
-	
+	#ifdef SONAR_DEBUG
+		std::cout << "Sonar reset heading started. Waiting " << AVOIDANCE_TIME_SEC << " seconds..." << std::endl;
+	#endif
+	int oldtype;
+	pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, &oldtype); //thread can be cancelled at any time.
+	struct timespec t;
+	clock_gettime(CLOCK_MONOTONIC ,&t);
+	t.tv_sec += AVOIDANCE_TIME_SEC;
+	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+	#ifdef SONAR_DEBUG
+		std::cout << "Sonar is resetting compass heading. Obstacle avoidance complete." << std::endl;
+	#endif
+	inter_subsys_command = MESSAGE(SUBSYS_SONAR,SUBSYS_COMPASS,CPS_SET_HEADING,*((void**)(&old_compass_heading)));
+	send_sys_message(&inter_subsys_command);
+	void* retval;
+	pthread_exit(retval);
 }
 
 void Sonar::avoid_obstacle() {
+	enabled = 0;
+	#ifdef SONAR_DEBUG
+		std::cout << "Sonar is avoiding an obstacle!" << std::endl;
+	#endif
 	if(!avoidance_mode){
-		request_data = MESSAGE(SUBSYS_SONAR, SUBSYS_COMPASS, CPS_RETURN_READING);
+		#ifdef SONAR_DEBUG
+			std::cout << "Sonar was not previously avoiding an obstacle. Requesting current compass heading" << std::endl;
+		#endif
+		//not already in obstacle avoidance mode
+		request_data = MESSAGE(SUBSYS_SONAR, SUBSYS_COMPASS, CPS_RETURN_DES_HEADING); //request current compass heading
 		send_sys_message(&request_data);
 		avoidance_mode = true;
+	}else{
+		#ifdef SONAR_DEBUG
+			std::cout << "Sonar was already avoiding an obstacle. Cancelling compass heading reset" << std::endl;
+		#endif
+		//delete existing reset heading thread
+		if(pthread_cancel(treset_heading) != 0){
+			perror("Error cancelling reset heading task! ");
+		}
 	}
-	inter_subsys_command = MESSAGE(SUBSYS_SONAR,SUBSYS_COMPASS,CPS_LEFT_90);
+	inter_subsys_command = MESSAGE(SUBSYS_SONAR,SUBSYS_COMPASS,CPS_LEFT_90); //turn left 90 degrees.
 	send_sys_message(&inter_subsys_command);
+	if(pthread_create( &treset_heading, NULL, &reset_heading_task, (void *)(this)) != 0) { //reset compass heading after a period of time
+		perror("Error creating heading_reset thread for sonar object avoidance! ");
+	}
+	//wait 1 second
+	struct timespec t;
+	clock_gettime(CLOCK_MONOTONIC ,&t);
+	t.tv_sec += 1;
+	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+	//re-enable sonar
+	enabled = 1;
 }
 
 void Sonar::analysis(){
@@ -123,9 +181,13 @@ void Sonar::analysis(){
 		sem_wait(&collect_analysis_sync);
 		//analyze data
 		if(sonar_reading < threshold) {
+			if(print_data) {
+				std::cout << "Obstacle was detected! Sonar avoidance activated!" << std::endl;
+			}
 			#ifdef SONAR_DEBUG
 				std::cout << "Obstacle was detected! Sonar avoidance activated!" << std::endl;
 			#endif
+			avoid_obstacle();
 		}else{
 			#ifdef SONAR_DEBUG
 				std::cout << "No obstacles detected by sonar! No avoidance necessary." << std::endl;
@@ -140,6 +202,11 @@ void* Sonar::read_data(int command) {
 			float data;
 			std::cin >> data;
 			return *((void**)(&data));
+			break;
+		case SNR_PRINT_DATA:
+			bool in_data;
+			std::cin >> in_data;
+			return *((void**)(&in_data));
 			break;
 		case SNR_DISABLE:
 		case SNR_ENABLE:
@@ -169,6 +236,9 @@ void Sonar::handle_message(MESSAGE* message){
 			break;
 		case CPS_RET_DES_HEADING:
 			old_compass_heading = (*(float*)&message->data);
+			break;
+		case SNR_PRINT_DATA:
+			print_data = (*(bool*)&message->data);
 			break;
 		default:
 			std::cout << "Unknown command passed to sonar subsystem! Command was : " << message->command << std::endl;

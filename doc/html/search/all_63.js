@@ -7,11 +7,14 @@ var searchData=
   ['compass_20commands',['Compass Commands',['../group__compass__commands.html',1,'']]],
   ['compass_5ffd',['compass_fd',['../classCompass.html#a44b0e4223918e3b139e54d54a0e3daad',1,'Compass']]],
   ['compass_5ffilepath',['compass_filepath',['../classCompass.html#a6ff33d93efe79539c75dbee45efdc97c',1,'Compass']]],
+  ['convert_5fdata',['convert_data',['../classGPS.html#a41dc6041167ef4e2860274629392c300',1,'GPS']]],
   ['cps_5f180',['CPS_180',['../group__compass__commands.html#gafb06fe5e8531750fd730129beb1c85a9',1,'SUBSYS_COMMANDS.h']]],
   ['cps_5fdisable',['CPS_DISABLE',['../group__compass__commands.html#gacc391ac5638a636771f016cfa1991d4d',1,'SUBSYS_COMMANDS.h']]],
   ['cps_5fenable',['CPS_ENABLE',['../group__compass__commands.html#ga7991975b6f6c2c5c731bafe810ebcab8',1,'SUBSYS_COMMANDS.h']]],
   ['cps_5fget_5freading',['CPS_GET_READING',['../group__compass__commands.html#ga5804a250179671cacf4c9b1b4572d8de',1,'SUBSYS_COMMANDS.h']]],
   ['cps_5fleft_5f90',['CPS_LEFT_90',['../group__compass__commands.html#gab51c4d4e21701c7cd0230a24c2ab74be',1,'SUBSYS_COMMANDS.h']]],
+  ['cps_5fret_5fdes_5fheading',['CPS_RET_DES_HEADING',['../group__compass__commands.html#gaa0a242da0fef5b0cb4d25feda73338b7',1,'SUBSYS_COMMANDS.h']]],
+  ['cps_5freturn_5fdes_5fheading',['CPS_RETURN_DES_HEADING',['../group__compass__commands.html#gaa446e15281de94b24f27a8464025c20d',1,'SUBSYS_COMMANDS.h']]],
   ['cps_5fright_5f90',['CPS_RIGHT_90',['../group__compass__commands.html#ga53ccdcb9ce75af6b95e56476367d2875',1,'SUBSYS_COMMANDS.h']]],
   ['cps_5fset_5fheading',['CPS_SET_HEADING',['../group__compass__commands.html#ga10dbf50964cb04b6648e3b65502c0ff4',1,'SUBSYS_COMMANDS.h']]]
 ];

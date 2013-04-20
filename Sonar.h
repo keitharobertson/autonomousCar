@@ -4,6 +4,7 @@
 #include <semaphore.h>
 
 #include "Sensor.h"
+#include "shirtt.h"
 
 #define SONAR	"SONAR"
 
@@ -79,6 +80,14 @@ class Sonar : public Sensor {
 		 */
 		void handle_message(MESSAGE* message);
 		
+		/**
+		 * \brief Resets the compass heading to its original value.
+		 * 
+		 * Waits an amount of time and then resets the compass heading to its value prior to obstacle
+		 * avoidance (value stored in old_compass_heading).
+		 */
+		void reset_heading();
+		
 	protected:
 		
 		/**
@@ -89,14 +98,6 @@ class Sonar : public Sensor {
 		 * from command line interface or from another subsystem. 
 		 */
 		void avoid_obstacle();
-		
-		/**
-		 * \brief Resets the compass heading to its original value.
-		 * 
-		 * Waits an amount of time and then resets the compass heading to its value prior to obstacle
-		 * avoidance (value stored in old_compass_heading).
-		 */
-		void reset_heading();
 		
 		/** The most recent sonar reading */
 		float sonar_reading;
@@ -115,7 +116,12 @@ class Sonar : public Sensor {
 		float old_compass_heading;
 		/** message used for requesting data from other subsystems (usually compass)*/
 		MESSAGE request_data;
+		/** Message used for commanding other subsystems (usually compass)*/
 		MESSAGE inter_subsys_command;
+		/** reset_heading thread */
+		pthread_t treset_heading;
+		/** whether to print out data after each collection for debugging/testing */
+		bool print_data;
 };
 
 #endif

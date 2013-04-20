@@ -178,9 +178,10 @@ void Compass::handle_message(MESSAGE* message){
 		case CPS_GET_READING:
 			std::cout << "Compass reading: " << meas_heading << std::endl;
 			break;
-		case CPS_RETURN_READING:
+		case CPS_RETURN_DES_HEADING:
 			data_request.to = message->from;
 			data_request.command = CPS_RET_DES_HEADING;
+			data_request.data = *((void**)(&desired_heading));
 			send_sys_message(&data_request);
 			break;
 		default:

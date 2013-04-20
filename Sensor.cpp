@@ -6,7 +6,7 @@
 #define SHUTDOWN_DEBUG
 
 
-//Task Spawning ( called from Compass::init() )
+//Task Spawning ( called from Sensor::init() )
 static void* collector_task(void* c) {
 	setup_rt_task(10);
 	Sensor* s = (Sensor*)c;

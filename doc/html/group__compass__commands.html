@@ -90,6 +90,8 @@ Macros</h2></td></tr>
 <tr class="memitem:gacc391ac5638a636771f016cfa1991d4d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__compass__commands.html#gacc391ac5638a636771f016cfa1991d4d">CPS_DISABLE</a>&#160;&#160;&#160;4</td></tr>
 <tr class="memitem:ga7991975b6f6c2c5c731bafe810ebcab8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__compass__commands.html#ga7991975b6f6c2c5c731bafe810ebcab8">CPS_ENABLE</a>&#160;&#160;&#160;5</td></tr>
 <tr class="memitem:ga5804a250179671cacf4c9b1b4572d8de"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__compass__commands.html#ga5804a250179671cacf4c9b1b4572d8de">CPS_GET_READING</a>&#160;&#160;&#160;6</td></tr>
+<tr class="memitem:gaa446e15281de94b24f27a8464025c20d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__compass__commands.html#gaa446e15281de94b24f27a8464025c20d">CPS_RETURN_DES_HEADING</a>&#160;&#160;&#160;7</td></tr>
+<tr class="memitem:gaa0a242da0fef5b0cb4d25feda73338b7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__compass__commands.html#gaa0a242da0fef5b0cb4d25feda73338b7">CPS_RET_DES_HEADING</a>&#160;&#160;&#160;99</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <p>Commands that can be issued to the <a class="el" href="classCompass.html" title="compass data collection and analysis">Compass</a> subsystem. </p>
@@ -159,6 +161,32 @@ Macros</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="gaa0a242da0fef5b0cb4d25feda73338b7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CPS_RET_DES_HEADING&#160;&#160;&#160;99</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>used for returning the compass desired heading (command can be sent to ANY subsystem that is configured to accept it) </p>
+
+</div>
+</div>
+<a class="anchor" id="gaa446e15281de94b24f27a8464025c20d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CPS_RETURN_DES_HEADING&#160;&#160;&#160;7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>sends back the desired compass heading </p>
+
+</div>
+</div>
 <a class="anchor" id="ga53ccdcb9ce75af6b95e56476367d2875"></a>
 <div class="memitem">
 <div class="memproto">
@@ -188,7 +216,7 @@ Macros</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 19 2013 20:32:18 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Apr 20 2013 02:04:56 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
