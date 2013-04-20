@@ -1,3 +1,3 @@
 all:
-	arm-linux-gnueabi-g++ *.cpp -lpthread -lrt
+	arm-linux-gnueabi-g++ -o System.o *.cpp -lpthread -lrt
 
