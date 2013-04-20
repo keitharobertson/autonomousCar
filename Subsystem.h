@@ -54,7 +54,7 @@ class Subsystem{
 		virtual void shutdown() = 0;
 		
 		/**
-		 * \brief Reads in data from message to the actuator.
+		 * \brief Reads in data from message to the subsystem.
 		 * 
 		 * Virtual function implemented at the subsystem level.
 		 * Will read data into appropriate data type and then cast to a void* and return.  

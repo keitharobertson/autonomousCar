@@ -110,19 +110,19 @@ Inheritance diagram for Motor:</div>
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af6106b4c506411265c5face762b6c004"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#af6106b4c506411265c5face762b6c004">Motor</a> ()</td></tr>
-<tr class="memdesc:af6106b4c506411265c5face762b6c004"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classActuator.html" title="Actuator class manages actuator tasks.">Actuator</a> default constructor.  <a href="#af6106b4c506411265c5face762b6c004"></a><br/></td></tr>
+<tr class="memdesc:af6106b4c506411265c5face762b6c004"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classMotor.html" title="motor control">Motor</a> default constructor.  <a href="#af6106b4c506411265c5face762b6c004"></a><br/></td></tr>
+<tr class="memitem:a2e57c7b2681efea1d3b7f253ee88ecd4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#a2e57c7b2681efea1d3b7f253ee88ecd4">~Motor</a> ()</td></tr>
+<tr class="memdesc:a2e57c7b2681efea1d3b7f253ee88ecd4"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classMotor.html" title="motor control">Motor</a> destructor.  <a href="#a2e57c7b2681efea1d3b7f253ee88ecd4"></a><br/></td></tr>
 <tr class="memitem:a861cd4da09dd25fc02d711a34f25a988"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#a861cd4da09dd25fc02d711a34f25a988">init_device</a> ()</td></tr>
-<tr class="memdesc:a861cd4da09dd25fc02d711a34f25a988"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual function to initialize the actuator device.  <a href="#a861cd4da09dd25fc02d711a34f25a988"></a><br/></td></tr>
-<tr class="memitem:a9902b2c030a06ca8a4e2f10c3530dbec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9902b2c030a06ca8a4e2f10c3530dbec"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#a9902b2c030a06ca8a4e2f10c3530dbec">mech_control</a> ()</td></tr>
-<tr class="memdesc:a9902b2c030a06ca8a4e2f10c3530dbec"><td class="mdescLeft">&#160;</td><td class="mdescRight">controls the mechanical system <br/></td></tr>
+<tr class="memdesc:a861cd4da09dd25fc02d711a34f25a988"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize the motor  <a href="#a861cd4da09dd25fc02d711a34f25a988"></a><br/></td></tr>
+<tr class="memitem:a9902b2c030a06ca8a4e2f10c3530dbec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#a9902b2c030a06ca8a4e2f10c3530dbec">mech_control</a> ()</td></tr>
+<tr class="memdesc:a9902b2c030a06ca8a4e2f10c3530dbec"><td class="mdescLeft">&#160;</td><td class="mdescRight">the mechanical controller function for the actuator.  <a href="#a9902b2c030a06ca8a4e2f10c3530dbec"></a><br/></td></tr>
 <tr class="memitem:a3edca1dcb0f3df55eccc09ffb14426a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#a3edca1dcb0f3df55eccc09ffb14426a4">mech_command</a> (char *value)</td></tr>
-<tr class="memdesc:a3edca1dcb0f3df55eccc09ffb14426a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The mechanical command function issues commands directly to hardware.  <a href="#a3edca1dcb0f3df55eccc09ffb14426a4"></a><br/></td></tr>
+<tr class="memdesc:a3edca1dcb0f3df55eccc09ffb14426a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The mechanical command function issues commands directly to the motor hardware.  <a href="#a3edca1dcb0f3df55eccc09ffb14426a4"></a><br/></td></tr>
 <tr class="memitem:a1727e2d2dfd483c9c85824915a6aeeb8"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#a1727e2d2dfd483c9c85824915a6aeeb8">read_data</a> (int command)</td></tr>
-<tr class="memdesc:a1727e2d2dfd483c9c85824915a6aeeb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads in data from message to the actuator.  <a href="#a1727e2d2dfd483c9c85824915a6aeeb8"></a><br/></td></tr>
-<tr class="memitem:add07c258d9b239633a3882a07dc9e4de"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add07c258d9b239633a3882a07dc9e4de"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#add07c258d9b239633a3882a07dc9e4de">handle_message</a> (<a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a> *message)</td></tr>
-<tr class="memdesc:add07c258d9b239633a3882a07dc9e4de"><td class="mdescLeft">&#160;</td><td class="mdescRight">handles messages sent to the compass subsystem <br/></td></tr>
+<tr class="memdesc:a1727e2d2dfd483c9c85824915a6aeeb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads in data from message to the motor.  <a href="#a1727e2d2dfd483c9c85824915a6aeeb8"></a><br/></td></tr>
+<tr class="memitem:add07c258d9b239633a3882a07dc9e4de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#add07c258d9b239633a3882a07dc9e4de">handle_message</a> (<a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a> *message)</td></tr>
+<tr class="memdesc:add07c258d9b239633a3882a07dc9e4de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles message sent to the motor.  <a href="#add07c258d9b239633a3882a07dc9e4de"></a><br/></td></tr>
 <tr class="inherit_header pub_methods_classActuator"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classActuator')"><img src="closed.png" alt="-"/>&nbsp;Public Member Functions inherited from <a class="el" href="classActuator.html">Actuator</a></td></tr>
 <tr class="memitem:ad08f81ed90eb01f4654acb47eff38be6 inherit pub_methods_classActuator"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActuator.html#ad08f81ed90eb01f4654acb47eff38be6">Actuator</a> ()</td></tr>
 <tr class="memdesc:ad08f81ed90eb01f4654acb47eff38be6 inherit pub_methods_classActuator"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classActuator.html" title="Actuator class manages actuator tasks.">Actuator</a> default constructor.  <a href="#ad08f81ed90eb01f4654acb47eff38be6"></a><br/></td></tr>
@@ -142,25 +142,17 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:af6301006bc0b18d6a4b32d2be0cd93a7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af6301006bc0b18d6a4b32d2be0cd93a7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set_new_pwm_duty_cycle</b> (const char *value)</td></tr>
+<tr class="memitem:af6301006bc0b18d6a4b32d2be0cd93a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#af6301006bc0b18d6a4b32d2be0cd93a7">set_new_pwm_duty_cycle</a> (const char *value)</td></tr>
+<tr class="memdesc:af6301006bc0b18d6a4b32d2be0cd93a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the motor PWM duty cycle.  <a href="#af6301006bc0b18d6a4b32d2be0cd93a7"></a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a0125717053068acb08b430d820bfc413"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0125717053068acb08b430d820bfc413"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>min_priority</b></td></tr>
-<tr class="memitem:aac6cb55808e4f1da0506d0cc6c314e41"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac6cb55808e4f1da0506d0cc6c314e41"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>motor_duty_cycle</b> [2]</td></tr>
-<tr class="memitem:a7d7c98b5afa45656905708e54ff7fb9a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d7c98b5afa45656905708e54ff7fb9a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>direction</b></td></tr>
-<tr class="memitem:a827a1d2b453a804d389cdafbf0685022"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a827a1d2b453a804d389cdafbf0685022"></a>
-sem_t&#160;</td><td class="memItemRight" valign="bottom"><b>motor_cmd_ctrl</b></td></tr>
-<tr class="memitem:acb2ac1bd2630b05c40a64154a87ea65d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb2ac1bd2630b05c40a64154a87ea65d"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>motor_fd</b></td></tr>
-<tr class="memitem:aed42ebef60a1374fc86dd2aff59af85e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed42ebef60a1374fc86dd2aff59af85e"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>motor_filepath</b> [40]</td></tr>
-<tr class="memitem:aac1493320f015375f125a59b6428c5d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac1493320f015375f125a59b6428c5d3"></a>
-volatile uint32_t *&#160;</td><td class="memItemRight" valign="bottom"><b>gptimer_reg</b></td></tr>
+<tr class="memitem:a0125717053068acb08b430d820bfc413"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#a0125717053068acb08b430d820bfc413">min_priority</a></td></tr>
+<tr class="memitem:aac6cb55808e4f1da0506d0cc6c314e41"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#aac6cb55808e4f1da0506d0cc6c314e41">motor_duty_cycle</a> [2]</td></tr>
+<tr class="memitem:a7d7c98b5afa45656905708e54ff7fb9a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#a7d7c98b5afa45656905708e54ff7fb9a">direction</a></td></tr>
+<tr class="memitem:a827a1d2b453a804d389cdafbf0685022"><td class="memItemLeft" align="right" valign="top">sem_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#a827a1d2b453a804d389cdafbf0685022">motor_cmd_ctrl</a></td></tr>
+<tr class="memitem:acb2ac1bd2630b05c40a64154a87ea65d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#acb2ac1bd2630b05c40a64154a87ea65d">motor_fd</a></td></tr>
+<tr class="memitem:aed42ebef60a1374fc86dd2aff59af85e"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#aed42ebef60a1374fc86dd2aff59af85e">motor_filepath</a> [40]</td></tr>
 <tr class="inherit_header pro_attribs_classActuator"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classActuator')"><img src="closed.png" alt="-"/>&nbsp;Protected Attributes inherited from <a class="el" href="classActuator.html">Actuator</a></td></tr>
 <tr class="memitem:a0097e8667426ce3300ad60bdb6cd9d81 inherit pro_attribs_classActuator"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActuator.html#a0097e8667426ce3300ad60bdb6cd9d81">tmech_control</a></td></tr>
 <tr class="inherit_header pro_attribs_classSubsystem"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classSubsystem')"><img src="closed.png" alt="-"/>&nbsp;Protected Attributes inherited from <a class="el" href="classSubsystem.html">Subsystem</a></td></tr>
@@ -192,12 +184,59 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classActuator.html" title="Actuator class manages actuator tasks.">Actuator</a> default constructor. </p>
-<p>sets subsystem parameters </p>
+<p><a class="el" href="classMotor.html" title="motor control">Motor</a> default constructor. </p>
+<p>sets subsystem parameters and sets up the motor command-control sync semaphore </p>
+
+</div>
+</div>
+<a class="anchor" id="a2e57c7b2681efea1d3b7f253ee88ecd4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Motor::~Motor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classMotor.html" title="motor control">Motor</a> destructor. </p>
+<p>closes the motor file descriptor (PWM file descriptor) </p>
 
 </div>
 </div>
 <h2>Member Function Documentation</h2>
+<a class="anchor" id="add07c258d9b239633a3882a07dc9e4de"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Motor::handle_message </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a> *&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handles message sent to the motor. </p>
+<p>Will handle the messages sent to the motor from the system controller. Messages could be from command line interface or from another subsystem. </p>
+
+<p>Implements <a class="el" href="classActuator.html#a733c6782030e224bcef26161c77a4d96">Actuator</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a861cd4da09dd25fc02d711a34f25a988"></a>
 <div class="memitem">
 <div class="memproto">
@@ -219,8 +258,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Virtual function to initialize the actuator device. </p>
-<p>Defined for each actuator, the init_device function is responsible for setting the actuator up for control by the mechanical control task. For example in the case of the motor subsystem, the init_device task will set up the PWM, initialize the system variables, and perform other tasks necessary before the motor can be controlled. </p>
+<p>initialize the motor </p>
+<p>Responsible for setting the motor up for control by the mechanical control task. The init_device function will set up the PWM, initialize the system variables, and perform other tasks necessary before the motor can be controlled. </p>
 
 <p>Implements <a class="el" href="classActuator.html#a13e33ed9c5e19a52bc6d0b7e3c0dd2d7">Actuator</a>.</p>
 
@@ -248,10 +287,38 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The mechanical command function issues commands directly to hardware. </p>
-<p>The mechanical command function is typically called from the mech_control function and will issue the actual commands to hardware necessary to control the actuator. For example, for the motor subsystem, this function will write to PWM. </p>
+<p>The mechanical command function issues commands directly to the motor hardware. </p>
+<p>The mechanical command function is typically called from the mech_control function and will issue the actual commands to hardware necessary to control the motor. This function will write to PWM to control the motor speed and direction. </p>
 
 <p>Implements <a class="el" href="classActuator.html#ad9c31f9e7f06684835ae526f29d7a096">Actuator</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9902b2c030a06ca8a4e2f10c3530dbec"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Motor::mech_control </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>the mechanical controller function for the actuator. </p>
+<p>Runs in the mech_control thread and waits for a sync semaphore before issuing a mechanical command if the motor subsystem is enabled. </p>
+
+<p>Implements <a class="el" href="classActuator.html#a05dd923b5162ebad197fc04d07d9771f">Actuator</a>.</p>
 
 </div>
 </div>
@@ -277,10 +344,164 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reads in data from message to the actuator. </p>
+<p>Reads in data from message to the motor. </p>
 <p>Will read data into appropriate data type and then cast to a void* and return. The type of data received depends on the message command. For example if trying to set the motor pwm duty cycle, a three byte char* is expected. This function will read the data in from standard in (using cin) into an appropriate datatype for the given command and will return the data to the system message handler for further processing. </p>
 
 <p>Implements <a class="el" href="classActuator.html#a65fe83ffd7895f3ab028b87a62b3af1d">Actuator</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af6301006bc0b18d6a4b32d2be0cd93a7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Motor::set_new_pwm_duty_cycle </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the motor PWM duty cycle. </p>
+<p>Sets the motor_duty_cycle and gives the motor_cmd_ctrl sync semaphore which releases the mech_control task. </p>
+
+</div>
+</div>
+<h2>Member Data Documentation</h2>
+<a class="anchor" id="a7d7c98b5afa45656905708e54ff7fb9a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Motor::direction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>the motor direction (1=forward, 0=reverse) </p>
+
+</div>
+</div>
+<a class="anchor" id="a0125717053068acb08b430d820bfc413"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Motor::min_priority</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>minimum priority for commands from other subsystems. For example if compass has priority 5, sonar has priority 2, and min_priority is set to 3, commands from the compass will be ignored and commands from sonar will be accepted. </p>
+
+</div>
+</div>
+<a class="anchor" id="a827a1d2b453a804d389cdafbf0685022"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sem_t Motor::motor_cmd_ctrl</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>the command/control sync semaphore </p>
+
+</div>
+</div>
+<a class="anchor" id="aac6cb55808e4f1da0506d0cc6c314e41"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char Motor::motor_duty_cycle[2]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The current set duty cycle for the motor PWM </p>
+
+</div>
+</div>
+<a class="anchor" id="acb2ac1bd2630b05c40a64154a87ea65d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Motor::motor_fd</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>the motor file descriptor (for the PWM device) </p>
+
+</div>
+</div>
+<a class="anchor" id="aed42ebef60a1374fc86dd2aff59af85e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char Motor::motor_filepath[40]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>the filepath to the PWM device (in /dev) </p>
 
 </div>
 </div>
@@ -291,7 +512,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 19 2013 19:04:25 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 19 2013 20:32:19 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

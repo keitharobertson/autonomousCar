@@ -95,40 +95,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define NUM_SUBSYSTEMS  5</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="code" href="classSystemControl.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSystemControl.html" title="System control module.">SystemControl</a> {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <a class="code" href="classSystemControl.html#ae07ba4f7b5ee117619f376efd3b60fa9" title="SystemControl default constructor.">SystemControl</a>();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <a class="code" href="classSystemControl.html#a431eb4f5fbb81a358a345653c7444874" title="SystemControl destructor.">~SystemControl</a>();</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <span class="keywordtype">void</span> shutdown();</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSystemControl.html#aeb2cd39e5a72b13e139b8bbefb726be6" title="System initialization.">init</a>(); <span class="comment">//initialize the subsystems</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                <span class="keywordtype">void</span>* read_data(<span class="keywordtype">int</span> subsys_num, <span class="keywordtype">int</span> command);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSystemControl.html#a25f45e16b1d4dc69ce8c356741feb17d" title="System message receiver task.">recieve_sys_messages</a>();<span class="comment">//recieve task for system mq</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <a class="code" href="classSubsystem.html" title="The Subsystem class defines the basic properties shared by all subsystems.">Subsystem</a>* subsys[NUM_SUBSYSTEMS]; <span class="comment">//array of subsystems</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                mqd_t sys_mq; <span class="comment">//system mq</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="code" href="classSystemControl.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSystemControl.html" title="System control is the central controller.">SystemControl</a> {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <a class="code" href="classSystemControl.html#ae07ba4f7b5ee117619f376efd3b60fa9" title="SystemControl default constructor.">SystemControl</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                <a class="code" href="classSystemControl.html#a431eb4f5fbb81a358a345653c7444874" title="SystemControl destructor.">~SystemControl</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSystemControl.html#a682a998cbfceabd333584ee1006fbf05" title="Shuts the system down.">shutdown</a>();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSystemControl.html#aeb2cd39e5a72b13e139b8bbefb726be6" title="System initialization.">init</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <span class="keywordtype">void</span>* <a class="code" href="classSystemControl.html#ade77f999daab4a062327bbc1a8ad05ef" title="Read in data from the command interface.">read_data</a>(<span class="keywordtype">int</span> subsys_num, <span class="keywordtype">int</span> command);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                <span class="keyword">struct </span>mq_attr attr; <span class="comment">//queue attributes</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                <span class="comment">//struct sigevent sigevent;// For notification</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                <span class="keywordtype">char</span> buf[MSG_SIZE];<span class="comment">// A good-sized buffer</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> prio;<span class="comment">// Priority</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                mqd_t subsys_mq[NUM_SUBSYSTEMS];<span class="comment">//subsys mq</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                <span class="keywordtype">int</span> iret_mq_receiver;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                pthread_t tMQReceiver; <span class="comment">//sys mq receiver task</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;};</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSystemControl.html#a25f45e16b1d4dc69ce8c356741feb17d" title="System message receiver task.">recieve_sys_messages</a>();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="code" href="classSystemControl.html#a7c4a251aec26da056dff1d51b5a149de">   68</a></span>&#160;                <a class="code" href="classSubsystem.html" title="The Subsystem class defines the basic properties shared by all subsystems.">Subsystem</a>* <a class="code" href="classSystemControl.html#a7c4a251aec26da056dff1d51b5a149de">subsys</a>[NUM_SUBSYSTEMS];</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="code" href="classSystemControl.html#a0f1842f00f91fd17bd7be7508653c2e2">   71</a></span>&#160;                mqd_t <a class="code" href="classSystemControl.html#a0f1842f00f91fd17bd7be7508653c2e2">sys_mq</a>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                <span class="keyword">struct </span>mq_attr attr;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <span class="keywordtype">char</span> buf[MSG_SIZE];</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> prio;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                pthread_t tMQReceiver;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;};</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 19 2013 19:04:24 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 19 2013 20:32:18 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

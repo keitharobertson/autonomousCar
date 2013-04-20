@@ -34,9 +34,7 @@ class Compass : public Sensor {
 		/**
 		 * \brief Initializes the Compass.
 		 * 
-		 * Init sensor is an abstract function declared in the Sensor class.  
-		 * Its implementation for the Compass subsystem includes setting up the I2C driver 
-		 * and setting up the compass hardware to continuously spit out data at 20Hz.
+		 * Sets up the I2C driver and sets up the compass hardware to continuously spit out data at 20Hz.
 		 */
 		void init_sensor();
 		
@@ -52,7 +50,7 @@ class Compass : public Sensor {
 		void collector();
 		
 		/**
-		 * \brief Performs the analysis of the data collected from the compass.
+		 * \brief Performs the analysis of the data collected from the compass and commands the actuators.
 		 * 
 		 * The analysis function executes in the analysis thread and is synced with the collector task by the 
 		 * collect_analysis_sync semaphore.  Depending on the difference between the current and desired headings,

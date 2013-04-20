@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['collect_5fanalysis_5fsync',['collect_analysis_sync',['../classCompass.html#ace6e13b91461366609f093fef09188d9',1,'Compass']]],
+  ['collect_5fanalysis_5fsync',['collect_analysis_sync',['../classCompass.html#ace6e13b91461366609f093fef09188d9',1,'Compass::collect_analysis_sync()'],['../classSonar.html#a3dcf7c38af34539c68f123f073eb2f52',1,'Sonar::collect_analysis_sync()']]],
   ['collector',['collector',['../classCompass.html#ae8d7f3417a27b1d18487b96ca07dd32b',1,'Compass::collector()'],['../classGPS.html#a17383568c4ed86a0adfdd5c88b6591d4',1,'GPS::collector()'],['../classSensor.html#ae4ec41b880d44feb898da5c62c3203c9',1,'Sensor::collector()'],['../classSonar.html#a38b0e409082be17e7098b2e471bab4a8',1,'Sonar::collector()']]],
   ['command',['command',['../struct__MESSAGE.html#a4d7f2b7e82139f257e40d456e56bd8ab',1,'_MESSAGE']]],
   ['compass',['Compass',['../classCompass.html',1,'Compass'],['../classCompass.html#a68bd2a073cc0d461b2b46529aae04765',1,'Compass::Compass()']]],

@@ -28,7 +28,7 @@ void \hyperlink{classCompass_a5cc2b71700af542b5aafadea4820a476}{init\-\_\-sensor
 void \hyperlink{classCompass_ae8d7f3417a27b1d18487b96ca07dd32b}{collector} ()
 \begin{DoxyCompactList}\small\item\em collects data from the \hyperlink{classCompass}{Compass} \end{DoxyCompactList}\item 
 void \hyperlink{classCompass_a4dd6402d0ece9203c6b92670265b4c8d}{analysis} ()
-\begin{DoxyCompactList}\small\item\em Performs the analysis of the data collected from the compass. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Performs the analysis of the data collected from the compass and commands the actuators. \end{DoxyCompactList}\item 
 void \hyperlink{classCompass_a1fb0f64b335e8f1d4f27dc2067312b4a}{handle\-\_\-message} (\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} $\ast$message)
 \begin{DoxyCompactList}\small\item\em Handles messages sent to the compass subsystem. \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{classCompass_ab55d084e2d643df0a1970f5868d0c5a8}{read\-\_\-data} (int command)
@@ -90,7 +90,7 @@ Sets subsystem parameters and sets up the collect/analysis task sync semaphore.
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classCompass_a4dd6402d0ece9203c6b92670265b4c8d}
 
 
-Performs the analysis of the data collected from the compass. 
+Performs the analysis of the data collected from the compass and commands the actuators. 
 
 The analysis function executes in the analysis thread and is synced with the collector task by the collect\-\_\-analysis\-\_\-sync semaphore. Depending on the difference between the current and desired headings, messages will be sent to the \hyperlink{classSteering}{Steering} subsystem using the system message queue to change course. 
 
@@ -148,7 +148,7 @@ Implements \hyperlink{classSensor_a45533b253f81f85d1b6fcea902a5692b}{Sensor}.
 
 Initializes the \hyperlink{classCompass}{Compass}. 
 
-Init sensor is an abstract function declared in the \hyperlink{classSensor}{Sensor} class. Its implementation for the \hyperlink{classCompass}{Compass} subsystem includes setting up the I2\-C driver and setting up the compass hardware to continuously spit out data at 20\-Hz. 
+Sets up the I2\-C driver and sets up the compass hardware to continuously spit out data at 20\-Hz. 
 
 Implements \hyperlink{classSensor_a11b28f6bc91d6f69e734e13ab0e64f56}{Sensor}.
 

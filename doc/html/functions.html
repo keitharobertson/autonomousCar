@@ -136,12 +136,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
 <li>collect_analysis_sync
 : <a class="el" href="classCompass.html#ace6e13b91461366609f093fef09188d9">Compass</a>
+, <a class="el" href="classSonar.html#a3dcf7c38af34539c68f123f073eb2f52">Sonar</a>
 </li>
 <li>collector()
-: <a class="el" href="classCompass.html#ae8d7f3417a27b1d18487b96ca07dd32b">Compass</a>
+: <a class="el" href="classGPS.html#a17383568c4ed86a0adfdd5c88b6591d4">GPS</a>
 , <a class="el" href="classSensor.html#ae4ec41b880d44feb898da5c62c3203c9">Sensor</a>
+, <a class="el" href="classCompass.html#ae8d7f3417a27b1d18487b96ca07dd32b">Compass</a>
 , <a class="el" href="classSonar.html#a38b0e409082be17e7098b2e471bab4a8">Sonar</a>
-, <a class="el" href="classGPS.html#a17383568c4ed86a0adfdd5c88b6591d4">GPS</a>
 </li>
 <li>command
 : <a class="el" href="struct__MESSAGE.html#a4d7f2b7e82139f257e40d456e56bd8ab">_MESSAGE</a>
@@ -169,6 +170,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>desired_heading
 : <a class="el" href="classCompass.html#ac888a4dacdc477e53c99fe8e110966ae">Compass</a>
+</li>
+<li>direction
+: <a class="el" href="classMotor.html#a7d7c98b5afa45656905708e54ff7fb9a">Motor</a>
 </li>
 </ul>
 
@@ -246,11 +250,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>mech_control()
 : <a class="el" href="classActuator.html#a05dd923b5162ebad197fc04d07d9771f">Actuator</a>
-, <a class="el" href="classSteering.html#a5b7b0a053607ad891b7d2826093da6ac">Steering</a>
 , <a class="el" href="classMotor.html#a9902b2c030a06ca8a4e2f10c3530dbec">Motor</a>
+, <a class="el" href="classSteering.html#a5b7b0a053607ad891b7d2826093da6ac">Steering</a>
+</li>
+<li>min_priority
+: <a class="el" href="classMotor.html#a0125717053068acb08b430d820bfc413">Motor</a>
+, <a class="el" href="classSteering.html#ab31761e4665bf81e580f1bc32c9fff79">Steering</a>
 </li>
 <li>Motor()
 : <a class="el" href="classMotor.html#af6106b4c506411265c5face762b6c004">Motor</a>
+</li>
+<li>motor_cmd_ctrl
+: <a class="el" href="classMotor.html#a827a1d2b453a804d389cdafbf0685022">Motor</a>
+</li>
+<li>motor_duty_cycle
+: <a class="el" href="classMotor.html#aac6cb55808e4f1da0506d0cc6c314e41">Motor</a>
+</li>
+<li>motor_fd
+: <a class="el" href="classMotor.html#acb2ac1bd2630b05c40a64154a87ea65d">Motor</a>
+</li>
+<li>motor_filepath
+: <a class="el" href="classMotor.html#aed42ebef60a1374fc86dd2aff59af85e">Motor</a>
 </li>
 </ul>
 
@@ -266,6 +286,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>read_data()
 : <a class="el" href="classActuator.html#a65fe83ffd7895f3ab028b87a62b3af1d">Actuator</a>
 , <a class="el" href="classCompass.html#ab55d084e2d643df0a1970f5868d0c5a8">Compass</a>
+, <a class="el" href="classSystemControl.html#ade77f999daab4a062327bbc1a8ad05ef">SystemControl</a>
 , <a class="el" href="classMotor.html#a1727e2d2dfd483c9c85824915a6aeeb8">Motor</a>
 , <a class="el" href="classSteering.html#afda4f2951e5be114abf988a8e5943a96">Steering</a>
 , <a class="el" href="classSonar.html#a54f55470741873f333ad8af8a98affc8">Sonar</a>
@@ -286,10 +307,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Sensor()
 : <a class="el" href="classSensor.html#a342d6d11ef572c8cba92cb76fb1a294b">Sensor</a>
 </li>
+<li>set_new_pwm_duty_cycle()
+: <a class="el" href="classSteering.html#aa0f0e87b925f860575429668a9a84e8d">Steering</a>
+, <a class="el" href="classMotor.html#af6301006bc0b18d6a4b32d2be0cd93a7">Motor</a>
+</li>
 <li>shutdown()
-: <a class="el" href="classSensor.html#a2f08975182e98e644efb226435124047">Sensor</a>
-, <a class="el" href="classSubsystem.html#a510e18f972a3d86d7a47432dafa1ce4c">Subsystem</a>
+: <a class="el" href="classSystemControl.html#a682a998cbfceabd333584ee1006fbf05">SystemControl</a>
 , <a class="el" href="classActuator.html#abd625b1dfd7dd296e814751e821eae4b">Actuator</a>
+, <a class="el" href="classSensor.html#a2f08975182e98e644efb226435124047">Sensor</a>
+, <a class="el" href="classSubsystem.html#a510e18f972a3d86d7a47432dafa1ce4c">Subsystem</a>
 </li>
 <li>slight_left
 : <a class="el" href="classCompass.html#a9e0a282c1253451fd7967646074102ee">Compass</a>
@@ -300,11 +326,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Sonar()
 : <a class="el" href="classSonar.html#a71ef009d138f1e372fc35ca0cb6e85e2">Sonar</a>
 </li>
+<li>sonar_fd
+: <a class="el" href="classSonar.html#a4799c8b328d7735f7e6d62d741340c6c">Sonar</a>
+</li>
+<li>sonar_filepath
+: <a class="el" href="classSonar.html#a7db9106da9a50d06b5f25c35f799abe5">Sonar</a>
+</li>
+<li>sonar_reading
+: <a class="el" href="classSonar.html#abd3f8ccfc42cacd700df9be06f70c6b2">Sonar</a>
+</li>
+<li>steer_cmd_ctrl
+: <a class="el" href="classSteering.html#af9a4f30e9dc0dc37b31a421cb88ca8ba">Steering</a>
+</li>
 <li>Steering()
 : <a class="el" href="classSteering.html#a45a5ff1a1869073a2165680f853b9c41">Steering</a>
 </li>
+<li>steering_duty_cycle
+: <a class="el" href="classSteering.html#a3eb0bda8706c97d35c0ae31daeefa5a1">Steering</a>
+</li>
+<li>steering_fd
+: <a class="el" href="classSteering.html#ae85b07902746525a57bf049d872b4f26">Steering</a>
+</li>
+<li>steering_filepath
+: <a class="el" href="classSteering.html#adfe05011b3442b1b24cd9dfc1e24ad70">Steering</a>
+</li>
 <li>straight
 : <a class="el" href="classCompass.html#aa11186aa6caf9dced42940552bf24da2">Compass</a>
+</li>
+<li>subsys
+: <a class="el" href="classSystemControl.html#a7c4a251aec26da056dff1d51b5a149de">SystemControl</a>
 </li>
 <li>subsys_name
 : <a class="el" href="classSubsystem.html#a731ef7c72752c9fafba06225a21e77ba">Subsystem</a>
@@ -316,7 +366,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classSubsystem.html#abdec44abe9ddba76f65abb02f8f62992">Subsystem</a>
 </li>
 <li>sys_mq
-: <a class="el" href="classSubsystem.html#a3ef2ff7ded6b1623fae096828d549369">Subsystem</a>
+: <a class="el" href="classSystemControl.html#a0f1842f00f91fd17bd7be7508653c2e2">SystemControl</a>
+, <a class="el" href="classSubsystem.html#a3ef2ff7ded6b1623fae096828d549369">Subsystem</a>
 </li>
 <li>SystemControl()
 : <a class="el" href="classSystemControl.html#ae07ba4f7b5ee117619f376efd3b60fa9">SystemControl</a>
@@ -325,6 +376,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
+<li>tAnalysis
+: <a class="el" href="classSensor.html#afce21e3a689654c7d165f2a0e01ab86c">Sensor</a>
+</li>
+<li>tCollector
+: <a class="el" href="classSensor.html#a881761631861338b335680ab1e618277">Sensor</a>
+</li>
 <li>tmech_control
 : <a class="el" href="classActuator.html#a0097e8667426ce3300ad60bdb6cd9d81">Actuator</a>
 </li>
@@ -338,8 +395,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>~Actuator()
 : <a class="el" href="classActuator.html#a3c19e3031076395a918ab72e1acc8a3c">Actuator</a>
 </li>
+<li>~Motor()
+: <a class="el" href="classMotor.html#a2e57c7b2681efea1d3b7f253ee88ecd4">Motor</a>
+</li>
 <li>~Sensor()
 : <a class="el" href="classSensor.html#aee8c70e7ef05ce65e7ee33686b5d7db2">Sensor</a>
+</li>
+<li>~Steering()
+: <a class="el" href="classSteering.html#a0cf29a86402af78c57edd2d3aaeaf558">Steering</a>
 </li>
 <li>~Subsystem()
 : <a class="el" href="classSubsystem.html#af6026d0c678986cf1626251bf38916fa">Subsystem</a>
@@ -351,7 +414,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 19 2013 19:04:26 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 19 2013 20:32:20 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

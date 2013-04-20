@@ -20,48 +20,38 @@ Inheritance diagram for Motor\-:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classMotor_af6106b4c506411265c5face762b6c004}{Motor} ()
-\begin{DoxyCompactList}\small\item\em \hyperlink{classActuator}{Actuator} default constructor. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{classMotor}{Motor} default constructor. \end{DoxyCompactList}\item 
+\hyperlink{classMotor_a2e57c7b2681efea1d3b7f253ee88ecd4}{$\sim$\-Motor} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classMotor}{Motor} destructor. \end{DoxyCompactList}\item 
 void \hyperlink{classMotor_a861cd4da09dd25fc02d711a34f25a988}{init\-\_\-device} ()
-\begin{DoxyCompactList}\small\item\em Virtual function to initialize the actuator device. \end{DoxyCompactList}\item 
-\hypertarget{classMotor_a9902b2c030a06ca8a4e2f10c3530dbec}{void \hyperlink{classMotor_a9902b2c030a06ca8a4e2f10c3530dbec}{mech\-\_\-control} ()}\label{classMotor_a9902b2c030a06ca8a4e2f10c3530dbec}
-
-\begin{DoxyCompactList}\small\item\em controls the mechanical system \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em initialize the motor \end{DoxyCompactList}\item 
+void \hyperlink{classMotor_a9902b2c030a06ca8a4e2f10c3530dbec}{mech\-\_\-control} ()
+\begin{DoxyCompactList}\small\item\em the mechanical controller function for the actuator. \end{DoxyCompactList}\item 
 void \hyperlink{classMotor_a3edca1dcb0f3df55eccc09ffb14426a4}{mech\-\_\-command} (char $\ast$value)
-\begin{DoxyCompactList}\small\item\em The mechanical command function issues commands directly to hardware. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The mechanical command function issues commands directly to the motor hardware. \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{classMotor_a1727e2d2dfd483c9c85824915a6aeeb8}{read\-\_\-data} (int command)
-\begin{DoxyCompactList}\small\item\em Reads in data from message to the actuator. \end{DoxyCompactList}\item 
-\hypertarget{classMotor_add07c258d9b239633a3882a07dc9e4de}{void \hyperlink{classMotor_add07c258d9b239633a3882a07dc9e4de}{handle\-\_\-message} (\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} $\ast$message)}\label{classMotor_add07c258d9b239633a3882a07dc9e4de}
-
-\begin{DoxyCompactList}\small\item\em handles messages sent to the compass subsystem \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Reads in data from message to the motor. \end{DoxyCompactList}\item 
+void \hyperlink{classMotor_add07c258d9b239633a3882a07dc9e4de}{handle\-\_\-message} (\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} $\ast$message)
+\begin{DoxyCompactList}\small\item\em Handles message sent to the motor. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classMotor_af6301006bc0b18d6a4b32d2be0cd93a7}{void {\bfseries set\-\_\-new\-\_\-pwm\-\_\-duty\-\_\-cycle} (const char $\ast$value)}\label{classMotor_af6301006bc0b18d6a4b32d2be0cd93a7}
-
-\end{DoxyCompactItemize}
+void \hyperlink{classMotor_af6301006bc0b18d6a4b32d2be0cd93a7}{set\-\_\-new\-\_\-pwm\-\_\-duty\-\_\-cycle} (const char $\ast$value)
+\begin{DoxyCompactList}\small\item\em Sets the motor P\-W\-M duty cycle. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classMotor_a0125717053068acb08b430d820bfc413}{int {\bfseries min\-\_\-priority}}\label{classMotor_a0125717053068acb08b430d820bfc413}
-
+int \hyperlink{classMotor_a0125717053068acb08b430d820bfc413}{min\-\_\-priority}
 \item 
-\hypertarget{classMotor_aac6cb55808e4f1da0506d0cc6c314e41}{char {\bfseries motor\-\_\-duty\-\_\-cycle} \mbox{[}2\mbox{]}}\label{classMotor_aac6cb55808e4f1da0506d0cc6c314e41}
-
+char \hyperlink{classMotor_aac6cb55808e4f1da0506d0cc6c314e41}{motor\-\_\-duty\-\_\-cycle} \mbox{[}2\mbox{]}
 \item 
-\hypertarget{classMotor_a7d7c98b5afa45656905708e54ff7fb9a}{int {\bfseries direction}}\label{classMotor_a7d7c98b5afa45656905708e54ff7fb9a}
-
+int \hyperlink{classMotor_a7d7c98b5afa45656905708e54ff7fb9a}{direction}
 \item 
-\hypertarget{classMotor_a827a1d2b453a804d389cdafbf0685022}{sem\-\_\-t {\bfseries motor\-\_\-cmd\-\_\-ctrl}}\label{classMotor_a827a1d2b453a804d389cdafbf0685022}
-
+sem\-\_\-t \hyperlink{classMotor_a827a1d2b453a804d389cdafbf0685022}{motor\-\_\-cmd\-\_\-ctrl}
 \item 
-\hypertarget{classMotor_acb2ac1bd2630b05c40a64154a87ea65d}{int {\bfseries motor\-\_\-fd}}\label{classMotor_acb2ac1bd2630b05c40a64154a87ea65d}
-
+int \hyperlink{classMotor_acb2ac1bd2630b05c40a64154a87ea65d}{motor\-\_\-fd}
 \item 
-\hypertarget{classMotor_aed42ebef60a1374fc86dd2aff59af85e}{char {\bfseries motor\-\_\-filepath} \mbox{[}40\mbox{]}}\label{classMotor_aed42ebef60a1374fc86dd2aff59af85e}
-
-\item 
-\hypertarget{classMotor_aac1493320f015375f125a59b6428c5d3}{volatile uint32\-\_\-t $\ast$ {\bfseries gptimer\-\_\-reg}}\label{classMotor_aac1493320f015375f125a59b6428c5d3}
-
+char \hyperlink{classMotor_aed42ebef60a1374fc86dd2aff59af85e}{motor\-\_\-filepath} \mbox{[}40\mbox{]}
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -81,11 +71,37 @@ receives motor control commands and commands the motor accordingly
 )}}\label{classMotor_af6106b4c506411265c5face762b6c004}
 
 
-\hyperlink{classActuator}{Actuator} default constructor. 
+\hyperlink{classMotor}{Motor} default constructor. 
 
-sets subsystem parameters 
+sets subsystem parameters and sets up the motor command-\/control sync semaphore \hypertarget{classMotor_a2e57c7b2681efea1d3b7f253ee88ecd4}{\index{Motor@{Motor}!$\sim$\-Motor@{$\sim$\-Motor}}
+\index{$\sim$\-Motor@{$\sim$\-Motor}!Motor@{Motor}}
+\subsubsection[{$\sim$\-Motor}]{\setlength{\rightskip}{0pt plus 5cm}Motor\-::$\sim$\-Motor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classMotor_a2e57c7b2681efea1d3b7f253ee88ecd4}
+
+
+\hyperlink{classMotor}{Motor} destructor. 
+
+closes the motor file descriptor (P\-W\-M file descriptor) 
 
 \subsection{Member Function Documentation}
+\hypertarget{classMotor_add07c258d9b239633a3882a07dc9e4de}{\index{Motor@{Motor}!handle\-\_\-message@{handle\-\_\-message}}
+\index{handle\-\_\-message@{handle\-\_\-message}!Motor@{Motor}}
+\subsubsection[{handle\-\_\-message}]{\setlength{\rightskip}{0pt plus 5cm}void Motor\-::handle\-\_\-message (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-E\-S\-S\-A\-G\-E} $\ast$}]{message}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMotor_add07c258d9b239633a3882a07dc9e4de}
+
+
+Handles message sent to the motor. 
+
+Will handle the messages sent to the motor from the system controller. Messages could be from command line interface or from another subsystem. 
+
+Implements \hyperlink{classActuator_a733c6782030e224bcef26161c77a4d96}{Actuator}.
+
 \hypertarget{classMotor_a861cd4da09dd25fc02d711a34f25a988}{\index{Motor@{Motor}!init\-\_\-device@{init\-\_\-device}}
 \index{init\-\_\-device@{init\-\_\-device}!Motor@{Motor}}
 \subsubsection[{init\-\_\-device}]{\setlength{\rightskip}{0pt plus 5cm}void Motor\-::init\-\_\-device (
@@ -95,9 +111,9 @@ sets subsystem parameters
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMotor_a861cd4da09dd25fc02d711a34f25a988}
 
 
-Virtual function to initialize the actuator device. 
+initialize the motor 
 
-Defined for each actuator, the init\-\_\-device function is responsible for setting the actuator up for control by the mechanical control task. For example in the case of the motor subsystem, the init\-\_\-device task will set up the P\-W\-M, initialize the system variables, and perform other tasks necessary before the motor can be controlled. 
+Responsible for setting the motor up for control by the mechanical control task. The init\-\_\-device function will set up the P\-W\-M, initialize the system variables, and perform other tasks necessary before the motor can be controlled. 
 
 Implements \hyperlink{classActuator_a13e33ed9c5e19a52bc6d0b7e3c0dd2d7}{Actuator}.
 
@@ -110,11 +126,26 @@ Implements \hyperlink{classActuator_a13e33ed9c5e19a52bc6d0b7e3c0dd2d7}{Actuator}
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMotor_a3edca1dcb0f3df55eccc09ffb14426a4}
 
 
-The mechanical command function issues commands directly to hardware. 
+The mechanical command function issues commands directly to the motor hardware. 
 
-The mechanical command function is typically called from the mech\-\_\-control function and will issue the actual commands to hardware necessary to control the actuator. For example, for the motor subsystem, this function will write to P\-W\-M. 
+The mechanical command function is typically called from the mech\-\_\-control function and will issue the actual commands to hardware necessary to control the motor. This function will write to P\-W\-M to control the motor speed and direction. 
 
 Implements \hyperlink{classActuator_ad9c31f9e7f06684835ae526f29d7a096}{Actuator}.
+
+\hypertarget{classMotor_a9902b2c030a06ca8a4e2f10c3530dbec}{\index{Motor@{Motor}!mech\-\_\-control@{mech\-\_\-control}}
+\index{mech\-\_\-control@{mech\-\_\-control}!Motor@{Motor}}
+\subsubsection[{mech\-\_\-control}]{\setlength{\rightskip}{0pt plus 5cm}void Motor\-::mech\-\_\-control (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMotor_a9902b2c030a06ca8a4e2f10c3530dbec}
+
+
+the mechanical controller function for the actuator. 
+
+Runs in the mech\-\_\-control thread and waits for a sync semaphore before issuing a mechanical command if the motor subsystem is enabled. 
+
+Implements \hyperlink{classActuator_a05dd923b5162ebad197fc04d07d9771f}{Actuator}.
 
 \hypertarget{classMotor_a1727e2d2dfd483c9c85824915a6aeeb8}{\index{Motor@{Motor}!read\-\_\-data@{read\-\_\-data}}
 \index{read\-\_\-data@{read\-\_\-data}!Motor@{Motor}}
@@ -125,13 +156,45 @@ Implements \hyperlink{classActuator_ad9c31f9e7f06684835ae526f29d7a096}{Actuator}
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMotor_a1727e2d2dfd483c9c85824915a6aeeb8}
 
 
-Reads in data from message to the actuator. 
+Reads in data from message to the motor. 
 
 Will read data into appropriate data type and then cast to a void$\ast$ and return. The type of data received depends on the message command. For example if trying to set the motor pwm duty cycle, a three byte char$\ast$ is expected. This function will read the data in from standard in (using cin) into an appropriate datatype for the given command and will return the data to the system message handler for further processing. 
 
 Implements \hyperlink{classActuator_a65fe83ffd7895f3ab028b87a62b3af1d}{Actuator}.
 
+\hypertarget{classMotor_af6301006bc0b18d6a4b32d2be0cd93a7}{\index{Motor@{Motor}!set\-\_\-new\-\_\-pwm\-\_\-duty\-\_\-cycle@{set\-\_\-new\-\_\-pwm\-\_\-duty\-\_\-cycle}}
+\index{set\-\_\-new\-\_\-pwm\-\_\-duty\-\_\-cycle@{set\-\_\-new\-\_\-pwm\-\_\-duty\-\_\-cycle}!Motor@{Motor}}
+\subsubsection[{set\-\_\-new\-\_\-pwm\-\_\-duty\-\_\-cycle}]{\setlength{\rightskip}{0pt plus 5cm}void Motor\-::set\-\_\-new\-\_\-pwm\-\_\-duty\-\_\-cycle (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classMotor_af6301006bc0b18d6a4b32d2be0cd93a7}
 
+
+Sets the motor P\-W\-M duty cycle. 
+
+Sets the motor\-\_\-duty\-\_\-cycle and gives the motor\-\_\-cmd\-\_\-ctrl sync semaphore which releases the mech\-\_\-control task. 
+
+\subsection{Member Data Documentation}
+\hypertarget{classMotor_a7d7c98b5afa45656905708e54ff7fb9a}{\index{Motor@{Motor}!direction@{direction}}
+\index{direction@{direction}!Motor@{Motor}}
+\subsubsection[{direction}]{\setlength{\rightskip}{0pt plus 5cm}int Motor\-::direction\hspace{0.3cm}{\ttfamily [protected]}}}\label{classMotor_a7d7c98b5afa45656905708e54ff7fb9a}
+the motor direction (1=forward, 0=reverse) \hypertarget{classMotor_a0125717053068acb08b430d820bfc413}{\index{Motor@{Motor}!min\-\_\-priority@{min\-\_\-priority}}
+\index{min\-\_\-priority@{min\-\_\-priority}!Motor@{Motor}}
+\subsubsection[{min\-\_\-priority}]{\setlength{\rightskip}{0pt plus 5cm}int Motor\-::min\-\_\-priority\hspace{0.3cm}{\ttfamily [protected]}}}\label{classMotor_a0125717053068acb08b430d820bfc413}
+minimum priority for commands from other subsystems. For example if compass has priority 5, sonar has priority 2, and min\-\_\-priority is set to 3, commands from the compass will be ignored and commands from sonar will be accepted. \hypertarget{classMotor_a827a1d2b453a804d389cdafbf0685022}{\index{Motor@{Motor}!motor\-\_\-cmd\-\_\-ctrl@{motor\-\_\-cmd\-\_\-ctrl}}
+\index{motor\-\_\-cmd\-\_\-ctrl@{motor\-\_\-cmd\-\_\-ctrl}!Motor@{Motor}}
+\subsubsection[{motor\-\_\-cmd\-\_\-ctrl}]{\setlength{\rightskip}{0pt plus 5cm}sem\-\_\-t Motor\-::motor\-\_\-cmd\-\_\-ctrl\hspace{0.3cm}{\ttfamily [protected]}}}\label{classMotor_a827a1d2b453a804d389cdafbf0685022}
+the command/control sync semaphore \hypertarget{classMotor_aac6cb55808e4f1da0506d0cc6c314e41}{\index{Motor@{Motor}!motor\-\_\-duty\-\_\-cycle@{motor\-\_\-duty\-\_\-cycle}}
+\index{motor\-\_\-duty\-\_\-cycle@{motor\-\_\-duty\-\_\-cycle}!Motor@{Motor}}
+\subsubsection[{motor\-\_\-duty\-\_\-cycle}]{\setlength{\rightskip}{0pt plus 5cm}char Motor\-::motor\-\_\-duty\-\_\-cycle\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily [protected]}}}\label{classMotor_aac6cb55808e4f1da0506d0cc6c314e41}
+The current set duty cycle for the motor P\-W\-M \hypertarget{classMotor_acb2ac1bd2630b05c40a64154a87ea65d}{\index{Motor@{Motor}!motor\-\_\-fd@{motor\-\_\-fd}}
+\index{motor\-\_\-fd@{motor\-\_\-fd}!Motor@{Motor}}
+\subsubsection[{motor\-\_\-fd}]{\setlength{\rightskip}{0pt plus 5cm}int Motor\-::motor\-\_\-fd\hspace{0.3cm}{\ttfamily [protected]}}}\label{classMotor_acb2ac1bd2630b05c40a64154a87ea65d}
+the motor file descriptor (for the P\-W\-M device) \hypertarget{classMotor_aed42ebef60a1374fc86dd2aff59af85e}{\index{Motor@{Motor}!motor\-\_\-filepath@{motor\-\_\-filepath}}
+\index{motor\-\_\-filepath@{motor\-\_\-filepath}!Motor@{Motor}}
+\subsubsection[{motor\-\_\-filepath}]{\setlength{\rightskip}{0pt plus 5cm}char Motor\-::motor\-\_\-filepath\mbox{[}40\mbox{]}\hspace{0.3cm}{\ttfamily [protected]}}}\label{classMotor_aed42ebef60a1374fc86dd2aff59af85e}
+the filepath to the P\-W\-M device (in /dev) 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 
