@@ -138,6 +138,10 @@ typedef struct _MESSAGE {
 #define	GPS_DISABLE			2
 /** enable GPS navigation */
 #define	GPS_ENABLE			3
+/** enable display */
+#define GPS_DISPLAY 		4
+/** enable GPS navigation */
+#define GPS_NO_DISPLAY 		5
 /** @}*/
 
 /** \defgroup sonar_commands Sonar Commands
