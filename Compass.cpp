@@ -4,6 +4,7 @@
 #include <sys/ioctl.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 #include "Compass.h"
 
@@ -18,6 +19,13 @@
 #define	SLIGHT_TURN_THRESH	20
 #define STRAIGHT_THRESH		5
 
+#define K_PROP_CONTROL		500
+#define CONTROL_OFFSET		15000
+#define STR_CMD_LEN			6
+
+#define SAT_LIMIT			10
+#define	CONTROL_LOWER_LIMIT	10000
+#define	CONTROL_UPPER_LIMIT	20000
 
 //Compass class
 
@@ -102,12 +110,39 @@ void Compass::analysis(){
 	hard_left = MESSAGE(subsys_num, SUBSYS_STEERING, STR_HARD_LEFT);
 	slight_left = MESSAGE(subsys_num, SUBSYS_STEERING, STR_SLIGHT_LEFT);
 	
+	MESSAGE steer = MESSAGE(subsys_num, SUBSYS_STEERING, STR_SET_STEERING);
+	
+	char u[STR_CMD_LEN];
+	
 	while(1) {
 		//wait for data
 		sem_wait(&collect_analysis_sync);
 		//analyze data
-		float diff = desired_heading - meas_heading;
-		if(diff < 0){diff+=360;}
+		int diff = (int)meas_heading - (int)desired_heading;
+		if(diff > 0) {
+			diff = (diff>180) ? diff-360 : diff;
+		}else{
+			diff = (diff<-180) ? diff+360 : diff;
+		}
+		
+		if(diff > SAT_LIMIT){
+			diff = SAT_LIMIT;
+		}else if(diff < -1*SAT_LIMIT) {
+			diff = -1*SAT_LIMIT;
+		}
+		int command_u = (int)((diff) * K_PROP_CONTROL) + CONTROL_OFFSET;
+		if(command_u > CONTROL_UPPER_LIMIT){
+			command_u = CONTROL_UPPER_LIMIT;
+		}else if(command_u < CONTROL_LOWER_LIMIT){
+			command_u = CONTROL_LOWER_LIMIT;
+		}
+		
+		sprintf(u,"%d",command_u);
+		u[STR_CMD_LEN-1] = '\0';
+		steer.data = ((void*)(u));
+		send_sys_message(&steer);
+		
+		/*if(diff < 0){diff+=360;}
 		if(diff<180){
 			//turn right
 			if(diff < STRAIGHT_THRESH){
@@ -127,7 +162,7 @@ void Compass::analysis(){
 			}else {
 				send_sys_message(&slight_left);
 			}
-		}
+		}*/
 	}
 }
 

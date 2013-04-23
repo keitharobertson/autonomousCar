@@ -13,13 +13,15 @@
 #define GPTIMER10_OFFSET		0x86000
 #define TIMER_LOAD_REG			0x02c
 
-#define HARD_LEFT		"90"
-#define HARD_RIGHT		"10"
-#define SLIGHT_LEFT		"75"
-#define SLIGHT_RIGHT	"25"
-#define FINE_LEFT		"60"
-#define FINE_RIGHT		"40"
-#define	STRAIGHT		"50"
+#define HARD_LEFT		"9"
+#define HARD_RIGHT		"6"
+#define SLIGHT_LEFT		"8"
+#define SLIGHT_RIGHT	"6"
+#define FINE_LEFT		"8"
+#define FINE_RIGHT		"6"
+#define	STRAIGHT		"15000"
+
+#define STR_DUTY_CMD_LEN	5
 
 
 Steering::Steering(){
@@ -42,11 +44,11 @@ void Steering::init_device(){
 	}
 
 	const char* command = STRAIGHT;
-	write(steering_fd,command,2);
+	write(steering_fd,command,STR_DUTY_CMD_LEN);
 }
 
 void Steering::mech_command(char *value){
-	write(steering_fd, value, 2);
+	write(steering_fd, value, STR_DUTY_CMD_LEN);
 }
 
 void Steering::mech_control(){
@@ -59,7 +61,7 @@ void Steering::mech_control(){
 }
 
 void Steering::set_new_pwm_duty_cycle(const char* value){
-	memcpy(steering_duty_cycle,value,2);
+	memcpy(steering_duty_cycle,value,STR_DUTY_CMD_LEN);
 	sem_post(&steer_cmd_ctrl);
 }
 
@@ -139,6 +141,8 @@ void Steering::handle_message(MESSAGE* message){
 			#endif
 			break;
 		case STR_SET_STEERING:
+			std::cout << "setting steering" << std::endl;
+			std::cout << "setting steering: " << *(const char**)&message->data << std::endl;
 			set_new_pwm_duty_cycle((const char*)message->data);
 			break;
 		case STR_DISABLE:

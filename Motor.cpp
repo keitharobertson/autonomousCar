@@ -17,13 +17,13 @@
 #define GPTIMER10_OFFSET		0x86000
 #define TIMER_LOAD_REG			0x02c
 
-#define FORWARD_FAST	"90"
+#define FORWARD_FAST	"40"
 #define FORWARD_SLOW	"55"
 #define FORWARD_MID		"75"
 #define BACKWARD_MID	"25"
 #define BACKWARD_FAST	"5"
 #define BACKWARD_SLOW	"45"
-#define SPEED_STOP		"50"
+#define SPEED_STOP		"35"
 
 #define DIR_FORWARD		1
 #define DIR_BACKWARD	0
@@ -48,7 +48,7 @@ void Motor::init_device(){
 		perror("Failed to open the bus for motor.\n");
 	}
 	
-	//ioctl(motor_fd, PWM_IOCTL_SET_FREQ, 256);
+	ioctl(motor_fd, PWM_IOCTL_SET_FREQ, 500);
 
 	direction = 1;
 	set_new_pwm_duty_cycle(SPEED_STOP);
