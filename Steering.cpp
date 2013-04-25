@@ -141,8 +141,6 @@ void Steering::handle_message(MESSAGE* message){
 			#endif
 			break;
 		case STR_SET_STEERING:
-			std::cout << "setting steering" << std::endl;
-			std::cout << "setting steering: " << *(const char**)&message->data << std::endl;
 			set_new_pwm_duty_cycle((const char*)message->data);
 			break;
 		case STR_DISABLE:

@@ -3,7 +3,7 @@ all: system tests
 system: bin/console.o bin/Subsystem.o bin/Sensor.o bin/Actuator.o bin/SystemControl.o bin/Steering.o bin/Sonar.o bin/shirtt.o bin/Motor.o bin/GPS.o bin/Compass.o
 	 arm-linux-gnueabi-g++ bin/*.o -o 0system/System.o -lpthread -lrt 
 
-tests: test/bin/motor_basic_test.o test/bin/sonar_basic_test.o test/bin/compass_basic_test.o test/bin/sonar_compass_steering.o
+tests: test/bin/motor_basic_test.o test/bin/sonar_basic_test.o test/bin/compass_basic_test.o test/bin/sonar_compass_steering.o test/bin/motor_steering_compass.o
 
 bin/Compass.o: Compass.cpp
 	arm-linux-gnueabi-g++ -c Compass.cpp -o bin/Compass.o
@@ -49,6 +49,9 @@ test/bin/compass_basic_test.o: test/Compass/compass_basic_test.cpp
 
 test/bin/sonar_compass_steering.o: test/integration/sonar_compass_steering.cpp
 	arm-linux-gnueabi-g++ -o test/bin/sonar_compass_steering.o test/integration/sonar_compass_steering.cpp -lpthread -lrt
+
+test/bin/motor_steering_compass.o: test/integration/motor_steering_compass.cpp
+	arm-linux-gnueabi-g++ -o test/bin/motor_steering_compass.o test/integration/motor_steering_compass.cpp -lpthread -lrt
 
 clean:
 	rm -rf test/*/*.o bin/*.o 0system/*.o
