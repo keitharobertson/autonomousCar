@@ -1,6 +1,6 @@
 all: system tests
 #bin/console.o
-system: bin/Subsystem.o bin/Sensor.o bin/Actuator.o bin/SystemControl.o bin/Steering.o bin/Sonar.o bin/shirtt.o bin/Motor.o bin/GPS.o bin/Compass.o
+system: bin/console.o bin/Subsystem.o bin/Sensor.o bin/Actuator.o bin/SystemControl.o bin/Steering.o bin/Sonar.o bin/shirtt.o bin/Motor.o bin/GPS.o bin/Compass.o
 	 arm-linux-gnueabi-g++ bin/*.o -o 0system/System.o -lpthread -lrt 
 
 tests:  motor_tests sonar_tests compass_tests steering_tests integration_tests
@@ -51,8 +51,8 @@ bin/Subsystem.o: Subsystem.cpp
 bin/SystemControl.o: SystemControl.cpp
 	arm-linux-gnueabi-g++ -c SystemControl.cpp -o bin/SystemControl.o
 
-#bin/console.o: console.cpp
-#	arm-linux-gnueabi-g++ -c console.cpp -o bin/console.o
+bin/console.o: console.cpp
+	arm-linux-gnueabi-g++ -c console.cpp -o bin/console.o
 
 test/bin/sonar_basic_test.o: test/Sonar/sonar_basic_test.cpp
 	arm-linux-gnueabi-g++ -o test/bin/sonar_basic_test.o test/Sonar/sonar_basic_test.cpp -lpthread -lrt
