@@ -2,8 +2,6 @@
 
 #include "Sonar.h"
 
-#define SONAR_DEBUG
-
 
 #define	SONAR_ADDR	0x21
 
@@ -43,6 +41,9 @@ Sonar::Sonar() {
 	//setup collector/analysis task sync semaphore
 	if(sem_init(&collect_analysis_sync, 0, 0) != 0){
 		perror("Failed to init the sonar collector/analysis sync sem \n");
+	}
+	if(sem_init(&avoid_reset_control, 0, 0) != 0){
+		perror("Failed to init the sonar avoid/reset control sem \n");
 	}
 }
 
@@ -127,12 +128,16 @@ void Sonar::reset_heading() {
 	#ifdef SONAR_DEBUG
 		std::cout << "Sonar reset heading started. Waiting " << AVOIDANCE_TIME_SEC << " seconds..." << std::endl;
 	#endif
-	int oldtype;
-	pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, &oldtype); //thread can be cancelled at any time.
+	
 	struct timespec t;
 	clock_gettime(CLOCK_MONOTONIC ,&t);
 	t.tv_sec += AVOIDANCE_TIME_SEC;
 	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+	
+	if(sem_trywait(&avoid_reset_control) !=0){
+		return;
+	}
+	
 	#ifdef SONAR_DEBUG
 		std::cout << "Sonar is resetting compass heading. Obstacle avoidance complete." << std::endl;
 	#endif
@@ -148,9 +153,8 @@ void Sonar::reset_heading() {
 	//reset motor speed
 	change_speed = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_SET_SPEED,(void*)old_motor_speed);
 	send_sys_message(&change_speed);
-	//exit this thread
-	void* retval;
-	pthread_exit(retval);
+	
+	sem_give(&avoid_reset_control);
 }
 
 void Sonar::avoid_obstacle() {
@@ -179,8 +183,8 @@ void Sonar::avoid_obstacle() {
 			std::cout << "Sonar was already avoiding an obstacle. Cancelling compass heading reset" << std::endl;
 		#endif
 		//delete existing reset heading thread
-		if(pthread_cancel(treset_heading) != 0){
-			perror("Error cancelling reset heading task! ");
+		if(sem_wait(&avoid_reset_control) != 0){
+			perror("Error taking avoid reset control semaphore! ");
 		}
 	}
 	//slow down the motor
@@ -197,13 +201,17 @@ void Sonar::avoid_obstacle() {
 	if(pthread_create( &treset_heading, NULL, &reset_heading_task, (void *)(this)) != 0) { 
 		perror("Error creating heading_reset thread for sonar object avoidance! ");
 	}
-	/*
+	
 	struct timespec t;
 	clock_gettime(CLOCK_MONOTONIC ,&t);
-	t.tv_sec += 1;
+	t.tv_nsec += 500*NS_PER_MS;
+	if(t.tv_nsec > NS_PER_S){
+		t.tv_sec += 1;
+		t.tv_nsec -= NS_PER_S;
+	}
 	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+	
 	//re-enable sonar
-	* */
 	enabled = 1;
 }
 

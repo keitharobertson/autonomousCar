@@ -118,6 +118,8 @@ class Sonar : public Sensor {
 		 struct spi_ioc_transfer msg[1]; 
 		/** the colector/analysis sync semaphore used to sync the collector and analysis tasks */
 		sem_t collect_analysis_sync;
+		/** the obstacle avoidance/reset control semaphore */
+		sem_t avoid_reset_control;
 		/** The sonar file descriptor (SPI file descriptor) */
 		int sonar_fd;
 		/** filepath for the SPI device (in /dev) */
