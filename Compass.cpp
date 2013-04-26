@@ -6,6 +6,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+#include "shirtt.h"
+
 #include "Compass.h"
 
 
@@ -33,9 +35,14 @@ Compass::Compass() {
 	subsys_name = COMPASS;
 	subsys_num = SUBSYS_COMPASS;
 	desired_heading = 0;
+	//init the collect/analysis sync semaphore.
 	if(sem_init(&collect_analysis_sync, 0, 0) != 0){
 		perror("Failed to init the compass collector/analysis sync sem \n");
 	}
+	subsys_priorities[SUBSYS_SONAR] = 0;	//sonar priority
+	subsys_priorities[SUBSYS_GPS] = 1;		//gps priority
+	subsys_priorities[NUM_SUBSYSTEMS] = 0; //console priority
+	min_priority = NUM_SUBSYSTEMS;
 }
 
 void Compass::init_sensor() {
@@ -82,8 +89,15 @@ float Compass::data_grab(){
 
 void Compass::collector(){
 	struct timespec t;
+	#ifdef OUTPUT_TIMING
+		struct timespec start_time;
+		struct timespec end_time;
+	#endif
 	clock_gettime(CLOCK_MONOTONIC ,&t);
 	while(1){
+		#ifdef OUTPUT_TIMING
+			clock_gettime(CLOCK_MONOTONIC ,&start_time);
+		#endif
 		t.tv_nsec+= DATA_COL_PERIOD_MS*NS_PER_MS;
 		while(t.tv_nsec > NS_PER_S){
 			t.tv_sec++;
@@ -97,72 +111,61 @@ void Compass::collector(){
 			#endif
 			sem_post(&collect_analysis_sync);
 		}
+		#ifdef OUTPUT_TIMING
+			clock_gettime(CLOCK_MONOTONIC ,&end_time);
+			std::cout << "Compass Collector Time (ms): " << ms_time_diff(&start_time, &end_time) << std::endl;
+		#endif
 	}
 }
 
 void Compass::analysis(){
 	
-	hard_right = MESSAGE(subsys_num, SUBSYS_STEERING, STR_HARD_RIGHT);
-	slight_right = MESSAGE(subsys_num, SUBSYS_STEERING, STR_SLIGHT_RIGHT);
-	
-	straight = MESSAGE(subsys_num, SUBSYS_STEERING, STR_STRAIGHT);
-	
-	hard_left = MESSAGE(subsys_num, SUBSYS_STEERING, STR_HARD_LEFT);
-	slight_left = MESSAGE(subsys_num, SUBSYS_STEERING, STR_SLIGHT_LEFT);
-	
+	//message sent to the steering subsystem to change direction. Data will be set with steering command.
 	MESSAGE steer = MESSAGE(subsys_num, SUBSYS_STEERING, STR_SET_STEERING);
 	
+	//the steering command
 	char u[STR_CMD_LEN];
 	
+	#ifdef OUTPUT_TIMING
+		struct timespec start_time;
+		struct timespec end_time;
+	#endif
+	
 	while(1) {
+		#ifdef OUTPUT_TIMING
+			clock_gettime(CLOCK_MONOTONIC ,&start_time);
+		#endif
 		//wait for data
 		sem_wait(&collect_analysis_sync);
-		//analyze data
+		//------------------
+		//---analyze data---
+		//------------------
+		//get the difference between the measured and desired heading
 		int diff = (int)meas_heading - (int)desired_heading;
+		//get diff range to be -180 to 180 degrees
 		if(diff > 0) {
 			diff = (diff>180) ? diff-360 : diff;
 		}else{
 			diff = (diff<-180) ? diff+360 : diff;
 		}
-		
-		if(diff > SAT_LIMIT){
-			diff = SAT_LIMIT;
-		}else if(diff < -1*SAT_LIMIT) {
-			diff = -1*SAT_LIMIT;
-		}
+		//calculate the steering command. (proprotional feedback controller)
 		int command_u = (int)((diff) * K_PROP_CONTROL) + CONTROL_OFFSET;
+		//impose saturation limits on the steering command
 		if(command_u > CONTROL_UPPER_LIMIT){
 			command_u = CONTROL_UPPER_LIMIT;
 		}else if(command_u < CONTROL_LOWER_LIMIT){
 			command_u = CONTROL_LOWER_LIMIT;
 		}
-		
+		//steering subsystem expects commands as char*
 		sprintf(u,"%d",command_u);
 		u[STR_CMD_LEN-1] = '\0';
 		steer.data = ((void*)(u));
+		//send command to steering subsystem
 		send_sys_message(&steer);
-		
-		/*if(diff < 0){diff+=360;}
-		if(diff<180){
-			//turn right
-			if(diff < STRAIGHT_THRESH){
-				send_sys_message(&straight);
-			}else if(diff > HARD_TURN_THRESH) {
-				send_sys_message(&hard_right);
-			}else {
-				send_sys_message(&slight_right);
-			}
-		}else{
-			//turn left
-			diff = 360 - diff;
-			if(diff < STRAIGHT_THRESH){
-				send_sys_message(&straight);
-			}else if(diff > HARD_TURN_THRESH) {
-				send_sys_message(&hard_left);
-			}else {
-				send_sys_message(&slight_left);
-			}
-		}*/
+		#ifdef OUTPUT_TIMING
+			clock_gettime(CLOCK_MONOTONIC ,&end_time);
+			std::cout << "Compass Analysis Time (ms): " << ms_time_diff(&start_time, &end_time) << std::endl;
+		#endif
 	}
 }
 
@@ -188,39 +191,47 @@ void* Compass::read_data(int command) {
 
 void Compass::handle_message(MESSAGE* message){
 	MESSAGE data_request = MESSAGE(subsys_num, 0, 0);
-	switch(message->command){
-		case CPS_SET_HEADING:
-			desired_heading = (*(float*)&message->data);
-			break;
-		case CPS_LEFT_90:
-			desired_heading -= 90;
-			if(desired_heading<0){desired_heading+=360;}
-			break;
-		case CPS_RIGHT_90:
-			desired_heading += 90;
-			if(desired_heading>360){desired_heading-=360;}
-			break;
-		case CPS_180:
-			desired_heading += 180;
-			if(desired_heading>360){desired_heading-=360;}
-			break;
-		case CPS_DISABLE:
-			enabled = 0;
-			break;
-		case CPS_ENABLE:
-			enabled = 1;
-			break;
-		case CPS_GET_READING:
-			std::cout << "Compass reading: " << meas_heading << std::endl;
-			break;
-		case CPS_RETURN_DES_HEADING:
-			data_request.to = message->from;
-			data_request.command = CPS_RET_DES_HEADING;
-			data_request.data = *((void**)(&desired_heading));
-			send_sys_message(&data_request);
-			break;
-		default:
-			std::cout << "Unknown command passed to compass subsystem! Command was : " << message->command << std::endl;
-			break;
+	if(subsys_priorities[message->from] <= min_priority){
+		switch(message->command){
+			case CPS_SET_HEADING:
+				desired_heading = (*(float*)&message->data);
+				break;
+			case CPS_LEFT_90:
+				desired_heading -= 90;
+				if(desired_heading<0){desired_heading+=360;}
+				break;
+			case CPS_RIGHT_90:
+				desired_heading += 90;
+				if(desired_heading>360){desired_heading-=360;}
+				break;
+			case CPS_180:
+				desired_heading += 180;
+				if(desired_heading>360){desired_heading-=360;}
+				break;
+			case CPS_DISABLE:
+				enabled = 0;
+				break;
+			case CPS_ENABLE:
+				enabled = 1;
+				break;
+			case CPS_GET_READING:
+				std::cout << "Compass reading: " << meas_heading << std::endl;
+				break;
+			case CPS_RETURN_DES_HEADING:
+				data_request.to = message->from;
+				data_request.command = CPS_RET_DES_HEADING;
+				data_request.data = *((void**)(&desired_heading));
+				send_sys_message(&data_request);
+				break;
+			case CPS_SET_MIN_PRIO:
+				min_priority = subsys_priorities[message->from];
+				break;
+			case CPS_RESET_MIN_PRIO:
+				min_priority = NUM_SUBSYSTEMS;
+				break;
+			default:
+				std::cout << "Unknown command passed to compass subsystem! Command was : " << message->command << std::endl;
+				break;
+		}
 	}
 }

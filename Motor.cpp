@@ -17,13 +17,13 @@
 #define GPTIMER10_OFFSET		0x86000
 #define TIMER_LOAD_REG			0x02c
 
-#define FORWARD_FAST	"40"
+#define FORWARD_FAST	"10000"
 #define FORWARD_SLOW	"14000"
-#define FORWARD_MID		"75"
-#define BACKWARD_MID	"25"
-#define BACKWARD_FAST	"5"
-#define BACKWARD_SLOW	"45"
-#define SPEED_STOP		"15000"
+#define FORWARD_MID		"12000"
+#define BACKWARD_MID	"18000"
+#define BACKWARD_FAST	"20000"
+#define BACKWARD_SLOW	"16000"
+#define SPEED_STOP		"15500"
 
 #define DIR_FORWARD		1
 #define DIR_BACKWARD	0
@@ -47,8 +47,6 @@ void Motor::init_device(){
 	if ((motor_fd = open(motor_filepath,O_RDWR)) < 0) {
 		perror("Failed to open the bus for motor.\n");
 	}
-	
-	//ioctl(motor_fd, PWM_IOCTL_SET_FREQ, 500);
 
 	direction = DIR_FORWARD;
 	set_new_pwm_duty_cycle(SPEED_STOP);
@@ -162,6 +160,12 @@ void Motor::handle_message(MESSAGE* message){
 			enabled = 1;
 			break;
 		case MOT_SET_MIN_PRIO:
+			break;
+		case MOT_RET_SPEED:
+			data_request.to = message->from;
+			data_request.command = MOT_RET_SPEED;
+			data_request.data = ((void*)(motor_duty_cycle));
+			send_sys_message(&data_request);
 			break;
 		default:
 			break;

@@ -1,10 +1,4 @@
-#include <iostream>
-#include <time.h>
-#include <sys/ioctl.h>
-#include <stdio.h>
-#include <unistd.h>
- #include <stdint.h>
- #include <linux/spi/spidev.h>
+#include <string.h>
 
 #include "Sonar.h"
 
@@ -16,13 +10,12 @@
 #define NS_PER_MS	1000000
 #define NS_PER_S	1000000000
 #define DATA_COL_PERIOD_MS	50
-#define AVOIDANCE_TIME_SEC	3
+#define AVOIDANCE_TIME_SEC	1
 
-#define	HARD_TURN_THRESH	45
-#define	SLIGHT_TURN_THRESH	20
-#define STRAIGHT_THRESH		5
+#define	DEFAULT_TURN_THRESH		45.0
+#define	DEFAULT_REVERSE_THRESH	20.0
 
-#define MV_PER_INCH			6.4
+#define MV_PER_INCH		6.4
 
 //Task Spawning ( called from Sonar::init() )
 static void* reset_heading_task(void* c) {
@@ -36,26 +29,37 @@ static void* reset_heading_task(void* c) {
 Sonar::Sonar() {
 	subsys_name = SONAR;
 	subsys_num = SUBSYS_SONAR;
-	avoidance_mode = false;
-	threshold = 20.0;
-	print_data = false;
+	//setup subsystem variables.
+	avoidance_mode = false;//avoidance mode not active
+	turn_threshold = DEFAULT_TURN_THRESH;//set default turn threshold
+	reverse_threshold = DEFAULT_REVERSE_THRESH;//set default reverse threshold
+	print_data = false;//do not print out data by default
+	//setup parameters for SPI data requests from the ADC
+	msg[0].len = 2;
+	msg[0].speed_hz = 500000;
+	msg[0].delay_usecs = 0;
+	msg[0].cs_change = 0;
+	msg[0].pad = 0;	
+	//setup collector/analysis task sync semaphore
 	if(sem_init(&collect_analysis_sync, 0, 0) != 0){
 		perror("Failed to init the sonar collector/analysis sync sem \n");
 	}
 }
 
 void Sonar::init_sensor() {
-	sprintf(sonar_filepath,"/dev/spidev4.0");
+	sprintf(sonar_filepath,"/dev/spidev4.0"); //filepath for SPI device
 	static uint8_t mode = SPI_MODE_0;
+	//open the SPI device
 	if ((sonar_fd = open(sonar_filepath,O_RDWR)) < 0) {
 		perror("Failed to open the bus for sonar read.\n");
 	}
+	//put SPI in write mode
 	if(ioctl(sonar_fd, SPI_IOC_WR_MODE, &mode) < 0){
 		perror("Failed to set up SPI for write mode for sonar setup");
 	}
 	char command[2];
 	char read_buff[2];
-	
+	//setup SPI for talking to the ADC
 	command[0] = 0b01101000;
 	command[1] = 0xFF;
 	write(sonar_fd,command,2);
@@ -69,29 +73,28 @@ void Sonar::init_sensor() {
 }
 
 float Sonar::data_grab(){
+	//create tx and rx buffers for data trasmission 
 	char tx_buf[2];
 	char rx_buf[2];
-	struct spi_ioc_transfer msg[1]; 
-		msg[0].tx_buf=(uint64_t)tx_buf;
-		msg[0].rx_buf=(uint64_t)rx_buf;
-		msg[0].len = 2;
-		msg[0].speed_hz = 500000;
-		msg[0].delay_usecs = 0;
-		msg[0].cs_change = 0;
-		msg[0].pad = 0;
-	
+	//set tx and rx buffers in the message
+	msg[0].tx_buf=(uint64_t)tx_buf;
+	msg[0].rx_buf=(uint64_t)rx_buf;
+	//setup tx buffer to request data from ADC
 	tx_buf[0] = 0b01101000;
 	tx_buf[1] = 0xFF;
 	#ifdef SONAR_DEBUG
 		printf("tx buff: %x\n",(int)tx_buf[0]);
 	#endif
+	//requestd data from the ADC. Response put in rx_buf
 	if(ioctl(sonar_fd, SPI_IOC_MESSAGE(1), msg) < 0) {
 		perror("Error requesting data from ADC (SPI IOC MESSAGE failed)\n");
 	}
-	
-	int reading = ( (((int)(rx_buf[0] & 0b00000011)) << 8) + ((int)(rx_buf[1])) );	
+	//shift and mask out the 10 bit ADC reading
+	int reading = ( (((int)(rx_buf[0] & 0b00000011)) << 8) + ((int)(rx_buf[1])) );
+	//convert reading to a distance in inches
 	float distance = (float)reading / 1023.0 * 3300.0 / MV_PER_INCH;
 	
+	//if printing of sonar data is enabled, print out the reading
 	if(print_data) {
 		std::cout << "sonar reading: " << reading << std::endl;
 		std::cout << "Sonar Distance (in): " << distance << std::endl;
@@ -133,8 +136,19 @@ void Sonar::reset_heading() {
 	#ifdef SONAR_DEBUG
 		std::cout << "Sonar is resetting compass heading. Obstacle avoidance complete." << std::endl;
 	#endif
+	//reset direction to forward
+	change_direction = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_DIRECTION,(void*)1); //forward!
+	send_sys_message(&change_direction);
+	//reset compass heading
 	inter_subsys_command = MESSAGE(SUBSYS_SONAR,SUBSYS_COMPASS,CPS_SET_HEADING,*((void**)(&old_compass_heading)));
 	send_sys_message(&inter_subsys_command);
+	//reset compass priority
+	set_cps_prio = MESSAGE(SUBSYS_SONAR, SUBSYS_COMPASS, CPS_RESET_MIN_PRIO);
+	send_sys_message(&set_cps_prio);
+	//reset motor speed
+	change_speed = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_SET_SPEED,(void*)old_motor_speed);
+	send_sys_message(&change_speed);
+	//exit this thread
 	void* retval;
 	pthread_exit(retval);
 }
@@ -145,13 +159,21 @@ void Sonar::avoid_obstacle() {
 		std::cout << "Sonar is avoiding an obstacle!" << std::endl;
 	#endif
 	if(!avoidance_mode){
+		//not already in obstacle avoidance mode
 		#ifdef SONAR_DEBUG
 			std::cout << "Sonar was not previously avoiding an obstacle. Requesting current compass heading" << std::endl;
 		#endif
-		//not already in obstacle avoidance mode
-		request_data = MESSAGE(SUBSYS_SONAR, SUBSYS_COMPASS, CPS_RETURN_DES_HEADING); //request current compass heading
-		send_sys_message(&request_data);
+		//request current desired compass heading
+		request_compass_data = MESSAGE(SUBSYS_SONAR, SUBSYS_COMPASS, CPS_RETURN_DES_HEADING); //request current compass heading
+		send_sys_message(&request_compass_data);
+		//request current motor speed
+		request_motor_data = MESSAGE(SUBSYS_SONAR, SUBSYS_MOTOR, MOT_RET_SPEED); //request current motor speed so it can be reset later
+		send_sys_message(&request_motor_data);
+		//now in avoidance mode
 		avoidance_mode = true;
+		//disable lower priority subsystems from changing compass heading
+		set_cps_prio = MESSAGE(SUBSYS_SONAR, SUBSYS_COMPASS, CPS_SET_MIN_PRIO); //set compass min priority to prevent other subsystems from overriding the avoidance
+		send_sys_message(&set_cps_prio);
 	}else{
 		#ifdef SONAR_DEBUG
 			std::cout << "Sonar was already avoiding an obstacle. Cancelling compass heading reset" << std::endl;
@@ -161,17 +183,27 @@ void Sonar::avoid_obstacle() {
 			perror("Error cancelling reset heading task! ");
 		}
 	}
-	inter_subsys_command = MESSAGE(SUBSYS_SONAR,SUBSYS_COMPASS,CPS_LEFT_90); //turn left 90 degrees.
-	send_sys_message(&inter_subsys_command);
-	if(pthread_create( &treset_heading, NULL, &reset_heading_task, (void *)(this)) != 0) { //reset compass heading after a period of time
+	//slow down the motor
+	change_speed = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_SLOW);
+	send_sys_message(&change_speed);
+	if(sonar_reading < reverse_threshold) {//too close, go backwards
+		change_direction = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_DIRECTION,(void*)0); //reverse!
+		send_sys_message(&change_direction);
+	}else{ //can still turn out of obstacle
+		inter_subsys_command = MESSAGE(SUBSYS_SONAR,SUBSYS_COMPASS,CPS_LEFT_90); //turn left 90 degrees.
+		send_sys_message(&inter_subsys_command);
+	}
+	//reset compass heading, motor speed, and direction after a period of time
+	if(pthread_create( &treset_heading, NULL, &reset_heading_task, (void *)(this)) != 0) { 
 		perror("Error creating heading_reset thread for sonar object avoidance! ");
 	}
-	//wait 1 second
+	/*
 	struct timespec t;
 	clock_gettime(CLOCK_MONOTONIC ,&t);
 	t.tv_sec += 1;
 	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
 	//re-enable sonar
+	* */
 	enabled = 1;
 }
 
@@ -180,7 +212,7 @@ void Sonar::analysis(){
 		//wait for data
 		sem_wait(&collect_analysis_sync);
 		//analyze data
-		if(sonar_reading < threshold) {
+		if(sonar_reading < turn_threshold) {
 			if(print_data) {
 				std::cout << "Obstacle was detected! Sonar avoidance activated!" << std::endl;
 			}
@@ -198,7 +230,8 @@ void Sonar::analysis(){
 
 void* Sonar::read_data(int command) {
 	switch(command){
-		case SNR_SET_DIST_THR:
+		case SNR_SET_REVERSE_THR:
+		case SNR_SET_TURN_THR:
 			float data;
 			std::cin >> data;
 			return *((void**)(&data));
@@ -222,8 +255,11 @@ void* Sonar::read_data(int command) {
 
 void Sonar::handle_message(MESSAGE* message){
 	switch(message->command){
-		case SNR_SET_DIST_THR:
-			threshold = (*(float*)&message->data);
+		case SNR_SET_TURN_THR:
+			turn_threshold = (*(float*)&message->data);
+			break;
+		case SNR_SET_REVERSE_THR:
+			reverse_threshold = (*(float*)&message->data);
 			break;
 		case SNR_DISABLE:
 			enabled=0;
@@ -236,6 +272,9 @@ void Sonar::handle_message(MESSAGE* message){
 			break;
 		case CPS_RET_DES_HEADING:
 			old_compass_heading = (*(float*)&message->data);
+			break;
+		case MOT_RET_SPEED:
+			memcpy(old_motor_speed, (char*)message->data, 6);old_compass_heading = (*(float*)&message->data);
 			break;
 		case SNR_PRINT_DATA:
 			print_data = (*(bool*)&message->data);

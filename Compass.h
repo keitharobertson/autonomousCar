@@ -108,6 +108,11 @@ class Compass : public Sensor {
 		
 		/** The filename for the compass device. (will be a device in /dev). */
 		char compass_filepath[40];
+		
+		/** the minimum subsystem priority that can change the compass heading */
+		int min_priority;
+		
+		int subsys_priorities[NUM_SUBSYSTEMS+1];
 };
 
 #endif

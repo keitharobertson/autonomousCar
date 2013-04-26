@@ -2,6 +2,13 @@
 #define	SONAR_H_
 
 #include <semaphore.h>
+#include <iostream>
+#include <time.h>
+#include <sys/ioctl.h>
+#include <stdio.h>
+#include <unistd.h>
+ #include <stdint.h>
+ #include <linux/spi/spidev.h>
 
 #include "Sensor.h"
 #include "shirtt.h"
@@ -102,8 +109,13 @@ class Sonar : public Sensor {
 		/** The most recent sonar reading */
 		float sonar_reading;
 		/** Threshold distance for sonar avoidance.  If the sonar reading drops below this value, 
-		 * the sonar subsystem will take control of the actuators to avoid and obstacle */
-		 float threshold;
+		 * the sonar subsystem will take control of the actuators to turn and avoid and obstacle */
+		 float turn_threshold;
+		 /** Threshold distance for sonar avoidance.  If the sonar reading drops below this value, 
+		 * the sonar subsystem will take control of the actuators and REVERSE to avoid and obstacle */
+		 float reverse_threshold;
+		 /** SPI request for sonar data from the ADC */
+		 struct spi_ioc_transfer msg[1]; 
 		/** the colector/analysis sync semaphore used to sync the collector and analysis tasks */
 		sem_t collect_analysis_sync;
 		/** The sonar file descriptor (SPI file descriptor) */
@@ -114,10 +126,20 @@ class Sonar : public Sensor {
 		bool avoidance_mode;
 		/** original compass heading prior to avoidance mode */
 		float old_compass_heading;
-		/** message used for requesting data from other subsystems (usually compass)*/
-		MESSAGE request_data;
+		/** original motor speed prior to avoidance mode */
+		char old_motor_speed[6];
+		/** message used for requesting data from compass subsystem */
+		MESSAGE request_compass_data;
+		/** message used for requesting data from motor subsystem*/
+		MESSAGE request_motor_data;
+		/** message used for changing the motor speed */
+		MESSAGE change_speed;
 		/** Message used for commanding other subsystems (usually compass)*/
 		MESSAGE inter_subsys_command;
+		/** message used to set and reset the compass min priority during obstacle avoidance */
+		MESSAGE set_cps_prio;
+		/** message used to set the motor direction */
+		MESSAGE change_direction;
 		/** reset_heading thread */
 		pthread_t treset_heading;
 		/** whether to print out data after each collection for debugging/testing */

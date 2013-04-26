@@ -102,6 +102,9 @@ class Motor : public Actuator {
 		
 		/** the filepath to the PWM device (in /dev) */
 		char motor_filepath[40];
+		
+		/** message used to send back data requested by other subsystems (typically sonar) */
+		MESSAGE data_request;
 };
 
 #endif
