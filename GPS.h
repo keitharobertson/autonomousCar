@@ -106,7 +106,7 @@ class GPS : public Sensor {
 				 */
 				GPSWayPoint* next;
 
-			private:
+			//private:
 				/**
 				 *  Target latitude/longitude
 				 */

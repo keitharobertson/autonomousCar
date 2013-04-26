@@ -198,6 +198,7 @@ void* GPS::read_data(int command) {
 }
 
 void GPS::handle_message(MESSAGE* message){
+	GPSWayPoint* target_loop;
 	switch(message->command){
 		case GPS_DISABLE:
 			enabled = 0;
@@ -215,7 +216,7 @@ void GPS::handle_message(MESSAGE* message){
 			break;
 		case GPS_ADDWAY:
 			addWayPoint(getLocBufferAvg(),0.01f);
-			GPSWayPoint* target_loop=target;
+			target_loop=target;
 			std::cout << "Added Waypoint: " << getLocBufferAvg() << std::endl;
 			while(target_loop!=NULL){
 				std::cout << " " << target_loop->latLon << " " << 0.01f << std::endl;
