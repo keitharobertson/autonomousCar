@@ -89,7 +89,7 @@ class Motor : public Actuator {
 		int min_priority;
 		
 		/** The current set duty cycle for the motor PWM */
-		char motor_duty_cycle[2];
+		char motor_duty_cycle[6];
 		
 		/** the motor direction (1=forward, 0=reverse) */
 		int direction;
@@ -102,6 +102,9 @@ class Motor : public Actuator {
 		
 		/** the filepath to the PWM device (in /dev) */
 		char motor_filepath[40];
+		
+		/** message used to send back data requested by other subsystems (typically sonar) */
+		MESSAGE data_request;
 };
 
 #endif

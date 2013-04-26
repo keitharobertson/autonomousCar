@@ -13,12 +13,12 @@
 #define GPTIMER10_OFFSET		0x86000
 #define TIMER_LOAD_REG			0x02c
 
-#define HARD_LEFT		"9"
-#define HARD_RIGHT		"6"
-#define SLIGHT_LEFT		"8"
-#define SLIGHT_RIGHT	"6"
-#define FINE_LEFT		"8"
-#define FINE_RIGHT		"6"
+#define HARD_LEFT		"20000"
+#define HARD_RIGHT		"10000"
+#define SLIGHT_LEFT		"18000"
+#define SLIGHT_RIGHT	"12000"
+#define FINE_LEFT		"16000"
+#define FINE_RIGHT		"14000"
 #define	STRAIGHT		"15000"
 
 #define STR_DUTY_CMD_LEN	5
@@ -78,8 +78,9 @@ void* Steering::read_data(int command) {
 			return NULL;
 			break;
 		case STR_SET_STEERING:
-			std::cin >> data;
-			return *((void**)(&data)); 
+			std::cin >> input_data;
+			std::cout << "Done reading in steering data" << std::endl;
+			return ((void*)(input_data)); 
 			break;
 		case STR_DISABLE:
 		case STR_ENABLE:
@@ -141,8 +142,9 @@ void Steering::handle_message(MESSAGE* message){
 			#endif
 			break;
 		case STR_SET_STEERING:
-			std::cout << "setting steering" << std::endl;
-			std::cout << "setting steering: " << *(const char**)&message->data << std::endl;
+			#ifdef STR_DEBUG
+				std::cout << "Setting Steering!" << std::endl;
+			#endif
 			set_new_pwm_duty_cycle((const char*)message->data);
 			break;
 		case STR_DISABLE:
@@ -153,7 +155,7 @@ void Steering::handle_message(MESSAGE* message){
 			enabled = 1;
 			break;
 		case STR_SET_MIN_PRIO:
-			min_priority = (int)message->data;
+			min_priority = (*(int*)&message->data);
 			break;
 		default:
 			std::cout << "Unknown command passed to steering subsystem! Command was : " << message->command << std::endl;

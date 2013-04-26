@@ -32,4 +32,14 @@ void stack_setup();
  */
 void setup_rt_task(int priority);
 
+/**
+ * \brief Returns the ms difference between two timespec
+ * 
+ * Computes the time difference in MS between t1 and t2.
+ * 
+ * @param	t1	start time
+ * @param	t2	end time
+ */
+float ms_time_diff(struct timespec* t1, struct timespec* t2);
+
 #endif

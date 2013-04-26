@@ -99,6 +99,9 @@ class Steering : public Actuator {
 		
 		/** the filepath to the PWM device (in /dev) */
 		char steering_filepath[40];
+		
+		/** a string to store input data read in by the steering subsystem until it is ready for processing */
+		char input_data[6];
 };
 
 #endif

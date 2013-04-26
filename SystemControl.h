@@ -7,8 +7,6 @@
 #include "MQ_PARAMS.h"
 #include "Subsystem.h"
 
-#define NUM_SUBSYSTEMS	5
-
 /**
  * \brief System control is the central controller.
  * 

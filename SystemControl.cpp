@@ -64,19 +64,19 @@ void SystemControl::shutdown() {
 }
 
 void SystemControl::init() {
-	
+
 	subsys[SUBSYS_MOTOR] = new Motor();
 	subsys[SUBSYS_MOTOR]->init();
 	
 	subsys[SUBSYS_STEERING] = new Steering();
 	subsys[SUBSYS_STEERING]->init();
-	
+
 	subsys[SUBSYS_COMPASS] = new Compass();
 	subsys[SUBSYS_COMPASS]->init();
 
 	subsys[SUBSYS_SONAR] = new Sonar();
 	subsys[SUBSYS_SONAR]->init();
-	
+
 	subsys[SUBSYS_GPS] = new GPS();
 	subsys[SUBSYS_GPS]->init();
 }

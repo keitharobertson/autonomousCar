@@ -52,6 +52,8 @@ typedef struct _MESSAGE {
 #define SUBSYS_STEERING	4
 /** Camera Subsystem Number */
 #define SUBSYS_CAMERA	5
+/** Number of subsystems*/
+#define NUM_SUBSYSTEMS	5
 /**@}*/
 
 /** \defgroup steering_commands Steering Commands
@@ -104,6 +106,8 @@ typedef struct _MESSAGE {
 #define MOT_SET_MIN_PRIO	7
 /** set direction of motor (1=forward, 0=backward) */
 #define MOT_DIRECTION		8
+/** used for returning the motor speed (command can be sent to ANY subsystem that is configured to accept it) */
+#define MOT_RET_SPEED		98
 /** @} */
 
 /** \defgroup compass_commands Compass Commands
@@ -125,6 +129,10 @@ typedef struct _MESSAGE {
 #define	CPS_GET_READING		6
 /** sends back the desired compass heading */
 #define CPS_RETURN_DES_HEADING	7
+/** sets the minimum subsystem priority required to change the compass heading to be the level assigned to the calling subsystem.*/
+#define CPS_SET_MIN_PRIO	8
+/** resets the minimum subsystem priority required to change the compass heading to its default value */
+#define CPS_RESET_MIN_PRIO	9
 /** used for returning the compass desired heading (command can be sent to ANY subsystem that is configured to accept it) */
 #define CPS_RET_DES_HEADING	99
 /** @} */
@@ -151,8 +159,8 @@ typedef struct _MESSAGE {
 /** \defgroup sonar_commands Sonar Commands
  * Commands that can be issued to the Sonar subsystem.
  * @{ */
-/** set the sonar distance threshold - the maximum distance at which the subsystem takes control to avoid an obstacle. */
-#define SNR_SET_DIST_THR	0
+/** set the sonar distance turn threshold - the maximum distance at which the subsystem takes control to turn to avoid an obstacle. */
+#define SNR_SET_TURN_THR	0
 /** diable sonar control */
 #define SNR_DISABLE			1
 /** enable sonar control */
@@ -161,6 +169,8 @@ typedef struct _MESSAGE {
 #define	SNR_GET_READING		3
 /** print sonar data every time it is collected for testing/debugging. Turn on, data=1; turn off, data=0 */
 #define SNR_PRINT_DATA		4
+/** set the distance threshold at which the sonar subsystem instructs the motor subsytem to reverse */
+#define SNR_SET_REVERSE_THR	5
 /**@}*/
 
 #endif

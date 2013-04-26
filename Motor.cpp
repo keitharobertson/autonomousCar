@@ -17,13 +17,13 @@
 #define GPTIMER10_OFFSET		0x86000
 #define TIMER_LOAD_REG			0x02c
 
-#define FORWARD_FAST	"40"
-#define FORWARD_SLOW	"55"
-#define FORWARD_MID		"75"
-#define BACKWARD_MID	"25"
-#define BACKWARD_FAST	"5"
-#define BACKWARD_SLOW	"45"
-#define SPEED_STOP		"35"
+#define FORWARD_FAST	"10000"
+#define FORWARD_SLOW	"14000"
+#define FORWARD_MID		"12000"
+#define BACKWARD_MID	"18000"
+#define BACKWARD_FAST	"20000"
+#define BACKWARD_SLOW	"16000"
+#define SPEED_STOP		"15500"
 
 #define DIR_FORWARD		1
 #define DIR_BACKWARD	0
@@ -47,10 +47,8 @@ void Motor::init_device(){
 	if ((motor_fd = open(motor_filepath,O_RDWR)) < 0) {
 		perror("Failed to open the bus for motor.\n");
 	}
-	
-	ioctl(motor_fd, PWM_IOCTL_SET_FREQ, 500);
 
-	direction = 1;
+	direction = DIR_FORWARD;
 	set_new_pwm_duty_cycle(SPEED_STOP);
 }
 
@@ -58,14 +56,15 @@ void Motor::mech_command(char *value){
 	#ifdef MOTOR_DEBUG
 		std::cout << "mech command. Duty cycle: " << value[0] << value[1] << std::endl;
 	#endif
-	write(motor_fd, value, 2);
+	write(motor_fd, value, 5);
 }
 
 void Motor::mech_control(){
 	while(1){
 		sem_wait(&motor_cmd_ctrl);
 		#ifdef MOTOR_DEBUG
-			std::cout << "issuing motor command. Duty cycle: " << motor_duty_cycle[0] << motor_duty_cycle[1] << std::endl;
+			motor_duty_cycle[5] = '\0';
+			std::cout << "issuing motor command. Duty cycle: " << motor_duty_cycle << std::endl;
 		#endif
 		if(enabled){
 			mech_command(motor_duty_cycle);
@@ -74,7 +73,7 @@ void Motor::mech_control(){
 }
 void* Motor::read_data(int command) {
 	int data;
-	char chardat[3];
+	char chardat[6];
 	void* ret = 0;
 	#ifdef MOTOR_READ_DEBUG
 		char* read_test;
@@ -90,7 +89,7 @@ void* Motor::read_data(int command) {
 			break;
 		case MOT_SET_SPEED:
 			std::cin >> chardat;
-			chardat[2] = '\0';
+			chardat[5] = '\0';
 			#ifdef MOTOR_READ_DEBUG
 				std::cout << "data set to: " << chardat << std::endl;
 			#endif
@@ -114,7 +113,7 @@ void* Motor::read_data(int command) {
 }
 
 void Motor::set_new_pwm_duty_cycle(const char* value){
-	memcpy(motor_duty_cycle,value,2);
+	memcpy(motor_duty_cycle,value,5);
 	sem_post(&motor_cmd_ctrl);
 }
 
@@ -133,6 +132,7 @@ void Motor::handle_message(MESSAGE* message){
 		case MOT_SLOW:
 			#ifdef MOTOR_DEBUG
 				std::cout << "Setting motor slow!" << std::endl;
+				std::cout << "direction: " << direction << std::endl;
 			#endif
 			set_new_pwm_duty_cycle((direction==1) ? FORWARD_SLOW : BACKWARD_SLOW);
 			break;
@@ -160,6 +160,12 @@ void Motor::handle_message(MESSAGE* message){
 			enabled = 1;
 			break;
 		case MOT_SET_MIN_PRIO:
+			break;
+		case MOT_RET_SPEED:
+			data_request.to = message->from;
+			data_request.command = MOT_RET_SPEED;
+			data_request.data = ((void*)(motor_duty_cycle));
+			send_sys_message(&data_request);
 			break;
 		default:
 			break;

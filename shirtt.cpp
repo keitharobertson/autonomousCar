@@ -1,9 +1,11 @@
-//Some Helpfully Implemented RT Tasks
+//Some Helpfully Implemented Real Time Tasks
 #include <stdlib.h>
 #include <sched.h>
 #include <stdio.h>
 #include <sys/mman.h>
 #include <string.h>
+#include <time.h>
+#include <iostream>
 
 #include "shirtt.h"
 
@@ -37,4 +39,14 @@ void setup_rt_task(int priority) {
 	set_priority(priority);
 	stack_setup();
 	return;
+}
+
+float ms_time_diff(struct timespec* t1, struct timespec* t2) {
+	long ns_diff = t2->tv_nsec - t1->tv_nsec;
+	int sec_diff = t2->tv_sec - t1->tv_sec;
+	if(ns_diff < 0) {
+		ns_diff += 1000000000;
+		sec_diff -= 1;
+	}
+	return (float)(sec_diff*1000) + ((float)(ns_diff/10000))/100.0;
 }
