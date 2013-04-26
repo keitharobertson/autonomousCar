@@ -8,7 +8,6 @@
 
 #include "Motor.h"
 
-#define MOTOR_DEBUG
 #define MOTOR_READ_DEBUG
 
 #define PWM_IOCTL_SET_FREQ         (1) 
