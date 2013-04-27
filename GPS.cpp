@@ -3,7 +3,7 @@
 #define NS_PER_MS	1000000
 #define NS_PER_S	1000000000
 #define DATA_COL_PERIOD_MS	250
-
+#define DATA_ANL_PERIOD_MS  500
 
 
 //GPS class
@@ -50,16 +50,16 @@ void GPS::init_sensor() {
 
 }
 
-float GPS::getAngle(LatLon& startLoc,LatLon& eenndLoc){
+float GPS::getAngle(LatLon startLoc,LatLon eenndLoc){
 	LatLon rotation=eenndLoc-startLoc;
-	if(rotation.X==0){
-		rotation.X+=0.00001f;
+	if(rotation.lat==0){
+		rotation.lat+=0.00001f;
 	}
-	if(rotation.Y==0){
-		rotation.Y+=0.00001f;
+	if(rotation.lon==0){
+		rotation.lon+=0.00001f;
 	}
-	float angle=tan(rotation.Y/rotation.X);
-	if(rotation.X<0){
+	float angle=tan(rotation.lon/rotation.lat);
+	if(rotation.lat<0){
 		angle=180-angle;
 	}
 	return angle;
@@ -197,13 +197,23 @@ GPS::LatLon GPS::getLocBufferAvg(){
 }
 
 void GPS::analysis(){
+	//wait for data
+	sem_wait(&collect_analysis_sync);
+	struct timespec t;
+	clock_gettime(CLOCK_MONOTONIC ,&t);
 	while(1){
-		//wait for data
-		sem_wait(&collect_analysis_sync);
-		float angle=getAngle(getLocBufferAvg(),target);
-		MESSAGE request_compass_data = MESSAGE(SUBSYS_GPS, SUBSYS_COMPASS, CPS_SET_HEADING,(void*)angle); //request current compass heading
-		send_sys_message(&request_compass_data);
-		updateWayPoint();
+		t.tv_nsec+= DATA_ANL_PERIOD_MS*NS_PER_MS;
+		while(t.tv_nsec > NS_PER_S){
+			t.tv_sec++;
+			t.tv_nsec -= NS_PER_S;
+		}
+		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+		if(target!=NULL){
+			float angle=getAngle(getLocBufferAvg(),target->latLon);
+			MESSAGE request_compass_data = MESSAGE(SUBSYS_GPS, SUBSYS_COMPASS, CPS_SET_HEADING,*((void**)(&angle))); //request current compass heading
+			send_sys_message(&request_compass_data);
+			updateWayPoint();
+		}
 	}
 }
 

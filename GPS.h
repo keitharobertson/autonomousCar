@@ -4,6 +4,7 @@
 #include <errno.h>
 #include <iostream>
 #include <linux/i2c-dev.h>
+#include <math.h>
 #include <semaphore.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -52,6 +53,12 @@ class GPS : public Sensor {
 				lat+=other.lat;
 				lon+=other.lon;
 				return *this;
+			}
+			LatLon operator-(const LatLon &other) {
+				LatLon output;
+				output.lat=lat-other.lat;
+				output.lon=lon-other.lon;
+				return output;
 			}
 			template<class T>
 			LatLon & operator/=(const T &other) {
@@ -174,6 +181,7 @@ class GPS : public Sensor {
 
 		LatLon getLocBufferAvg();
 
+		float getAngle(LatLon startLoc,LatLon eenndLoc);
 
 		void setLocBuffer(const GPS::LatLon location);
 	protected:
