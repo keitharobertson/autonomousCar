@@ -96,10 +96,10 @@ float Sonar::data_grab(){
 	float distance = (float)reading / 1023.0 * 3300.0 / MV_PER_INCH;
 	
 	//if printing of sonar data is enabled, print out the reading
-	if(print_data) {
+	/*if(print_data) {
 		std::cout << "sonar reading: " << reading << std::endl;
 		std::cout << "Sonar Distance (in): " << distance << std::endl;
-	}
+	}*/
 	
 	return distance;
 }
@@ -147,18 +147,14 @@ void Sonar::reset_heading() {
 }
 
 void Sonar::reverse_direction() {
+	enabled=0;
+	setup_avoidance();
 	//go backwards
 	change_direction = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_DIRECTION,(void*)0); //reverse!
 	send_sys_message(&change_direction);
+	enabled=1;
 }
-
-void Sonar::avoid_obstacle() {
-	enabled = 0;
-	//now in avoidance mode
-	#ifdef SONAR_DEBUG
-		std::cout << "Sonar is avoiding an obstacle!" << std::endl;
-	#endif
-	
+void Sonar::setup_avoidance() {
 	//request current desired compass heading
 	request_compass_data = MESSAGE(SUBSYS_SONAR, SUBSYS_COMPASS, CPS_RETURN_DES_HEADING); //request current compass heading
 	send_sys_message(&request_compass_data);
@@ -168,6 +164,16 @@ void Sonar::avoid_obstacle() {
 	//disable lower priority subsystems from changing compass heading
 	set_cps_prio = MESSAGE(SUBSYS_SONAR, SUBSYS_COMPASS, CPS_SET_MIN_PRIO); //set compass min priority to prevent other subsystems from overriding the avoidance
 	send_sys_message(&set_cps_prio);
+}
+
+void Sonar::avoid_obstacle() {
+	enabled = 0;
+	//now in avoidance mode
+	#ifdef SONAR_DEBUG
+		std::cout << "Sonar is avoiding an obstacle!" << std::endl;
+	#endif
+	
+	setup_avoidance();
 	
 	//slow down the motor
 	change_speed = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_SLOW);
@@ -185,29 +191,39 @@ void Sonar::analysis(){
 		//wait for data
 		sem_wait(&collect_analysis_sync);
 		//analyze data
-		if(sonar_reading < reverse_threshold) {
-			avoidance_mode = true;
-			if(print_data) {
-				std::cout << "Obstacle was detected! Sonar avoidance activated! Reversing!" << std::endl;
+		if(!avoidance_mode && sonar_reading < reverse_threshold) {
+			if(!avoidance_mode){
+				avoidance_mode = true;
+				if(print_data) {
+					std::cout << "Obstacle was detected! Sonar avoidance activated! Reversing!" << std::endl;
+				}
+				#ifdef SONAR_DEBUG
+					std::cout << "Obstacle was detected! Sonar avoidance activated! Reversing!" << std::endl;
+				#endif
+				reverse_direction();
 			}
-			#ifdef SONAR_DEBUG
-				std::cout << "Obstacle was detected! Sonar avoidance activated! Reversing!" << std::endl;
-			#endif
-			reverse_direction();
 		}else if (sonar_reading < turn_threshold) {
-			avoidance_mode = true;
-			if(print_data) {
-				std::cout << "Obstacle was detected! Sonar avoidance activated! Turning!" << std::endl;
+			if(!avoidance_mode){
+				avoidance_mode = true;
+				if(print_data) {
+					std::cout << "Obstacle was detected! Sonar avoidance activated! Turning!" << std::endl;
+				}
+				#ifdef SONAR_DEBUG
+					std::cout << "Obstacle was detected! Sonar avoidance activated! Turning!" << std::endl;
+				#endif
+				avoid_obstacle();
 			}
-			#ifdef SONAR_DEBUG
-				std::cout << "Obstacle was detected! Sonar avoidance activated! Turning!" << std::endl;
-			#endif
-			avoid_obstacle();
 		}else{
 			#ifdef SONAR_DEBUG
 				std::cout << "No obstacles detected by sonar! No avoidance necessary." << std::endl;
 			#endif
+			if(print_data) {
+				std::cout << "No obstacles detected by sonar! No avoidance necessary." << std::endl;
+			}
 			if(avoidance_mode) {
+				if(print_data) {
+					std::cout << "Resetting heading and motor. Obstacle avoidance complete." << std::endl;
+				}
 				avoidance_mode = false;
 				reset_heading();
 			}
@@ -261,7 +277,9 @@ void Sonar::handle_message(MESSAGE* message){
 			old_compass_heading = (*(float*)&message->data);
 			break;
 		case MOT_RET_SPEED:
-			memcpy(old_motor_speed, (char*)message->data, 6);old_compass_heading = (*(float*)&message->data);
+			memcpy(old_motor_speed, (char*)message->data, 6);
+			old_motor_speed[5] = '\0';
+			std::cout << "old motor speed recieved: " << old_motor_speed << std::endl;
 			break;
 		case SNR_PRINT_DATA:
 			print_data = (*(bool*)&message->data);

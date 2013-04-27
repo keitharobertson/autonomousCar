@@ -5,6 +5,8 @@
 #include <unistd.h>
 #include <sys/mman.h>
 #include <string.h>
+#include <stdlib.h>     /* atoi */
+
 
 #include "Motor.h"
 
@@ -113,6 +115,8 @@ void* Motor::read_data(int command) {
 
 void Motor::set_new_pwm_duty_cycle(const char* value){
 	memcpy(motor_duty_cycle,value,5);
+	motor_duty_cycle[5] = '\0';
+	std::cout << "motor duty cycle set to: " << motor_duty_cycle << std::endl;
 	sem_post(&motor_cmd_ctrl);
 }
 
@@ -120,6 +124,9 @@ void Motor::handle_message(MESSAGE* message){
 	#ifdef MOTOR_DEBUG
 		char* data_test;
 	#endif
+	
+	int speed;
+	int new_speed;
 	
 	switch(message->command) {
 		case MOT_FAST:
@@ -143,6 +150,14 @@ void Motor::handle_message(MESSAGE* message){
 			break;
 		case MOT_DIRECTION:
 			direction = (*(int*)&message->data);
+			motor_duty_cycle[5] = '\0';
+			speed = atoi(motor_duty_cycle);
+			std::cout << "old speed: " << speed << std::endl;
+			new_speed = 30000 - speed;
+			sprintf(motor_duty_cycle,"%d",new_speed);
+			motor_duty_cycle[5] = '\0';
+			std::cout << "new speed: " << motor_duty_cycle << std::endl;
+			set_new_pwm_duty_cycle(motor_duty_cycle);
 			break;
 		case MOT_SET_SPEED:
 			#ifdef MOTOR_DEBUG
