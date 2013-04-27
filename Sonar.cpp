@@ -132,7 +132,7 @@ void Sonar::reset_heading() {
 	#ifdef SONAR_DEBUG
 		std::cout << "Sonar is resetting compass heading. Obstacle avoidance complete." << std::endl;
 	#endif
-	//reset direction to forward
+	//go forward
 	change_direction = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_DIRECTION,(void*)1); //forward!
 	send_sys_message(&change_direction);
 	//reset compass heading
@@ -149,9 +149,17 @@ void Sonar::reset_heading() {
 void Sonar::reverse_direction() {
 	enabled=0;
 	setup_avoidance();
+	sem_wait(&avoid_reset_control);
 	//go backwards
 	change_direction = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_DIRECTION,(void*)0); //reverse!
 	send_sys_message(&change_direction);
+	//run for 20 seconds
+	struct timespec t;
+	clock_gettime(CLOCK_MONOTONIC ,&t);
+	t.tv_sec += 5;
+	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+	change_speed = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_SLOW);
+	send_sys_message(&change_speed);
 	enabled=1;
 }
 void Sonar::setup_avoidance() {
@@ -174,7 +182,7 @@ void Sonar::avoid_obstacle() {
 	#endif
 	
 	setup_avoidance();
-	
+	sem_wait(&avoid_reset_control);
 	//slow down the motor
 	change_speed = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_SLOW);
 	send_sys_message(&change_speed);
@@ -191,7 +199,7 @@ void Sonar::analysis(){
 		//wait for data
 		sem_wait(&collect_analysis_sync);
 		//analyze data
-		if(!avoidance_mode && sonar_reading < reverse_threshold) {
+		if(sonar_reading < reverse_threshold) {
 			if(!avoidance_mode){
 				avoidance_mode = true;
 				if(print_data) {
@@ -278,8 +286,11 @@ void Sonar::handle_message(MESSAGE* message){
 			break;
 		case MOT_RET_SPEED:
 			memcpy(old_motor_speed, (char*)message->data, 6);
-			old_motor_speed[5] = '\0';
-			std::cout << "old motor speed recieved: " << old_motor_speed << std::endl;
+			#ifdef SONAR_DEBUG
+				old_motor_speed[5] = '\0';
+				std::cout << "old motor speed recieved: " << old_motor_speed << std::endl;
+			#endif
+			sem_post(&avoid_reset_control);
 			break;
 		case SNR_PRINT_DATA:
 			print_data = (*(bool*)&message->data);

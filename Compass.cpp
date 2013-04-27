@@ -231,6 +231,7 @@ void Compass::handle_message(MESSAGE* message){
 				break;
 			default:
 				std::cout << "Unknown command passed to compass subsystem! Command was : " << message->command << std::endl;
+				std::cout << "From: " << message->from << std::endl;
 				break;
 		}
 	}

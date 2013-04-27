@@ -21,13 +21,15 @@
 #define FORWARD_FAST	"10000"
 #define FORWARD_SLOW	"14000"
 #define FORWARD_MID		"12000"
-#define BACKWARD_MID	"18000"
+#define BACKWARD_MID	"19000"
 #define BACKWARD_FAST	"20000"
-#define BACKWARD_SLOW	"16000"
+#define BACKWARD_SLOW	"18000"
 #define SPEED_STOP		"15500"
 
 #define DIR_FORWARD		1
 #define DIR_BACKWARD	0
+
+#define MOTOR_DEBUG
 
 
 Motor::Motor(){
@@ -39,6 +41,7 @@ Motor::Motor(){
 }
 
 Motor::~Motor() {
+	set_new_pwm_duty_cycle(SPEED_STOP);
 	close(motor_fd);
 }
 		
@@ -115,8 +118,10 @@ void* Motor::read_data(int command) {
 
 void Motor::set_new_pwm_duty_cycle(const char* value){
 	memcpy(motor_duty_cycle,value,5);
-	motor_duty_cycle[5] = '\0';
-	std::cout << "motor duty cycle set to: " << motor_duty_cycle << std::endl;
+	#ifdef MOTOR_DEBUG
+		motor_duty_cycle[5] = '\0';
+		std::cout << "motor duty cycle set to: " << motor_duty_cycle << std::endl;
+	#endif
 	sem_post(&motor_cmd_ctrl);
 }
 
@@ -150,22 +155,26 @@ void Motor::handle_message(MESSAGE* message){
 			break;
 		case MOT_DIRECTION:
 			direction = (*(int*)&message->data);
-			motor_duty_cycle[5] = '\0';
+			/*motor_duty_cycle[5] = '\0';
 			speed = atoi(motor_duty_cycle);
-			std::cout << "old speed: " << speed << std::endl;
-			new_speed = 30000 - speed;
-			sprintf(motor_duty_cycle,"%d",new_speed);
-			motor_duty_cycle[5] = '\0';
-			std::cout << "new speed: " << motor_duty_cycle << std::endl;
-			set_new_pwm_duty_cycle(motor_duty_cycle);
+			if((direction==1 && speed>15500)){
+				new_speed = 30000 - speed;
+				sprintf(motor_duty_cycle,"%d",new_speed);
+				motor_duty_cycle[5] = '\0';
+				std::cout << "new speed: " << motor_duty_cycle << std::endl;
+				set_new_pwm_duty_cycle(motor_duty_cycle);
+			}else if(direction==0 && speed<15500){*/
+				sprintf(motor_duty_cycle, "15500");
+				set_new_pwm_duty_cycle(motor_duty_cycle);
+			//}
 			break;
 		case MOT_SET_SPEED:
 			#ifdef MOTOR_DEBUG
 				std::cout << "Motor set speed: reading message data" << std::endl;
-				data_test = ((char*)&message->data);
+				data_test = ((char*)message->data);
 				std::cout << "Setting motor speed manually: " << data_test[0] << data_test[1] << std::endl;
 			#endif
-			set_new_pwm_duty_cycle(((char*)&message->data));
+			set_new_pwm_duty_cycle((char*)message->data);
 			break;
 		case MOT_DISABLE:
 			enabled = 0;
@@ -178,6 +187,10 @@ void Motor::handle_message(MESSAGE* message){
 		case MOT_RET_SPEED:
 			data_request.to = message->from;
 			data_request.command = MOT_RET_SPEED;
+			#ifdef MOTOR_DEBUG
+				motor_duty_cycle[5] = '\0';
+				std::cout << "motor duty cycle is: " << motor_duty_cycle << std::endl;
+			#endif
 			data_request.data = ((void*)(motor_duty_cycle));
 			send_sys_message(&data_request);
 			break;

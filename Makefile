@@ -1,6 +1,6 @@
 all: system tests
 #bin/console.o
-system: bin/console.o bin/Subsystem.o bin/Sensor.o bin/Actuator.o bin/SystemControl.o bin/Steering.o bin/Sonar.o bin/shirtt.o bin/Motor.o bin/GPS.o bin/Compass.o
+system: bin/console.o bin/Subsystem.o bin/Sensor.o bin/Actuator.o bin/SystemControl.o bin/Steering.o bin/Sonar.o bin/shirtt.o bin/Motor.o bin/Compass.o bin/GPS.o
 	 arm-linux-gnueabi-g++ bin/*.o -o 0system/System.o -lpthread -lrt 
 
 tests:  motor_tests sonar_tests compass_tests steering_tests integration_tests
