@@ -50,6 +50,21 @@ void GPS::init_sensor() {
 
 }
 
+float GPS::getAngle(LatLon& startLoc,LatLon& eenndLoc){
+	LatLon rotation=eenndLoc-startLoc;
+	if(rotation.X==0){
+		rotation.X+=0.00001f;
+	}
+	if(rotation.Y==0){
+		rotation.Y+=0.00001f;
+	}
+	float angle=tan(rotation.Y/rotation.X);
+	if(rotation.X<0){
+		angle=180-angle;
+	}
+	return angle;
+}
+
 bool GPS::convert_data(char* input,int length,LatLon& output){
 	char command[GPS_GPGAA_L+1];
 	char latLonChar[20];
@@ -185,6 +200,10 @@ void GPS::analysis(){
 	while(1){
 		//wait for data
 		sem_wait(&collect_analysis_sync);
+		float angle=getAngle(getLocBufferAvg(),target);
+		MESSAGE request_compass_data = MESSAGE(SUBSYS_GPS, SUBSYS_COMPASS, CPS_SET_HEADING,(void*)angle); //request current compass heading
+		send_sys_message(&request_compass_data);
+		updateWayPoint();
 	}
 }
 
