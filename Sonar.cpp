@@ -129,15 +129,6 @@ void Sonar::reset_heading() {
 		std::cout << "Sonar reset heading started. Waiting " << AVOIDANCE_TIME_SEC << " seconds..." << std::endl;
 	#endif
 	
-	struct timespec t;
-	clock_gettime(CLOCK_MONOTONIC ,&t);
-	t.tv_sec += AVOIDANCE_TIME_SEC;
-	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
-	
-	if(sem_trywait(&avoid_reset_control) !=0){
-		return;
-	}
-	
 	#ifdef SONAR_DEBUG
 		std::cout << "Sonar is resetting compass heading. Obstacle avoidance complete." << std::endl;
 	#endif
@@ -153,63 +144,37 @@ void Sonar::reset_heading() {
 	//reset motor speed
 	change_speed = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_SET_SPEED,(void*)old_motor_speed);
 	send_sys_message(&change_speed);
-	
-	sem_give(&avoid_reset_control);
+}
+
+void Sonar::reverse_direction() {
+	//go backwards
+	change_direction = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_DIRECTION,(void*)0); //reverse!
+	send_sys_message(&change_direction);
 }
 
 void Sonar::avoid_obstacle() {
 	enabled = 0;
+	//now in avoidance mode
 	#ifdef SONAR_DEBUG
 		std::cout << "Sonar is avoiding an obstacle!" << std::endl;
 	#endif
-	if(!avoidance_mode){
-		//not already in obstacle avoidance mode
-		#ifdef SONAR_DEBUG
-			std::cout << "Sonar was not previously avoiding an obstacle. Requesting current compass heading" << std::endl;
-		#endif
-		//request current desired compass heading
-		request_compass_data = MESSAGE(SUBSYS_SONAR, SUBSYS_COMPASS, CPS_RETURN_DES_HEADING); //request current compass heading
-		send_sys_message(&request_compass_data);
-		//request current motor speed
-		request_motor_data = MESSAGE(SUBSYS_SONAR, SUBSYS_MOTOR, MOT_RET_SPEED); //request current motor speed so it can be reset later
-		send_sys_message(&request_motor_data);
-		//now in avoidance mode
-		avoidance_mode = true;
-		//disable lower priority subsystems from changing compass heading
-		set_cps_prio = MESSAGE(SUBSYS_SONAR, SUBSYS_COMPASS, CPS_SET_MIN_PRIO); //set compass min priority to prevent other subsystems from overriding the avoidance
-		send_sys_message(&set_cps_prio);
-	}else{
-		#ifdef SONAR_DEBUG
-			std::cout << "Sonar was already avoiding an obstacle. Cancelling compass heading reset" << std::endl;
-		#endif
-		//delete existing reset heading thread
-		if(sem_wait(&avoid_reset_control) != 0){
-			perror("Error taking avoid reset control semaphore! ");
-		}
-	}
+	
+	//request current desired compass heading
+	request_compass_data = MESSAGE(SUBSYS_SONAR, SUBSYS_COMPASS, CPS_RETURN_DES_HEADING); //request current compass heading
+	send_sys_message(&request_compass_data);
+	//request current motor speed
+	request_motor_data = MESSAGE(SUBSYS_SONAR, SUBSYS_MOTOR, MOT_RET_SPEED); //request current motor speed so it can be reset later
+	send_sys_message(&request_motor_data);
+	//disable lower priority subsystems from changing compass heading
+	set_cps_prio = MESSAGE(SUBSYS_SONAR, SUBSYS_COMPASS, CPS_SET_MIN_PRIO); //set compass min priority to prevent other subsystems from overriding the avoidance
+	send_sys_message(&set_cps_prio);
+	
 	//slow down the motor
 	change_speed = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_SLOW);
 	send_sys_message(&change_speed);
-	if(sonar_reading < reverse_threshold) {//too close, go backwards
-		change_direction = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_DIRECTION,(void*)0); //reverse!
-		send_sys_message(&change_direction);
-	}else{ //can still turn out of obstacle
-		inter_subsys_command = MESSAGE(SUBSYS_SONAR,SUBSYS_COMPASS,CPS_LEFT_90); //turn left 90 degrees.
-		send_sys_message(&inter_subsys_command);
-	}
-	//reset compass heading, motor speed, and direction after a period of time
-	if(pthread_create( &treset_heading, NULL, &reset_heading_task, (void *)(this)) != 0) { 
-		perror("Error creating heading_reset thread for sonar object avoidance! ");
-	}
-	
-	struct timespec t;
-	clock_gettime(CLOCK_MONOTONIC ,&t);
-	t.tv_nsec += 500*NS_PER_MS;
-	if(t.tv_nsec > NS_PER_S){
-		t.tv_sec += 1;
-		t.tv_nsec -= NS_PER_S;
-	}
-	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+	//turn left 90 degrees
+	inter_subsys_command = MESSAGE(SUBSYS_SONAR,SUBSYS_COMPASS,CPS_LEFT_90);
+	send_sys_message(&inter_subsys_command);
 	
 	//re-enable sonar
 	enabled = 1;
@@ -220,18 +185,32 @@ void Sonar::analysis(){
 		//wait for data
 		sem_wait(&collect_analysis_sync);
 		//analyze data
-		if(sonar_reading < turn_threshold) {
+		if(sonar_reading < reverse_threshold) {
+			avoidance_mode = true;
 			if(print_data) {
-				std::cout << "Obstacle was detected! Sonar avoidance activated!" << std::endl;
+				std::cout << "Obstacle was detected! Sonar avoidance activated! Reversing!" << std::endl;
 			}
 			#ifdef SONAR_DEBUG
-				std::cout << "Obstacle was detected! Sonar avoidance activated!" << std::endl;
+				std::cout << "Obstacle was detected! Sonar avoidance activated! Reversing!" << std::endl;
+			#endif
+			reverse_direction();
+		}else if (sonar_reading < turn_threshold) {
+			avoidance_mode = true;
+			if(print_data) {
+				std::cout << "Obstacle was detected! Sonar avoidance activated! Turning!" << std::endl;
+			}
+			#ifdef SONAR_DEBUG
+				std::cout << "Obstacle was detected! Sonar avoidance activated! Turning!" << std::endl;
 			#endif
 			avoid_obstacle();
 		}else{
 			#ifdef SONAR_DEBUG
 				std::cout << "No obstacles detected by sonar! No avoidance necessary." << std::endl;
 			#endif
+			if(avoidance_mode) {
+				avoidance_mode = false;
+				reset_heading();
+			}
 		}
 	}
 }

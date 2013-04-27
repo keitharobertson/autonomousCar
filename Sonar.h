@@ -106,6 +106,13 @@ class Sonar : public Sensor {
 		 */
 		void avoid_obstacle();
 		
+		/**
+		 * \brief Avoids an obstacle that was detected by the sonar system.
+		 * 
+		 * Will make the car reverse until it is out of range of the obstacle.
+		 */
+		void reverse_direction();
+		
 		/** The most recent sonar reading */
 		float sonar_reading;
 		/** Threshold distance for sonar avoidance.  If the sonar reading drops below this value, 
