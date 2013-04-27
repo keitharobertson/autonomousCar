@@ -1,14 +1,3 @@
-#include <iostream>
-#include <time.h>
-#include <errno.h>
-#include <linux/i2c-dev.h>
-#include <sys/ioctl.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <termios.h>
-#include <unistd.h>
-
 #include "GPS.h"
 
 #define NS_PER_MS	1000000
@@ -16,11 +5,16 @@
 #define DATA_COL_PERIOD_MS	250
 
 
-//Compass class
+
+//GPS class
 
 GPS::GPS() {
 	subsys_name = GPS_NAME;
 	subsys_num = SUBSYS_GPS;
+	target=NULL;
+	if(sem_init(&collect_analysis_sync, 0, 0) != 0){
+		perror("Failed to init the compass collector/analysis sync sem \n");
+	}
 }
 
 GPS::~GPS(){
@@ -56,8 +50,22 @@ void GPS::init_sensor() {
 
 }
 
-bool GPS::convert_data(char* input,int length,
-	float& output_lat,float& output_lon){
+float GPS::getAngle(LatLon& startLoc,LatLon& eenndLoc){
+	LatLon rotation=eenndLoc-startLoc;
+	if(rotation.X==0){
+		rotation.X+=0.00001f;
+	}
+	if(rotation.Y==0){
+		rotation.Y+=0.00001f;
+	}
+	float angle=tan(rotation.Y/rotation.X);
+	if(rotation.X<0){
+		angle=180-angle;
+	}
+	return angle;
+}
+
+bool GPS::convert_data(char* input,int length,LatLon& output){
 	char command[GPS_GPGAA_L+1];
 	char latLonChar[20];
 	float latLon[2];
@@ -68,7 +76,6 @@ bool GPS::convert_data(char* input,int length,
 
 	// Check for GPGGA Command
 	if(strcmp(command,GPS_GPGAA)==0){
-
 		// Now that the command is found, 
 		//  we grab all the data between the two commas
 		//  then convert it to a float
@@ -76,12 +83,12 @@ bool GPS::convert_data(char* input,int length,
 			if(input[i]==','){
 				commaCount++;
 			}
-			if(commaCount==2||commaCount==4){
+			if(commaCount==2||commaCount==4){\
 				for(int ii=i+1;ii<length;ii++){
 					if(input[ii]==','){
 						strncpy(latLonChar,input+i+1,ii-(i+1));
 						latLon[latLonCounter++]=atof(latLonChar);
-						i=ii;
+						i=ii-1;
 						break;
 					}
 				}
@@ -101,16 +108,34 @@ bool GPS::convert_data(char* input,int length,
 				minutes[i]=latLon[i]-degrees[i]*100;
 				outputs[i]=degrees[i]+minutes[i]/60;
 			}
-			output_lat=outputs[0];
-			output_lon=outputs[1]*-1;
+			output.lat=outputs[0];
+			output.lon=outputs[1]*-1;
 		}
 		return 1;
 	}
 	return 0;
 }
 
-void GPS::data_grab(float& output_lat,float& output_lon){
-
+bool GPS::updateWayPoint(){
+	if(target==NULL) return false;
+	if(target->inRange(getLocBufferAvg()))
+		target=target->next;
+}
+bool GPS::addWayPoint(LatLon latlon,double radius,int index){
+	GPSWayPoint* target_loop=target;
+	index=target_loop==NULL?-2:index;
+	int i;
+	for(i=0;index!=-2&&(index==-1||i<index)&&target_loop->next!=NULL;i++){
+		target_loop=target_loop->next;
+	}
+	if(index==-2||index==0){
+		target=new GPSWayPoint(latlon,radius,target);
+	}else{
+		target_loop->next=new GPSWayPoint(latlon,radius,target_loop->next);
+	}
+}
+void GPS::data_grab(LatLon& output){//float& output_lat,float& output_lon){
+	LatLon outputB;
 	if (serial_port != -1){
 		char read_buffer[GPS_MAX_LENGTH + 1] = {0};
 		int chars_read = read(serial_port,read_buffer, GPS_MAX_LENGTH);
@@ -121,21 +146,22 @@ void GPS::data_grab(float& output_lat,float& output_lon){
 			#endif
 
 			//Conversion time
-			convert_data(read_buffer,chars_read,last_lat,last_lon);
+			convert_data(read_buffer,chars_read,outputB);
 		}else{
+			#ifdef GPS_DEBUG
 			printf("No GPS Data\n");
+			#endif
 		}
 	}else{
-		printf("Bad GPS Serial\n");
+		std::cout << "Bad GPS Serial" << std::endl;
 	}
-	output_lat=last_lat;
-	output_lon=last_lon;
+	output.lat=outputB.lat;
+	output.lon=outputB.lon;
 	return;
 }
 
 void GPS::collector(){
-	float gps_reading_lat;
-	float gps_reading_lon;
+	LatLon gps_reading;
 	struct timespec t;
 	clock_gettime(CLOCK_MONOTONIC ,&t);
 	while(1){
@@ -145,17 +171,40 @@ void GPS::collector(){
 			t.tv_nsec -= NS_PER_S;
 		}
 		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+
 		if(enabled){
-			data_grab(gps_reading_lat,gps_reading_lon);
+			data_grab(gps_reading);
 			if(output_heading){
-				std::cout << "GPS Heading: " << gps_reading_lat <<", "<< gps_reading_lon << std::endl;
+				printf("GPS Heading: %f %f\n", gps_reading.lat, gps_reading.lon);
 			}
+			setLocBuffer(gps_reading);
+			sem_post(&collect_analysis_sync);
 		}
 	}
 }
 
+void GPS::setLocBuffer(const GPS::LatLon location){
+	locBuffer[locBufferIndex]=location;
+	locBufferIndex=(locBufferIndex+1)%GPS_ROLLBUFF_SIZE;
+}
+
+GPS::LatLon GPS::getLocBufferAvg(){
+	LatLon output;
+	for(int i=0;i<GPS_ROLLBUFF_SIZE;i++){
+		output+=locBuffer[locBufferIndex];
+	}
+	output/=GPS_ROLLBUFF_SIZE;
+}
+
 void GPS::analysis(){
-	
+	while(1){
+		//wait for data
+		sem_wait(&collect_analysis_sync);
+		float angle=getAngle(getLocBufferAvg(),target);
+		MESSAGE request_compass_data = MESSAGE(SUBSYS_GPS, SUBSYS_COMPASS, CPS_SET_HEADING,(void*)angle); //request current compass heading
+		send_sys_message(&request_compass_data);
+		updateWayPoint();
+	}
 }
 
 void* GPS::read_data(int command) {
@@ -168,18 +217,30 @@ void* GPS::read_data(int command) {
 }
 
 void GPS::handle_message(MESSAGE* message){
+	GPSWayPoint* target_loop;
 	switch(message->command){
 		case GPS_DISABLE:
 			enabled = 0;
 			break;
 		case GPS_ENABLE:
+			std::cout << "Enable GPS" << std::endl;
 			enabled = 1;
 			break;
 		case GPS_NO_DISPLAY:
 			output_heading = 0;
 			break;
 		case GPS_DISPLAY:
+			std::cout << "Enable Display GPS" << std::endl;
 			output_heading = 1;
+			break;
+		case GPS_ADDWAY:
+			addWayPoint(getLocBufferAvg(),0.01f);
+			target_loop=target;
+			std::cout << "Added Waypoint: " << getLocBufferAvg() << std::endl;
+			while(target_loop!=NULL){
+				std::cout << " " << target_loop->latLon << " " << 0.01f << std::endl;
+				target_loop=target_loop->next;
+			}
 			break;
 		default:
 			std::cout << "Unknown command passed to compass subsystem! Command was : " << message->command << std::endl;

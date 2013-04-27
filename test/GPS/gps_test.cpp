@@ -5,7 +5,8 @@
 int main() {
 	//forward full speed for 5 seconds
 	
-	std::cout << "en_subsys " << SUBSYS_GPS << std::endl;
+	//std::cout << "en_subsys " << SUBSYS_GPS << std::endl;
+	std::cout << "subsys 0 " << SUBSYS_GPS << " " << GPS_ENABLE << std::endl;
 	std::cout << "subsys 0 " << SUBSYS_GPS << " " << GPS_DISPLAY << std::endl;
 	
 	struct timespec t;
