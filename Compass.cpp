@@ -21,7 +21,7 @@
 #define	SLIGHT_TURN_THRESH	20
 #define STRAIGHT_THRESH		5
 
-#define K_PROP_CONTROL		250
+#define K_PROP_CONTROL		250 
 #define CONTROL_OFFSET		15000
 #define STR_CMD_LEN			6
 
