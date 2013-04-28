@@ -154,6 +154,11 @@ typedef struct _MESSAGE {
 #define GPS_NO_DISPLAY 		5
  /** Add a waypoint at the current location */
 #define GPS_ADDWAY			6
+
+#define GPS_ADDWAYDATALAT	7
+#define GPS_ADDWAYDATALON	8
+#define GPS_ADDWAYDATARUN	9
+
 /** @}*/
 
 /** \defgroup sonar_commands Sonar Commands
