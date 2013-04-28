@@ -17,12 +17,20 @@
 #include "Sensor.h"
 
 #define GPS_NAME	"GPS"
-#define GPS_MAX_LENGTH 100
+#define GPS_MAX_LENGTH 512
 #define GPS_PORT_NAME "/dev/ttyO1"
 #define GPS_DEBUG
 #define GPS_GPGAA "$GPGGA"
 #define GPS_GPGAA_L 6
-#define GPS_ROLLBUFF_SIZE 3
+#define GPS_GPGAA_OS 2
+#define GPS_GPGLL "$GPGLL"
+#define GPS_GPGLL_L 6
+#define GPS_GPGLL_OS 1
+#define GPS_GPRMC "$GPRMC"
+#define GPS_GPRMC_L 6
+#define GPS_GPRMC_OS 3
+
+#define GPS_ROLLBUFF_SIZE 1
 /**
  * \class GPS
  * \brief GPS data collection and analysis
@@ -94,7 +102,7 @@ class GPS : public Sensor {
 				 */
 				void set(const LatLon latLon_new,double rad_new,GPSWayPoint* next_new=NULL){
 					latLon=latLon_new;
-					rad=rad_new;
+					rad=rad_new*rad_new;
 					next=next_new;
 				}
 				/**
@@ -181,7 +189,7 @@ class GPS : public Sensor {
 
 		LatLon getLocBufferAvg();
 
-		float getAngle(LatLon startLoc,LatLon eenndLoc);
+		double getAngle(LatLon startLoc,LatLon eenndLoc);
 
 		void setLocBuffer(const GPS::LatLon location);
 	protected:
@@ -220,6 +228,9 @@ class GPS : public Sensor {
 
 		/** The collect/analysis sync semaphore */
 		sem_t collect_analysis_sync;
+
+		float temp_lat;
+		float temp_lon;
 };
 
 #endif
