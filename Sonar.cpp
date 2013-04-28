@@ -210,6 +210,13 @@ void Sonar::analysis(){
 				#endif
 				reverse_direction();
 			}
+			//reverse (and stop)
+			change_direction = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_DIRECTION,(void*)0); //reverse!
+			send_sys_message(&change_direction);
+			//slow down the motor
+			change_speed = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_SLOW);
+			send_sys_message(&change_speed);
+			
 		}else if (sonar_reading < turn_threshold) {
 			if(!avoidance_mode){
 				avoidance_mode = true;
