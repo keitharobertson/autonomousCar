@@ -2,9 +2,8 @@
 
 #define NS_PER_MS	1000000
 #define NS_PER_S	1000000000
-#define DATA_COL_PERIOD_MS	10
-#define DATA_ANL_PERIOD_MS  200
-
+#define DATA_COL_PERIOD_MS	2000
+#define DATA_ANL_PERIOD_MS  2000
 
 //GPS class
 
@@ -26,9 +25,9 @@ void GPS::init_sensor() {
 	bool error=0;
 	struct termios options_original;
 	struct termios options;
-
-	serial_port = open(GPS_PORT_NAME, O_RDWR | O_NONBLOCK);
-
+	
+	serial_port = open(GPS_PORT_NAME, O_RDWR); // | O_NONBLOCK);
+	
 	if (serial_port != -1){
 		#ifdef GPS_DEBUG
 			printf("Serial Port open\n");
@@ -39,7 +38,7 @@ void GPS::init_sensor() {
 		cfsetospeed(&options, B57600);
 		options.c_cflag |= (CLOCAL | CREAD);
 		options.c_lflag |= ICANON;
-		if (tcsetattr(serial_port, TCSANOW, &options)!=0){
+		if (tcsetattr(serial_port, TCSAFLUSH, &options)!=0){ //TCSANOW replaced with TCSAFLUSH
 			printf("error %d from tcsetattr", errno);
 			error -1;
 			return;
@@ -48,13 +47,20 @@ void GPS::init_sensor() {
 		printf("Unable to open %s",GPS_PORT_NAME);
 		printf("Error %d opening %s: %s",errno, GPS_PORT_NAME, strerror(errno));
 	}
+	
 
-	//clear buffer
-	char read_buffer[GPS_MAX_LENGTH + 1] = {0};
-	while(read(serial_port,read_buffer, GPS_MAX_LENGTH)>0){
-		printf(".");
-	}
-
+	const char* write_buffer1 = "$PMTK313,1*2E\r\n"; //SBAS_ENABLED
+	write(serial_port, write_buffer1, strlen(write_buffer1));
+	const char* write_buffer2 = "$PMTK301,2*2E\r\n";//SET_DGPS_MODE
+	write(serial_port, write_buffer2, strlen(write_buffer2));
+	const char* write_buffer3 = "$PMTK300,200,0,0,0,0*2F\r\n";//SET 2Hz update 
+	write(serial_port, write_buffer3, strlen(write_buffer3));
+	const char* write_buffer4 = "$PMTK314,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*29\r\n";//only output data I care about 
+	write(serial_port, write_buffer4, strlen(write_buffer4));
+	/*const char* write_buffer5 = "$PMTK101*32\r\n";//hot restart
+	write(serial_port, write_buffer5, strlen(write_buffer5));*/
+	sleep(2); //required to make flush work, for some reason
+	tcflush(serial_port,TCIOFLUSH);
 }
 
 double GPS::getAngle(LatLon startLoc,LatLon eenndLoc){
@@ -85,7 +91,7 @@ double GPS::getAngle(LatLon startLoc,LatLon eenndLoc){
 bool GPS::convert_data(char* input,int length,LatLon& output){
 	char command[GPS_GPGAA_L+1];
 	char latLonChar[20];
-	float latLon[2];
+	double latLon[2];
 	int latLonCounter=0;
 	strncpy(command,input,GPS_GPGAA_L);
 	command[GPS_GPGAA_L]='\0';
@@ -133,8 +139,8 @@ bool GPS::convert_data(char* input,int length,LatLon& output){
 		//Decode GPS data and store in outputs
 		if(latLonCounter>=2){
 			int   degrees[2];
-			float minutes[2];
-			float outputs[2];
+			double minutes[2];
+			double outputs[2];
 			for(int i=0;i<2;i++){
 				degrees[i]=latLon[i]/100;
 				minutes[i]=latLon[i]-degrees[i]*100;
@@ -185,7 +191,7 @@ void GPS::data_grab(LatLon& output){//float& output_lat,float& output_lon){
 		if(chars_read>0){
 			read_bufferA[chars_read]='\0';
 			#ifdef GPS_DEBUG
-				//printf(">>B %d %s\n",chars_read,read_bufferA);
+				printf(">>B %d\n %s\n",chars_read,read_bufferA);
 			#endif
 
 			//Conversion time
@@ -210,24 +216,39 @@ void GPS::collector(){
 	LatLon gps_reading;
 	struct timespec t;
 	clock_gettime(CLOCK_MONOTONIC ,&t);
+	int count = 0;
+	double avg_lat=0;
+	double avg_lon=0;
 	while(1){
-		t.tv_nsec+= DATA_COL_PERIOD_MS*NS_PER_MS;
-		while(t.tv_nsec > NS_PER_S){
-			t.tv_sec++;
-			t.tv_nsec -= NS_PER_S;
-		}
-		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
-
 		if(enabled){
 			data_grab(gps_reading);
 			//printf("GPS H: %f %f\n", gps_reading.lat, gps_reading.lon);
 			if(gps_reading.lat!=0||gps_reading.lon!=0){
-				if(1==1){//output_heading){
-					printf("> %f\t%f\n", gps_reading.lat, gps_reading.lon);
+				avg_lat += gps_reading.lat;
+				avg_lon += gps_reading.lon;
+				count++;
+				if(count%5==0){
+					avg_lat = avg_lat/(double)count;
+					avg_lon = avg_lon/(double)count;
+					gps_reading.lat = avg_lat;
+					gps_reading.lon = avg_lon;
+					if(1==1){//output_heading){
+						printf("> %f\t%f\n", gps_reading.lat, gps_reading.lon);
+					}
+					setLocBuffer(gps_reading);
+					sem_post(&collect_analysis_sync);
+					count=0;
+					avg_lat=0;
+					avg_lon=0;
 				}
-				setLocBuffer(gps_reading);
-				sem_post(&collect_analysis_sync);
 			}
+		}else{
+			t.tv_nsec+= DATA_COL_PERIOD_MS*NS_PER_MS;
+			while(t.tv_nsec > NS_PER_S){
+				t.tv_sec++;
+				t.tv_nsec -= NS_PER_S;
+			}
+			clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
 		}
 	}
 }
@@ -269,7 +290,7 @@ void GPS::analysis(){
 		}
 		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
 		if(target!=NULL){
-			float angle=getAngle(getLocBufferAvg(),target->latLon);
+			float angle=(float)getAngle(getLocBufferAvg(),target->latLon);
 			angle-=12;	// Magnetic north correction
 			//printf("Angle: %f\n",angle);
 			MESSAGE request_compass_data = MESSAGE(SUBSYS_GPS, SUBSYS_COMPASS, CPS_SET_HEADING,*((void**)(&angle))); //request current compass heading
@@ -282,12 +303,14 @@ void GPS::analysis(){
 void* GPS::read_data(int command) {
 	switch(command){
 		case GPS_ADDWAYDATALAT:
-			float inLat;
+			double inLat;
 			std::cin >> inLat;
+			printf("Got lat: %f\n",inLat);
 			return *((void**)(&inLat));
 		case GPS_ADDWAYDATALON:
-			float inLon;
+			double inLon;
 			std::cin >> inLon;
+			printf("Got lon: %f\n",inLon);
 			return *((void**)(&inLon));
 		default:
 			std::cout << "Unknown command passed to GPS subsystem for reading data! Command was : " << command << std::endl;
@@ -323,13 +346,15 @@ void GPS::handle_message(MESSAGE* message){
 			}
 			break;
 		case GPS_ADDWAYDATALAT:
-			temp_lat=(*(float*)&message->data);
+			temp_lat=(*(double*)&message->data);
+			printf("Got Add Way Lat: %f\n",temp_lat);
 			break;
 		case GPS_ADDWAYDATALON:
-			temp_lon=(*(float*)&message->data);
+			temp_lon=(*(double*)&message->data);
+			printf("Got Add Way Lon: %f\n",temp_lon);
 			break;
 		case GPS_ADDWAYDATARUN:
-			addWayPoint(LatLon(temp_lat,temp_lon),0.0002);
+			addWayPoint(LatLon(temp_lat,temp_lon),0.00005);
 			break;
 		default:
 			std::cout << "Unknown command passed to compass subsystem! Command was : " << message->command << std::endl;

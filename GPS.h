@@ -17,9 +17,9 @@
 #include "Sensor.h"
 
 #define GPS_NAME	"GPS"
-#define GPS_MAX_LENGTH 512
+#define GPS_MAX_LENGTH 512 
 #define GPS_PORT_NAME "/dev/ttyO1"
-#define GPS_DEBUG
+
 #define GPS_GPGAA "$GPGGA"
 #define GPS_GPGAA_L 6
 #define GPS_GPGAA_OS 2
@@ -40,7 +40,6 @@
  */
 class GPS : public Sensor {
 	public:
-	
 		class LatLon{
 		public:
 			double lat;
@@ -229,8 +228,8 @@ class GPS : public Sensor {
 		/** The collect/analysis sync semaphore */
 		sem_t collect_analysis_sync;
 
-		float temp_lat;
-		float temp_lon;
+		double temp_lat;
+		double temp_lon;
 };
 
 #endif

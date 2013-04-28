@@ -16,6 +16,33 @@ int main() {
 	std::cout << "subsys 0 " << SUBSYS_GPS << " " << GPS_DISPLAY << std::endl;
 
 
+	for(int i=0;i<10;i++){
+		std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALAT <<  " 40.00459"  << std::endl;
+		std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALON << "-105.25591" << std::endl;
+		std::cout << "subsys 0 " << SUBSYS_GPS << " " << GPS_ADDWAYDATARUN << std::endl;
+		std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALAT <<  " 40.00451"  << std::endl;
+		std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALON << "-105.25616" << std::endl;
+		std::cout << "subsys 0 " << SUBSYS_GPS << " " << GPS_ADDWAYDATARUN << std::endl;
+	}
+
+/*
+	std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALAT <<  " 40.00713"  << std::endl;
+	std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALON << "-105.26053" << std::endl;
+	std::cout << "subsys 0 " << SUBSYS_GPS << " " << GPS_ADDWAYDATARUN << std::endl;
+	std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALAT <<  " 40.007120000"  << std::endl;
+	std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALON << "-105.26010000" << std::endl;
+	std::cout << "subsys 0 " << SUBSYS_GPS << " " << GPS_ADDWAYDATARUN << std::endl;
+	std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALAT <<  " 40.00652"  << std::endl;
+	std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALON << "-105.26013" << std::endl;
+	std::cout << "subsys 0 " << SUBSYS_GPS << " " << GPS_ADDWAYDATARUN << std::endl;
+	std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALAT <<  " 40.00656"  << std::endl;
+	std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALON << "-105.2607" << std::endl;
+	std::cout << "subsys 0 " << SUBSYS_GPS << " " << GPS_ADDWAYDATARUN << std::endl;
+	std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALAT <<  " 40.00713"  << std::endl;
+	std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALON << "-105.26053" << std::endl;
+	std::cout << "subsys 0 " << SUBSYS_GPS << " " << GPS_ADDWAYDATARUN << std::endl;
+
+/*
 	std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALAT <<  " 40.00460000"  << std::endl;
 	std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALON << "-105.25640000" << std::endl;
 	std::cout << "subsys 0 " << SUBSYS_GPS << " " << GPS_ADDWAYDATARUN << std::endl;
