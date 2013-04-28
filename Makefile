@@ -1,6 +1,6 @@
 all: system tests
 #bin/console.o
-system: bin/console.o bin/Subsystem.o bin/Sensor.o bin/Actuator.o bin/SystemControl.o bin/Steering.o bin/Sonar.o bin/shirtt.o bin/Motor.o bin/GPS.o bin/Compass.o
+system: bin/console.o bin/Subsystem.o bin/Sensor.o bin/Actuator.o bin/SystemControl.o bin/Steering.o bin/Sonar.o bin/shirtt.o bin/Motor.o bin/Compass.o bin/GPS.o
 	 arm-linux-gnueabi-g++ bin/*.o -o 0system/System.o -lpthread -lrt 
 
 tests:  motor_tests sonar_tests compass_tests steering_tests integration_tests
@@ -19,7 +19,8 @@ integration_tests: \
 	test/bin/steering_motor_spiral.o \
 	test/bin/straight_line_no_compass.o \
 	test/bin/compass_steering.o \
-	test/bin/sonar_motor.o
+	test/bin/sonar_motor.o \
+	test/bin/motor_steering_compass_sonar.o
 
 bin/Compass.o: Compass.cpp
 	arm-linux-gnueabi-g++ -c Compass.cpp -o bin/Compass.o
@@ -92,6 +93,9 @@ test/bin/straight_line_no_compass.o: test/integration/straight_line_no_compass.c
 
 test/bin/sonar_motor.o: test/integration/sonar_motor.cpp
 	arm-linux-gnueabi-g++ -o test/bin/sonar_motor.o test/integration/sonar_motor.cpp -lpthread -lrt
+	
+test/bin/motor_steering_compass_sonar.o: test/integration/motor_steering_compass_sonar.cpp
+	arm-linux-gnueabi-g++ -o test/bin/motor_steering_compass_sonar.o test/integration/motor_steering_compass_sonar.cpp -lpthread -lrt
 
 clean:
 	rm -rf test/*/*.o bin/*.o 0system/*.o

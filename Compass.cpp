@@ -21,7 +21,7 @@
 #define	SLIGHT_TURN_THRESH	20
 #define STRAIGHT_THRESH		5
 
-#define K_PROP_CONTROL		500
+#define K_PROP_CONTROL		250
 #define CONTROL_OFFSET		15000
 #define STR_CMD_LEN			6
 
@@ -231,6 +231,7 @@ void Compass::handle_message(MESSAGE* message){
 				break;
 			default:
 				std::cout << "Unknown command passed to compass subsystem! Command was : " << message->command << std::endl;
+				std::cout << "From: " << message->from << std::endl;
 				break;
 		}
 	}

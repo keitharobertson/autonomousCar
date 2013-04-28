@@ -96,13 +96,13 @@ class Sonar : public Sensor {
 		void reset_heading();
 		
 	protected:
+	
+		void setup_avoidance();
 		
 		/**
 		 * \brief Avoids an obstacle that was detected by the sonar system.
 		 * 
-		 * Performs tasks determined by the command part of the message.  For example the 
-		 * command SNR_SET_DIST_THR is used to set the distance threshold.  Messages could be 
-		 * from command line interface or from another subsystem. 
+		 * turns 90 degrees left in response to an obstacle
 		 */
 		void avoid_obstacle();
 		
