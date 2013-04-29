@@ -5,6 +5,8 @@
 #define DATA_COL_PERIOD_MS	2000
 #define DATA_ANL_PERIOD_MS  2000
 
+#define GPS_DEBUG
+
 //GPS class
 
 GPS::GPS() {
@@ -53,7 +55,8 @@ void GPS::init_sensor() {
 	write(serial_port, write_buffer1, strlen(write_buffer1));
 	const char* write_buffer2 = "$PMTK301,2*2E\r\n";//SET_DGPS_MODE
 	write(serial_port, write_buffer2, strlen(write_buffer2));
-	const char* write_buffer3 = "$PMTK300,200,0,0,0,0*2F\r\n";//SET 2Hz update 
+	const char* write_buffer3 = "$PMTK300,200,0,0,0,0*2F\r\n";//SET 5Hz update 
+	//const char* write_buffer3 = "$PMTK300,1000,0,0,0,0*1C\r\n";//SET .5Hz update 
 	write(serial_port, write_buffer3, strlen(write_buffer3));
 	const char* write_buffer4 = "$PMTK314,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*29\r\n";//only output data I care about 
 	write(serial_port, write_buffer4, strlen(write_buffer4));
@@ -73,17 +76,18 @@ double GPS::getAngle(LatLon startLoc,LatLon eenndLoc){
 	}
 	printf("\tDIFF %f %f\n",rotation.lat,rotation.lon);
 	double angle=atan(rotation.lon/rotation.lat);
-	if(rotation.lat<0){
-		angle*=-1;
-	}
 	//printf("\tRANG %f\n",angle);
 	angle=angle*360/(2*3.14159);///(3.14159);
 	//angle*=-1;
 	//printf("\tOANG %f\n",angle);
 	//printf("What is going on? %f %f %f %f\n",atan(1/1)/(2*3.14159)*360,atan(-1/1)/(2*3.14159)*360,atan(1/-1)/(2*3.14159)*360,atan(-1/-1)/(2*3.14159)*360);
-	angle*=-1;
-	angle+=180;
+	//angle*=-1;
+	//angle+=180;
+	if(rotation.lat<0){
+		angle=180-angle;
+	}
 	if(angle<0){angle+=360;}
+	if(angle>360){angle-=360;}
 	printf("\tANGL: %f Lat: %f %f Lon: %f %f\n",angle,startLoc.lat,eenndLoc.lat,startLoc.lon,eenndLoc.lon);
 	return angle;
 }
@@ -291,8 +295,8 @@ void GPS::analysis(){
 		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
 		if(target!=NULL){
 			float angle=(float)getAngle(getLocBufferAvg(),target->latLon);
-			angle-=12;	// Magnetic north correction
-			//printf("Angle: %f\n",angle);
+			angle-=21;	// Magnetic north correction
+			printf("Angle: %f\n",angle);
 			MESSAGE request_compass_data = MESSAGE(SUBSYS_GPS, SUBSYS_COMPASS, CPS_SET_HEADING,*((void**)(&angle))); //request current compass heading
 			send_sys_message(&request_compass_data);
 			updateWayPoint();
@@ -301,17 +305,21 @@ void GPS::analysis(){
 }
 
 void* GPS::read_data(int command) {
+	double* inLat;
+	double temp;
 	switch(command){
 		case GPS_ADDWAYDATALAT:
-			double inLat;
-			std::cin >> inLat;
-			printf("Got lat: %f\n",inLat);
-			return *((void**)(&inLat));
+			inLat=new double();
+			std::cin >> temp;
+			*inLat=temp;
+			//printf("Got lat: %f\n",*inLat);
+			return ((void*)(inLat));
 		case GPS_ADDWAYDATALON:
-			double inLon;
-			std::cin >> inLon;
-			printf("Got lon: %f\n",inLon);
-			return *((void**)(&inLon));
+			inLat=new double();
+			std::cin >> temp;
+			*inLat=temp;
+			//printf("Got lon: %f\n",*inLon);
+			return ((void*)(inLat));
 		default:
 			std::cout << "Unknown command passed to GPS subsystem for reading data! Command was : " << command << std::endl;
 			return NULL;
@@ -346,12 +354,14 @@ void GPS::handle_message(MESSAGE* message){
 			}
 			break;
 		case GPS_ADDWAYDATALAT:
-			temp_lat=(*(double*)&message->data);
+			temp_lat=(*(double*)message->data);
 			printf("Got Add Way Lat: %f\n",temp_lat);
+			delete (double*)message->data;
 			break;
 		case GPS_ADDWAYDATALON:
-			temp_lon=(*(double*)&message->data);
-			printf("Got Add Way Lon: %f\n",temp_lon);
+			temp_lon=(*(double*)message->data);
+			printf("Got Add Way Lon: %f\n",temp_lat);
+			delete (double*)message->data;
 			break;
 		case GPS_ADDWAYDATARUN:
 			addWayPoint(LatLon(temp_lat,temp_lon),0.00005);
