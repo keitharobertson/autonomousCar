@@ -290,7 +290,7 @@ void GPS::analysis(){
 		}
 		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
 		if(target!=NULL){
-			float angle=(float)getAngle(getLocBufferAvg(),target->latLon);
+			float angle=90.0f;//(float)getAngle(getLocBufferAvg(),target->latLon);
 			angle-=12;	// Magnetic north correction
 			//printf("Angle: %f\n",angle);
 			MESSAGE request_compass_data = MESSAGE(SUBSYS_GPS, SUBSYS_COMPASS, CPS_SET_HEADING,*((void**)(&angle))); //request current compass heading

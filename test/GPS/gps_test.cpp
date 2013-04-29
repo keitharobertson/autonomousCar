@@ -14,7 +14,9 @@ int main() {
 	std::cout << "subsys 0 " << SUBSYS_STEERING << " " << STR_HARD_LEFT << std::endl;
 
 	std::cout << "subsys 0 " << SUBSYS_GPS << " " << GPS_DISPLAY << std::endl;
+	std::cout << "subsys 1 " << SUBSYS_COMPASS << " " << CPS_SET_HEADING <<  " 261"  << std::endl;
 
+/*
 
 	for(int i=0;i<10;i++){
 		std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALAT <<  " 40.00459"  << std::endl;
