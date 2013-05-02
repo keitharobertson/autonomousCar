@@ -10,8 +10,8 @@
 #define DATA_COL_PERIOD_MS	50
 #define AVOIDANCE_TIME_SEC	1
 
-#define	DEFAULT_TURN_THRESH		45.0
-#define	DEFAULT_REVERSE_THRESH	20.0
+#define	DEFAULT_TURN_THRESH		65.0
+#define	DEFAULT_REVERSE_THRESH	36.0
 
 #define MV_PER_INCH		6.4
 
@@ -96,10 +96,10 @@ float Sonar::data_grab(){
 	float distance = (float)reading / 1023.0 * 3300.0 / MV_PER_INCH;
 	
 	//if printing of sonar data is enabled, print out the reading
-	/*if(print_data) {
+	if(print_data) {
 		std::cout << "sonar reading: " << reading << std::endl;
 		std::cout << "Sonar Distance (in): " << distance << std::endl;
-	}*/
+	}
 	
 	return distance;
 }
@@ -195,6 +195,7 @@ void Sonar::avoid_obstacle() {
 }
 
 void Sonar::analysis(){
+	struct timespec t;
 	while(1) {
 		//wait for data
 		sem_wait(&collect_analysis_sync);
@@ -209,14 +210,21 @@ void Sonar::analysis(){
 					std::cout << "Obstacle was detected! Sonar avoidance activated! Reversing!" << std::endl;
 				#endif
 				reverse_direction();
+			}else{
+				//reverse (and stop)
+				change_direction = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_DIRECTION,(void*)0); //reverse!
+				send_sys_message(&change_direction);
+				//slow down the motor
+				change_speed = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_SLOW);
+				send_sys_message(&change_speed);
+				clock_gettime(CLOCK_MONOTONIC ,&t);
+				t.tv_nsec+= 500*NS_PER_MS;
+				while(t.tv_nsec > NS_PER_S){
+					t.tv_sec++;
+					t.tv_nsec -= NS_PER_S;
+				}
+				clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
 			}
-			//reverse (and stop)
-			change_direction = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_DIRECTION,(void*)0); //reverse!
-			send_sys_message(&change_direction);
-			//slow down the motor
-			change_speed = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_SLOW);
-			send_sys_message(&change_speed);
-			
 		}else if (sonar_reading < turn_threshold) {
 			if(!avoidance_mode){
 				avoidance_mode = true;
