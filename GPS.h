@@ -14,6 +14,7 @@
 #include <time.h>
 #include <unistd.h>
 
+#include "shirtt.h"
 #include "Sensor.h"
 
 #define GPS_NAME	"GPS"
@@ -108,7 +109,9 @@ class GPS : public Sensor {
 				 *  \brief returns true if the lat/long passed in is within range
 				 */
 				bool inRange(const LatLon latLon_new){
-					if(latLon.getDistance(latLon_new)<rad)
+					double distance=latLon.getDistance(latLon_new);
+					printf("Dist: %f/%f\n",distance,rad);
+					if(distance<rad)
 						return true;
 					return false;
 				}
@@ -220,10 +223,11 @@ class GPS : public Sensor {
 		GPSWayPoint* headPtr;
 
 		/** Location Buffer (used to smooth noise) */
-		LatLon locBuffer[GPS_ROLLBUFF_SIZE];
+		LatLon locBuffer[GPS_ROLLBUFF_SIZE*2];
 
 		/** Index into Location Buffer (used to smooth noise) */
 		int locBufferIndex;
+		int locBufferIndexB;
 
 		/** The collect/analysis sync semaphore */
 		sem_t collect_analysis_sync;
