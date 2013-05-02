@@ -5,12 +5,15 @@
 #define DATA_COL_PERIOD_MS	2000
 #define DATA_ANL_PERIOD_MS  2000
 
+#define GPS_DEBUG
+
 //GPS class
 
 GPS::GPS() {
 	subsys_name = GPS_NAME;
 	subsys_num = SUBSYS_GPS;
 	locBufferIndex=0;
+	locBufferIndexB=0;
 	target=NULL;
 	if(sem_init(&collect_analysis_sync, 0, 0) != 0){
 		perror("Failed to init the compass collector/analysis sync sem \n");
@@ -21,13 +24,31 @@ GPS::~GPS(){
 	close(serial_port);
 }
 
+
+// Clear Buffer
+static void clearBuffer(){
+	printf("Clear Buffers\n");
+	int serial_port = open(GPS_PORT_NAME, O_RDWR | O_NONBLOCK);
+	char read_buffer[GPS_MAX_LENGTH + 1] = {0};
+	read_buffer[0]='\0';
+	uint counter=0;
+	printf("start\n");
+	while(read(serial_port,read_buffer, GPS_MAX_LENGTH)>0){
+		printf("%d\n",counter++);
+	}
+	printf("Done\n");
+	close(serial_port);
+	return;
+}
+
 void GPS::init_sensor() {
+	clearBuffer();
 	bool error=0;
 	struct termios options_original;
 	struct termios options;
-	
+	printf("B");
 	serial_port = open(GPS_PORT_NAME, O_RDWR); // | O_NONBLOCK);
-	
+	printf("A");
 	if (serial_port != -1){
 		#ifdef GPS_DEBUG
 			printf("Serial Port open\n");
@@ -47,13 +68,13 @@ void GPS::init_sensor() {
 		printf("Unable to open %s",GPS_PORT_NAME);
 		printf("Error %d opening %s: %s",errno, GPS_PORT_NAME, strerror(errno));
 	}
-	
 
 	const char* write_buffer1 = "$PMTK313,1*2E\r\n"; //SBAS_ENABLED
 	write(serial_port, write_buffer1, strlen(write_buffer1));
 	const char* write_buffer2 = "$PMTK301,2*2E\r\n";//SET_DGPS_MODE
 	write(serial_port, write_buffer2, strlen(write_buffer2));
-	const char* write_buffer3 = "$PMTK300,200,0,0,0,0*2F\r\n";//SET 2Hz update 
+	//const char* write_buffer3 = "$PMTK300,200,0,0,0,0*2F\r\n";//SET 5Hz update 
+	const char* write_buffer3 = "$PMTK300,1000,0,0,0,0*1C\r\n";//SET .5Hz update 
 	write(serial_port, write_buffer3, strlen(write_buffer3));
 	const char* write_buffer4 = "$PMTK314,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*29\r\n";//only output data I care about 
 	write(serial_port, write_buffer4, strlen(write_buffer4));
@@ -61,6 +82,12 @@ void GPS::init_sensor() {
 	write(serial_port, write_buffer5, strlen(write_buffer5));*/
 	sleep(2); //required to make flush work, for some reason
 	tcflush(serial_port,TCIOFLUSH);
+/*
+	pthread_t clearBuffer_control;
+	if(pthread_create( &clearBuffer_control, NULL, &clearBuffer, (void *)(this)) != 0){
+		perror("Error creating tmech_control thread ");
+	}
+*/
 }
 
 double GPS::getAngle(LatLon startLoc,LatLon eenndLoc){
@@ -73,28 +100,35 @@ double GPS::getAngle(LatLon startLoc,LatLon eenndLoc){
 	}
 	printf("\tDIFF %f %f\n",rotation.lat,rotation.lon);
 	double angle=atan(rotation.lon/rotation.lat);
-	if(rotation.lat<0){
-		angle*=-1;
-	}
 	//printf("\tRANG %f\n",angle);
 	angle=angle*360/(2*3.14159);///(3.14159);
 	//angle*=-1;
 	//printf("\tOANG %f\n",angle);
 	//printf("What is going on? %f %f %f %f\n",atan(1/1)/(2*3.14159)*360,atan(-1/1)/(2*3.14159)*360,atan(1/-1)/(2*3.14159)*360,atan(-1/-1)/(2*3.14159)*360);
-	angle*=-1;
-	angle+=180;
+	//angle*=-1;
+	//angle+=180;
+	if(rotation.lat<0){
+		angle=180+angle;
+	}
 	if(angle<0){angle+=360;}
+	if(angle>360){angle-=360;}
 	printf("\tANGL: %f Lat: %f %f Lon: %f %f\n",angle,startLoc.lat,eenndLoc.lat,startLoc.lon,eenndLoc.lon);
 	return angle;
 }
 
 bool GPS::convert_data(char* input,int length,LatLon& output){
+	// Allocate memory to variables
 	char command[GPS_GPGAA_L+1];
+	// Lat long in charicter form
 	char latLonChar[20];
+	// Lat long in double form [lat,long]
 	double latLon[2];
+	// Cound number of lat long/2
 	int latLonCounter=0;
+	// Allocate memory to input
 	strncpy(command,input,GPS_GPGAA_L);
 	command[GPS_GPGAA_L]='\0';
+	// Comma counter
 	int commaCount=0;
 
 	// Check for GPGGA Command
@@ -112,7 +146,8 @@ bool GPS::convert_data(char* input,int length,LatLon& output){
 		gps_OS=GPS_GPRMC_OS;
 		i+=GPS_GPRMC_L;
 	}
-	//printf("gps_OS: %d\n",gps_OS);
+
+	// If GPS command is known
 	if(gps_OS!=-1){
 		// Now that the command is found, 
 		//  we grab all the data between the two commas
@@ -148,9 +183,7 @@ bool GPS::convert_data(char* input,int length,LatLon& output){
 			}
 			output.lat=outputs[0];
 			output.lon=outputs[1]*-1;
-			//printf("AA %f %f\n",latLon[0],latLon[1]);
 		}
-		//printf("BB\n");
 		return 1;
 	}
 	return 0;
@@ -162,6 +195,7 @@ bool GPS::updateWayPoint(){
 		target=target->next;
 }
 bool GPS::addWayPoint(LatLon latlon,double radius,int index){
+	printf("Add Waypoint: %f %f\n",latlon.lat,latlon.lon);
 	GPSWayPoint* target_loop=target;
 	index=target_loop==NULL?-2:index;
 	int i;
@@ -216,33 +250,22 @@ void GPS::collector(){
 	LatLon gps_reading;
 	struct timespec t;
 	clock_gettime(CLOCK_MONOTONIC ,&t);
-	int count = 0;
-	double avg_lat=0;
-	double avg_lon=0;
 	while(1){
 		if(enabled){
+			// Get data from GPS reading
 			data_grab(gps_reading);
-			//printf("GPS H: %f %f\n", gps_reading.lat, gps_reading.lon);
+			
+			// Only If GPS is not zero
 			if(gps_reading.lat!=0||gps_reading.lon!=0){
-				avg_lat += gps_reading.lat;
-				avg_lon += gps_reading.lon;
-				count++;
-				if(count%5==0){
-					avg_lat = avg_lat/(double)count;
-					avg_lon = avg_lon/(double)count;
-					gps_reading.lat = avg_lat;
-					gps_reading.lon = avg_lon;
-					if(1==1){//output_heading){
-						printf("> %f\t%f\n", gps_reading.lat, gps_reading.lon);
-					}
-					setLocBuffer(gps_reading);
-					sem_post(&collect_analysis_sync);
-					count=0;
-					avg_lat=0;
-					avg_lon=0;
+				// If outputing gps data
+				if(1==1){//output_heading){
+					printf("> %f\t%f\n", gps_reading.lat, gps_reading.lon);
 				}
+				setLocBuffer(gps_reading);
+				sem_post(&collect_analysis_sync);
 			}
 		}else{
+			// Just Delay
 			t.tv_nsec+= DATA_COL_PERIOD_MS*NS_PER_MS;
 			while(t.tv_nsec > NS_PER_S){
 				t.tv_sec++;
@@ -253,11 +276,34 @@ void GPS::collector(){
 	}
 }
 
+// Rolling buffer
 void GPS::setLocBuffer(const GPS::LatLon location){
-	locBuffer[locBufferIndex]=location;
-	locBufferIndex=(locBufferIndex+1)%GPS_ROLLBUFF_SIZE;
+	if(getLocBufferAvg().getDistance(location)<0.001){
+		printf("No Swap Required\n");
+		locBuffer[locBufferIndex]=location;
+		locBufferIndex=(locBufferIndex+1)%GPS_ROLLBUFF_SIZE;
+	}else{
+		printf("Place in back buffer\n");
+		locBuffer[GPS_ROLLBUFF_SIZE+locBufferIndexB]=location;
+		locBufferIndex=(locBufferIndexB+1)%GPS_ROLLBUFF_SIZE;
+		bool swapBuffer=true;
+		for(int i=0;i<GPS_ROLLBUFF_SIZE;i++){
+			for(int ii=i+1;ii<GPS_ROLLBUFF_SIZE;ii++){
+				if(locBuffer[GPS_ROLLBUFF_SIZE+i].getDistance(locBuffer[GPS_ROLLBUFF_SIZE+ii])>0.0001){
+					swapBuffer=false;
+				}
+			}
+		}
+		if(swapBuffer){
+			printf("Swap back buffer\n");
+			for(int i=0;i<GPS_ROLLBUFF_SIZE;i++){
+				locBuffer[i]=locBuffer[GPS_ROLLBUFF_SIZE+i];
+			}
+		}
+	}
 }
 
+// Get Location Buffer Average
 GPS::LatLon GPS::getLocBufferAvg(){
 	LatLon output;
 	bool divid_cnt=0;
@@ -268,31 +314,39 @@ GPS::LatLon GPS::getLocBufferAvg(){
 		}
 	}
 	if(divid_cnt>0){
-		output/=GPS_ROLLBUFF_SIZE;//divid_cnt;
+		output/=GPS_ROLLBUFF_SIZE;
 	}
-	//Skew Correction
-	//output.lat+=0.0001;
 	return output;
 }
 
+// Analyze the data stuff
 void GPS::analysis(){
 	printf("Analysis\n");
-	//wait for data
-	sem_wait(&collect_analysis_sync);
+
 	struct timespec t;
 	clock_gettime(CLOCK_MONOTONIC ,&t);
 	while(1){
-		//printf("Analysis %f %f\n",getLocBufferAvg().lat,getLocBufferAvg().lon);
+		//wait for data
+		sem_wait(&collect_analysis_sync);
+/*
+		// Delay A set amount of time
 		t.tv_nsec+= DATA_ANL_PERIOD_MS*NS_PER_MS;
 		while(t.tv_nsec > NS_PER_S){
 			t.tv_sec++;
 			t.tv_nsec -= NS_PER_S;
 		}
 		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+*/
+		// If we are targeted somewhere
 		if(target!=NULL){
-			float angle=90.0f;//(float)getAngle(getLocBufferAvg(),target->latLon);
-			angle-=12;	// Magnetic north correction
-			//printf("Angle: %f\n",angle);
+			// Get angle from target
+			float angle=(float)getAngle(getLocBufferAvg(),target->latLon);
+
+			// Magnetic north correction
+			angle-=21;	
+			
+			// Send angle to compass
+			printf("Angle: %f\n",angle);
 			MESSAGE request_compass_data = MESSAGE(SUBSYS_GPS, SUBSYS_COMPASS, CPS_SET_HEADING,*((void**)(&angle))); //request current compass heading
 			send_sys_message(&request_compass_data);
 			updateWayPoint();
@@ -301,17 +355,21 @@ void GPS::analysis(){
 }
 
 void* GPS::read_data(int command) {
+	double* inLat;
+	double temp;
 	switch(command){
 		case GPS_ADDWAYDATALAT:
-			double inLat;
-			std::cin >> inLat;
-			printf("Got lat: %f\n",inLat);
-			return *((void**)(&inLat));
+			inLat=new double();
+			std::cin >> temp;
+			*inLat=temp;
+			//printf("Got lat: %f\n",*inLat);
+			return ((void*)(inLat));
 		case GPS_ADDWAYDATALON:
-			double inLon;
-			std::cin >> inLon;
-			printf("Got lon: %f\n",inLon);
-			return *((void**)(&inLon));
+			inLat=new double();
+			std::cin >> temp;
+			*inLat=temp;
+			//printf("Got lon: %f\n",*inLon);
+			return ((void*)(inLat));
 		default:
 			std::cout << "Unknown command passed to GPS subsystem for reading data! Command was : " << command << std::endl;
 			return NULL;
@@ -346,15 +404,17 @@ void GPS::handle_message(MESSAGE* message){
 			}
 			break;
 		case GPS_ADDWAYDATALAT:
-			temp_lat=(*(double*)&message->data);
+			temp_lat=(*(double*)message->data);
 			printf("Got Add Way Lat: %f\n",temp_lat);
+			delete (double*)message->data;
 			break;
 		case GPS_ADDWAYDATALON:
-			temp_lon=(*(double*)&message->data);
-			printf("Got Add Way Lon: %f\n",temp_lon);
+			temp_lon=(*(double*)message->data);
+			printf("Got Add Way Lon: %f\n",temp_lat);
+			delete (double*)message->data;
 			break;
 		case GPS_ADDWAYDATARUN:
-			addWayPoint(LatLon(temp_lat,temp_lon),0.00005);
+			addWayPoint(LatLon(temp_lat,temp_lon),0.00008);
 			break;
 		default:
 			std::cout << "Unknown command passed to compass subsystem! Command was : " << message->command << std::endl;
