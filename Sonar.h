@@ -149,6 +149,10 @@ class Sonar : public Sensor {
 		MESSAGE set_cps_prio;
 		/** message used to set the motor direction */
 		MESSAGE change_direction;
+		/** message used to enable or disable a subsystem */
+		MESSAGE en_or_dis_subsys;
+		/** message used to center steering */
+		MESSAGE steer_straight;
 		/** reset_heading thread */
 		pthread_t treset_heading;
 		/** whether to print out data after each collection for debugging/testing */

@@ -132,6 +132,9 @@ void Sonar::reset_heading() {
 	#ifdef SONAR_DEBUG
 		std::cout << "Sonar is resetting compass heading. Obstacle avoidance complete." << std::endl;
 	#endif
+	//enable compass
+	en_or_dis_subsys = MESSAGE(SUBSYS_SONAR,SUBSYS_COMPASS,CPS_ENABLE);
+	send_sys_message(&en_or_dis_subsys);
 	//go forward
 	change_direction = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_DIRECTION,(void*)1); //forward!
 	send_sys_message(&change_direction);
@@ -150,6 +153,12 @@ void Sonar::reverse_direction() {
 	enabled=0;
 	setup_avoidance();
 	sem_wait(&avoid_reset_control);
+	//disable compass (want to go straight back)
+	en_or_dis_subsys = MESSAGE(SUBSYS_SONAR,SUBSYS_COMPASS,CPS_DISABLE);
+	send_sys_message(&en_or_dis_subsys);
+	//steer straight
+	steer_straight = MESSAGE(SUBSYS_SONAR,SUBSYS_STEERING,STR_STRAIGHT);
+	send_sys_message(&steer_straight);
 	//go backwards
 	change_direction = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_DIRECTION,(void*)0); //reverse!
 	send_sys_message(&change_direction);
@@ -211,9 +220,6 @@ void Sonar::analysis(){
 				#endif
 				reverse_direction();
 			}else{
-				//reverse (and stop)
-				change_direction = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_DIRECTION,(void*)0); //reverse!
-				send_sys_message(&change_direction);
 				//slow down the motor
 				change_speed = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_SLOW);
 				send_sys_message(&change_speed);
@@ -224,6 +230,9 @@ void Sonar::analysis(){
 					t.tv_nsec -= NS_PER_S;
 				}
 				clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+				//reverse (and stop)
+				change_direction = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_DIRECTION,(void*)0); //reverse!
+				send_sys_message(&change_direction);
 			}
 		}else if (sonar_reading < turn_threshold) {
 			if(!avoidance_mode){
