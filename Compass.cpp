@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <math.h>
+#include <errno.h>
 
 #include "shirtt.h"
 
@@ -16,7 +17,7 @@
 
 #define NS_PER_MS	1000000
 #define NS_PER_S	1000000000
-#define DATA_COL_PERIOD_MS	1000
+#define DATA_COL_PERIOD_MS	20
 
 #define	HARD_TURN_THRESH	45
 #define	SLIGHT_TURN_THRESH	20
@@ -99,7 +100,7 @@ void Compass::init_sensor() {
 	
 	//command[0] = 0x3C;
 	command[0] = 0x00;
-	command[1] = 0b00010000;
+	command[1] = 0b0001100;
 
 	if(write(compass_fd,command,2) != 2){
 		perror("Failed to set operational byte");
@@ -119,8 +120,13 @@ float Compass::data_grab(){
 	}
 	
 	unsigned char buff[13];
-	if(read(compass_fd,buff,6) != 6) {
-		perror("Failed to read data from compass");
+	int read_result;
+	if((read_result = read(compass_fd,buff,6)) != 6) {
+		if(errno == ETIMEDOUT){
+			
+		}else{
+			perror("Failed to read data from compass");
+		}
 	}
 	int16_t x=(buff[0] << 8) | (buff[1]);
 	int16_t y=(buff[2] << 8) | (buff[3]);
