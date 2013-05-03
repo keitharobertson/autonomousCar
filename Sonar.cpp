@@ -95,16 +95,12 @@ float Sonar::data_grab(){
 	//convert reading to a distance in inches
 	float distance = (float)reading / 1023.0 * 3300.0 / MV_PER_INCH;
 	
-	//if printing of sonar data is enabled, print out the reading
-	if(print_data) {
-		std::cout << "sonar reading: " << reading << std::endl;
-		std::cout << "Sonar Distance (in): " << distance << std::endl;
-	}
-	
 	return distance;
 }
 
 void Sonar::collector(){
+	double reading_sum = 0;
+	int count = 0;
 	struct timespec t;
 	clock_gettime(CLOCK_MONOTONIC ,&t);
 	while(1){
@@ -115,11 +111,21 @@ void Sonar::collector(){
 		}
 		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
 		if(enabled){
-			sonar_reading = data_grab();
-			#ifdef SONAR_DEBUG
-				std::cout << "Sonar Reading: " << sonar_reading << std::endl;
-			#endif
-			sem_post(&collect_analysis_sync);
+			reading_sum += data_grab();
+			count++;
+			if(count%5==0){
+				sonar_reading = reading_sum/5.0;
+				reading_sum = 0.0;
+				count = 0;
+				#ifdef SONAR_DEBUG
+					std::cout << "Sonar Reading: " << sonar_reading << std::endl;
+				#endif
+				//if printing of sonar data is enabled, print out the reading
+				if(print_data) {
+					std::cout << "Sonar Distance (in): " << sonar_reading << std::endl;
+				}
+				sem_post(&collect_analysis_sync);
+			}
 		}
 	}
 }
@@ -157,7 +163,15 @@ void Sonar::reverse_direction() {
 	en_or_dis_subsys = MESSAGE(SUBSYS_SONAR,SUBSYS_COMPASS,CPS_DISABLE);
 	send_sys_message(&en_or_dis_subsys);
 	//steer straight
-	steer_straight = MESSAGE(SUBSYS_SONAR,SUBSYS_STEERING,STR_STRAIGHT);
+	if(last_reverse_left){
+		std::cout << "steering hard right" << std::endl;
+		last_reverse_left = false;
+		steer_straight = MESSAGE(SUBSYS_SONAR,SUBSYS_STEERING,STR_HARD_RIGHT);
+	}else{
+		std::cout << "steering hard left" << std::endl;
+		last_reverse_left = true;
+		steer_straight = MESSAGE(SUBSYS_SONAR,SUBSYS_STEERING,STR_HARD_LEFT);
+	}
 	send_sys_message(&steer_straight);
 	//go backwards
 	change_direction = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_DIRECTION,(void*)0); //reverse!
@@ -165,10 +179,14 @@ void Sonar::reverse_direction() {
 	//run for 20 seconds
 	struct timespec t;
 	clock_gettime(CLOCK_MONOTONIC ,&t);
-	t.tv_sec += 5;
+	t.tv_sec += 10;
+	/*while(t.tv_nsec > NS_PER_S){
+		t.tv_sec++;
+		t.tv_nsec -= NS_PER_S;
+	}*/
 	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
-	change_speed = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_SLOW);
-	send_sys_message(&change_speed);
+	//change_speed = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_SLOW);
+	//send_sys_message(&change_speed);
 	enabled=1;
 }
 void Sonar::setup_avoidance() {
@@ -205,13 +223,16 @@ void Sonar::avoid_obstacle() {
 
 void Sonar::analysis(){
 	struct timespec t;
+	char mot_speed_rev[6];
+	int mot_speed_int = 15500;
 	while(1) {
 		//wait for data
 		sem_wait(&collect_analysis_sync);
 		//analyze data
 		if(sonar_reading < reverse_threshold) {
-			if(!avoidance_mode){
-				avoidance_mode = true;
+			avoidance_mode = false;
+			if(!reverse_mode){
+				reverse_mode = true;
 				if(print_data) {
 					std::cout << "Obstacle was detected! Sonar avoidance activated! Reversing!" << std::endl;
 				}
@@ -220,21 +241,31 @@ void Sonar::analysis(){
 				#endif
 				reverse_direction();
 			}else{
-				//slow down the motor
-				change_speed = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_SLOW);
-				send_sys_message(&change_speed);
-				clock_gettime(CLOCK_MONOTONIC ,&t);
+				//reverse (and stop)
+				change_direction = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_DIRECTION,(void*)0); //reverse!
+				send_sys_message(&change_direction);
+				/*clock_gettime(CLOCK_MONOTONIC ,&t);
 				t.tv_nsec+= 500*NS_PER_MS;
 				while(t.tv_nsec > NS_PER_S){
 					t.tv_sec++;
 					t.tv_nsec -= NS_PER_S;
-				}
-				clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
-				//reverse (and stop)
-				change_direction = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_DIRECTION,(void*)0); //reverse!
-				send_sys_message(&change_direction);
+				}*/
+				//clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+				//slow down the motor
+				mot_speed_int = (mot_speed_int<18000) ? mot_speed_int+85: 18000;
+				sprintf(mot_speed_rev,"%d",mot_speed_int);
+				change_speed = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_SLOW);
+				change_speed = MESSAGE(SUBSYS_SONAR,SUBSYS_MOTOR,MOT_SET_SPEED,(void*)mot_speed_rev);
+				send_sys_message(&change_speed);
 			}
 		}else if (sonar_reading < turn_threshold) {
+			if(reverse_mode) {
+				reverse_mode = false;
+				if(print_data) {
+					std::cout << "Resetting heading and motor. reverse complete." << std::endl;
+				}
+				reset_heading();
+			}
 			if(!avoidance_mode){
 				avoidance_mode = true;
 				if(print_data) {
@@ -246,17 +277,19 @@ void Sonar::analysis(){
 				avoid_obstacle();
 			}
 		}else{
+			mot_speed_int = 15500;
 			#ifdef SONAR_DEBUG
 				std::cout << "No obstacles detected by sonar! No avoidance necessary." << std::endl;
 			#endif
 			if(print_data) {
 				std::cout << "No obstacles detected by sonar! No avoidance necessary." << std::endl;
 			}
-			if(avoidance_mode) {
+			if(avoidance_mode || reverse_mode) {
+				reverse_mode = false;
+				avoidance_mode = false;
 				if(print_data) {
 					std::cout << "Resetting heading and motor. Obstacle avoidance complete." << std::endl;
 				}
-				avoidance_mode = false;
 				reset_heading();
 			}
 		}

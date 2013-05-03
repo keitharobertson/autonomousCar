@@ -20,7 +20,9 @@ integration_tests: \
 	test/bin/straight_line_no_compass.o \
 	test/bin/compass_steering.o \
 	test/bin/sonar_motor.o \
-	test/bin/motor_steering_compass_sonar.o
+	test/bin/motor_steering_compass_sonar.o \
+	test/bin/steering_compass_sonar_gps.o \
+	test/bin/motor_steering_compass_sonar_gps.o
 
 bin/Compass.o: Compass.cpp
 	arm-linux-gnueabi-g++ -c Compass.cpp -o bin/Compass.o
@@ -96,6 +98,12 @@ test/bin/sonar_motor.o: test/integration/sonar_motor.cpp
 	
 test/bin/motor_steering_compass_sonar.o: test/integration/motor_steering_compass_sonar.cpp
 	arm-linux-gnueabi-g++ -o test/bin/motor_steering_compass_sonar.o test/integration/motor_steering_compass_sonar.cpp -lpthread -lrt
+
+test/bin/steering_compass_sonar_gps.o: test/integration/steering_compass_sonar_gps.cpp
+	arm-linux-gnueabi-g++ -o test/bin/steering_compass_sonar_gps.o test/integration/steering_compass_sonar_gps.cpp -lpthread -lrt
+
+test/bin/motor_steering_compass_sonar_gps.o: test/integration/motor_steering_compass_sonar_gps.cpp
+	arm-linux-gnueabi-g++ -o test/bin/motor_steering_compass_sonar_gps.o test/integration/motor_steering_compass_sonar_gps.cpp -lpthread -lrt
 
 clean:
 	rm -rf test/*/*.o bin/*.o 0system/*.o

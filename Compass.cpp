@@ -5,17 +5,18 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "shirtt.h"
 
 #include "Compass.h"
 
 
-#define	COMPASS_ADDR	0x21
+#define	COMPASS_ADDR	0x1E //0x21
 
 #define NS_PER_MS	1000000
 #define NS_PER_S	1000000000
-#define DATA_COL_PERIOD_MS	50
+#define DATA_COL_PERIOD_MS	1000
 
 #define	HARD_TURN_THRESH	45
 #define	SLIGHT_TURN_THRESH	20
@@ -46,25 +47,35 @@ Compass::Compass() {
 }
 
 void Compass::init_sensor() {
+	struct timespec t;
+	clock_gettime(CLOCK_MONOTONIC ,&t);
+	t.tv_nsec+= 50*NS_PER_MS;
+	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
 	sprintf(compass_filepath,"/dev/i2c-3");
 	if ((compass_fd = open(compass_filepath,O_RDWR)) < 0) {
 		perror("Failed to open the bus for compass read.\n");
 	}
+	clock_gettime(CLOCK_MONOTONIC ,&t);
+	t.tv_nsec+= 50*NS_PER_MS;
+	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
 	if (ioctl(compass_fd,I2C_SLAVE,COMPASS_ADDR) < 0) {
 		perror("Failed to acquire bus access and/or talk to slave.\n");
 	}
+	clock_gettime(CLOCK_MONOTONIC ,&t);
+	t.tv_nsec+= 50*NS_PER_MS;
+	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
 	char command[3];
 	
-	command[0] = 'r';
+	/*command[0] = 'r';
 	command[1] = 0x08;
 	write(compass_fd,command,2);
 	
 	read(compass_fd,command,1);
-	std::cout << "op byte: " << (int)command[0] << std::endl;
+	std::cout << "op byte: " << (int)command[0] << std::endl;*/
 	
-	command[0] = 'w';
+	/*command[0] = 'w';
 	command[1] = 0x08;
-	command[2] = 0b01110010;
+	command[2] = 0b01110010;*/
 /*				   ||||||||- continuous mode lsb
 				   |||||||-- continuous mode msb
 				   ||||||--- 0
@@ -74,17 +85,83 @@ void Compass::init_sensor() {
 				   ||------- continuous mode measurement rate lsb
 				   |-------- 0
 */
-	if(write(compass_fd,command,3) != 3){
+	//put compass into continuous mode
+	//command[0] = 0x3C;
+	command[0] = 0x02;
+	command[1] = 0x00;
+
+	if(write(compass_fd,command,2) != 2){
 		perror("Failed to set operational byte");
 	}
+	clock_gettime(CLOCK_MONOTONIC ,&t);
+	t.tv_nsec+= 50*NS_PER_MS;
+	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+	
+	//command[0] = 0x3C;
+	command[0] = 0x00;
+	command[1] = 0b00010000;
+
+	if(write(compass_fd,command,2) != 2){
+		perror("Failed to set operational byte");
+	}
+	clock_gettime(CLOCK_MONOTONIC ,&t);
+	t.tv_nsec+= 50*NS_PER_MS;
+	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
 }
 
 float Compass::data_grab(){
-	char buff[2];
-	if(read(compass_fd,buff,2) != 2) {
+	char command[1];
+	//command[0] = 0x3C;
+	
+	command[0] = 3;
+	if(write(compass_fd,command,1) != 1){
+		perror("Failed to request data");
+	}
+	
+	unsigned char buff[13];
+	if(read(compass_fd,buff,6) != 6) {
 		perror("Failed to read data from compass");
 	}
-	return ((float)(((int)buff[0] << 8) + (int)buff[1]))/10.0;
+	int16_t x=(buff[0] << 8) | (buff[1]);
+	int16_t y=(buff[2] << 8) | (buff[3]);
+	int16_t z=(buff[4] << 8) | (buff[5]);
+	
+	/*x = (x << 4) >> 4;
+	y = (y << 4) >> 4;
+	z = (z << 4) >> 4;*/
+	
+	
+	/*
+	x = (int16_t)(((int16_t)buff[0] << 8) | (int16_t)(buff[1]));
+	y = (int16_t)(((int16_t)buff[2] << 8) | (int16_t)(buff[3]));
+	z = (int16_t)(((int16_t)buff[4] << 8) | (int16_t)(buff[5]));
+	*/
+	/*if(x > 0x07FF) {
+		x= ~x;
+		x= (x+1);
+	}
+	if(y>0x07FF) {
+		y= ~y;
+		y= (y+1);
+	}
+	if(z>0x07FF) {
+		z= ~z;
+		z= (z+1);
+	}*/
+
+	
+	/*if(write(compass_fd,command,1) != 1){
+		perror("Failed to request data");
+	}*/
+	float ret = (float)(atan2((double)y,(double)x)*180.0/3.141592 + 180);
+	ret = (ret>360) ? ret-360 : ret;
+	
+	return ret;
+	//std::cout << "heading: " << head << std::endl;
+	
+	
+	
+	//return ((float)(((int)buff[0] << 8) + (int)buff[1]))/10.0;
 }
 
 void Compass::collector(){

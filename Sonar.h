@@ -133,10 +133,14 @@ class Sonar : public Sensor {
 		char sonar_filepath[40];
 		/** whether avoidance mode has been entered into */
 		bool avoidance_mode;
+		/** whether reverse mode has been entered into */
+		bool reverse_mode;
 		/** original compass heading prior to avoidance mode */
 		float old_compass_heading;
 		/** original motor speed prior to avoidance mode */
 		char old_motor_speed[6];
+		/** boolean to tell if the last time we reversed, we went left */
+		bool last_reverse_left;
 		/** message used for requesting data from compass subsystem */
 		MESSAGE request_compass_data;
 		/** message used for requesting data from motor subsystem*/

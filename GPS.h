@@ -110,7 +110,7 @@ class GPS : public Sensor {
 				 */
 				bool inRange(const LatLon latLon_new){
 					double distance=latLon.getDistance(latLon_new);
-					printf("Dist: %f/%f\n",distance,rad);
+					//printf("Dist: %f/%f\n",distance,rad);
 					if(distance<rad)
 						return true;
 					return false;

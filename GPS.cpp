@@ -5,7 +5,7 @@
 #define DATA_COL_PERIOD_MS	2000
 #define DATA_ANL_PERIOD_MS  2000
 
-#define GPS_DEBUG
+//#define GPS_DEBUG
 
 //GPS class
 
@@ -98,7 +98,9 @@ double GPS::getAngle(LatLon startLoc,LatLon eenndLoc){
 	if(rotation.lon==0){
 		rotation.lon+=0.00001f;
 	}
+	#ifdef GPS_DEBUG
 	printf("\tDIFF %f %f\n",rotation.lat,rotation.lon);
+	#endif
 	double angle=atan(rotation.lon/rotation.lat);
 	//printf("\tRANG %f\n",angle);
 	angle=angle*360/(2*3.14159);///(3.14159);
@@ -112,7 +114,9 @@ double GPS::getAngle(LatLon startLoc,LatLon eenndLoc){
 	}
 	if(angle<0){angle+=360;}
 	if(angle>360){angle-=360;}
+	#ifdef GPS_DEBUG
 	printf("\tANGL: %f Lat: %f %f Lon: %f %f\n",angle,startLoc.lat,eenndLoc.lat,startLoc.lon,eenndLoc.lon);
+	#endif
 	return angle;
 }
 
@@ -195,7 +199,9 @@ bool GPS::updateWayPoint(){
 		target=target->next;
 }
 bool GPS::addWayPoint(LatLon latlon,double radius,int index){
+	#ifdef GPS_DEBUG
 	printf("Add Waypoint: %f %f\n",latlon.lat,latlon.lon);
+	#endif
 	GPSWayPoint* target_loop=target;
 	index=target_loop==NULL?-2:index;
 	int i;
@@ -231,7 +237,9 @@ void GPS::data_grab(LatLon& output){//float& output_lat,float& output_lon){
 			//Conversion time
 			convert_data(read_bufferA,chars_read,outputB);
 			if(outputB.lat!=0){
+				#ifdef GPS_DEBUG
 				printf("\t>>C %f\t%f\n",outputB.lat,outputB.lon);
+				#endif
 			}
 		}else{
 			#ifdef GPS_DEBUG
@@ -259,7 +267,9 @@ void GPS::collector(){
 			if(gps_reading.lat!=0||gps_reading.lon!=0){
 				// If outputing gps data
 				if(1==1){//output_heading){
+					#ifdef GPS_DEBUG
 					printf("> %f\t%f\n", gps_reading.lat, gps_reading.lon);
+					#endif
 				}
 				setLocBuffer(gps_reading);
 				sem_post(&collect_analysis_sync);
@@ -279,11 +289,11 @@ void GPS::collector(){
 // Rolling buffer
 void GPS::setLocBuffer(const GPS::LatLon location){
 	if(getLocBufferAvg().getDistance(location)<0.001){
-		printf("No Swap Required\n");
+		//printf("No Swap Required\n");
 		locBuffer[locBufferIndex]=location;
 		locBufferIndex=(locBufferIndex+1)%GPS_ROLLBUFF_SIZE;
 	}else{
-		printf("Place in back buffer\n");
+		//printf("Place in back buffer\n");
 		locBuffer[GPS_ROLLBUFF_SIZE+locBufferIndexB]=location;
 		locBufferIndex=(locBufferIndexB+1)%GPS_ROLLBUFF_SIZE;
 		bool swapBuffer=true;
@@ -295,7 +305,7 @@ void GPS::setLocBuffer(const GPS::LatLon location){
 			}
 		}
 		if(swapBuffer){
-			printf("Swap back buffer\n");
+			//printf("Swap back buffer\n");
 			for(int i=0;i<GPS_ROLLBUFF_SIZE;i++){
 				locBuffer[i]=locBuffer[GPS_ROLLBUFF_SIZE+i];
 			}
@@ -321,7 +331,7 @@ GPS::LatLon GPS::getLocBufferAvg(){
 
 // Analyze the data stuff
 void GPS::analysis(){
-	printf("Analysis\n");
+	//printf("Analysis\n");
 
 	struct timespec t;
 	clock_gettime(CLOCK_MONOTONIC ,&t);
@@ -343,10 +353,12 @@ void GPS::analysis(){
 			float angle=(float)getAngle(getLocBufferAvg(),target->latLon);
 
 			// Magnetic north correction
-			angle-=21;	
+			angle-=2;//21;	
 			
 			// Send angle to compass
+			#ifdef GPS_DEBUG
 			printf("Angle: %f\n",angle);
+			#endif
 			MESSAGE request_compass_data = MESSAGE(SUBSYS_GPS, SUBSYS_COMPASS, CPS_SET_HEADING,*((void**)(&angle))); //request current compass heading
 			send_sys_message(&request_compass_data);
 			updateWayPoint();
