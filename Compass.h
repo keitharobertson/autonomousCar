@@ -22,7 +22,7 @@ class Compass : public Sensor {
 		 * 
 		 * Sets subsystem parameters and sets up the collect/analysis task sync semaphore.
 		 */
-		Compass();
+		Compass(ADC_DATA* adc_data_ptr);
 		
 		/**
 		 * \brief grabs data from compass
@@ -94,6 +94,14 @@ class Compass : public Sensor {
 		MESSAGE slight_left;
 		
 	protected:
+		/**returns the heading corrected for tilt*/
+		float correct_heading(int Bx, int By, int Bz, int Ax, int Ay, int Az);
+	
+		/** store the adc data here for cross subsystem access */
+		ADC_DATA* adc_data;
+		/** SPI request for sonar data from the ADC */
+		 struct spi_ioc_transfer msg[1]; 
+	
 		/** The desired heading */
 		float desired_heading;
 		
@@ -106,8 +114,14 @@ class Compass : public Sensor {
 		/** The i2c file descriptor for the compass */
 		int compass_fd;
 		
+		/** The i2c file descriptor for the compass */
+		int accel_fd;
+		
 		/** The filename for the compass device. (will be a device in /dev). */
 		char compass_filepath[40];
+		
+		/** The filename for the compass device. (will be a device in /dev). */
+		char accel_filepath[40];
 		
 		/** the minimum subsystem priority that can change the compass heading */
 		int min_priority;

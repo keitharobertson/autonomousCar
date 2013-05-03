@@ -68,6 +68,9 @@ class SystemControl {
 		/** The system message queue */
 		mqd_t sys_mq;
 		
+		/** struct to store adc data across subsystems */
+		ADC_DATA adc_data;
+		
 	private:
 		/** Message queue attributes */
 		struct mq_attr attr;

@@ -7,11 +7,15 @@
 #include <stdlib.h>
 #include <math.h>
 #include <errno.h>
+#include <stdint.h>
+#include <linux/spi/spidev.h>
+#include <string.h>
 
 #include "shirtt.h"
 
 #include "Compass.h"
 
+#define PI 3.14159265359
 
 #define	COMPASS_ADDR	0x1E //0x21
 
@@ -33,10 +37,16 @@
 
 //Compass class
 
-Compass::Compass() {
+Compass::Compass(ADC_DATA* adc_data_ptr) {
 	subsys_name = COMPASS;
 	subsys_num = SUBSYS_COMPASS;
 	desired_heading = 0;
+	adc_data = adc_data_ptr;
+	msg[0].len = 2;
+	msg[0].speed_hz = 500000;
+	msg[0].delay_usecs = 0;
+	msg[0].cs_change = 0;
+	msg[0].pad = 0;	
 	//init the collect/analysis sync semaphore.
 	if(sem_init(&collect_analysis_sync, 0, 0) != 0){
 		perror("Failed to init the compass collector/analysis sync sem \n");
@@ -48,6 +58,32 @@ Compass::Compass() {
 }
 
 void Compass::init_sensor() {
+	char command[2];
+	char read_buff[2];
+	
+	// SET UP SPI FOR ACCEL
+	sprintf(accel_filepath,"/dev/spidev3.1"); //filepath for SPI device
+	static uint8_t mode = SPI_MODE_0;
+	//open the SPI device
+	if ((accel_fd = open(accel_filepath,O_RDWR)) < 0) {
+		perror("Failed to open the bus for accel read.\n");
+	}
+	//put SPI in write mode
+	if(ioctl(accel_fd, SPI_IOC_WR_MODE, &mode) < 0){
+		perror("Failed to set up SPI for write mode for accl setup");
+	}
+	//setup SPI for talking to the ADC
+	command[0] = 0b01101000;
+	command[1] = 0xFF;
+	write(accel_fd,command,2);
+	
+	read(accel_fd,read_buff,2);
+	
+	if(ioctl(accel_fd, SPI_IOC_RD_MODE, &mode) < 0){
+		perror("Failed to set up SPI for read mode for ACCEL setup");
+	}
+	
+	//SET UP MAGNETOMETER
 	struct timespec t;
 	clock_gettime(CLOCK_MONOTONIC ,&t);
 	t.tv_nsec+= 50*NS_PER_MS;
@@ -65,7 +101,6 @@ void Compass::init_sensor() {
 	clock_gettime(CLOCK_MONOTONIC ,&t);
 	t.tv_nsec+= 50*NS_PER_MS;
 	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
-	char command[3];
 	
 	/*command[0] = 'r';
 	command[1] = 0x08;
@@ -110,7 +145,91 @@ void Compass::init_sensor() {
 	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
 }
 
+float Compass::correct_heading(int Bx, int By, int Bz, int Ax, int Ay, int Az) {
+	/* roll pitch and yaw angles computed by iecompass */
+	int16_t iPhi iThe iPsi; 
+	/* magnetic field readings corrected for hard iron effects and PCB orientation */
+	int16_t iBfx iBfy iBfz;
+	/* hard iron estimate */
+	int16_t iVx iVy iVz;
+	
+	int16_t iSin, iCos; /* sine and cosine */
+	/* subtract the hard iron offset */
+	Bx -= iVx; /* see Eq 16 */
+	By -= iVy; /* see Eq 16 */
+	Bz -= iVz; /* see Eq 16 */
+	
+	/* calculate current roll angle Phi */
+	iPhi = atan2(iGpy, iGpz)*180/PI*100;/* Eq 13 */
+	/* calculate sin and cosine of roll angle Phi */
+	iSin = iTrig(iGpy, iGpz); /* Eq 13: sin = opposite / hypotenuse */
+	iCos = iTrig(iGpz, iGpy); /* Eq 13: cos = adjacent / hypotenuse */
+	/* de-rotate by roll angle Phi */
+	iBfy = (Int16)((iBpy * iCos - iBpz * iSin) >> 15);/* Eq 19 y component */
+	iBpz = (Int16)((iBpy * iSin + iBpz * iCos) >> 15);/* Bpy*sin(Phi)+Bpz*cos(Phi)*/
+	iGpz = (Int16)((iGpy * iSin + iGpz * iCos) >> 15);/* Eq 15 denominator */
+	/* calculate current pitch angle Theta */
+	iThe = iHundredAtan2Deg((Int16)-iGpx, iGpz);/* Eq 15 */
+	/* restrict pitch angle to range -90 to 90 degrees */
+	if (iThe > 9000) iThe = (Int16) (18000 - iThe);
+	if (iThe < -9000) iThe = (Int16) (-18000 - iThe);
+	/* calculate sin and cosine of pitch angle Theta */
+	iSin = (Int16)-iTrig(iGpx, iGpz); /* Eq 15: sin = opposite / hypotenuse */
+	iCos = iTrig(iGpz, iGpx); /* Eq 15: cos = adjacent / hypotenuse */
+	/* correct cosine if pitch not in range -90 to 90 degrees */
+	if (iCos < 0) iCos = (Int16)-iCos;
+	/* de-rotate by pitch angle Theta */
+	iBfx = (Int16)((iBpx * iCos + iBpz * iSin) >> 15); /* Eq 19: x component */
+	iBfz = (Int16)((-iBpx * iSin + iBpz * iCos) >> 15);/* Eq 19: z component */
+	/* calculate current yaw = e-compass angle Psi */
+	iPsi = iHundredAtan2Deg((Int16)-iBfy, iBfx); /* Eq 22 */
+	
+	return 0.0;
+}
+
 float Compass::data_grab(){
+//create tx and rx buffers for data trasmission 
+	char tx_buf1[2];
+	char rx_buf1[2];
+	char tx_buf2[2];
+	char rx_buf2[2];
+	//set tx and rx buffers in the message
+	msg[0].tx_buf=(uint64_t)tx_buf1;
+	msg[0].rx_buf=(uint64_t)rx_buf1;
+	//setup tx buffer to request data from ADC
+	tx_buf1[0] = 0b01101000;
+	tx_buf1[1] = 0xFF;
+	#ifdef SONAR_DEBUG
+		printf("tx buff: %x\n",(int)tx_buf1[0]);
+	#endif
+	//requestd data from the ADC. Response put in rx_buf
+	if(ioctl(accel_fd, SPI_IOC_MESSAGE(1), msg) < 0) {
+		perror("Error requesting data from ADC (SPI IOC MESSAGE failed)\n");
+	}
+	
+	memcpy(adc_data->rx_buf_adc3,rx_buf1,2);
+	
+	//set tx and rx buffers in the message
+	msg[0].tx_buf=(uint64_t)tx_buf2;
+	msg[0].rx_buf=(uint64_t)rx_buf2;
+	//setup tx buffer to request data from ADC
+	tx_buf2[0] = 0b01111000;
+	tx_buf2[1] = 0xFF;
+	#ifdef COMPASS_DEBUG
+		printf("tx buff: %x\n",(int)tx_buf2[0]);
+	#endif
+	//requestd data from the ADC. Response put in rx_buf
+	if(ioctl(accel_fd, SPI_IOC_MESSAGE(1), msg) < 0) {
+		perror("Error requesting data from ADC (SPI IOC MESSAGE failed)\n");
+	}
+	memcpy(adc_data->rx_buf_adc4,rx_buf2,2);
+	
+	std::cout << "adc2 reading: " << ( (((int)(rx_buf2[0] & 0b00000011)) << 8) + ((int)(rx_buf2[1])) ) << std::endl;
+	
+	int Ax = (((int)(rx_buf1[0] & 0b00000011)) << 8) + ((int)(rx_buf1[1]));
+	int Ay = (((int)(rx_buf2[0] & 0b00000011)) << 8) + ((int)(rx_buf2[1]));
+	int Az = (((int)(adc_data->rx_buf_adc2[0] & 0b00000011)) << 8) + ((int)(adc_data->rx_buf_adc2[1]));
+	
 	char command[1];
 	//command[0] = 0x3C;
 	
@@ -159,10 +278,11 @@ float Compass::data_grab(){
 	/*if(write(compass_fd,command,1) != 1){
 		perror("Failed to request data");
 	}*/
-	float ret = (float)(atan2((double)y,(double)x)*180.0/3.141592 + 180);
-	ret = (ret>360) ? ret-360 : ret;
+	/*float ret = (float)(atan2((double)y,(double)x)*180.0/3.141592 + 180);
+	ret = (ret>360) ? ret-360 : ret;*/
 	
-	return ret;
+	return correct_heading(x, y, z, Ax, Ay, Az);
+
 	//std::cout << "heading: " << head << std::endl;
 	
 	

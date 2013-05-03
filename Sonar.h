@@ -31,7 +31,7 @@ class Sonar : public Sensor {
 		 * 
 		 * sets subsystem parameters and sets up the collect/analysis task sync semaphore.
 		 */
-		Sonar();
+		Sonar(ADC_DATA* adc_data_ptr);
 		
 		/**
 		 * \brief grabs data from sonar
@@ -113,6 +113,8 @@ class Sonar : public Sensor {
 		 */
 		void reverse_direction();
 		
+		/** store the adc data here for cross subsystem access */
+		ADC_DATA* adc_data;
 		/** The most recent sonar reading */
 		float sonar_reading;
 		/** Threshold distance for sonar avoidance.  If the sonar reading drops below this value, 
