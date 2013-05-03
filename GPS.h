@@ -21,6 +21,9 @@
 #define GPS_MAX_LENGTH 512 
 #define GPS_PORT_NAME "/dev/ttyO1"
 
+/**
+ *  GPS Commands and their offsets to obtain the coordinates
+ */
 #define GPS_GPGAA "$GPGGA"
 #define GPS_GPGAA_L 6
 #define GPS_GPGAA_OS 2
@@ -31,7 +34,29 @@
 #define GPS_GPRMC_L 6
 #define GPS_GPRMC_OS 3
 
+/**
+ *  Rolling buffer size. Higher = more smooth, slower update.
+ */
 #define GPS_ROLLBUFF_SIZE 1
+
+/**
+ *  Timing attributes
+ */
+#define NS_PER_MS	1000000
+#define NS_PER_S	1000000000
+#define DATA_COL_PERIOD_MS	2000
+#define DATA_ANL_PERIOD_MS  2000
+
+/**
+ * GPS Magnetic north correction
+ */
+#define GPS_MAG_CORRECTION -20
+
+/**
+ *  Define this variable to enable printf debugging
+ */
+//#define GPS_DEBUG
+
 /**
  * \class GPS
  * \brief GPS data collection and analysis
@@ -41,39 +66,53 @@
  */
 class GPS : public Sensor {
 	public:
+		/**
+		 *  \class LatLon
+		 *  \brief Structure that hold latitude and longitude
+		 *
+		 *  Holds latitude and longitude 
+		 *   preforms various calculations on them
+		 */
 		class LatLon{
 		public:
 			double lat;
 			double lon;
+			/** Default Constructer **/
 			LatLon(){
 				lat=lon=0;
 			}
+			/** Pass in a lat long to assign values accrodingly **/
 			LatLon(double newLat,double newLon){
 				lat=newLat;
 				lon=newLon;
 			}
+			/** Gets the norm distance between this point and another **/
 			double getDistance(const LatLon& other){
 				double diff_lat=other.lat-lat;
 				double diff_lon=other.lon-lon;
 				return diff_lat*diff_lat+diff_lon*diff_lon;
 			}
+			/** Sums each of the components (lat lon) repsectivly **/
 			LatLon & operator+=(const LatLon &other) {
 				lat+=other.lat;
 				lon+=other.lon;
 				return *this;
 			}
+			/** Subtracts each of the componenets (lat lon) repsectivly **/
 			LatLon operator-(const LatLon &other) {
 				LatLon output;
 				output.lat=lat-other.lat;
 				output.lon=lon-other.lon;
 				return output;
 			}
+			/** Devide by any class that can devide a double **/
 			template<class T>
 			LatLon & operator/=(const T &other) {
 				lat/=other;
 				lon/=other;
 				return *this;
 			}
+			/** Output lat lon to cout **/
 			friend std::ostream& operator<<(std::ostream& os, const LatLon& dt){
 				os << "(" << dt.lat << "," << dt.lon << ")";
 			}
@@ -141,7 +180,9 @@ class GPS : public Sensor {
 		 * sets subsystem parameters
 		 */
 		GPS();
-		
+		/**
+		 * \brief deconstructor
+		 */
 		~GPS();
 		
 		/**
@@ -151,6 +192,10 @@ class GPS : public Sensor {
 		 */
 		void data_grab(LatLon& output);
 		
+
+		/**
+		 * \brief initialize the GPS connection
+		 */
 		void init_sensor();
 		
 		/**
@@ -167,6 +212,9 @@ class GPS : public Sensor {
 		 */
 		void analysis();
 		
+		/**
+		 * Read the data based of a command
+		 */
 		void* read_data(int command);
 		
 		/**
@@ -189,10 +237,19 @@ class GPS : public Sensor {
 		 */
 		bool addWayPoint(LatLon latlon,double radius,int index=-1);
 
+		/**
+		 * \brief Get location from rolling buffer (averaged)
+		 */
 		LatLon getLocBufferAvg();
 
+		/**
+		 * \brief Get the angle between two lat long
+		 */
 		double getAngle(LatLon startLoc,LatLon eenndLoc);
 
+		/**
+		 * \brief Add a value to the lat long rolling buffer
+		 */
 		void setLocBuffer(const GPS::LatLon location);
 	protected:
 		/**
@@ -227,12 +284,15 @@ class GPS : public Sensor {
 
 		/** Index into Location Buffer (used to smooth noise) */
 		int locBufferIndex;
+		/** Back buffer used for rejected data points */
 		int locBufferIndexB;
 
 		/** The collect/analysis sync semaphore */
 		sem_t collect_analysis_sync;
 
+		/** Temperary location of lat used when loading in lat */
 		double temp_lat;
+		/** Temperary location of long used when loading in long */
 		double temp_lon;
 };
 

@@ -1,12 +1,5 @@
 #include "GPS.h"
 
-#define NS_PER_MS	1000000
-#define NS_PER_S	1000000000
-#define DATA_COL_PERIOD_MS	2000
-#define DATA_ANL_PERIOD_MS  2000
-
-//#define GPS_DEBUG
-
 //GPS class
 
 GPS::GPS() {
@@ -28,13 +21,42 @@ GPS::~GPS(){
 // Clear Buffer
 static void clearBuffer(){
 	printf("Clear Buffers\n");
+	struct termios options_original;
+	struct termios options;
 	int serial_port = open(GPS_PORT_NAME, O_RDWR | O_NONBLOCK);
 	char read_buffer[GPS_MAX_LENGTH + 1] = {0};
 	read_buffer[0]='\0';
 	uint counter=0;
 	printf("start\n");
+	if (serial_port != -1){
+		#ifdef GPS_DEBUG
+			printf("Serial Port open\n");
+		#endif
+		tcgetattr(serial_port,&options_original);
+		tcgetattr(serial_port, &options);
+		cfsetispeed(&options, B57600);
+		cfsetospeed(&options, B57600);
+		options.c_cflag |= (CLOCAL | CREAD);
+		options.c_lflag |= ICANON;
+		if (tcsetattr(serial_port, TCSAFLUSH, &options)!=0){ //TCSANOW replaced with TCSAFLUSH
+			printf("error %d from tcsetattr", errno);
+			return;
+		}
+	}else{
+		printf("Unable to open %s",GPS_PORT_NAME);
+		printf("Error %d opening %s: %s",errno, GPS_PORT_NAME, strerror(errno));
+	}
+
+	struct timespec t;
+	clock_gettime(CLOCK_MONOTONIC ,&t);
+	t.tv_sec += 2;
+	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+
 	while(read(serial_port,read_buffer, GPS_MAX_LENGTH)>0){
 		printf("%d\n",counter++);
+		clock_gettime(CLOCK_MONOTONIC ,&t);
+		t.tv_nsec += 100;
+		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
 	}
 	printf("Done\n");
 	close(serial_port);
@@ -353,7 +375,7 @@ void GPS::analysis(){
 			float angle=(float)getAngle(getLocBufferAvg(),target->latLon);
 
 			// Magnetic north correction
-			angle-=2;//21;	
+			angle+=GPS_MAG_CORRECTION;//21;	
 			
 			// Send angle to compass
 			#ifdef GPS_DEBUG

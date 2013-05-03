@@ -127,6 +127,7 @@ float Compass::data_grab(){
 		}else{
 			perror("Failed to read data from compass");
 		}
+		std::cout << "Not reading 6" << std::endl;
 	}
 	int16_t x=(buff[0] << 8) | (buff[1]);
 	int16_t y=(buff[2] << 8) | (buff[3]);
@@ -162,6 +163,8 @@ float Compass::data_grab(){
 	float ret = (float)(atan2((double)y,(double)x)*180.0/3.141592 + 180);
 	ret = (ret>360) ? ret-360 : ret;
 	
+	std::cout << "heading: \t" << x << ",\t" << y << ",\t" << z << " \t" << ret << std::endl;
+
 	return ret;
 	//std::cout << "heading: " << head << std::endl;
 	

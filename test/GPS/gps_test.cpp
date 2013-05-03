@@ -15,12 +15,12 @@ int main() {
 	std::cout << "subsys 0 " << SUBSYS_STEERING << " " << STR_HARD_LEFT << std::endl;
 
 	std::cout << "subsys 0 " << SUBSYS_GPS << " " << GPS_DISPLAY << std::endl;
-	//std::cout << "subsys 1 " << SUBSYS_COMPASS << " " << CPS_SET_HEADING <<  " 261"  << std::endl;
+	std::cout << "subsys 1 " << SUBSYS_COMPASS << " " << CPS_SET_HEADING <<  " 0"  << std::endl;
 
 	//std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALAT <<  " 40.00399"  << std::endl;
 	//std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALON << "-105.25630" << std::endl;
 	//std::cout << "subsys 0 " << SUBSYS_GPS << " " << GPS_ADDWAYDATARUN << std::endl;
-
+/*
 
 	for(int i=0;i<10;i++){
 		std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALAT <<  " 40.00459"  << std::endl;
