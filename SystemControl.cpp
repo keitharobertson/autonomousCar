@@ -71,10 +71,10 @@ void SystemControl::init() {
 	subsys[SUBSYS_STEERING] = new Steering();
 	subsys[SUBSYS_STEERING]->init();
 
-	subsys[SUBSYS_COMPASS] = new Compass();
+	subsys[SUBSYS_COMPASS] = new Compass(&adc_data);
 	subsys[SUBSYS_COMPASS]->init();
 
-	subsys[SUBSYS_SONAR] = new Sonar();
+	subsys[SUBSYS_SONAR] = new Sonar(&adc_data);
 	subsys[SUBSYS_SONAR]->init();
 
 	subsys[SUBSYS_GPS] = new GPS();

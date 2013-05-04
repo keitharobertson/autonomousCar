@@ -2,7 +2,7 @@
 #define	COMPASS_H_
 
 #include <semaphore.h>
-
+#include <linux/spi/spidev.h>
 #include "Sensor.h"
 
 #define COMPASS	"COMPASS"
@@ -17,12 +17,39 @@
 class Compass : public Sensor {
 	public:
 	
+		class Vector3d{
+		public:
+			double X;
+			double Y;
+			double Z;
+			Vector3d(){}
+			Vector3d(double x,double y,double z){X=x;Y=y;Z=z;}
+			Vector3d cross(Vector3d o){
+				Vector3d output;
+				output.X=Y*o.Z-Z*o.Y;
+				output.Y=Z*o.X-X*o.Z;
+				output.Z=X*o.Y-Y*o.X;
+				return output;
+			}
+			Vector3d normalize(){
+				double xyzNorm=sqrt(X*X+Y*Y+Z*Z);
+				X/=xyzNorm;
+				Y/=xyzNorm;
+				Z/=xyzNorm;
+				return Vector3d(X,Y,Z);
+			}
+			/** Output lat lon to cout **/
+			friend std::ostream& operator<<(std::ostream& os, const Vector3d& dt){
+				os << "(" << dt.X << "," << dt.Y << "," << dt.Z << ")";
+			}
+		};
+
 		/**
 		 * \brief Compass default constructor
 		 * 
 		 * Sets subsystem parameters and sets up the collect/analysis task sync semaphore.
 		 */
-		Compass();
+		Compass(ADC_DATA* adc_data_ptr);
 		
 		/**
 		 * \brief grabs data from compass
@@ -94,6 +121,14 @@ class Compass : public Sensor {
 		MESSAGE slight_left;
 		
 	protected:
+		/**returns the heading corrected for tilt*/
+		//float correct_heading(int Bx, int By, int Bz, int Ax, int Ay, int Az);
+	
+		/** store the adc data here for cross subsystem access */
+		ADC_DATA* adc_data;
+		/** SPI request for sonar data from the ADC */
+		struct spi_ioc_transfer msg[1]; 
+	
 		/** The desired heading */
 		float desired_heading;
 		
@@ -106,8 +141,14 @@ class Compass : public Sensor {
 		/** The i2c file descriptor for the compass */
 		int compass_fd;
 		
+		/** The i2c file descriptor for the compass */
+		int accel_fd;
+		
 		/** The filename for the compass device. (will be a device in /dev). */
 		char compass_filepath[40];
+		
+		/** The filename for the compass device. (will be a device in /dev). */
+		char accel_filepath[40];
 		
 		/** the minimum subsystem priority that can change the compass heading */
 		int min_priority;

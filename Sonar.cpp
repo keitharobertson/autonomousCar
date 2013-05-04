@@ -24,7 +24,7 @@ static void* reset_heading_task(void* c) {
 
 //Sonar class Implementation
 
-Sonar::Sonar() {
+Sonar::Sonar(ADC_DATA* adc_data_ptr) {
 	subsys_name = SONAR;
 	subsys_num = SUBSYS_SONAR;
 	//setup subsystem variables.
@@ -32,6 +32,7 @@ Sonar::Sonar() {
 	turn_threshold = DEFAULT_TURN_THRESH;//set default turn threshold
 	reverse_threshold = DEFAULT_REVERSE_THRESH;//set default reverse threshold
 	print_data = false;//do not print out data by default
+	adc_data = adc_data_ptr;
 	//setup parameters for SPI data requests from the ADC
 	msg[0].len = 2;
 	msg[0].speed_hz = 500000;
@@ -48,7 +49,7 @@ Sonar::Sonar() {
 }
 
 void Sonar::init_sensor() {
-	sprintf(sonar_filepath,"/dev/spidev4.0"); //filepath for SPI device
+	sprintf(sonar_filepath,"/dev/spidev3.0"); //filepath for SPI device
 	static uint8_t mode = SPI_MODE_0;
 	//open the SPI device
 	if ((sonar_fd = open(sonar_filepath,O_RDWR)) < 0) {
@@ -75,23 +76,45 @@ void Sonar::init_sensor() {
 
 float Sonar::data_grab(){
 	//create tx and rx buffers for data trasmission 
-	char tx_buf[2];
-	char rx_buf[2];
+	char tx_buf1[2];
+	char rx_buf1[2];
+	char tx_buf2[2];
+	char rx_buf2[2];
 	//set tx and rx buffers in the message
-	msg[0].tx_buf=(uint64_t)tx_buf;
-	msg[0].rx_buf=(uint64_t)rx_buf;
+	msg[0].tx_buf=(uint64_t)tx_buf1;
+	msg[0].rx_buf=(uint64_t)rx_buf1;
 	//setup tx buffer to request data from ADC
-	tx_buf[0] = 0b01101000;
-	tx_buf[1] = 0xFF;
+	tx_buf1[0] = 0b01101000;
+	tx_buf1[1] = 0xFF;
 	#ifdef SONAR_DEBUG
-		printf("tx buff: %x\n",(int)tx_buf[0]);
+		printf("tx buff: %x\n",(int)tx_buf1[0]);
 	#endif
 	//requestd data from the ADC. Response put in rx_buf
 	if(ioctl(sonar_fd, SPI_IOC_MESSAGE(1), msg) < 0) {
 		perror("Error requesting data from ADC (SPI IOC MESSAGE failed)\n");
 	}
+	
+	memcpy(adc_data->rx_buf_adc1,rx_buf1,2);
+	
+	//set tx and rx buffers in the message
+	msg[0].tx_buf=(uint64_t)tx_buf2;
+	msg[0].rx_buf=(uint64_t)rx_buf2;
+	//setup tx buffer to request data from ADC
+	tx_buf2[0] = 0b01111000;
+	tx_buf2[1] = 0xFF;
+	#ifdef SONAR_DEBUG
+		printf("tx buff: %x\n",(int)tx_buf2[0]);
+	#endif
+	//requestd data from the ADC. Response put in rx_buf
+	if(ioctl(sonar_fd, SPI_IOC_MESSAGE(1), msg) < 0) {
+		perror("Error requesting data from ADC (SPI IOC MESSAGE failed)\n");
+	}
+	memcpy(adc_data->rx_buf_adc2,rx_buf2,2);
+	
+	//std::cout << "adc2 reading: " << ( (((int)(rx_buf2[0] & 0b00000011)) << 8) + ((int)(rx_buf2[1])) ) << std::endl;
+	
 	//shift and mask out the 10 bit ADC reading
-	int reading = ( (((int)(rx_buf[0] & 0b00000011)) << 8) + ((int)(rx_buf[1])) );
+	int reading = ( (((int)(rx_buf1[0] & 0b00000011)) << 8) + ((int)(rx_buf1[1])) );
 	//convert reading to a distance in inches
 	float distance = (float)reading / 1023.0 * 3300.0 / MV_PER_INCH;
 	
@@ -126,6 +149,8 @@ void Sonar::collector(){
 				}
 				sem_post(&collect_analysis_sync);
 			}
+		}else{
+			data_grab();
 		}
 	}
 }

@@ -116,6 +116,7 @@ class GPS : public Sensor {
 			friend std::ostream& operator<<(std::ostream& os, const LatLon& dt){
 				os << "(" << dt.lat << "," << dt.lon << ")";
 			}
+
 		};
 
 		/**

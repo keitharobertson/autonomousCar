@@ -37,6 +37,13 @@ typedef struct _MESSAGE {
 	
 } MESSAGE;
 
+typedef struct _ADC_DATA {
+	char rx_buf_adc1[2];
+	char rx_buf_adc2[2];
+	char rx_buf_adc3[2];
+	char rx_buf_adc4[2];
+} ADC_DATA;
+
 /** \defgroup subsys_nums Subsystem Numbers
  * Numbers assigned to each subsystem used for unique identification by the messaging system.
  * @{ */
