@@ -43,7 +43,7 @@ void \hyperlink{classMotor_af6301006bc0b18d6a4b32d2be0cd93a7}{set\-\_\-new\-\_\-
 \item 
 int \hyperlink{classMotor_a0125717053068acb08b430d820bfc413}{min\-\_\-priority}
 \item 
-char \hyperlink{classMotor_aac6cb55808e4f1da0506d0cc6c314e41}{motor\-\_\-duty\-\_\-cycle} \mbox{[}2\mbox{]}
+char \hyperlink{classMotor_a158ba3b940abdc85c7c1e4b1bf651a6e}{motor\-\_\-duty\-\_\-cycle} \mbox{[}6\mbox{]}
 \item 
 int \hyperlink{classMotor_a7d7c98b5afa45656905708e54ff7fb9a}{direction}
 \item 
@@ -52,6 +52,8 @@ sem\-\_\-t \hyperlink{classMotor_a827a1d2b453a804d389cdafbf0685022}{motor\-\_\-c
 int \hyperlink{classMotor_acb2ac1bd2630b05c40a64154a87ea65d}{motor\-\_\-fd}
 \item 
 char \hyperlink{classMotor_aed42ebef60a1374fc86dd2aff59af85e}{motor\-\_\-filepath} \mbox{[}40\mbox{]}
+\item 
+\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} \hyperlink{classMotor_ab2774f3d9c41683a683f10ef20a29607}{data\-\_\-request}
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -176,7 +178,10 @@ Sets the motor P\-W\-M duty cycle.
 Sets the motor\-\_\-duty\-\_\-cycle and gives the motor\-\_\-cmd\-\_\-ctrl sync semaphore which releases the mech\-\_\-control task. 
 
 \subsection{Member Data Documentation}
-\hypertarget{classMotor_a7d7c98b5afa45656905708e54ff7fb9a}{\index{Motor@{Motor}!direction@{direction}}
+\hypertarget{classMotor_ab2774f3d9c41683a683f10ef20a29607}{\index{Motor@{Motor}!data\-\_\-request@{data\-\_\-request}}
+\index{data\-\_\-request@{data\-\_\-request}!Motor@{Motor}}
+\subsubsection[{data\-\_\-request}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-S\-S\-A\-G\-E} Motor\-::data\-\_\-request\hspace{0.3cm}{\ttfamily [protected]}}}\label{classMotor_ab2774f3d9c41683a683f10ef20a29607}
+message used to send back data requested by other subsystems (typically sonar) \hypertarget{classMotor_a7d7c98b5afa45656905708e54ff7fb9a}{\index{Motor@{Motor}!direction@{direction}}
 \index{direction@{direction}!Motor@{Motor}}
 \subsubsection[{direction}]{\setlength{\rightskip}{0pt plus 5cm}int Motor\-::direction\hspace{0.3cm}{\ttfamily [protected]}}}\label{classMotor_a7d7c98b5afa45656905708e54ff7fb9a}
 the motor direction (1=forward, 0=reverse) \hypertarget{classMotor_a0125717053068acb08b430d820bfc413}{\index{Motor@{Motor}!min\-\_\-priority@{min\-\_\-priority}}
@@ -185,9 +190,9 @@ the motor direction (1=forward, 0=reverse) \hypertarget{classMotor_a012571705306
 minimum priority for commands from other subsystems. For example if compass has priority 5, sonar has priority 2, and min\-\_\-priority is set to 3, commands from the compass will be ignored and commands from sonar will be accepted. \hypertarget{classMotor_a827a1d2b453a804d389cdafbf0685022}{\index{Motor@{Motor}!motor\-\_\-cmd\-\_\-ctrl@{motor\-\_\-cmd\-\_\-ctrl}}
 \index{motor\-\_\-cmd\-\_\-ctrl@{motor\-\_\-cmd\-\_\-ctrl}!Motor@{Motor}}
 \subsubsection[{motor\-\_\-cmd\-\_\-ctrl}]{\setlength{\rightskip}{0pt plus 5cm}sem\-\_\-t Motor\-::motor\-\_\-cmd\-\_\-ctrl\hspace{0.3cm}{\ttfamily [protected]}}}\label{classMotor_a827a1d2b453a804d389cdafbf0685022}
-the command/control sync semaphore \hypertarget{classMotor_aac6cb55808e4f1da0506d0cc6c314e41}{\index{Motor@{Motor}!motor\-\_\-duty\-\_\-cycle@{motor\-\_\-duty\-\_\-cycle}}
+the command/control sync semaphore \hypertarget{classMotor_a158ba3b940abdc85c7c1e4b1bf651a6e}{\index{Motor@{Motor}!motor\-\_\-duty\-\_\-cycle@{motor\-\_\-duty\-\_\-cycle}}
 \index{motor\-\_\-duty\-\_\-cycle@{motor\-\_\-duty\-\_\-cycle}!Motor@{Motor}}
-\subsubsection[{motor\-\_\-duty\-\_\-cycle}]{\setlength{\rightskip}{0pt plus 5cm}char Motor\-::motor\-\_\-duty\-\_\-cycle\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily [protected]}}}\label{classMotor_aac6cb55808e4f1da0506d0cc6c314e41}
+\subsubsection[{motor\-\_\-duty\-\_\-cycle}]{\setlength{\rightskip}{0pt plus 5cm}char Motor\-::motor\-\_\-duty\-\_\-cycle\mbox{[}6\mbox{]}\hspace{0.3cm}{\ttfamily [protected]}}}\label{classMotor_a158ba3b940abdc85c7c1e4b1bf651a6e}
 The current set duty cycle for the motor P\-W\-M \hypertarget{classMotor_acb2ac1bd2630b05c40a64154a87ea65d}{\index{Motor@{Motor}!motor\-\_\-fd@{motor\-\_\-fd}}
 \index{motor\-\_\-fd@{motor\-\_\-fd}!Motor@{Motor}}
 \subsubsection[{motor\-\_\-fd}]{\setlength{\rightskip}{0pt plus 5cm}int Motor\-::motor\-\_\-fd\hspace{0.3cm}{\ttfamily [protected]}}}\label{classMotor_acb2ac1bd2630b05c40a64154a87ea65d}

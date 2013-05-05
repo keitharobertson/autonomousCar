@@ -11,16 +11,18 @@ int main() {
 	std::cout << "subsys 0 " << SUBSYS_COMPASS << " " << STR_ENABLE << std::endl;
 	std::cout << "en_subsys " << SUBSYS_COMPASS << std::endl;
 	std::cout << "en_subsys " << SUBSYS_STEERING << std::endl;
+	std::cout << "en_subsys " << SUBSYS_MOTOR << std::endl;
+	std::cout << "subsys 0 " << SUBSYS_MOTOR << " " << MOT_SLOW << std::endl;
 	//std::cout << "en_subsys " << SUBSYS_SONAR << std::endl;
 	std::cout << "subsys 0 " << SUBSYS_STEERING << " " << STR_HARD_LEFT << std::endl;
 
 	std::cout << "subsys 0 " << SUBSYS_GPS << " " << GPS_DISPLAY << std::endl;
-	std::cout << "subsys 1 " << SUBSYS_COMPASS << " " << CPS_SET_HEADING <<  " 0"  << std::endl;
+	std::cout << "subsys 1 " << SUBSYS_COMPASS << " " << CPS_SET_HEADING <<  " 90"  << std::endl;
 
 	//std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALAT <<  " 40.00399"  << std::endl;
 	//std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALON << "-105.25630" << std::endl;
 	//std::cout << "subsys 0 " << SUBSYS_GPS << " " << GPS_ADDWAYDATARUN << std::endl;
-/*
+
 
 	for(int i=0;i<10;i++){
 		std::cout << "subsys 1 " << SUBSYS_GPS << " " << GPS_ADDWAYDATALAT <<  " 40.00459"  << std::endl;

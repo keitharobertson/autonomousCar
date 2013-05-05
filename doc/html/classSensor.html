@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -144,6 +144,13 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:abbb7a2f8cb57fa70eaf65c1b7c353e08 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">struct mq_attr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#abbb7a2f8cb57fa70eaf65c1b7c353e08">attr</a></td></tr>
 <tr class="memitem:a3ef2ff7ded6b1623fae096828d549369 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">mqd_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a3ef2ff7ded6b1623fae096828d549369">sys_mq</a></td></tr>
 <tr class="memitem:a71c9d55e3baa41c75bbc54e9e4407bdd inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a71c9d55e3baa41c75bbc54e9e4407bdd">prio</a></td></tr>
+<tr class="memitem:a32fe49f94c0098b8cdb1983c162c0c73 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">struct mq_attr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a32fe49f94c0098b8cdb1983c162c0c73">timing_attr</a></td></tr>
+<tr class="memitem:ab9d87a0c93b2cc65b0a053c325422c1c inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">mqd_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#ab9d87a0c93b2cc65b0a053c325422c1c">timing_mq</a></td></tr>
+<tr class="memitem:aaf8fd18a5c37ec1510869a23ec0feb5f inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#aaf8fd18a5c37ec1510869a23ec0feb5f">timing_prio</a></td></tr>
+<tr class="memitem:ae9c30b7c1ebe18eee34d1dca1530abb7 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9c30b7c1ebe18eee34d1dca1530abb7"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>num_timing_messages</b></td></tr>
+<tr class="memitem:a0eccf033d19cca954aac5fb0d0cc51bf inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0eccf033d19cca954aac5fb0d0cc51bf"></a>
+struct timespec&#160;</td><td class="memItemRight" valign="bottom"><b>timing_analysis</b> [TIMING_ANALYSIS_BUFFER_SIZE]</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -151,6 +158,13 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a731ef7c72752c9fafba06225a21e77ba inherit pub_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a731ef7c72752c9fafba06225a21e77ba">subsys_name</a></td></tr>
 <tr class="memitem:af5095f64990120d1ff8e1e07c7c1ee77 inherit pub_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#af5095f64990120d1ff8e1e07c7c1ee77">subsys_num</a></td></tr>
 <tr class="memitem:a3c1751f0ac60254618dc22f1b75fbfda inherit pub_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a3c1751f0ac60254618dc22f1b75fbfda">enabled</a></td></tr>
+<tr class="inherit_header pro_methods_classSubsystem"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classSubsystem')"><img src="closed.png" alt="-"/>&nbsp;Protected Member Functions inherited from <a class="el" href="classSubsystem.html">Subsystem</a></td></tr>
+<tr class="memitem:aaa5c98618b06473ac3e88ad658f804ec inherit pro_methods_classSubsystem"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#aaa5c98618b06473ac3e88ad658f804ec">log_release_time</a> (struct timespec *release_time, int task_num)</td></tr>
+<tr class="memdesc:aaa5c98618b06473ac3e88ad658f804ec inherit pro_methods_classSubsystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">log the release time of a task  <a href="#aaa5c98618b06473ac3e88ad658f804ec"></a><br/></td></tr>
+<tr class="memitem:ac3e8ba69ef5cf814f19b6a5ee25473ca inherit pro_methods_classSubsystem"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#ac3e8ba69ef5cf814f19b6a5ee25473ca">log_end_time</a> (struct timespec *end_time, int task_num)</td></tr>
+<tr class="memdesc:ac3e8ba69ef5cf814f19b6a5ee25473ca inherit pro_methods_classSubsystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">log the release time of a task  <a href="#ac3e8ba69ef5cf814f19b6a5ee25473ca"></a><br/></td></tr>
+<tr class="memitem:a2cd6f9f05fecd33d8d362cd5c28f4e71 inherit pro_methods_classSubsystem"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a2cd6f9f05fecd33d8d362cd5c28f4e71">send_timing_message</a> (struct timespec *time, int task_num, bool is_start)</td></tr>
+<tr class="memdesc:a2cd6f9f05fecd33d8d362cd5c28f4e71 inherit pro_methods_classSubsystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">sends information to timing analysis  <a href="#a2cd6f9f05fecd33d8d362cd5c28f4e71"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classSensor.html" title="Sensor class manages sensor tasks.">Sensor</a> class manages sensor tasks. </p>
@@ -225,7 +239,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Performs the analysis of the data collected from the sensor. </p>
 <p>Virtual function implemented at the specific sensor level. The analysis function executes in the analysis thread and is synced with the collector task by the collect_analysis_sync semaphore. Messages will be sent to the actuators using the system message queue. </p>
 
-<p>Implemented in <a class="el" href="classSonar.html#a11a32c64528f8e69fdde4722f3b3bc7b">Sonar</a>, <a class="el" href="classCompass.html#a4dd6402d0ece9203c6b92670265b4c8d">Compass</a>, and <a class="el" href="classGPS.html#a4dca50736c5e49f831515219536823b2">GPS</a>.</p>
+<p>Implemented in <a class="el" href="classGPS.html#a4dca50736c5e49f831515219536823b2">GPS</a>, <a class="el" href="classCompass.html#a4dd6402d0ece9203c6b92670265b4c8d">Compass</a>, and <a class="el" href="classSonar.html#a11a32c64528f8e69fdde4722f3b3bc7b">Sonar</a>.</p>
 
 </div>
 </div>
@@ -253,7 +267,7 @@ Additional Inherited Members</h2></td></tr>
 <p>collects data from the sensor </p>
 <p>Virtual function implemented at the specific sensor level. The collector function executes in the collector thread and executes indefinitely at a set frequency. It calls the data_grab to do the actual communication with the hardware to provide a layer of abstraction between the software and specifics of the hardware. It can optionally average data prior to analysis if the system is expected to be under heavy load and the tasks are not schedulable with the typical release frequencies (averaging will have the effect that the analysis task will be released less frequently). </p>
 
-<p>Implemented in <a class="el" href="classSonar.html#a38b0e409082be17e7098b2e471bab4a8">Sonar</a>, <a class="el" href="classCompass.html#ae8d7f3417a27b1d18487b96ca07dd32b">Compass</a>, and <a class="el" href="classGPS.html#a17383568c4ed86a0adfdd5c88b6591d4">GPS</a>.</p>
+<p>Implemented in <a class="el" href="classGPS.html#a17383568c4ed86a0adfdd5c88b6591d4">GPS</a>, <a class="el" href="classCompass.html#ae8d7f3417a27b1d18487b96ca07dd32b">Compass</a>, and <a class="el" href="classSonar.html#a38b0e409082be17e7098b2e471bab4a8">Sonar</a>.</p>
 
 </div>
 </div>
@@ -284,7 +298,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classSubsystem.html#a6205bccfd4906044065d25d8ab1a7bfb">Subsystem</a>.</p>
 
-<p>Implemented in <a class="el" href="classSonar.html#a5f9b0f57b5a05b03b0dcb5ab830592ff">Sonar</a>, <a class="el" href="classCompass.html#a1fb0f64b335e8f1d4f27dc2067312b4a">Compass</a>, and <a class="el" href="classGPS.html#a803a498352e30044136502a9e036d380">GPS</a>.</p>
+<p>Implemented in <a class="el" href="classGPS.html#a803a498352e30044136502a9e036d380">GPS</a>, <a class="el" href="classCompass.html#a1fb0f64b335e8f1d4f27dc2067312b4a">Compass</a>, and <a class="el" href="classSonar.html#a5f9b0f57b5a05b03b0dcb5ab830592ff">Sonar</a>.</p>
 
 </div>
 </div>
@@ -340,7 +354,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Virtual function to initialize the sensor device. </p>
 <p>Implemented by each sensor, the init_sensor function is responsible for setting the sensor up for data collection. For example in the case of the compass subsystem, the init_device task will set up the i2c bus, initialize the system variables, and perform other tasks necessary before data can be collected from the compass. </p>
 
-<p>Implemented in <a class="el" href="classSonar.html#af91d04cbc441084ba608a49c2be88d5b">Sonar</a>, <a class="el" href="classCompass.html#a5cc2b71700af542b5aafadea4820a476">Compass</a>, and <a class="el" href="classGPS.html#aebb999362899800a7e372e873bb5b943">GPS</a>.</p>
+<p>Implemented in <a class="el" href="classGPS.html#aebb999362899800a7e372e873bb5b943">GPS</a>, <a class="el" href="classCompass.html#a5cc2b71700af542b5aafadea4820a476">Compass</a>, and <a class="el" href="classSonar.html#af91d04cbc441084ba608a49c2be88d5b">Sonar</a>.</p>
 
 </div>
 </div>
@@ -371,7 +385,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classSubsystem.html#a85307df3e46421814204f77929e893aa">Subsystem</a>.</p>
 
-<p>Implemented in <a class="el" href="classCompass.html#ab55d084e2d643df0a1970f5868d0c5a8">Compass</a>, <a class="el" href="classSonar.html#a54f55470741873f333ad8af8a98affc8">Sonar</a>, and <a class="el" href="classGPS.html#aa04076536ee9f7e2679895c69b07ad58">GPS</a>.</p>
+<p>Implemented in <a class="el" href="classGPS.html#aa04076536ee9f7e2679895c69b07ad58">GPS</a>, <a class="el" href="classCompass.html#ab55d084e2d643df0a1970f5868d0c5a8">Compass</a>, and <a class="el" href="classSonar.html#a54f55470741873f333ad8af8a98affc8">Sonar</a>.</p>
 
 </div>
 </div>
@@ -453,7 +467,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 22 2013 22:02:39 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun May 5 2013 16:23:59 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

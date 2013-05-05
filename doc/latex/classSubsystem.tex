@@ -42,6 +42,15 @@ int \hyperlink{classSubsystem_af5095f64990120d1ff8e1e07c7c1ee77}{subsys\-\_\-num
 \item 
 int \hyperlink{classSubsystem_a3c1751f0ac60254618dc22f1b75fbfda}{enabled}
 \end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classSubsystem_aaa5c98618b06473ac3e88ad658f804ec}{log\-\_\-release\-\_\-time} (struct timespec $\ast$release\-\_\-time, int task\-\_\-num)
+\begin{DoxyCompactList}\small\item\em log the release time of a task \end{DoxyCompactList}\item 
+void \hyperlink{classSubsystem_ac3e8ba69ef5cf814f19b6a5ee25473ca}{log\-\_\-end\-\_\-time} (struct timespec $\ast$end\-\_\-time, int task\-\_\-num)
+\begin{DoxyCompactList}\small\item\em log the release time of a task \end{DoxyCompactList}\item 
+void \hyperlink{classSubsystem_a2cd6f9f05fecd33d8d362cd5c28f4e71}{send\-\_\-timing\-\_\-message} (struct timespec $\ast$time, int task\-\_\-num, bool is\-\_\-start)
+\begin{DoxyCompactList}\small\item\em sends information to timing analysis \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -50,6 +59,18 @@ struct mq\-\_\-attr \hyperlink{classSubsystem_abbb7a2f8cb57fa70eaf65c1b7c353e08}
 mqd\-\_\-t \hyperlink{classSubsystem_a3ef2ff7ded6b1623fae096828d549369}{sys\-\_\-mq}
 \item 
 unsigned int \hyperlink{classSubsystem_a71c9d55e3baa41c75bbc54e9e4407bdd}{prio}
+\item 
+struct mq\-\_\-attr \hyperlink{classSubsystem_a32fe49f94c0098b8cdb1983c162c0c73}{timing\-\_\-attr}
+\item 
+mqd\-\_\-t \hyperlink{classSubsystem_ab9d87a0c93b2cc65b0a053c325422c1c}{timing\-\_\-mq}
+\item 
+unsigned int \hyperlink{classSubsystem_aaf8fd18a5c37ec1510869a23ec0feb5f}{timing\-\_\-prio}
+\item 
+\hypertarget{classSubsystem_ae9c30b7c1ebe18eee34d1dca1530abb7}{int {\bfseries num\-\_\-timing\-\_\-messages}}\label{classSubsystem_ae9c30b7c1ebe18eee34d1dca1530abb7}
+
+\item 
+\hypertarget{classSubsystem_a0eccf033d19cca954aac5fb0d0cc51bf}{struct timespec {\bfseries timing\-\_\-analysis} \mbox{[}T\-I\-M\-I\-N\-G\-\_\-\-A\-N\-A\-L\-Y\-S\-I\-S\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E\mbox{]}}\label{classSubsystem_a0eccf033d19cca954aac5fb0d0cc51bf}
+
 \end{DoxyCompactItemize}
 
 
@@ -97,7 +118,7 @@ Handles message sent to the subsystem.
 
 Virtual function defined at the specific subsystem level. Will handle the messages sent to the \hyperlink{classSubsystem}{Subsystem} from the system controller. Messages could be from command line interface or from another subsystem. 
 
-Implemented in \hyperlink{classSensor_a45533b253f81f85d1b6fcea902a5692b}{Sensor}, \hyperlink{classActuator_a733c6782030e224bcef26161c77a4d96}{Actuator}, \hyperlink{classSonar_a5f9b0f57b5a05b03b0dcb5ab830592ff}{Sonar}, \hyperlink{classMotor_add07c258d9b239633a3882a07dc9e4de}{Motor}, \hyperlink{classSteering_a29e46d1b87ecda7807452ad67005efe1}{Steering}, \hyperlink{classCompass_a1fb0f64b335e8f1d4f27dc2067312b4a}{Compass}, and \hyperlink{classGPS_a803a498352e30044136502a9e036d380}{G\-P\-S}.
+Implemented in \hyperlink{classGPS_a803a498352e30044136502a9e036d380}{G\-P\-S}, \hyperlink{classCompass_a1fb0f64b335e8f1d4f27dc2067312b4a}{Compass}, \hyperlink{classSensor_a45533b253f81f85d1b6fcea902a5692b}{Sensor}, \hyperlink{classSonar_a5f9b0f57b5a05b03b0dcb5ab830592ff}{Sonar}, \hyperlink{classActuator_a733c6782030e224bcef26161c77a4d96}{Actuator}, \hyperlink{classMotor_add07c258d9b239633a3882a07dc9e4de}{Motor}, and \hyperlink{classSteering_a29e46d1b87ecda7807452ad67005efe1}{Steering}.
 
 \hypertarget{classSubsystem_a77a984e8a06bfebb924a6e7ba4f98363}{\index{Subsystem@{Subsystem}!init@{init}}
 \index{init@{init}!Subsystem@{Subsystem}}
@@ -114,7 +135,31 @@ Virtual function to be defined at subsystem type level.
 
 Implemented in \hyperlink{classActuator_a0ab156ee6321eb413171e7a04ae4d1ca}{Actuator}, and \hyperlink{classSensor_a84bc35cfba92eb579bc311b3c8b2980d}{Sensor}.
 
-\hypertarget{classSubsystem_a85307df3e46421814204f77929e893aa}{\index{Subsystem@{Subsystem}!read\-\_\-data@{read\-\_\-data}}
+\hypertarget{classSubsystem_ac3e8ba69ef5cf814f19b6a5ee25473ca}{\index{Subsystem@{Subsystem}!log\-\_\-end\-\_\-time@{log\-\_\-end\-\_\-time}}
+\index{log\-\_\-end\-\_\-time@{log\-\_\-end\-\_\-time}!Subsystem@{Subsystem}}
+\subsubsection[{log\-\_\-end\-\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}void Subsystem\-::log\-\_\-end\-\_\-time (
+\begin{DoxyParamCaption}
+\item[{struct timespec $\ast$}]{end\-\_\-time, }
+\item[{int}]{task\-\_\-num}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSubsystem_ac3e8ba69ef5cf814f19b6a5ee25473ca}
+
+
+log the release time of a task 
+
+sends a message to the timing logger with the task number and (relative) time \hypertarget{classSubsystem_aaa5c98618b06473ac3e88ad658f804ec}{\index{Subsystem@{Subsystem}!log\-\_\-release\-\_\-time@{log\-\_\-release\-\_\-time}}
+\index{log\-\_\-release\-\_\-time@{log\-\_\-release\-\_\-time}!Subsystem@{Subsystem}}
+\subsubsection[{log\-\_\-release\-\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}void Subsystem\-::log\-\_\-release\-\_\-time (
+\begin{DoxyParamCaption}
+\item[{struct timespec $\ast$}]{release\-\_\-time, }
+\item[{int}]{task\-\_\-num}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSubsystem_aaa5c98618b06473ac3e88ad658f804ec}
+
+
+log the release time of a task 
+
+sends a message to the timing logger with the task number and (relative) time \hypertarget{classSubsystem_a85307df3e46421814204f77929e893aa}{\index{Subsystem@{Subsystem}!read\-\_\-data@{read\-\_\-data}}
 \index{read\-\_\-data@{read\-\_\-data}!Subsystem@{Subsystem}}
 \subsubsection[{read\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}virtual void$\ast$ Subsystem\-::read\-\_\-data (
 \begin{DoxyParamCaption}
@@ -127,7 +172,7 @@ Reads in data from message to the subsystem.
 
 Virtual function implemented at the subsystem level. Will read data into appropriate data type and then cast to a void$\ast$ and return. The type of data received depends on the message command. For example if trying to set the motor pwm duty cycle, a three byte char$\ast$ is expected. This function will read the data in from standard in (using cin) into an appropriate datatype for the given command and will return the data to the system message handler for further processing. 
 
-Implemented in \hyperlink{classCompass_ab55d084e2d643df0a1970f5868d0c5a8}{Compass}, \hyperlink{classSonar_a54f55470741873f333ad8af8a98affc8}{Sonar}, \hyperlink{classMotor_a1727e2d2dfd483c9c85824915a6aeeb8}{Motor}, \hyperlink{classSteering_afda4f2951e5be114abf988a8e5943a96}{Steering}, \hyperlink{classActuator_a65fe83ffd7895f3ab028b87a62b3af1d}{Actuator}, \hyperlink{classGPS_aa04076536ee9f7e2679895c69b07ad58}{G\-P\-S}, and \hyperlink{classSensor_acf4ff5c6c8f793ed47a8105b94ff7c3e}{Sensor}.
+Implemented in \hyperlink{classGPS_aa04076536ee9f7e2679895c69b07ad58}{G\-P\-S}, \hyperlink{classCompass_ab55d084e2d643df0a1970f5868d0c5a8}{Compass}, \hyperlink{classSonar_a54f55470741873f333ad8af8a98affc8}{Sonar}, \hyperlink{classMotor_a1727e2d2dfd483c9c85824915a6aeeb8}{Motor}, \hyperlink{classSteering_afda4f2951e5be114abf988a8e5943a96}{Steering}, \hyperlink{classActuator_a65fe83ffd7895f3ab028b87a62b3af1d}{Actuator}, and \hyperlink{classSensor_acf4ff5c6c8f793ed47a8105b94ff7c3e}{Sensor}.
 
 \hypertarget{classSubsystem_a2c33b82253ec4588067349e33247f504}{\index{Subsystem@{Subsystem}!send\-\_\-sys\-\_\-message@{send\-\_\-sys\-\_\-message}}
 \index{send\-\_\-sys\-\_\-message@{send\-\_\-sys\-\_\-message}!Subsystem@{Subsystem}}
@@ -140,7 +185,20 @@ Implemented in \hyperlink{classCompass_ab55d084e2d643df0a1970f5868d0c5a8}{Compas
 
 send message to system 
 
-sends a message to the system using system heap message queue. This is used to send inter-\/subsystem messages. The system processes the messages and delivers them to the appropriate subsystem. \hypertarget{classSubsystem_a510e18f972a3d86d7a47432dafa1ce4c}{\index{Subsystem@{Subsystem}!shutdown@{shutdown}}
+sends a message to the system using system heap message queue. This is used to send inter-\/subsystem messages. The system processes the messages and delivers them to the appropriate subsystem. \hypertarget{classSubsystem_a2cd6f9f05fecd33d8d362cd5c28f4e71}{\index{Subsystem@{Subsystem}!send\-\_\-timing\-\_\-message@{send\-\_\-timing\-\_\-message}}
+\index{send\-\_\-timing\-\_\-message@{send\-\_\-timing\-\_\-message}!Subsystem@{Subsystem}}
+\subsubsection[{send\-\_\-timing\-\_\-message}]{\setlength{\rightskip}{0pt plus 5cm}void Subsystem\-::send\-\_\-timing\-\_\-message (
+\begin{DoxyParamCaption}
+\item[{struct timespec $\ast$}]{time, }
+\item[{int}]{task\-\_\-num, }
+\item[{bool}]{is\-\_\-start}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSubsystem_a2cd6f9f05fecd33d8d362cd5c28f4e71}
+
+
+sends information to timing analysis 
+
+will send a M\-E\-S\-S\-A\-G\-E to the timing analysis system \hypertarget{classSubsystem_a510e18f972a3d86d7a47432dafa1ce4c}{\index{Subsystem@{Subsystem}!shutdown@{shutdown}}
 \index{shutdown@{shutdown}!Subsystem@{Subsystem}}
 \subsubsection[{shutdown}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Subsystem\-::shutdown (
 \begin{DoxyParamCaption}
@@ -176,7 +234,16 @@ message queue priority \hypertarget{classSubsystem_a731ef7c72752c9fafba06225a21e
 \hyperlink{classSubsystem}{Subsystem} number (assigned in \hyperlink{SUBSYS__COMMANDS_8h}{S\-U\-B\-S\-Y\-S\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S.\-h}) \hypertarget{classSubsystem_a3ef2ff7ded6b1623fae096828d549369}{\index{Subsystem@{Subsystem}!sys\-\_\-mq@{sys\-\_\-mq}}
 \index{sys\-\_\-mq@{sys\-\_\-mq}!Subsystem@{Subsystem}}
 \subsubsection[{sys\-\_\-mq}]{\setlength{\rightskip}{0pt plus 5cm}mqd\-\_\-t Subsystem\-::sys\-\_\-mq\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSubsystem_a3ef2ff7ded6b1623fae096828d549369}
-message queue descriptor 
+message queue descriptor \hypertarget{classSubsystem_a32fe49f94c0098b8cdb1983c162c0c73}{\index{Subsystem@{Subsystem}!timing\-\_\-attr@{timing\-\_\-attr}}
+\index{timing\-\_\-attr@{timing\-\_\-attr}!Subsystem@{Subsystem}}
+\subsubsection[{timing\-\_\-attr}]{\setlength{\rightskip}{0pt plus 5cm}struct mq\-\_\-attr Subsystem\-::timing\-\_\-attr\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSubsystem_a32fe49f94c0098b8cdb1983c162c0c73}
+Timing Message queue attributes \hypertarget{classSubsystem_ab9d87a0c93b2cc65b0a053c325422c1c}{\index{Subsystem@{Subsystem}!timing\-\_\-mq@{timing\-\_\-mq}}
+\index{timing\-\_\-mq@{timing\-\_\-mq}!Subsystem@{Subsystem}}
+\subsubsection[{timing\-\_\-mq}]{\setlength{\rightskip}{0pt plus 5cm}mqd\-\_\-t Subsystem\-::timing\-\_\-mq\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSubsystem_ab9d87a0c93b2cc65b0a053c325422c1c}
+timing message queue descriptor \hypertarget{classSubsystem_aaf8fd18a5c37ec1510869a23ec0feb5f}{\index{Subsystem@{Subsystem}!timing\-\_\-prio@{timing\-\_\-prio}}
+\index{timing\-\_\-prio@{timing\-\_\-prio}!Subsystem@{Subsystem}}
+\subsubsection[{timing\-\_\-prio}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Subsystem\-::timing\-\_\-prio\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSubsystem_aaf8fd18a5c37ec1510869a23ec0feb5f}
+timing message queue priority 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 

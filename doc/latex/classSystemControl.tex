@@ -28,9 +28,11 @@ void \hyperlink{classSystemControl_a25f45e16b1d4dc69ce8c356741feb17d}{recieve\-\
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classSubsystem}{Subsystem} $\ast$ \hyperlink{classSystemControl_a7c4a251aec26da056dff1d51b5a149de}{subsys} \mbox{[}N\-U\-M\-\_\-\-S\-U\-B\-S\-Y\-S\-T\-E\-M\-S\mbox{]}
+\hyperlink{classSubsystem}{Subsystem} $\ast$ \hyperlink{classSystemControl_a7c4a251aec26da056dff1d51b5a149de}{subsys} \mbox{[}\hyperlink{group__subsys__nums_gad914679f013f117ec7470f75fee6149a}{N\-U\-M\-\_\-\-S\-U\-B\-S\-Y\-S\-T\-E\-M\-S}\mbox{]}
 \item 
 mqd\-\_\-t \hyperlink{classSystemControl_a0f1842f00f91fd17bd7be7508653c2e2}{sys\-\_\-mq}
+\item 
+\hyperlink{struct__ADC__DATA}{A\-D\-C\-\_\-\-D\-A\-T\-A} \hyperlink{classSystemControl_a703950091d3de8e4612fefa92710e8d6}{adc\-\_\-data}
 \end{DoxyCompactItemize}
 
 
@@ -113,9 +115,12 @@ Shuts the system down.
 deletes the subsystems, cancels the system receiver task, closes the system message queue, and unlinks message queue. 
 
 \subsection{Member Data Documentation}
-\hypertarget{classSystemControl_a7c4a251aec26da056dff1d51b5a149de}{\index{System\-Control@{System\-Control}!subsys@{subsys}}
+\hypertarget{classSystemControl_a703950091d3de8e4612fefa92710e8d6}{\index{System\-Control@{System\-Control}!adc\-\_\-data@{adc\-\_\-data}}
+\index{adc\-\_\-data@{adc\-\_\-data}!SystemControl@{System\-Control}}
+\subsubsection[{adc\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-D\-C\-\_\-\-D\-A\-T\-A} System\-Control\-::adc\-\_\-data}}\label{classSystemControl_a703950091d3de8e4612fefa92710e8d6}
+struct to store adc data across subsystems \hypertarget{classSystemControl_a7c4a251aec26da056dff1d51b5a149de}{\index{System\-Control@{System\-Control}!subsys@{subsys}}
 \index{subsys@{subsys}!SystemControl@{System\-Control}}
-\subsubsection[{subsys}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Subsystem}$\ast$ System\-Control\-::subsys\mbox{[}N\-U\-M\-\_\-\-S\-U\-B\-S\-Y\-S\-T\-E\-M\-S\mbox{]}}}\label{classSystemControl_a7c4a251aec26da056dff1d51b5a149de}
+\subsubsection[{subsys}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Subsystem}$\ast$ System\-Control\-::subsys\mbox{[}{\bf N\-U\-M\-\_\-\-S\-U\-B\-S\-Y\-S\-T\-E\-M\-S}\mbox{]}}}\label{classSystemControl_a7c4a251aec26da056dff1d51b5a149de}
 An array of references to the subsystems. Each subsystem's index in the array is given by its subsystem number assigned as in \hyperlink{SUBSYS__COMMANDS_8h}{S\-U\-B\-S\-Y\-S\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S.\-h} (see \hyperlink{group__subsys__nums}{Subsystem Numbers}). \hypertarget{classSystemControl_a0f1842f00f91fd17bd7be7508653c2e2}{\index{System\-Control@{System\-Control}!sys\-\_\-mq@{sys\-\_\-mq}}
 \index{sys\-\_\-mq@{sys\-\_\-mq}!SystemControl@{System\-Control}}
 \subsubsection[{sys\-\_\-mq}]{\setlength{\rightskip}{0pt plus 5cm}mqd\-\_\-t System\-Control\-::sys\-\_\-mq}}\label{classSystemControl_a0f1842f00f91fd17bd7be7508653c2e2}

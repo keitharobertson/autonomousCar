@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -89,10 +89,30 @@ Macros</h2></td></tr>
 <tr class="memitem:gac8383d8fc4fa97bb45f89d9a50e0966d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__gps__commands.html#gac8383d8fc4fa97bb45f89d9a50e0966d">GPS_ENABLE</a>&#160;&#160;&#160;3</td></tr>
 <tr class="memitem:gad25ca4dcc3aa69da0e474e3b69cc910a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__gps__commands.html#gad25ca4dcc3aa69da0e474e3b69cc910a">GPS_DISPLAY</a>&#160;&#160;&#160;4</td></tr>
 <tr class="memitem:ga3de45ac0f8b80c8044b533d47cf08e99"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__gps__commands.html#ga3de45ac0f8b80c8044b533d47cf08e99">GPS_NO_DISPLAY</a>&#160;&#160;&#160;5</td></tr>
+<tr class="memitem:ga8fea9a175c11935b9e7cc3e2857621aa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__gps__commands.html#ga8fea9a175c11935b9e7cc3e2857621aa">GPS_ADDWAY</a>&#160;&#160;&#160;6</td></tr>
+<tr class="memitem:gae6a303b17a88ef3e34cf8e3caf8f7a52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gae6a303b17a88ef3e34cf8e3caf8f7a52"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GPS_ADDWAYDATALAT</b>&#160;&#160;&#160;7</td></tr>
+<tr class="memitem:ga0d500f7c6ef80090a0c8928e4d7e0f59"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga0d500f7c6ef80090a0c8928e4d7e0f59"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GPS_ADDWAYDATALON</b>&#160;&#160;&#160;8</td></tr>
+<tr class="memitem:ga9a0958ce7693698b1bb24e54413819ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga9a0958ce7693698b1bb24e54413819ed"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GPS_ADDWAYDATARUN</b>&#160;&#160;&#160;9</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <p>Commands that can be issued to the <a class="el" href="classGPS.html" title="GPS data collection and analysis.">GPS</a> subsystem. </p>
 <h2>Macro Definition Documentation</h2>
+<a class="anchor" id="ga8fea9a175c11935b9e7cc3e2857621aa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GPS_ADDWAY&#160;&#160;&#160;6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Add a waypoint at the current location </p>
+
+</div>
+</div>
 <a class="anchor" id="ga8e394314aacedb0790203d4af6cd5710"></a>
 <div class="memitem">
 <div class="memproto">
@@ -174,7 +194,7 @@ Macros</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 22 2013 22:02:36 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun May 5 2013 16:23:58 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

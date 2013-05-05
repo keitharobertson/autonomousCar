@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -83,6 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classGPS-members.html">List of all members</a>  </div>
@@ -106,26 +107,50 @@ Inheritance diagram for GPS:</div>
 </map>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS_1_1GPSWayPoint.html">GPSWayPoint</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores <a class="el" href="classGPS.html" title="GPS data collection and analysis.">GPS</a> WayPoints as a linked list.  <a href="classGPS_1_1GPSWayPoint.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS_1_1LatLon.html">LatLon</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure that hold latitude and longitude.  <a href="classGPS_1_1LatLon.html#details">More...</a><br/></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0c347a188512d0d5cf7ed5c91b145fc4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a0c347a188512d0d5cf7ed5c91b145fc4">GPS</a> ()</td></tr>
 <tr class="memdesc:a0c347a188512d0d5cf7ed5c91b145fc4"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classGPS.html" title="GPS data collection and analysis.">GPS</a> default constructor.  <a href="#a0c347a188512d0d5cf7ed5c91b145fc4"></a><br/></td></tr>
-<tr class="memitem:a669ad6e30c411499d069fcb9ffeea876"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a669ad6e30c411499d069fcb9ffeea876">data_grab</a> (float &amp;output_lat, float &amp;output_lon)</td></tr>
-<tr class="memdesc:a669ad6e30c411499d069fcb9ffeea876"><td class="mdescLeft">&#160;</td><td class="mdescRight">grabs data from <a class="el" href="classGPS.html" title="GPS data collection and analysis.">GPS</a>  <a href="#a669ad6e30c411499d069fcb9ffeea876"></a><br/></td></tr>
-<tr class="memitem:aebb999362899800a7e372e873bb5b943"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#aebb999362899800a7e372e873bb5b943">init_sensor</a> ()</td></tr>
-<tr class="memdesc:aebb999362899800a7e372e873bb5b943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual function to initialize the sensor device.  <a href="#aebb999362899800a7e372e873bb5b943"></a><br/></td></tr>
+<tr class="memitem:afe84b00ea93254fcb8b84a0f2b240c9d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe84b00ea93254fcb8b84a0f2b240c9d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#afe84b00ea93254fcb8b84a0f2b240c9d">~GPS</a> ()</td></tr>
+<tr class="memdesc:afe84b00ea93254fcb8b84a0f2b240c9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">deconstructor <br/></td></tr>
+<tr class="memitem:acd4e4d75709b2b897972f4ff89a2bdab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#acd4e4d75709b2b897972f4ff89a2bdab">data_grab</a> (<a class="el" href="classGPS_1_1LatLon.html">LatLon</a> &amp;output)</td></tr>
+<tr class="memdesc:acd4e4d75709b2b897972f4ff89a2bdab"><td class="mdescLeft">&#160;</td><td class="mdescRight">grabs data from <a class="el" href="classGPS.html" title="GPS data collection and analysis.">GPS</a>  <a href="#acd4e4d75709b2b897972f4ff89a2bdab"></a><br/></td></tr>
+<tr class="memitem:aebb999362899800a7e372e873bb5b943"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aebb999362899800a7e372e873bb5b943"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#aebb999362899800a7e372e873bb5b943">init_sensor</a> ()</td></tr>
+<tr class="memdesc:aebb999362899800a7e372e873bb5b943"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize the <a class="el" href="classGPS.html" title="GPS data collection and analysis.">GPS</a> connection <br/></td></tr>
 <tr class="memitem:a17383568c4ed86a0adfdd5c88b6591d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a17383568c4ed86a0adfdd5c88b6591d4">collector</a> ()</td></tr>
 <tr class="memdesc:a17383568c4ed86a0adfdd5c88b6591d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">collects <a class="el" href="classGPS.html" title="GPS data collection and analysis.">GPS</a> data  <a href="#a17383568c4ed86a0adfdd5c88b6591d4"></a><br/></td></tr>
 <tr class="memitem:a4dca50736c5e49f831515219536823b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a4dca50736c5e49f831515219536823b2">analysis</a> ()</td></tr>
 <tr class="memdesc:a4dca50736c5e49f831515219536823b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">data analysis  <a href="#a4dca50736c5e49f831515219536823b2"></a><br/></td></tr>
 <tr class="memitem:aa04076536ee9f7e2679895c69b07ad58"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#aa04076536ee9f7e2679895c69b07ad58">read_data</a> (int command)</td></tr>
-<tr class="memdesc:aa04076536ee9f7e2679895c69b07ad58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads in data from message to the sensor.  <a href="#aa04076536ee9f7e2679895c69b07ad58"></a><br/></td></tr>
 <tr class="memitem:a803a498352e30044136502a9e036d380"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a803a498352e30044136502a9e036d380"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a803a498352e30044136502a9e036d380">handle_message</a> (<a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a> *message)</td></tr>
 <tr class="memdesc:a803a498352e30044136502a9e036d380"><td class="mdescLeft">&#160;</td><td class="mdescRight">handles messages sent to the <a class="el" href="classGPS.html" title="GPS data collection and analysis.">GPS</a> subsystem <br/></td></tr>
-<tr class="memitem:a41dc6041167ef4e2860274629392c300"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a41dc6041167ef4e2860274629392c300"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a41dc6041167ef4e2860274629392c300">convert_data</a> (char *input, int length, float &amp;output_lat, float &amp;output_lon)</td></tr>
-<tr class="memdesc:a41dc6041167ef4e2860274629392c300"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the input command into lat/long and stores in output. <br/></td></tr>
+<tr class="memitem:abb0d819282c6575d1c9dfadce5270238"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abb0d819282c6575d1c9dfadce5270238"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#abb0d819282c6575d1c9dfadce5270238">convert_data</a> (char *input, int length, <a class="el" href="classGPS_1_1LatLon.html">LatLon</a> &amp;output)</td></tr>
+<tr class="memdesc:abb0d819282c6575d1c9dfadce5270238"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the input command into lat/long and stores in output. <br/></td></tr>
+<tr class="memitem:ae6fac25305f26521d3cb313608224cbf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6fac25305f26521d3cb313608224cbf"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#ae6fac25305f26521d3cb313608224cbf">updateWayPoint</a> ()</td></tr>
+<tr class="memdesc:ae6fac25305f26521d3cb313608224cbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update waypoint if necissary. <br/></td></tr>
+<tr class="memitem:a2a02aee137990e44240c60148d4dd892"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a02aee137990e44240c60148d4dd892"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a2a02aee137990e44240c60148d4dd892">addWayPoint</a> (<a class="el" href="classGPS_1_1LatLon.html">LatLon</a> latlon, double radius, int index=-1)</td></tr>
+<tr class="memdesc:a2a02aee137990e44240c60148d4dd892"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add Waypoint. <br/></td></tr>
+<tr class="memitem:a5c2fe388fb6d9f324f9f00e1abdfd5ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c2fe388fb6d9f324f9f00e1abdfd5ed"></a>
+<a class="el" href="classGPS_1_1LatLon.html">LatLon</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a5c2fe388fb6d9f324f9f00e1abdfd5ed">getLocBufferAvg</a> ()</td></tr>
+<tr class="memdesc:a5c2fe388fb6d9f324f9f00e1abdfd5ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get location from rolling buffer (averaged) <br/></td></tr>
+<tr class="memitem:a142cd2ff428450d1145ddaaa4e2974a8"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a142cd2ff428450d1145ddaaa4e2974a8">getAngle</a> (<a class="el" href="classGPS_1_1LatLon.html">LatLon</a> startLoc, <a class="el" href="classGPS_1_1LatLon.html">LatLon</a> eenndLoc)</td></tr>
+<tr class="memdesc:a142cd2ff428450d1145ddaaa4e2974a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the angle between two lat long.  <a href="#a142cd2ff428450d1145ddaaa4e2974a8"></a><br/></td></tr>
+<tr class="memitem:a988b4a8104bc8e93d1225cad026ce578"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a988b4a8104bc8e93d1225cad026ce578"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a988b4a8104bc8e93d1225cad026ce578">setLocBuffer</a> (const <a class="el" href="classGPS_1_1LatLon.html">GPS::LatLon</a> location)</td></tr>
+<tr class="memdesc:a988b4a8104bc8e93d1225cad026ce578"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a value to the lat long rolling buffer. <br/></td></tr>
 <tr class="inherit_header pub_methods_classSensor"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classSensor')"><img src="closed.png" alt="-"/>&nbsp;Public Member Functions inherited from <a class="el" href="classSensor.html">Sensor</a></td></tr>
 <tr class="memitem:a342d6d11ef572c8cba92cb76fb1a294b inherit pub_methods_classSensor"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensor.html#a342d6d11ef572c8cba92cb76fb1a294b">Sensor</a> ()</td></tr>
 <tr class="memdesc:a342d6d11ef572c8cba92cb76fb1a294b inherit pub_methods_classSensor"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classSensor.html" title="Sensor class manages sensor tasks.">Sensor</a> default constructor.  <a href="#a342d6d11ef572c8cba92cb76fb1a294b"></a><br/></td></tr>
@@ -145,16 +170,16 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a8e7d8703e1974afe9819e29da13350c1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e7d8703e1974afe9819e29da13350c1"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>enabled</b></td></tr>
-<tr class="memitem:a14c36e0dcc27dfa5e1381b9a4b25c2ce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a14c36e0dcc27dfa5e1381b9a4b25c2ce"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>output_heading</b></td></tr>
-<tr class="memitem:a2a3644aa4c6f60c59905b3050e4dc935"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a3644aa4c6f60c59905b3050e4dc935"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>last_lat</b></td></tr>
-<tr class="memitem:a5be7ea29b18ea3f78cbe0323a63bc3f4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5be7ea29b18ea3f78cbe0323a63bc3f4"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>last_lon</b></td></tr>
-<tr class="memitem:a62ebacee895a13c211bfd372b818b680"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62ebacee895a13c211bfd372b818b680"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>serial_port</b></td></tr>
+<tr class="memitem:a14c36e0dcc27dfa5e1381b9a4b25c2ce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a14c36e0dcc27dfa5e1381b9a4b25c2ce">output_heading</a></td></tr>
+<tr class="memitem:a62ebacee895a13c211bfd372b818b680"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a62ebacee895a13c211bfd372b818b680">serial_port</a></td></tr>
+<tr class="memitem:a9deda2a96578019d9512a8ec74a93191"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGPS_1_1GPSWayPoint.html">GPSWayPoint</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a9deda2a96578019d9512a8ec74a93191">target</a></td></tr>
+<tr class="memitem:ad1fea42571de73f9b9278cc329490457"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGPS_1_1GPSWayPoint.html">GPSWayPoint</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#ad1fea42571de73f9b9278cc329490457">headPtr</a></td></tr>
+<tr class="memitem:a78bd0e171c43d44a60349cba2d05f29b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGPS_1_1LatLon.html">LatLon</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a78bd0e171c43d44a60349cba2d05f29b">locBuffer</a> [GPS_ROLLBUFF_SIZE *2]</td></tr>
+<tr class="memitem:a8a593af52417cf88df7c6c7172d7caf7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a8a593af52417cf88df7c6c7172d7caf7">locBufferIndex</a></td></tr>
+<tr class="memitem:ac85c17369384b4f9ddb0d0358df9d1cf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#ac85c17369384b4f9ddb0d0358df9d1cf">locBufferIndexB</a></td></tr>
+<tr class="memitem:ab0d29060e79b34b84fa06847a36de2e7"><td class="memItemLeft" align="right" valign="top">sem_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#ab0d29060e79b34b84fa06847a36de2e7">collect_analysis_sync</a></td></tr>
+<tr class="memitem:aa0e370ef448d131c54e3b1d626576cd2"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#aa0e370ef448d131c54e3b1d626576cd2">temp_lat</a></td></tr>
+<tr class="memitem:a4b108cba87ab121532c180e214d0c7fa"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGPS.html#a4b108cba87ab121532c180e214d0c7fa">temp_lon</a></td></tr>
 <tr class="inherit_header pro_attribs_classSensor"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classSensor')"><img src="closed.png" alt="-"/>&nbsp;Protected Attributes inherited from <a class="el" href="classSensor.html">Sensor</a></td></tr>
 <tr class="memitem:a881761631861338b335680ab1e618277 inherit pro_attribs_classSensor"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensor.html#a881761631861338b335680ab1e618277">tCollector</a></td></tr>
 <tr class="memitem:afce21e3a689654c7d165f2a0e01ab86c inherit pro_attribs_classSensor"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensor.html#afce21e3a689654c7d165f2a0e01ab86c">tAnalysis</a></td></tr>
@@ -162,6 +187,13 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>serial_port</b></td></
 <tr class="memitem:abbb7a2f8cb57fa70eaf65c1b7c353e08 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">struct mq_attr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#abbb7a2f8cb57fa70eaf65c1b7c353e08">attr</a></td></tr>
 <tr class="memitem:a3ef2ff7ded6b1623fae096828d549369 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">mqd_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a3ef2ff7ded6b1623fae096828d549369">sys_mq</a></td></tr>
 <tr class="memitem:a71c9d55e3baa41c75bbc54e9e4407bdd inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a71c9d55e3baa41c75bbc54e9e4407bdd">prio</a></td></tr>
+<tr class="memitem:a32fe49f94c0098b8cdb1983c162c0c73 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">struct mq_attr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a32fe49f94c0098b8cdb1983c162c0c73">timing_attr</a></td></tr>
+<tr class="memitem:ab9d87a0c93b2cc65b0a053c325422c1c inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">mqd_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#ab9d87a0c93b2cc65b0a053c325422c1c">timing_mq</a></td></tr>
+<tr class="memitem:aaf8fd18a5c37ec1510869a23ec0feb5f inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#aaf8fd18a5c37ec1510869a23ec0feb5f">timing_prio</a></td></tr>
+<tr class="memitem:ae9c30b7c1ebe18eee34d1dca1530abb7 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9c30b7c1ebe18eee34d1dca1530abb7"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>num_timing_messages</b></td></tr>
+<tr class="memitem:a0eccf033d19cca954aac5fb0d0cc51bf inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0eccf033d19cca954aac5fb0d0cc51bf"></a>
+struct timespec&#160;</td><td class="memItemRight" valign="bottom"><b>timing_analysis</b> [TIMING_ANALYSIS_BUFFER_SIZE]</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -169,9 +201,17 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a731ef7c72752c9fafba06225a21e77ba inherit pub_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a731ef7c72752c9fafba06225a21e77ba">subsys_name</a></td></tr>
 <tr class="memitem:af5095f64990120d1ff8e1e07c7c1ee77 inherit pub_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#af5095f64990120d1ff8e1e07c7c1ee77">subsys_num</a></td></tr>
 <tr class="memitem:a3c1751f0ac60254618dc22f1b75fbfda inherit pub_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a3c1751f0ac60254618dc22f1b75fbfda">enabled</a></td></tr>
+<tr class="inherit_header pro_methods_classSubsystem"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classSubsystem')"><img src="closed.png" alt="-"/>&nbsp;Protected Member Functions inherited from <a class="el" href="classSubsystem.html">Subsystem</a></td></tr>
+<tr class="memitem:aaa5c98618b06473ac3e88ad658f804ec inherit pro_methods_classSubsystem"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#aaa5c98618b06473ac3e88ad658f804ec">log_release_time</a> (struct timespec *release_time, int task_num)</td></tr>
+<tr class="memdesc:aaa5c98618b06473ac3e88ad658f804ec inherit pro_methods_classSubsystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">log the release time of a task  <a href="#aaa5c98618b06473ac3e88ad658f804ec"></a><br/></td></tr>
+<tr class="memitem:ac3e8ba69ef5cf814f19b6a5ee25473ca inherit pro_methods_classSubsystem"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#ac3e8ba69ef5cf814f19b6a5ee25473ca">log_end_time</a> (struct timespec *end_time, int task_num)</td></tr>
+<tr class="memdesc:ac3e8ba69ef5cf814f19b6a5ee25473ca inherit pro_methods_classSubsystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">log the release time of a task  <a href="#ac3e8ba69ef5cf814f19b6a5ee25473ca"></a><br/></td></tr>
+<tr class="memitem:a2cd6f9f05fecd33d8d362cd5c28f4e71 inherit pro_methods_classSubsystem"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a2cd6f9f05fecd33d8d362cd5c28f4e71">send_timing_message</a> (struct timespec *time, int task_num, bool is_start)</td></tr>
+<tr class="memdesc:a2cd6f9f05fecd33d8d362cd5c28f4e71 inherit pro_methods_classSubsystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">sends information to timing analysis  <a href="#a2cd6f9f05fecd33d8d362cd5c28f4e71"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classGPS.html" title="GPS data collection and analysis.">GPS</a> data collection and analysis. </p>
+<p>Define this variable to enable printf debugging</p>
 <p>Collects data from the <a class="el" href="classGPS.html" title="GPS data collection and analysis.">GPS</a> and analyzes the data. Sends system messages to control actuators </p>
 </div><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a0c347a188512d0d5cf7ed5c91b145fc4"></a>
@@ -249,26 +289,16 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a669ad6e30c411499d069fcb9ffeea876"></a>
+<a class="anchor" id="acd4e4d75709b2b897972f4ff89a2bdab"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void GPS::data_grab </td>
           <td>(</td>
-          <td class="paramtype">float &amp;&#160;</td>
-          <td class="paramname"><em>output_lat</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="classGPS_1_1LatLon.html">LatLon</a> &amp;&#160;</td>
+          <td class="paramname"><em>output</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">float &amp;&#160;</td>
-          <td class="paramname"><em>output_lon</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -278,31 +308,32 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aebb999362899800a7e372e873bb5b943"></a>
+<a class="anchor" id="a142cd2ff428450d1145ddaaa4e2974a8"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void GPS::init_sensor </td>
+          <td class="memname">double GPS::getAngle </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classGPS_1_1LatLon.html">LatLon</a>&#160;</td>
+          <td class="paramname"><em>startLoc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classGPS_1_1LatLon.html">LatLon</a>&#160;</td>
+          <td class="paramname"><em>eenndLoc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Virtual function to initialize the sensor device. </p>
-<p>Implemented by each sensor, the init_sensor function is responsible for setting the sensor up for data collection. For example in the case of the compass subsystem, the init_device task will set up the i2c bus, initialize the system variables, and perform other tasks necessary before data can be collected from the compass. </p>
-
-<p>Implements <a class="el" href="classSensor.html#a11b28f6bc91d6f69e734e13ab0e64f56">Sensor</a>.</p>
+<p>Get the angle between two lat long. </p>
+<p>(3.14159); </p>
 
 </div>
 </div>
@@ -327,11 +358,220 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Reads in data from message to the sensor. </p>
-<p>Virtual function implemented at the subsystem level. Will read data into appropriate data type and then cast to a void* and return. The type of data received depends on the message command. For example if trying to set the motor pwm duty cycle, a three byte char* is expected. This function will read the data in from standard in (using cin) into an appropriate datatype for the given command and will return the data to the system message handler for further processing. </p>
+<p>Read the data based of a command </p>
 
 <p>Implements <a class="el" href="classSensor.html#acf4ff5c6c8f793ed47a8105b94ff7c3e">Sensor</a>.</p>
+
+</div>
+</div>
+<h2>Member Data Documentation</h2>
+<a class="anchor" id="ab0d29060e79b34b84fa06847a36de2e7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sem_t GPS::collect_analysis_sync</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The collect/analysis sync semaphore </p>
+
+</div>
+</div>
+<a class="anchor" id="ad1fea42571de73f9b9278cc329490457"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGPS_1_1GPSWayPoint.html">GPSWayPoint</a>* GPS::headPtr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Use this as a head pointer (for memory clearing) </p>
+
+</div>
+</div>
+<a class="anchor" id="a78bd0e171c43d44a60349cba2d05f29b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGPS_1_1LatLon.html">LatLon</a> GPS::locBuffer[GPS_ROLLBUFF_SIZE *2]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Location Buffer (used to smooth noise) </p>
+
+</div>
+</div>
+<a class="anchor" id="a8a593af52417cf88df7c6c7172d7caf7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GPS::locBufferIndex</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Index into Location Buffer (used to smooth noise) </p>
+
+</div>
+</div>
+<a class="anchor" id="ac85c17369384b4f9ddb0d0358df9d1cf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GPS::locBufferIndexB</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Back buffer used for rejected data points </p>
+
+</div>
+</div>
+<a class="anchor" id="a14c36e0dcc27dfa5e1381b9a4b25c2ce"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GPS::output_heading</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set 1=cout the heading </p>
+
+</div>
+</div>
+<a class="anchor" id="a62ebacee895a13c211bfd372b818b680"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GPS::serial_port</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Last latitude received. Last longitude received Serial port file descriptor that <a class="el" href="classGPS.html" title="GPS data collection and analysis.">GPS</a> connected to. </p>
+
+</div>
+</div>
+<a class="anchor" id="a9deda2a96578019d9512a8ec74a93191"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGPS_1_1GPSWayPoint.html">GPSWayPoint</a>* GPS::target</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This is the current target for the <a class="el" href="classGPS.html" title="GPS data collection and analysis.">GPS</a> </p>
+
+</div>
+</div>
+<a class="anchor" id="aa0e370ef448d131c54e3b1d626576cd2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double GPS::temp_lat</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Temperary location of lat used when loading in lat </p>
+
+</div>
+</div>
+<a class="anchor" id="a4b108cba87ab121532c180e214d0c7fa"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double GPS::temp_lon</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Temperary location of long used when loading in long </p>
 
 </div>
 </div>
@@ -342,7 +582,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 22 2013 22:02:38 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun May 5 2013 16:23:59 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

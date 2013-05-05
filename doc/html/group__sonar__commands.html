@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -83,11 +83,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:gaa5d2a4af7281457c965323f4c26ea9ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sonar__commands.html#gaa5d2a4af7281457c965323f4c26ea9ab">SNR_SET_DIST_THR</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:ga514ade1790404e84c0f46b19ed69b696"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sonar__commands.html#ga514ade1790404e84c0f46b19ed69b696">SNR_SET_TURN_THR</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memitem:ga9b110968cd5bd961f4984c02965cf9ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sonar__commands.html#ga9b110968cd5bd961f4984c02965cf9ba">SNR_DISABLE</a>&#160;&#160;&#160;1</td></tr>
 <tr class="memitem:ga994c94413393c44561f42e781da5815f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sonar__commands.html#ga994c94413393c44561f42e781da5815f">SNR_ENABLE</a>&#160;&#160;&#160;2</td></tr>
 <tr class="memitem:ga6b4b3d5c4969ca317548a1d9c8686c4f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sonar__commands.html#ga6b4b3d5c4969ca317548a1d9c8686c4f">SNR_GET_READING</a>&#160;&#160;&#160;3</td></tr>
 <tr class="memitem:ga6be2722dee0ec3582372f8170b3c127b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sonar__commands.html#ga6be2722dee0ec3582372f8170b3c127b">SNR_PRINT_DATA</a>&#160;&#160;&#160;4</td></tr>
+<tr class="memitem:gae78508a8d683aeda132c9b17ee4f384e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sonar__commands.html#gae78508a8d683aeda132c9b17ee4f384e">SNR_SET_REVERSE_THR</a>&#160;&#160;&#160;5</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <p>Commands that can be issued to the <a class="el" href="classSonar.html" title="sonar data collection and analysis">Sonar</a> subsystem. </p>
@@ -144,23 +145,36 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="gaa5d2a4af7281457c965323f4c26ea9ab"></a>
+<a class="anchor" id="gae78508a8d683aeda132c9b17ee4f384e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SNR_SET_DIST_THR&#160;&#160;&#160;0</td>
+          <td class="memname">#define SNR_SET_REVERSE_THR&#160;&#160;&#160;5</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>set the sonar distance threshold - the maximum distance at which the subsystem takes control to avoid an obstacle. </p>
+<p>set the distance threshold at which the sonar subsystem instructs the motor subsytem to reverse </p>
+
+</div>
+</div>
+<a class="anchor" id="ga514ade1790404e84c0f46b19ed69b696"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SNR_SET_TURN_THR&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>set the sonar distance turn threshold - the maximum distance at which the subsystem takes control to turn to avoid an obstacle. </p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 22 2013 22:02:36 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun May 5 2013 16:23:58 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

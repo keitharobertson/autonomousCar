@@ -185,4 +185,13 @@ typedef struct _ADC_DATA {
 #define SNR_SET_REVERSE_THR	5
 /**@}*/
 
+/** \defgroup timing_commands Timing Analysis Commands
+ * Commands that can be issued to the timing analysis system.
+ * @{ */
+/** Log a start time */
+#define TIM_RELEASE_TIME	0
+/** Log an end time */
+#define TIM_END_TIME		1
+/**@}*/
+
 #endif

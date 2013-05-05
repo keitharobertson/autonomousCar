@@ -6,6 +6,9 @@
 #include <string>
 #include "MQ_PARAMS.h"
 #include "SUBSYS_COMMANDS.h"
+#include "TASK_NUMBERS.h"
+
+#define TIMING_ANALYSIS_BUFFER_SIZE	50
 
 /**
  * \class Subsystem
@@ -85,6 +88,27 @@ class Subsystem{
 		
 		
 	protected:
+	
+		/**
+		 * \brief log the release time of a task
+		 * 
+		 * sends a message to the timing logger with the task number and (relative) time
+		 */
+		void log_release_time(struct timespec* release_time, int task_num);
+		
+		/**
+		 * \brief log the release time of a task
+		 * 
+		 * sends a message to the timing logger with the task number and (relative) time
+		 */
+		void log_end_time(struct timespec* end_time, int task_num);
+		
+		/**
+		 * \brief sends information to timing analysis
+		 * 
+		 * will send a MESSAGE to the timing analysis system
+		 */
+		void send_timing_message(struct timespec* time, int task_num, bool is_start);
 		
 		/** Message queue attributes */
 		struct mq_attr attr; 
@@ -94,6 +118,18 @@ class Subsystem{
 		
 		/** message queue priority */
 		unsigned int prio;
+		
+		/** Timing Message queue attributes */
+		struct mq_attr timing_attr; 
+		
+		/** timing message queue descriptor */
+		mqd_t timing_mq;
+		
+		/** timing message queue priority */
+		unsigned int timing_prio;
+		
+		int num_timing_messages;
+		struct timespec timing_analysis[TIMING_ANALYSIS_BUFFER_SIZE];
 
 };
 

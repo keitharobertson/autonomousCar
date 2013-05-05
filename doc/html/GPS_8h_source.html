@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -87,50 +87,171 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef GPS_H_</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GPS_H_</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;Sensor.h&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define GPS_NAME        &quot;GPS&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GPS_MAX_LENGTH 100</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GPS_PORT_NAME &quot;/dev/ttyO1&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GPS_DEBUG false</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GPS_GPGAA &quot;$GPGGA&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GPS_GPGAA_L 6</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="code" href="classGPS.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classGPS.html" title="GPS data collection and analysis.">GPS</a> : <span class="keyword">public</span> <a class="code" href="classSensor.html" title="Sensor class manages sensor tasks.">Sensor</a> {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <a class="code" href="classGPS.html#a0c347a188512d0d5cf7ed5c91b145fc4" title="GPS default constructor.">GPS</a>();</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                ~<a class="code" href="classGPS.html" title="GPS data collection and analysis.">GPS</a>();</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classGPS.html#a669ad6e30c411499d069fcb9ffeea876" title="grabs data from GPS">data_grab</a>(<span class="keywordtype">float</span>&amp; output_lat,<span class="keywordtype">float</span>&amp; output_lon);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classGPS.html#aebb999362899800a7e372e873bb5b943" title="Virtual function to initialize the sensor device.">init_sensor</a>();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classGPS.html#a17383568c4ed86a0adfdd5c88b6591d4" title="collects GPS data">collector</a>();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classGPS.html#a4dca50736c5e49f831515219536823b2" title="data analysis">analysis</a>();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <span class="keywordtype">void</span>* <a class="code" href="classGPS.html#aa04076536ee9f7e2679895c69b07ad58" title="Reads in data from message to the sensor.">read_data</a>(<span class="keywordtype">int</span> command);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classGPS.html#a803a498352e30044136502a9e036d380" title="handles messages sent to the GPS subsystem">handle_message</a>(<a class="code" href="struct__MESSAGE.html" title="Defines the structure of a message to be sent to a subsystem.">MESSAGE</a>* message);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                <span class="keywordtype">bool</span> <a class="code" href="classGPS.html#a41dc6041167ef4e2860274629392c300" title="Converts the input command into lat/long and stores in output.">convert_data</a>(<span class="keywordtype">char</span>* input,<span class="keywordtype">int</span> length,</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                        <span class="keywordtype">float</span>&amp; output_lat,<span class="keywordtype">float</span>&amp; output_lon);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                <span class="keywordtype">int</span> enabled;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                <span class="keywordtype">int</span> output_heading;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                <span class="keywordtype">float</span> last_lat;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                <span class="keywordtype">float</span> last_lon;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                <span class="keywordtype">int</span> serial_port;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;};</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;errno.h&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;linux/i2c-dev.h&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;math.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;semaphore.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;sys/ioctl.h&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;termios.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;shirtt.h&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;Sensor.h&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define GPS_NAME        &quot;GPS&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GPS_MAX_LENGTH 512 </span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GPS_PORT_NAME &quot;/dev/ttyO1&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#define GPS_GPGAA &quot;$GPGGA&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GPS_GPGAA_L 6</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GPS_GPGAA_OS 2</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GPS_GPGLL &quot;$GPGLL&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GPS_GPGLL_L 6</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GPS_GPGLL_OS 1</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GPS_GPRMC &quot;$GPRMC&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GPS_GPRMC_L 6</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GPS_GPRMC_OS 3</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#define GPS_ROLLBUFF_SIZE 1</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#define NS_PER_MS       1000000</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NS_PER_S        1000000000</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define DATA_COL_PERIOD_MS      2000</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define DATA_ANL_PERIOD_MS  2000</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#define GPS_MAG_CORRECTION 0//-20</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">//#define GPS_DEBUG</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="code" href="classGPS.html">   67</a></span>&#160;<span class="keyword">class </span><a class="code" href="classGPS.html" title="GPS data collection and analysis.">GPS</a> : <span class="keyword">public</span> <a class="code" href="classSensor.html" title="Sensor class manages sensor tasks.">Sensor</a> {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="code" href="classGPS_1_1LatLon.html">   76</a></span>&#160;                <span class="keyword">class </span><a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a>{</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                        <span class="keywordtype">double</span> lat;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                        <span class="keywordtype">double</span> lon;</div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="code" href="classGPS_1_1LatLon.html#af5c1951d368854d5a5e30ce03bd08ce0">   81</a></span>&#160;                        <a class="code" href="classGPS_1_1LatLon.html#af5c1951d368854d5a5e30ce03bd08ce0">LatLon</a>(){</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                                lat=lon=0;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                        }</div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="code" href="classGPS_1_1LatLon.html#a8edace5c4706f7d696909b62150318c9">   85</a></span>&#160;                        <a class="code" href="classGPS_1_1LatLon.html#a8edace5c4706f7d696909b62150318c9">LatLon</a>(<span class="keywordtype">double</span> newLat,<span class="keywordtype">double</span> newLon){</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                                lat=newLat;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                                lon=newLon;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                        }</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="code" href="classGPS_1_1LatLon.html#adeb46153e0bae13494daa29095546597">   90</a></span>&#160;                        <span class="keywordtype">double</span> <a class="code" href="classGPS_1_1LatLon.html#adeb46153e0bae13494daa29095546597">getDistance</a>(<span class="keyword">const</span> <a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a>&amp; other){</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                                <span class="keywordtype">double</span> diff_lat=other.lat-lat;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                                <span class="keywordtype">double</span> diff_lon=other.lon-lon;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                                <span class="keywordflow">return</span> diff_lat*diff_lat+diff_lon*diff_lon;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                        }</div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="code" href="classGPS_1_1LatLon.html#aea26bb8319d17064084d126ed5873422">   96</a></span>&#160;                        <a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a> &amp; <a class="code" href="classGPS_1_1LatLon.html#aea26bb8319d17064084d126ed5873422">operator+=</a>(<span class="keyword">const</span> <a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a> &amp;other) {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                                lat+=other.lat;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                                lon+=other.lon;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                                <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                        }</div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="code" href="classGPS_1_1LatLon.html#ab648a12ef2f3fcedabb2478b84054947">  102</a></span>&#160;                        <a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a> <a class="code" href="classGPS_1_1LatLon.html#ab648a12ef2f3fcedabb2478b84054947">operator-</a>(<span class="keyword">const</span> <a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a> &amp;other) {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                                <a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a> output;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                                output.lat=lat-other.lat;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                                output.lon=lon-other.lon;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                                <span class="keywordflow">return</span> output;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                        }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                        <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="code" href="classGPS_1_1LatLon.html#a55d0e13531f26dc68cfe7a75de806c0f">  110</a></span>&#160;                        <a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a> &amp; <a class="code" href="classGPS_1_1LatLon.html#a55d0e13531f26dc68cfe7a75de806c0f">operator/=</a>(<span class="keyword">const</span> T &amp;other) {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                                lat/=other;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                                lon/=other;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                                <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                        }</div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="code" href="classGPS_1_1LatLon.html#a955d1f457725558c1619af0a1f472c79">  116</a></span>&#160;                        <span class="keyword">friend</span> std::ostream&amp; <a class="code" href="classGPS_1_1LatLon.html#a955d1f457725558c1619af0a1f472c79">operator&lt;&lt;</a>(std::ostream&amp; os, <span class="keyword">const</span> <a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a>&amp; dt){</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                                os &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; dt.lat &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; dt.lon &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                        }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                };</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="code" href="classGPS_1_1GPSWayPoint.html">  126</a></span>&#160;                <span class="keyword">class </span><a class="code" href="classGPS_1_1GPSWayPoint.html" title="Stores GPS WayPoints as a linked list.">GPSWayPoint</a>{</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="code" href="classGPS_1_1GPSWayPoint.html#a2d284aa7fcefc574247b6fd3974b0443">  131</a></span>&#160;                                <a class="code" href="classGPS_1_1GPSWayPoint.html#a2d284aa7fcefc574247b6fd3974b0443" title="GPSWayPoint Default constructor.">GPSWayPoint</a>(){</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                                        <a class="code" href="classGPS_1_1GPSWayPoint.html#a8a6c2597f95674662462c9818fda6f7f">next</a>=NULL;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                                }</div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="code" href="classGPS_1_1GPSWayPoint.html#afe7c65ad59295def93c7af973caafdc2">  137</a></span>&#160;                                <a class="code" href="classGPS_1_1GPSWayPoint.html#afe7c65ad59295def93c7af973caafdc2" title="GPSWayPoint standard constructor.">GPSWayPoint</a>(<span class="keyword">const</span> <a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a> latLon_new,<span class="keywordtype">double</span> rad_new,<a class="code" href="classGPS_1_1GPSWayPoint.html" title="Stores GPS WayPoints as a linked list.">GPSWayPoint</a>* next_new=NULL){</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                                        <span class="keyword">set</span>( latLon_new, rad_new,next_new);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                                }</div>
+<div class="line"><a name="l00143"></a><span class="lineno"><a class="code" href="classGPS_1_1GPSWayPoint.html#a6362b4f567c7bfb51bd588f471e39557">  143</a></span>&#160;                                <span class="keywordtype">void</span> <span class="keyword">set</span>(<span class="keyword">const</span> <a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a> latLon_new,<span class="keywordtype">double</span> rad_new,<a class="code" href="classGPS_1_1GPSWayPoint.html" title="Stores GPS WayPoints as a linked list.">GPSWayPoint</a>* next_new=NULL){</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                                        <a class="code" href="classGPS_1_1GPSWayPoint.html#a537da70e42cec1fa2e6953ae80324485">latLon</a>=latLon_new;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                                        <a class="code" href="classGPS_1_1GPSWayPoint.html#adacefd1470a5868d70202a47ae00608e">rad</a>=rad_new*rad_new;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                                        <a class="code" href="classGPS_1_1GPSWayPoint.html#a8a6c2597f95674662462c9818fda6f7f">next</a>=next_new;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                                }</div>
+<div class="line"><a name="l00151"></a><span class="lineno"><a class="code" href="classGPS_1_1GPSWayPoint.html#a8607545d38ee51e9e32ef55530f9da8a">  151</a></span>&#160;                                <span class="keywordtype">bool</span> <a class="code" href="classGPS_1_1GPSWayPoint.html#a8607545d38ee51e9e32ef55530f9da8a" title="returns true if the lat/long passed in is within range">inRange</a>(<span class="keyword">const</span> <a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a> latLon_new){</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                                        <span class="keywordtype">double</span> distance=<a class="code" href="classGPS_1_1GPSWayPoint.html#a537da70e42cec1fa2e6953ae80324485">latLon</a>.<a class="code" href="classGPS_1_1LatLon.html#adeb46153e0bae13494daa29095546597">getDistance</a>(latLon_new);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                                        <span class="comment">//printf(&quot;Dist: %f/%f\n&quot;,distance,rad);</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                                        <span class="keywordflow">if</span>(distance&lt;<a class="code" href="classGPS_1_1GPSWayPoint.html#adacefd1470a5868d70202a47ae00608e">rad</a>)</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                                                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                                        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                                }</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
+<div class="line"><a name="l00164"></a><span class="lineno"><a class="code" href="classGPS_1_1GPSWayPoint.html#a8a6c2597f95674662462c9818fda6f7f">  164</a></span>&#160;                                <a class="code" href="classGPS_1_1GPSWayPoint.html" title="Stores GPS WayPoints as a linked list.">GPSWayPoint</a>* <a class="code" href="classGPS_1_1GPSWayPoint.html#a8a6c2597f95674662462c9818fda6f7f">next</a>;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                        <span class="comment">//private:</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="code" href="classGPS_1_1GPSWayPoint.html#a537da70e42cec1fa2e6953ae80324485">  170</a></span>&#160;<span class="comment"></span>                                <a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a> <a class="code" href="classGPS_1_1GPSWayPoint.html#a537da70e42cec1fa2e6953ae80324485">latLon</a>;</div>
+<div class="line"><a name="l00175"></a><span class="lineno"><a class="code" href="classGPS_1_1GPSWayPoint.html#adacefd1470a5868d70202a47ae00608e">  175</a></span>&#160;                                <span class="keywordtype">double</span> <a class="code" href="classGPS_1_1GPSWayPoint.html#adacefd1470a5868d70202a47ae00608e">rad</a>;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                };</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                <a class="code" href="classGPS.html#a0c347a188512d0d5cf7ed5c91b145fc4" title="GPS default constructor.">GPS</a>();</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                <a class="code" href="classGPS.html#afe84b00ea93254fcb8b84a0f2b240c9d" title="deconstructor">~GPS</a>();</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                </div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classGPS.html#acd4e4d75709b2b897972f4ff89a2bdab" title="grabs data from GPS">data_grab</a>(<a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a>&amp; output);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classGPS.html#aebb999362899800a7e372e873bb5b943" title="initialize the GPS connection">init_sensor</a>();</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                </div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classGPS.html#a17383568c4ed86a0adfdd5c88b6591d4" title="collects GPS data">collector</a>();</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                </div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classGPS.html#a4dca50736c5e49f831515219536823b2" title="data analysis">analysis</a>();</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                </div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                <span class="keywordtype">void</span>* <a class="code" href="classGPS.html#aa04076536ee9f7e2679895c69b07ad58">read_data</a>(<span class="keywordtype">int</span> command);</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                </div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classGPS.html#a803a498352e30044136502a9e036d380" title="handles messages sent to the GPS subsystem">handle_message</a>(<a class="code" href="struct__MESSAGE.html" title="Defines the structure of a message to be sent to a subsystem.">MESSAGE</a>* message);</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                </div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                <span class="keywordtype">bool</span> <a class="code" href="classGPS.html#abb0d819282c6575d1c9dfadce5270238" title="Converts the input command into lat/long and stores in output.">convert_data</a>(<span class="keywordtype">char</span>* input,<span class="keywordtype">int</span> length,<a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a>&amp; output);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                <span class="keywordtype">bool</span> <a class="code" href="classGPS.html#ae6fac25305f26521d3cb313608224cbf" title="Update waypoint if necissary.">updateWayPoint</a>();</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                <span class="keywordtype">bool</span> <a class="code" href="classGPS.html#a2a02aee137990e44240c60148d4dd892" title="Add Waypoint.">addWayPoint</a>(<a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a> latlon,<span class="keywordtype">double</span> radius,<span class="keywordtype">int</span> index=-1);</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                <a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a> <a class="code" href="classGPS.html#a5c2fe388fb6d9f324f9f00e1abdfd5ed" title="Get location from rolling buffer (averaged)">getLocBufferAvg</a>();</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                <span class="keywordtype">double</span> <a class="code" href="classGPS.html#a142cd2ff428450d1145ddaaa4e2974a8" title="Get the angle between two lat long.">getAngle</a>(<a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a> startLoc,<a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a> eenndLoc);</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classGPS.html#a988b4a8104bc8e93d1225cad026ce578" title="Add a value to the lat long rolling buffer.">setLocBuffer</a>(<span class="keyword">const</span> <a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">GPS::LatLon</a> location);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00259"></a><span class="lineno"><a class="code" href="classGPS.html#a14c36e0dcc27dfa5e1381b9a4b25c2ce">  259</a></span>&#160;                <span class="keywordtype">int</span> <a class="code" href="classGPS.html#a14c36e0dcc27dfa5e1381b9a4b25c2ce">output_heading</a>;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                <span class="comment">//float last_lat;</span></div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="comment"></span>                <span class="comment">//float last_lon;</span></div>
+<div class="line"><a name="l00271"></a><span class="lineno"><a class="code" href="classGPS.html#a62ebacee895a13c211bfd372b818b680">  271</a></span>&#160;<span class="comment"></span>                <span class="keywordtype">int</span> <a class="code" href="classGPS.html#a62ebacee895a13c211bfd372b818b680">serial_port</a>;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;</div>
+<div class="line"><a name="l00276"></a><span class="lineno"><a class="code" href="classGPS.html#a9deda2a96578019d9512a8ec74a93191">  276</a></span>&#160;                <a class="code" href="classGPS_1_1GPSWayPoint.html" title="Stores GPS WayPoints as a linked list.">GPSWayPoint</a>* <a class="code" href="classGPS.html#a9deda2a96578019d9512a8ec74a93191">target</a>;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
+<div class="line"><a name="l00281"></a><span class="lineno"><a class="code" href="classGPS.html#ad1fea42571de73f9b9278cc329490457">  281</a></span>&#160;                <a class="code" href="classGPS_1_1GPSWayPoint.html" title="Stores GPS WayPoints as a linked list.">GPSWayPoint</a>* <a class="code" href="classGPS.html#ad1fea42571de73f9b9278cc329490457">headPtr</a>;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;</div>
+<div class="line"><a name="l00284"></a><span class="lineno"><a class="code" href="classGPS.html#a78bd0e171c43d44a60349cba2d05f29b">  284</a></span>&#160;                <a class="code" href="classGPS_1_1LatLon.html" title="Structure that hold latitude and longitude.">LatLon</a> <a class="code" href="classGPS.html#a78bd0e171c43d44a60349cba2d05f29b">locBuffer</a>[GPS_ROLLBUFF_SIZE*2];</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
+<div class="line"><a name="l00287"></a><span class="lineno"><a class="code" href="classGPS.html#a8a593af52417cf88df7c6c7172d7caf7">  287</a></span>&#160;                <span class="keywordtype">int</span> <a class="code" href="classGPS.html#a8a593af52417cf88df7c6c7172d7caf7">locBufferIndex</a>;</div>
+<div class="line"><a name="l00289"></a><span class="lineno"><a class="code" href="classGPS.html#ac85c17369384b4f9ddb0d0358df9d1cf">  289</a></span>&#160;                <span class="keywordtype">int</span> <a class="code" href="classGPS.html#ac85c17369384b4f9ddb0d0358df9d1cf">locBufferIndexB</a>;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;</div>
+<div class="line"><a name="l00292"></a><span class="lineno"><a class="code" href="classGPS.html#ab0d29060e79b34b84fa06847a36de2e7">  292</a></span>&#160;                sem_t <a class="code" href="classGPS.html#ab0d29060e79b34b84fa06847a36de2e7">collect_analysis_sync</a>;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;</div>
+<div class="line"><a name="l00295"></a><span class="lineno"><a class="code" href="classGPS.html#aa0e370ef448d131c54e3b1d626576cd2">  295</a></span>&#160;                <span class="keywordtype">double</span> <a class="code" href="classGPS.html#aa0e370ef448d131c54e3b1d626576cd2">temp_lat</a>;</div>
+<div class="line"><a name="l00297"></a><span class="lineno"><a class="code" href="classGPS.html#a4b108cba87ab121532c180e214d0c7fa">  297</a></span>&#160;                <span class="keywordtype">double</span> <a class="code" href="classGPS.html#a4b108cba87ab121532c180e214d0c7fa">temp_lon</a>;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;};</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 22 2013 22:02:36 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun May 5 2013 16:23:58 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

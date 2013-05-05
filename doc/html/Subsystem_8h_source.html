@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -92,47 +92,65 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;MQ_PARAMS.h&quot;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SUBSYS__COMMANDS_8h.html">SUBSYS_COMMANDS.h</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="code" href="classSubsystem.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSubsystem.html" title="The Subsystem class defines the basic properties shared by all subsystems.">Subsystem</a>{</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <a class="code" href="classSubsystem.html#abdec44abe9ddba76f65abb02f8f62992" title="Subsystem default constructor.">Subsystem</a>();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                <a class="code" href="classSubsystem.html#af6026d0c678986cf1626251bf38916fa" title="Subsystem destructor.">~Subsystem</a>();</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSubsystem.html#a77a984e8a06bfebb924a6e7ba4f98363" title="Initializes the subsystem tasks particular to that subsystem.">init</a>() = 0;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSubsystem.html#a2c33b82253ec4588067349e33247f504" title="send message to system">send_sys_message</a>(<a class="code" href="struct__MESSAGE.html" title="Defines the structure of a message to be sent to a subsystem.">MESSAGE</a>* message);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSubsystem.html#a510e18f972a3d86d7a47432dafa1ce4c" title="Shutdown subsystem.">shutdown</a>() = 0;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">void</span>* <a class="code" href="classSubsystem.html#a85307df3e46421814204f77929e893aa" title="Reads in data from message to the subsystem.">read_data</a>(<span class="keywordtype">int</span> command) = 0;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSubsystem.html#a6205bccfd4906044065d25d8ab1a7bfb" title="Handles message sent to the subsystem.">handle_message</a>(<a class="code" href="struct__MESSAGE.html" title="Defines the structure of a message to be sent to a subsystem.">MESSAGE</a>* message) = 0;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                </div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="code" href="classSubsystem.html#a731ef7c72752c9fafba06225a21e77ba">   78</a></span>&#160;                std::string <a class="code" href="classSubsystem.html#a731ef7c72752c9fafba06225a21e77ba">subsys_name</a>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;TASK_NUMBERS.h&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define TIMING_ANALYSIS_BUFFER_SIZE     50</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="code" href="classSubsystem.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSubsystem.html" title="The Subsystem class defines the basic properties shared by all subsystems.">Subsystem</a>{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <a class="code" href="classSubsystem.html#abdec44abe9ddba76f65abb02f8f62992" title="Subsystem default constructor.">Subsystem</a>();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                <a class="code" href="classSubsystem.html#af6026d0c678986cf1626251bf38916fa" title="Subsystem destructor.">~Subsystem</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSubsystem.html#a77a984e8a06bfebb924a6e7ba4f98363" title="Initializes the subsystem tasks particular to that subsystem.">init</a>() = 0;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSubsystem.html#a2c33b82253ec4588067349e33247f504" title="send message to system">send_sys_message</a>(<a class="code" href="struct__MESSAGE.html" title="Defines the structure of a message to be sent to a subsystem.">MESSAGE</a>* message);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSubsystem.html#a510e18f972a3d86d7a47432dafa1ce4c" title="Shutdown subsystem.">shutdown</a>() = 0;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">void</span>* <a class="code" href="classSubsystem.html#a85307df3e46421814204f77929e893aa" title="Reads in data from message to the subsystem.">read_data</a>(<span class="keywordtype">int</span> command) = 0;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSubsystem.html#a6205bccfd4906044065d25d8ab1a7bfb" title="Handles message sent to the subsystem.">handle_message</a>(<a class="code" href="struct__MESSAGE.html" title="Defines the structure of a message to be sent to a subsystem.">MESSAGE</a>* message) = 0;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                </div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="code" href="classSubsystem.html#af5095f64990120d1ff8e1e07c7c1ee77">   81</a></span>&#160;                <span class="keywordtype">int</span> <a class="code" href="classSubsystem.html#af5095f64990120d1ff8e1e07c7c1ee77">subsys_num</a>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="code" href="classSubsystem.html#a731ef7c72752c9fafba06225a21e77ba">   81</a></span>&#160;                std::string <a class="code" href="classSubsystem.html#a731ef7c72752c9fafba06225a21e77ba">subsys_name</a>;</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                </div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="code" href="classSubsystem.html#a3c1751f0ac60254618dc22f1b75fbfda">   84</a></span>&#160;                <span class="keywordtype">int</span> <a class="code" href="classSubsystem.html#a3c1751f0ac60254618dc22f1b75fbfda">enabled</a>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="code" href="classSubsystem.html#af5095f64990120d1ff8e1e07c7c1ee77">   84</a></span>&#160;                <span class="keywordtype">int</span> <a class="code" href="classSubsystem.html#af5095f64990120d1ff8e1e07c7c1ee77">subsys_num</a>;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="code" href="classSubsystem.html#a3c1751f0ac60254618dc22f1b75fbfda">   87</a></span>&#160;                <span class="keywordtype">int</span> <a class="code" href="classSubsystem.html#a3c1751f0ac60254618dc22f1b75fbfda">enabled</a>;</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                </div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="code" href="classSubsystem.html#abbb7a2f8cb57fa70eaf65c1b7c353e08">   90</a></span>&#160;                <span class="keyword">struct </span>mq_attr <a class="code" href="classSubsystem.html#abbb7a2f8cb57fa70eaf65c1b7c353e08">attr</a>; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                </div>
-<div class="line"><a name="l00093"></a><span class="lineno"><a class="code" href="classSubsystem.html#a3ef2ff7ded6b1623fae096828d549369">   93</a></span>&#160;                mqd_t <a class="code" href="classSubsystem.html#a3ef2ff7ded6b1623fae096828d549369">sys_mq</a>;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                </div>
-<div class="line"><a name="l00096"></a><span class="lineno"><a class="code" href="classSubsystem.html#a71c9d55e3baa41c75bbc54e9e4407bdd">   96</a></span>&#160;                <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classSubsystem.html#a71c9d55e3baa41c75bbc54e9e4407bdd">prio</a>;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;};</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSubsystem.html#aaa5c98618b06473ac3e88ad658f804ec" title="log the release time of a task">log_release_time</a>(<span class="keyword">struct</span> timespec* release_time, <span class="keywordtype">int</span> task_num);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSubsystem.html#ac3e8ba69ef5cf814f19b6a5ee25473ca" title="log the release time of a task">log_end_time</a>(<span class="keyword">struct</span> timespec* end_time, <span class="keywordtype">int</span> task_num);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classSubsystem.html#a2cd6f9f05fecd33d8d362cd5c28f4e71" title="sends information to timing analysis">send_timing_message</a>(<span class="keyword">struct</span> timespec* time, <span class="keywordtype">int</span> task_num, <span class="keywordtype">bool</span> is_start);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                </div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="code" href="classSubsystem.html#abbb7a2f8cb57fa70eaf65c1b7c353e08">  114</a></span>&#160;                <span class="keyword">struct </span>mq_attr <a class="code" href="classSubsystem.html#abbb7a2f8cb57fa70eaf65c1b7c353e08">attr</a>; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                </div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="code" href="classSubsystem.html#a3ef2ff7ded6b1623fae096828d549369">  117</a></span>&#160;                mqd_t <a class="code" href="classSubsystem.html#a3ef2ff7ded6b1623fae096828d549369">sys_mq</a>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                </div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="code" href="classSubsystem.html#a71c9d55e3baa41c75bbc54e9e4407bdd">  120</a></span>&#160;                <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classSubsystem.html#a71c9d55e3baa41c75bbc54e9e4407bdd">prio</a>;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                </div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="code" href="classSubsystem.html#a32fe49f94c0098b8cdb1983c162c0c73">  123</a></span>&#160;                <span class="keyword">struct </span>mq_attr <a class="code" href="classSubsystem.html#a32fe49f94c0098b8cdb1983c162c0c73">timing_attr</a>; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="code" href="classSubsystem.html#ab9d87a0c93b2cc65b0a053c325422c1c">  126</a></span>&#160;                mqd_t <a class="code" href="classSubsystem.html#ab9d87a0c93b2cc65b0a053c325422c1c">timing_mq</a>;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                </div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="code" href="classSubsystem.html#aaf8fd18a5c37ec1510869a23ec0feb5f">  129</a></span>&#160;                <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classSubsystem.html#aaf8fd18a5c37ec1510869a23ec0feb5f">timing_prio</a>;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                <span class="keywordtype">int</span> num_timing_messages;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                <span class="keyword">struct </span>timespec <a class="code" href="classtiming__analysis.html">timing_analysis</a>[TIMING_ANALYSIS_BUFFER_SIZE];</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;};</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 22 2013 22:02:36 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun May 5 2013 16:23:58 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

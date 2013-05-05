@@ -4,8 +4,12 @@
 #include <semaphore.h>
 #include <linux/spi/spidev.h>
 #include "Sensor.h"
-
+#include <math.h>
+#include <stdint.h>
 #define COMPASS	"COMPASS"
+
+#define COMPASS_AVERAGE 5
+#define COMPASS_AVERAGEA 50
 
 /**
  * \class Compass
@@ -22,7 +26,7 @@ class Compass : public Sensor {
 			double X;
 			double Y;
 			double Z;
-			Vector3d(){}
+			Vector3d(){X=Y=Z=0;}
 			Vector3d(double x,double y,double z){X=x;Y=y;Z=z;}
 			Vector3d cross(Vector3d o){
 				Vector3d output;
@@ -41,6 +45,21 @@ class Compass : public Sensor {
 			/** Output lat lon to cout **/
 			friend std::ostream& operator<<(std::ostream& os, const Vector3d& dt){
 				os << "(" << dt.X << "," << dt.Y << "," << dt.Z << ")";
+			}
+			/** Sums each of the components (lat lon) repsectivly **/
+			Vector3d & operator+=(const Vector3d &other) {
+				X+=other.X;
+				Y+=other.Y;
+				Z+=other.Z;
+				return *this;
+			}
+			/** Devide by any class that can devide a double **/
+			template<class T>
+			Vector3d & operator/=(const T &other) {
+				X/=other;
+				Y/=other;
+				Z/=other;
+				return *this;
 			}
 		};
 
@@ -153,7 +172,17 @@ class Compass : public Sensor {
 		/** the minimum subsystem priority that can change the compass heading */
 		int min_priority;
 		
+		int data_grab_count;
+		int16_t x;
+		int16_t y;
+		int16_t z;
+		
 		int subsys_priorities[NUM_SUBSYSTEMS+1];
+		
+		Vector3d adxlA[COMPASS_AVERAGEA];
+		Vector3d magnA[COMPASS_AVERAGE];
+		int compass_avg;
+		int compass_avgA;
 };
 
 #endif

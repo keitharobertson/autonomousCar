@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -91,6 +91,8 @@ Macros</h2></td></tr>
 <tr class="memitem:ga7991975b6f6c2c5c731bafe810ebcab8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__compass__commands.html#ga7991975b6f6c2c5c731bafe810ebcab8">CPS_ENABLE</a>&#160;&#160;&#160;5</td></tr>
 <tr class="memitem:ga5804a250179671cacf4c9b1b4572d8de"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__compass__commands.html#ga5804a250179671cacf4c9b1b4572d8de">CPS_GET_READING</a>&#160;&#160;&#160;6</td></tr>
 <tr class="memitem:gaa446e15281de94b24f27a8464025c20d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__compass__commands.html#gaa446e15281de94b24f27a8464025c20d">CPS_RETURN_DES_HEADING</a>&#160;&#160;&#160;7</td></tr>
+<tr class="memitem:gaced5bbf2a229241444bd738fac5f6ba3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__compass__commands.html#gaced5bbf2a229241444bd738fac5f6ba3">CPS_SET_MIN_PRIO</a>&#160;&#160;&#160;8</td></tr>
+<tr class="memitem:ga0173bb12991da4a513c3c4103a1fa2ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__compass__commands.html#ga0173bb12991da4a513c3c4103a1fa2ba">CPS_RESET_MIN_PRIO</a>&#160;&#160;&#160;9</td></tr>
 <tr class="memitem:gaa0a242da0fef5b0cb4d25feda73338b7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__compass__commands.html#gaa0a242da0fef5b0cb4d25feda73338b7">CPS_RET_DES_HEADING</a>&#160;&#160;&#160;99</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
@@ -161,6 +163,19 @@ Macros</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ga0173bb12991da4a513c3c4103a1fa2ba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CPS_RESET_MIN_PRIO&#160;&#160;&#160;9</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>resets the minimum subsystem priority required to change the compass heading to its default value </p>
+
+</div>
+</div>
 <a class="anchor" id="gaa0a242da0fef5b0cb4d25feda73338b7"></a>
 <div class="memitem">
 <div class="memproto">
@@ -213,10 +228,23 @@ Macros</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="gaced5bbf2a229241444bd738fac5f6ba3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CPS_SET_MIN_PRIO&#160;&#160;&#160;8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>sets the minimum subsystem priority required to change the compass heading to be the level assigned to the calling subsystem. </p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 22 2013 22:02:36 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun May 5 2013 16:23:58 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

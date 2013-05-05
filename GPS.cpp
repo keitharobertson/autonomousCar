@@ -55,7 +55,7 @@ static void clearBuffer(){
 	while(read(serial_port,read_buffer, GPS_MAX_LENGTH)>0){
 		printf("%d\n",counter++);
 		clock_gettime(CLOCK_MONOTONIC ,&t);
-		t.tv_nsec += 100;
+		t.tv_nsec += 200;
 		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
 	}
 	printf("Done\n");
