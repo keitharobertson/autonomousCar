@@ -7,7 +7,7 @@
 struct \hyperlink{struct__MESSAGE}{\-\_\-\-M\-E\-S\-S\-A\-G\-E}
 \begin{DoxyCompactList}\small\item\em Defines the structure of a message to be sent to a subsystem. \end{DoxyCompactList}\item 
 struct \hyperlink{struct__ADC__DATA}{\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A struct that contains \hyperlink{classADC}{A\-D\-C} readings from all 4 A\-D\-Cs. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -103,14 +103,11 @@ struct \hyperlink{struct__ADC__DATA}{\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A}
 \item 
 \#define \hyperlink{group__gps__commands_ga8fea9a175c11935b9e7cc3e2857621aa}{G\-P\-S\-\_\-\-A\-D\-D\-W\-A\-Y}~6
 \item 
-\hypertarget{group__gps__commands_gae6a303b17a88ef3e34cf8e3caf8f7a52}{\#define {\bfseries G\-P\-S\-\_\-\-A\-D\-D\-W\-A\-Y\-D\-A\-T\-A\-L\-A\-T}~7}\label{group__gps__commands_gae6a303b17a88ef3e34cf8e3caf8f7a52}
-
+\#define \hyperlink{group__gps__commands_gae6a303b17a88ef3e34cf8e3caf8f7a52}{G\-P\-S\-\_\-\-A\-D\-D\-W\-A\-Y\-D\-A\-T\-A\-L\-A\-T}~7
 \item 
-\hypertarget{group__gps__commands_ga0d500f7c6ef80090a0c8928e4d7e0f59}{\#define {\bfseries G\-P\-S\-\_\-\-A\-D\-D\-W\-A\-Y\-D\-A\-T\-A\-L\-O\-N}~8}\label{group__gps__commands_ga0d500f7c6ef80090a0c8928e4d7e0f59}
-
+\#define \hyperlink{group__gps__commands_ga0d500f7c6ef80090a0c8928e4d7e0f59}{G\-P\-S\-\_\-\-A\-D\-D\-W\-A\-Y\-D\-A\-T\-A\-L\-O\-N}~8
 \item 
-\hypertarget{group__gps__commands_ga9a0958ce7693698b1bb24e54413819ed}{\#define {\bfseries G\-P\-S\-\_\-\-A\-D\-D\-W\-A\-Y\-D\-A\-T\-A\-R\-U\-N}~9}\label{group__gps__commands_ga9a0958ce7693698b1bb24e54413819ed}
-
+\#define \hyperlink{group__gps__commands_ga9a0958ce7693698b1bb24e54413819ed}{G\-P\-S\-\_\-\-A\-D\-D\-W\-A\-Y\-D\-A\-T\-A\-R\-U\-N}~9
 \item 
 \#define \hyperlink{group__sonar__commands_ga514ade1790404e84c0f46b19ed69b696}{S\-N\-R\-\_\-\-S\-E\-T\-\_\-\-T\-U\-R\-N\-\_\-\-T\-H\-R}~0
 \item 
@@ -133,16 +130,22 @@ struct \hyperlink{struct__ADC__DATA}{\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A}
 \item 
 typedef struct \hyperlink{struct__MESSAGE}{\-\_\-\-M\-E\-S\-S\-A\-G\-E} \hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E}
 \begin{DoxyCompactList}\small\item\em Defines the structure of a message to be sent to a subsystem. \end{DoxyCompactList}\item 
-\hypertarget{SUBSYS__COMMANDS_8h_a0be7f6e3de248ca3bdb1f3f5a0819c62}{typedef struct \hyperlink{struct__ADC__DATA}{\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A} {\bfseries A\-D\-C\-\_\-\-D\-A\-T\-A}}\label{SUBSYS__COMMANDS_8h_a0be7f6e3de248ca3bdb1f3f5a0819c62}
-
-\end{DoxyCompactItemize}
+typedef struct \hyperlink{struct__ADC__DATA}{\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A} \hyperlink{SUBSYS__COMMANDS_8h_a0be7f6e3de248ca3bdb1f3f5a0819c62}{A\-D\-C\-\_\-\-D\-A\-T\-A}
+\begin{DoxyCompactList}\small\item\em A struct that contains \hyperlink{classADC}{A\-D\-C} readings from all 4 A\-D\-Cs. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
 \subsection{Typedef Documentation}
-\hypertarget{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{\index{S\-U\-B\-S\-Y\-S\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S.\-h@{S\-U\-B\-S\-Y\-S\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S.\-h}!M\-E\-S\-S\-A\-G\-E@{M\-E\-S\-S\-A\-G\-E}}
+\hypertarget{SUBSYS__COMMANDS_8h_a0be7f6e3de248ca3bdb1f3f5a0819c62}{\index{S\-U\-B\-S\-Y\-S\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S.\-h@{S\-U\-B\-S\-Y\-S\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S.\-h}!A\-D\-C\-\_\-\-D\-A\-T\-A@{A\-D\-C\-\_\-\-D\-A\-T\-A}}
+\index{A\-D\-C\-\_\-\-D\-A\-T\-A@{A\-D\-C\-\_\-\-D\-A\-T\-A}!SUBSYS_COMMANDS.h@{S\-U\-B\-S\-Y\-S\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S.\-h}}
+\subsubsection[{A\-D\-C\-\_\-\-D\-A\-T\-A}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A}  {\bf A\-D\-C\-\_\-\-D\-A\-T\-A}}}\label{SUBSYS__COMMANDS_8h_a0be7f6e3de248ca3bdb1f3f5a0819c62}
+
+
+A struct that contains \hyperlink{classADC}{A\-D\-C} readings from all 4 A\-D\-Cs. 
+
+a struct used to store the \hyperlink{classADC}{A\-D\-C} data from the 4 A\-D\-Cs for use across subsystems \hypertarget{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{\index{S\-U\-B\-S\-Y\-S\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S.\-h@{S\-U\-B\-S\-Y\-S\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S.\-h}!M\-E\-S\-S\-A\-G\-E@{M\-E\-S\-S\-A\-G\-E}}
 \index{M\-E\-S\-S\-A\-G\-E@{M\-E\-S\-S\-A\-G\-E}!SUBSYS_COMMANDS.h@{S\-U\-B\-S\-Y\-S\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S.\-h}}
 \subsubsection[{M\-E\-S\-S\-A\-G\-E}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-\-M\-E\-S\-S\-A\-G\-E}  {\bf M\-E\-S\-S\-A\-G\-E}}}\label{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}
 

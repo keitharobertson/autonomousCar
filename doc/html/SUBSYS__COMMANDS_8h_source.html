@@ -108,130 +108,132 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        </div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;} <a class="code" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f" title="Defines the structure of a message to be sent to a subsystem.">MESSAGE</a>;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="struct__ADC__DATA.html">   40</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct__ADC__DATA.html">_ADC_DATA</a> {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordtype">char</span> rx_buf_adc1[2];</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">char</span> rx_buf_adc2[2];</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">char</span> rx_buf_adc3[2];</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">char</span> rx_buf_adc4[2];</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;} <a class="code" href="struct__ADC__DATA.html">ADC_DATA</a>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="code" href="group__subsys__nums.html#ga468920c27e6f462f4319229cda832476">   51</a></span>&#160;<span class="preprocessor">#define SUBSYS_GPS              0       </span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="code" href="group__subsys__nums.html#ga7476b8f22f1670fcf89da75d9fe3b643">   53</a></span>&#160;<span class="preprocessor">#define SUBSYS_COMPASS  1</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="code" href="group__subsys__nums.html#ga3ce4f17430989c1b4d5b0ae9ddb38df8">   55</a></span>&#160;<span class="preprocessor">#define SUBSYS_SONAR    2</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="code" href="group__subsys__nums.html#gaf957c814784b521302308d9de3fe07d1">   57</a></span>&#160;<span class="preprocessor">#define SUBSYS_MOTOR    3</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="code" href="group__subsys__nums.html#ga8c00ac0932359e608b0870b1cfa7b7dc">   59</a></span>&#160;<span class="preprocessor">#define SUBSYS_STEERING 4</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="group__subsys__nums.html#ga7ab9ade0a6a5934eb6ad244e1130929f">   61</a></span>&#160;<span class="preprocessor">#define SUBSYS_CAMERA   5</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="code" href="group__subsys__nums.html#gad914679f013f117ec7470f75fee6149a">   63</a></span>&#160;<span class="preprocessor">#define NUM_SUBSYSTEMS  5</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="code" href="group__steering__commands.html#ga0c1cb6fd30382725c9828e619d0d813c">   70</a></span>&#160;<span class="preprocessor">#define STR_HARD_LEFT           0</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="code" href="struct__ADC__DATA.html">   45</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct__ADC__DATA.html" title="A struct that contains ADC readings from all 4 ADCs.">_ADC_DATA</a> {</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="code" href="struct__ADC__DATA.html#a871b0221f9fc2a7800b8af4499125076">   47</a></span>&#160;        <span class="keywordtype">char</span> <a class="code" href="struct__ADC__DATA.html#a871b0221f9fc2a7800b8af4499125076">rx_buf_adc1</a>[2];</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="code" href="struct__ADC__DATA.html#a853b22eb68fc621acfe4f97f4dfbd72a">   49</a></span>&#160;        <span class="keywordtype">char</span> <a class="code" href="struct__ADC__DATA.html#a853b22eb68fc621acfe4f97f4dfbd72a">rx_buf_adc2</a>[2];</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="code" href="struct__ADC__DATA.html#a938a821964201100b4a49fa2a23ebad3">   51</a></span>&#160;        <span class="keywordtype">char</span> <a class="code" href="struct__ADC__DATA.html#a938a821964201100b4a49fa2a23ebad3">rx_buf_adc3</a>[2];</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="code" href="struct__ADC__DATA.html#a3044c7a47a323ed6db529ed8d92f8f2d">   53</a></span>&#160;        <span class="keywordtype">char</span> <a class="code" href="struct__ADC__DATA.html#a3044c7a47a323ed6db529ed8d92f8f2d">rx_buf_adc4</a>[2];</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;} <a class="code" href="SUBSYS__COMMANDS_8h.html#a0be7f6e3de248ca3bdb1f3f5a0819c62" title="A struct that contains ADC readings from all 4 ADCs.">ADC_DATA</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="group__subsys__nums.html#ga468920c27e6f462f4319229cda832476">   60</a></span>&#160;<span class="preprocessor">#define SUBSYS_GPS              0       </span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="code" href="group__subsys__nums.html#ga7476b8f22f1670fcf89da75d9fe3b643">   62</a></span>&#160;<span class="preprocessor">#define SUBSYS_COMPASS  1</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="group__subsys__nums.html#ga3ce4f17430989c1b4d5b0ae9ddb38df8">   64</a></span>&#160;<span class="preprocessor">#define SUBSYS_SONAR    2</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="code" href="group__subsys__nums.html#gaf957c814784b521302308d9de3fe07d1">   66</a></span>&#160;<span class="preprocessor">#define SUBSYS_MOTOR    3</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="code" href="group__subsys__nums.html#ga8c00ac0932359e608b0870b1cfa7b7dc">   68</a></span>&#160;<span class="preprocessor">#define SUBSYS_STEERING 4</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="code" href="group__subsys__nums.html#ga7ab9ade0a6a5934eb6ad244e1130929f">   70</a></span>&#160;<span class="preprocessor">#define SUBSYS_CAMERA   5</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="code" href="group__steering__commands.html#ga9460f3ea1c94d0cbea0651cea23a6b90">   72</a></span>&#160;<span class="preprocessor">#define STR_HARD_RIGHT          1</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="code" href="group__subsys__nums.html#gad914679f013f117ec7470f75fee6149a">   72</a></span>&#160;<span class="preprocessor">#define NUM_SUBSYSTEMS  5</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="code" href="group__steering__commands.html#ga0bf8759a57b2161c90c56b4186545018">   74</a></span>&#160;<span class="preprocessor">#define STR_SLIGHT_LEFT         2</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="code" href="group__steering__commands.html#ga7872976a47fb31b04cb5c4328d0b3779">   76</a></span>&#160;<span class="preprocessor">#define STR_SLIGHT_RIGHT        3</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="code" href="group__steering__commands.html#gaea8bf1d4bcf9c8b6bfd778fb81f91eab">   78</a></span>&#160;<span class="preprocessor">#define STR_FINE_LEFT           4</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00080"></a><span class="lineno"><a class="code" href="group__steering__commands.html#ga97aef886486d06481892129ac63b29ba">   80</a></span>&#160;<span class="preprocessor">#define STR_FINE_RIGHT          5</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="code" href="group__steering__commands.html#ga85d1e93794cb6ca3f82ba6b211897ac6">   82</a></span>&#160;<span class="preprocessor">#define STR_STRAIGHT            6</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="code" href="group__steering__commands.html#ga3944f02514d51b9a5fad5def73a3d492">   84</a></span>&#160;<span class="preprocessor">#define STR_SET_STEERING        7</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00086"></a><span class="lineno"><a class="code" href="group__steering__commands.html#gafee4d732bb6cb1141150ea6c07a4cf7e">   86</a></span>&#160;<span class="preprocessor">#define STR_DISABLE                     8</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00088"></a><span class="lineno"><a class="code" href="group__steering__commands.html#gac780e9695ae28682e0fe8bacf39ad828">   88</a></span>&#160;<span class="preprocessor">#define STR_ENABLE                      9</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00091"></a><span class="lineno"><a class="code" href="group__steering__commands.html#ga835096a68148ab4e00856d74db7dafbc">   91</a></span>&#160;<span class="preprocessor">#define STR_SET_MIN_PRIO        10</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="code" href="group__steering__commands.html#ga0c1cb6fd30382725c9828e619d0d813c">   79</a></span>&#160;<span class="preprocessor">#define STR_HARD_LEFT           0</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="code" href="group__steering__commands.html#ga9460f3ea1c94d0cbea0651cea23a6b90">   81</a></span>&#160;<span class="preprocessor">#define STR_HARD_RIGHT          1</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="code" href="group__steering__commands.html#ga0bf8759a57b2161c90c56b4186545018">   83</a></span>&#160;<span class="preprocessor">#define STR_SLIGHT_LEFT         2</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="code" href="group__steering__commands.html#ga7872976a47fb31b04cb5c4328d0b3779">   85</a></span>&#160;<span class="preprocessor">#define STR_SLIGHT_RIGHT        3</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="code" href="group__steering__commands.html#gaea8bf1d4bcf9c8b6bfd778fb81f91eab">   87</a></span>&#160;<span class="preprocessor">#define STR_FINE_LEFT           4</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="code" href="group__steering__commands.html#ga97aef886486d06481892129ac63b29ba">   89</a></span>&#160;<span class="preprocessor">#define STR_FINE_RIGHT          5</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="code" href="group__steering__commands.html#ga85d1e93794cb6ca3f82ba6b211897ac6">   91</a></span>&#160;<span class="preprocessor">#define STR_STRAIGHT            6</span></div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00098"></a><span class="lineno"><a class="code" href="group__motor__commands.html#gae64835867a818685e7e9172a8cb21b9e">   98</a></span>&#160;<span class="preprocessor">#define MOT_FAST                        0</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00100"></a><span class="lineno"><a class="code" href="group__motor__commands.html#gab1d9e4b8515c9040e93ba9edcdb843a3">  100</a></span>&#160;<span class="preprocessor">#define MOT_SLOW                        1</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="code" href="group__steering__commands.html#ga3944f02514d51b9a5fad5def73a3d492">   93</a></span>&#160;<span class="preprocessor">#define STR_SET_STEERING        7</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="code" href="group__steering__commands.html#gafee4d732bb6cb1141150ea6c07a4cf7e">   95</a></span>&#160;<span class="preprocessor">#define STR_DISABLE                     8</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="code" href="group__steering__commands.html#gac780e9695ae28682e0fe8bacf39ad828">   97</a></span>&#160;<span class="preprocessor">#define STR_ENABLE                      9</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="code" href="group__steering__commands.html#ga835096a68148ab4e00856d74db7dafbc">  100</a></span>&#160;<span class="preprocessor">#define STR_SET_MIN_PRIO        10</span></div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00102"></a><span class="lineno"><a class="code" href="group__motor__commands.html#gaf57de7232e513663b5793fce23b2795a">  102</a></span>&#160;<span class="preprocessor">#define MOT_STOP                        2</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00104"></a><span class="lineno"><a class="code" href="group__motor__commands.html#ga90a66dc37a63d7ff939b606b1d5ba87c">  104</a></span>&#160;<span class="preprocessor">#define MOT_MID                         3</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00106"></a><span class="lineno"><a class="code" href="group__motor__commands.html#ga318320d9d310be3e25a20f55ccbda7a6">  106</a></span>&#160;<span class="preprocessor">#define MOT_SET_SPEED           4</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00108"></a><span class="lineno"><a class="code" href="group__motor__commands.html#gae90f36d9158b625125ec5b6b6b12342d">  108</a></span>&#160;<span class="preprocessor">#define MOT_DISABLE                     5</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00110"></a><span class="lineno"><a class="code" href="group__motor__commands.html#ga538be16bfce1294561c04bbfca368475">  110</a></span>&#160;<span class="preprocessor">#define MOT_ENABLE                      6</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00113"></a><span class="lineno"><a class="code" href="group__motor__commands.html#ga0c48e1fea8fe34438ee9e9b2e101d1de">  113</a></span>&#160;<span class="preprocessor">#define MOT_SET_MIN_PRIO        7</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="code" href="group__motor__commands.html#gae64835867a818685e7e9172a8cb21b9e">  107</a></span>&#160;<span class="preprocessor">#define MOT_FAST                        0</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="code" href="group__motor__commands.html#gab1d9e4b8515c9040e93ba9edcdb843a3">  109</a></span>&#160;<span class="preprocessor">#define MOT_SLOW                        1</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="code" href="group__motor__commands.html#gaf57de7232e513663b5793fce23b2795a">  111</a></span>&#160;<span class="preprocessor">#define MOT_STOP                        2</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="code" href="group__motor__commands.html#ga90a66dc37a63d7ff939b606b1d5ba87c">  113</a></span>&#160;<span class="preprocessor">#define MOT_MID                         3</span></div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00115"></a><span class="lineno"><a class="code" href="group__motor__commands.html#gae0799d3b48368ff66fd88b500aab5d50">  115</a></span>&#160;<span class="preprocessor">#define MOT_DIRECTION           8</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="code" href="group__motor__commands.html#ga318320d9d310be3e25a20f55ccbda7a6">  115</a></span>&#160;<span class="preprocessor">#define MOT_SET_SPEED           4</span></div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00117"></a><span class="lineno"><a class="code" href="group__motor__commands.html#ga931465aec3d487ebea5d34e80f940b8c">  117</a></span>&#160;<span class="preprocessor">#define MOT_RET_SPEED           98</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="code" href="group__motor__commands.html#gae90f36d9158b625125ec5b6b6b12342d">  117</a></span>&#160;<span class="preprocessor">#define MOT_DISABLE                     5</span></div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00124"></a><span class="lineno"><a class="code" href="group__compass__commands.html#ga10dbf50964cb04b6648e3b65502c0ff4">  124</a></span>&#160;<span class="preprocessor">#define CPS_SET_HEADING         0</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="code" href="group__motor__commands.html#ga538be16bfce1294561c04bbfca368475">  119</a></span>&#160;<span class="preprocessor">#define MOT_ENABLE                      6</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="code" href="group__motor__commands.html#ga0c48e1fea8fe34438ee9e9b2e101d1de">  122</a></span>&#160;<span class="preprocessor">#define MOT_SET_MIN_PRIO        7</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="code" href="group__motor__commands.html#gae0799d3b48368ff66fd88b500aab5d50">  124</a></span>&#160;<span class="preprocessor">#define MOT_DIRECTION           8</span></div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00126"></a><span class="lineno"><a class="code" href="group__compass__commands.html#gab51c4d4e21701c7cd0230a24c2ab74be">  126</a></span>&#160;<span class="preprocessor">#define CPS_LEFT_90                     1</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="code" href="group__motor__commands.html#ga931465aec3d487ebea5d34e80f940b8c">  126</a></span>&#160;<span class="preprocessor">#define MOT_RET_SPEED           98</span></div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00128"></a><span class="lineno"><a class="code" href="group__compass__commands.html#ga53ccdcb9ce75af6b95e56476367d2875">  128</a></span>&#160;<span class="preprocessor">#define CPS_RIGHT_90            2</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00130"></a><span class="lineno"><a class="code" href="group__compass__commands.html#gafb06fe5e8531750fd730129beb1c85a9">  130</a></span>&#160;<span class="preprocessor">#define CPS_180                         3</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00132"></a><span class="lineno"><a class="code" href="group__compass__commands.html#gacc391ac5638a636771f016cfa1991d4d">  132</a></span>&#160;<span class="preprocessor">#define CPS_DISABLE                     4</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00134"></a><span class="lineno"><a class="code" href="group__compass__commands.html#ga7991975b6f6c2c5c731bafe810ebcab8">  134</a></span>&#160;<span class="preprocessor">#define CPS_ENABLE                      5</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00136"></a><span class="lineno"><a class="code" href="group__compass__commands.html#ga5804a250179671cacf4c9b1b4572d8de">  136</a></span>&#160;<span class="preprocessor">#define CPS_GET_READING         6</span></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00138"></a><span class="lineno"><a class="code" href="group__compass__commands.html#gaa446e15281de94b24f27a8464025c20d">  138</a></span>&#160;<span class="preprocessor">#define CPS_RETURN_DES_HEADING  7</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00140"></a><span class="lineno"><a class="code" href="group__compass__commands.html#gaced5bbf2a229241444bd738fac5f6ba3">  140</a></span>&#160;<span class="preprocessor">#define CPS_SET_MIN_PRIO        8</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00142"></a><span class="lineno"><a class="code" href="group__compass__commands.html#ga0173bb12991da4a513c3c4103a1fa2ba">  142</a></span>&#160;<span class="preprocessor">#define CPS_RESET_MIN_PRIO      9</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00144"></a><span class="lineno"><a class="code" href="group__compass__commands.html#gaa0a242da0fef5b0cb4d25feda73338b7">  144</a></span>&#160;<span class="preprocessor">#define CPS_RET_DES_HEADING     99</span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00151"></a><span class="lineno"><a class="code" href="group__gps__commands.html#gaac31d4fc4681381604fdbf78b5aa7599">  151</a></span>&#160;<span class="preprocessor">#define GPS_SET_LAT                     0</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="code" href="group__compass__commands.html#ga10dbf50964cb04b6648e3b65502c0ff4">  133</a></span>&#160;<span class="preprocessor">#define CPS_SET_HEADING         0</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="code" href="group__compass__commands.html#gab51c4d4e21701c7cd0230a24c2ab74be">  135</a></span>&#160;<span class="preprocessor">#define CPS_LEFT_90                     1</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="code" href="group__compass__commands.html#ga53ccdcb9ce75af6b95e56476367d2875">  137</a></span>&#160;<span class="preprocessor">#define CPS_RIGHT_90            2</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="code" href="group__compass__commands.html#gafb06fe5e8531750fd730129beb1c85a9">  139</a></span>&#160;<span class="preprocessor">#define CPS_180                         3</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00141"></a><span class="lineno"><a class="code" href="group__compass__commands.html#gacc391ac5638a636771f016cfa1991d4d">  141</a></span>&#160;<span class="preprocessor">#define CPS_DISABLE                     4</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00143"></a><span class="lineno"><a class="code" href="group__compass__commands.html#ga7991975b6f6c2c5c731bafe810ebcab8">  143</a></span>&#160;<span class="preprocessor">#define CPS_ENABLE                      5</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="code" href="group__compass__commands.html#ga5804a250179671cacf4c9b1b4572d8de">  145</a></span>&#160;<span class="preprocessor">#define CPS_GET_READING         6</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="code" href="group__compass__commands.html#gaa446e15281de94b24f27a8464025c20d">  147</a></span>&#160;<span class="preprocessor">#define CPS_RETURN_DES_HEADING  7</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00149"></a><span class="lineno"><a class="code" href="group__compass__commands.html#gaced5bbf2a229241444bd738fac5f6ba3">  149</a></span>&#160;<span class="preprocessor">#define CPS_SET_MIN_PRIO        8</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00151"></a><span class="lineno"><a class="code" href="group__compass__commands.html#ga0173bb12991da4a513c3c4103a1fa2ba">  151</a></span>&#160;<span class="preprocessor">#define CPS_RESET_MIN_PRIO      9</span></div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00153"></a><span class="lineno"><a class="code" href="group__gps__commands.html#gafe7ed49e1848a16fd15d1643b4c4c36b">  153</a></span>&#160;<span class="preprocessor">#define GPS_SET_LNG                     1</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno"><a class="code" href="group__compass__commands.html#gaa0a242da0fef5b0cb4d25feda73338b7">  153</a></span>&#160;<span class="preprocessor">#define CPS_RET_DES_HEADING     99</span></div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00155"></a><span class="lineno"><a class="code" href="group__gps__commands.html#ga8e394314aacedb0790203d4af6cd5710">  155</a></span>&#160;<span class="preprocessor">#define GPS_DISABLE                     2</span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00157"></a><span class="lineno"><a class="code" href="group__gps__commands.html#gac8383d8fc4fa97bb45f89d9a50e0966d">  157</a></span>&#160;<span class="preprocessor">#define GPS_ENABLE                      3</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00159"></a><span class="lineno"><a class="code" href="group__gps__commands.html#gad25ca4dcc3aa69da0e474e3b69cc910a">  159</a></span>&#160;<span class="preprocessor">#define GPS_DISPLAY             4</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00161"></a><span class="lineno"><a class="code" href="group__gps__commands.html#ga3de45ac0f8b80c8044b533d47cf08e99">  161</a></span>&#160;<span class="preprocessor">#define GPS_NO_DISPLAY          5</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00163"></a><span class="lineno"><a class="code" href="group__gps__commands.html#ga8fea9a175c11935b9e7cc3e2857621aa">  163</a></span>&#160;<span class="preprocessor">#define GPS_ADDWAY                      6</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor">#define GPS_ADDWAYDATALAT       7</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GPS_ADDWAYDATALON       8</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GPS_ADDWAYDATARUN       9</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00175"></a><span class="lineno"><a class="code" href="group__sonar__commands.html#ga514ade1790404e84c0f46b19ed69b696">  175</a></span>&#160;<span class="preprocessor">#define SNR_SET_TURN_THR        0</span></div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00177"></a><span class="lineno"><a class="code" href="group__sonar__commands.html#ga9b110968cd5bd961f4984c02965cf9ba">  177</a></span>&#160;<span class="preprocessor">#define SNR_DISABLE                     1</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00179"></a><span class="lineno"><a class="code" href="group__sonar__commands.html#ga994c94413393c44561f42e781da5815f">  179</a></span>&#160;<span class="preprocessor">#define SNR_ENABLE                      2</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00181"></a><span class="lineno"><a class="code" href="group__sonar__commands.html#ga6b4b3d5c4969ca317548a1d9c8686c4f">  181</a></span>&#160;<span class="preprocessor">#define SNR_GET_READING         3</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00183"></a><span class="lineno"><a class="code" href="group__sonar__commands.html#ga6be2722dee0ec3582372f8170b3c127b">  183</a></span>&#160;<span class="preprocessor">#define SNR_PRINT_DATA          4</span></div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00185"></a><span class="lineno"><a class="code" href="group__sonar__commands.html#gae78508a8d683aeda132c9b17ee4f384e">  185</a></span>&#160;<span class="preprocessor">#define SNR_SET_REVERSE_THR     5</span></div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00192"></a><span class="lineno"><a class="code" href="group__timing__commands.html#ga73b12a6300c3ba9a1bda86d32b7e863a">  192</a></span>&#160;<span class="preprocessor">#define TIM_RELEASE_TIME        0</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="code" href="group__gps__commands.html#gaac31d4fc4681381604fdbf78b5aa7599">  160</a></span>&#160;<span class="preprocessor">#define GPS_SET_LAT                     0</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00162"></a><span class="lineno"><a class="code" href="group__gps__commands.html#gafe7ed49e1848a16fd15d1643b4c4c36b">  162</a></span>&#160;<span class="preprocessor">#define GPS_SET_LNG                     1</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00164"></a><span class="lineno"><a class="code" href="group__gps__commands.html#ga8e394314aacedb0790203d4af6cd5710">  164</a></span>&#160;<span class="preprocessor">#define GPS_DISABLE                     2</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="code" href="group__gps__commands.html#gac8383d8fc4fa97bb45f89d9a50e0966d">  166</a></span>&#160;<span class="preprocessor">#define GPS_ENABLE                      3</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00168"></a><span class="lineno"><a class="code" href="group__gps__commands.html#gad25ca4dcc3aa69da0e474e3b69cc910a">  168</a></span>&#160;<span class="preprocessor">#define GPS_DISPLAY             4</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="code" href="group__gps__commands.html#ga3de45ac0f8b80c8044b533d47cf08e99">  170</a></span>&#160;<span class="preprocessor">#define GPS_NO_DISPLAY          5</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="code" href="group__gps__commands.html#ga8fea9a175c11935b9e7cc3e2857621aa">  172</a></span>&#160;<span class="preprocessor">#define GPS_ADDWAY                      6</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00174"></a><span class="lineno"><a class="code" href="group__gps__commands.html#gae6a303b17a88ef3e34cf8e3caf8f7a52">  174</a></span>&#160;<span class="preprocessor">#define GPS_ADDWAYDATALAT       7</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00176"></a><span class="lineno"><a class="code" href="group__gps__commands.html#ga0d500f7c6ef80090a0c8928e4d7e0f59">  176</a></span>&#160;<span class="preprocessor">#define GPS_ADDWAYDATALON       8</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00178"></a><span class="lineno"><a class="code" href="group__gps__commands.html#ga9a0958ce7693698b1bb24e54413819ed">  178</a></span>&#160;<span class="preprocessor">#define GPS_ADDWAYDATARUN       9</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00186"></a><span class="lineno"><a class="code" href="group__sonar__commands.html#ga514ade1790404e84c0f46b19ed69b696">  186</a></span>&#160;<span class="preprocessor">#define SNR_SET_TURN_THR        0</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00188"></a><span class="lineno"><a class="code" href="group__sonar__commands.html#ga9b110968cd5bd961f4984c02965cf9ba">  188</a></span>&#160;<span class="preprocessor">#define SNR_DISABLE                     1</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00190"></a><span class="lineno"><a class="code" href="group__sonar__commands.html#ga994c94413393c44561f42e781da5815f">  190</a></span>&#160;<span class="preprocessor">#define SNR_ENABLE                      2</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00192"></a><span class="lineno"><a class="code" href="group__sonar__commands.html#ga6b4b3d5c4969ca317548a1d9c8686c4f">  192</a></span>&#160;<span class="preprocessor">#define SNR_GET_READING         3</span></div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00194"></a><span class="lineno"><a class="code" href="group__timing__commands.html#ga81f95924529c8f9179069f40c96cd5e8">  194</a></span>&#160;<span class="preprocessor">#define TIM_END_TIME            1</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno"><a class="code" href="group__sonar__commands.html#ga6be2722dee0ec3582372f8170b3c127b">  194</a></span>&#160;<span class="preprocessor">#define SNR_PRINT_DATA          4</span></div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno"><a class="code" href="group__sonar__commands.html#gae78508a8d683aeda132c9b17ee4f384e">  196</a></span>&#160;<span class="preprocessor">#define SNR_SET_REVERSE_THR     5</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00203"></a><span class="lineno"><a class="code" href="group__timing__commands.html#ga73b12a6300c3ba9a1bda86d32b7e863a">  203</a></span>&#160;<span class="preprocessor">#define TIM_RELEASE_TIME        0</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00205"></a><span class="lineno"><a class="code" href="group__timing__commands.html#ga81f95924529c8f9179069f40c96cd5e8">  205</a></span>&#160;<span class="preprocessor">#define TIM_END_TIME            1</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun May 5 2013 16:23:58 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun May 5 2013 16:39:10 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

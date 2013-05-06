@@ -1,9 +1,11 @@
+#include <string.h>
+
 #include "timing_analysis.h"
 
-#define REPORT_COUNT	100
+#define REPORT_COUNT	1000
 
 static void* timing_receive_task(void* c) {
-	setup_rt_task(90);
+	setup_rt_task(30);
 	timing_analysis* s = (timing_analysis*)c;
 	s->receive_timing_messages();
 }
@@ -15,6 +17,9 @@ timing_analysis::timing_analysis() {
 	attr.mq_flags = 0;
 	//set message queue priority default to 90
 	prio = 90;
+	
+	clear_queue();
+	
 	// Open message queue
 	timing_mq = mq_open((char*)MQ_TIMING, O_RDWR | O_CREAT, 0664, &attr);
 	if(timing_mq == ERROR){
@@ -28,6 +33,18 @@ timing_analysis::timing_analysis() {
 	}
 	
 	timing_count = 0;
+}
+
+void timing_analysis::clear_queue() {
+	char message[4];
+	unsigned int priority;
+	timing_mq = mq_open((char*)MQ_TIMING, O_RDWR | O_CREAT | O_NONBLOCK, 0664, &attr);
+	if(timing_mq == ERROR){
+		perror("failed to open timing mq");
+		exit(-1);
+	}
+	while(mq_receive(timing_mq, message, MSG_SIZE, &priority) != ERROR);
+	mq_close(timing_mq);
 }
 
 timing_analysis::~timing_analysis() {
@@ -45,29 +62,31 @@ void timing_analysis::receive_timing_messages(){
 		if((size = mq_receive(timing_mq, message, MSG_SIZE, &priority)) == ERROR){
 			perror("System Recieve Failed!");
 		}else{
-			unsigned int subsys_num = 0;
-			mess = ( (MESSAGE*)(*((unsigned int*)message)) );
+			memcpy(&mess,message,4);
+			//mess = (message) ;
 			switch(mess->command){
 				case TIM_RELEASE_TIME:
 					timing_info[mess->from][mess->to].add_release_time((struct timespec*)mess->data);
 					break;
 				case TIM_END_TIME:
-					timing_info[mess->from][mess->to].add_release_time((struct timespec*)mess->data);
+					timing_info[mess->from][mess->to].add_end_time((struct timespec*)mess->data);
 					break;
 				default:
 					break;
 			}
-			if(timing_count == REPORT_COUNT){
-				timing_count == 0;
+
+			if(timing_count >= REPORT_COUNT){
+				timing_count = 0;
 				std::cout << "Timing Information" << std::endl;
 				std::cout << "------------------" << std::endl;
 				for(int i=0;i<NUM_SUBSYSTEMS; i++) {
 					std::cout << "Subsystem: " << i << std::endl;
 					for(int j=0;j<NUM_TASKS; j++) {
-						if(timing_info[mess->from][mess->to].get_max_period() > 0.0){
+						if(timing_info[i][j].get_max_period() > 0.0){
 							std::cout << "Task: " << j << std::endl;
 							std::cout << "Period (avg, min, max): " << timing_info[i][j].get_average_period() << ", " << timing_info[i][j].get_min_period() << ", " << timing_info[i][j].get_max_period() << std::endl;
 							std::cout << "Execution (avg, min, max): " << timing_info[i][j].get_average_execution() << ", " << timing_info[i][j].get_min_execution() << ", " << timing_info[i][j].get_max_execution() << std::endl;
+							timing_info[i][j].reset_data();
 						}
 					}
 				}

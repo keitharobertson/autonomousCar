@@ -16,8 +16,6 @@
 
 #define PI 3.14159265359
 
-#define LOG_TIMING
-
 #define	COMPASS_ADDR	0x1E //0x21
 
 #define NS_PER_MS	1000000
@@ -243,18 +241,23 @@ float Compass::data_grab(){
 		data_grab_count = 0;
 		command[0] = 3;
 		if(write(compass_fd,command,1) != 1){
-			perror("Failed to request data");
+			#ifdef COMPASS_DEBUG
+				perror("Failed to request data");
+			#endif
 		}
 		
 		unsigned char buff[13];
 		int read_result;
 		if((read_result = read(compass_fd,buff,6)) != 6) {
 			if(errno == ETIMEDOUT){
-				
+				#ifdef COMPASS_DEBUG
+					std::cout << "compass not reading 6 characters" << std::endl;
+				#endif
 			}else{
-				perror("Failed to read data from compass");
+				#ifdef COMPASS_DEBUG
+					perror("Failed to read data from compass");
+				#endif
 			}
-			std::cout << "Not reading 6" << std::endl;
 		}
 		x=(buff[0] << 8) | (buff[1]);
 		y=(buff[2] << 8) | (buff[3]);
@@ -347,9 +350,12 @@ float Compass::data_grab(){
 void Compass::collector(){
 	struct timespec t;
 	#ifdef LOG_TIMING
+		int num_times = 0;
 		struct timespec timing;
+		long prev_nsec;
 	#endif
 	while(1){
+		clock_gettime(CLOCK_MONOTONIC ,&t);
 		t.tv_nsec+= DATA_COL_PERIOD_MS*NS_PER_MS;
 		while(t.tv_nsec > NS_PER_S){
 			t.tv_sec++;

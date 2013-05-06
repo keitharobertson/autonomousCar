@@ -37,10 +37,19 @@ typedef struct _MESSAGE {
 	
 } MESSAGE;
 
+/** 
+ * \brief A struct that contains ADC readings from all 4 ADCs
+ * 
+ * a struct used to store the ADC data from the 4 ADCs for use across subsystems 
+ * */
 typedef struct _ADC_DATA {
+	/** contains the most recent reading from ADC 1 */
 	char rx_buf_adc1[2];
+	/** contains the most recent reading from ADC 2 */
 	char rx_buf_adc2[2];
+	/** contains the most recent reading from ADC 3 */
 	char rx_buf_adc3[2];
+	/** contains the most recent reading from ADC 4 */
 	char rx_buf_adc4[2];
 } ADC_DATA;
 
@@ -159,11 +168,13 @@ typedef struct _ADC_DATA {
 #define GPS_DISPLAY 		4
 /** enable GPS navigation */
 #define GPS_NO_DISPLAY 		5
- /** Add a waypoint at the current location */
+/** Add a waypoint at the current location */
 #define GPS_ADDWAY			6
-
+/** Add the latitude for the most recent waypoint added*/
 #define GPS_ADDWAYDATALAT	7
+/** Add the longitude for the most recent waypoint added*/
 #define GPS_ADDWAYDATALON	8
+/** commit the waypoint to the gps configuration */
 #define GPS_ADDWAYDATARUN	9
 
 /** @}*/

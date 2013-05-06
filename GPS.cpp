@@ -1,5 +1,7 @@
 #include "GPS.h"
 
+#define LOG_TIMING
+
 //GPS class
 
 GPS::GPS() {
@@ -237,11 +239,20 @@ bool GPS::addWayPoint(LatLon latlon,double radius,int index){
 	}
 }
 void GPS::data_grab(LatLon& output){//float& output_lat,float& output_lon){
+	#ifdef LOG_TIMING
+		int num_times = 0;
+		struct timespec timing;
+		long prev_nsec;
+	#endif
 	LatLon outputB;
 	if (serial_port != -1){
 		char read_buffer[GPS_MAX_LENGTH + 1] = {0};
 		read_buffer[0]='\0';
 		int chars_read = read(serial_port,read_buffer, GPS_MAX_LENGTH);
+		#ifdef LOG_TIMING
+			clock_gettime(CLOCK_MONOTONIC ,&timing);
+			log_release_time(&timing, COLLECTOR);
+		#endif
 		char* read_bufferA=read_buffer;
 		for(int i=0;i<chars_read;i++){
 			if(read_buffer[i]=='$'){
@@ -273,6 +284,10 @@ void GPS::data_grab(LatLon& output){//float& output_lat,float& output_lon){
 	}
 	output.lat=outputB.lat;
 	output.lon=outputB.lon;
+	#ifdef LOG_TIMING
+		clock_gettime(CLOCK_MONOTONIC ,&timing);
+		log_end_time(&timing, COLLECTOR);
+	#endif
 	return;
 }
 
@@ -354,12 +369,21 @@ GPS::LatLon GPS::getLocBufferAvg(){
 // Analyze the data stuff
 void GPS::analysis(){
 	//printf("Analysis\n");
-
+	
 	struct timespec t;
 	clock_gettime(CLOCK_MONOTONIC ,&t);
+	
+	#ifdef LOG_TIMING
+		struct timespec timing;
+	#endif
+	
 	while(1){
 		//wait for data
 		sem_wait(&collect_analysis_sync);
+		#ifdef LOG_TIMING
+			clock_gettime(CLOCK_MONOTONIC ,&timing);
+			log_release_time(&timing, ANALYSIS);
+		#endif
 /*
 		// Delay A set amount of time
 		t.tv_nsec+= DATA_ANL_PERIOD_MS*NS_PER_MS;
@@ -386,6 +410,10 @@ void GPS::analysis(){
 			updateWayPoint();
 		}
 	}
+	#ifdef LOG_TIMING
+		clock_gettime(CLOCK_MONOTONIC ,&timing);
+		log_end_time(&timing, ANALYSIS);
+	#endif
 }
 
 void* GPS::read_data(int command) {

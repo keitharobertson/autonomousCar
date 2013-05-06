@@ -6,6 +6,6 @@
 #define MQ_LOGGER	"/MQ_LOGGER"
 #define ERROR 		-1
 #define MSG_SIZE	4
-#define MAX_MSG		5
+#define MAX_MSG		512
 
 #endif

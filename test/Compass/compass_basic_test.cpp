@@ -15,7 +15,7 @@ int main() {
 	//run for 30 seconds
 	for(int i=0; i<30; i++){
 		//read out compass heading
-		std::cout << "subsys " << 0 << " " << SUBSYS_COMPASS << " " << CPS_GET_READING << std::endl;
+		//std::cout << "subsys " << 0 << " " << SUBSYS_COMPASS << " " << CPS_GET_READING << std::endl;
 		//wait 1 second.
 		clock_gettime(CLOCK_MONOTONIC ,&t);
 		t.tv_sec += 1;

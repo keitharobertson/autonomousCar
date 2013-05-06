@@ -9,5 +9,9 @@ var searchData=
   ['reset_5fheading',['reset_heading',['../classSonar.html#a9648cfd15b2f2ef88c2094b0dfd19a6c',1,'Sonar']]],
   ['reverse_5fdirection',['reverse_direction',['../classSonar.html#afbda79f1a96e294fb811f03f54a49a46',1,'Sonar']]],
   ['reverse_5fmode',['reverse_mode',['../classSonar.html#ad9f288f52d8d26a687a557c714d6f026',1,'Sonar']]],
-  ['reverse_5fthreshold',['reverse_threshold',['../classSonar.html#a27714390fb769905062ae587d8b2f112',1,'Sonar']]]
+  ['reverse_5fthreshold',['reverse_threshold',['../classSonar.html#a27714390fb769905062ae587d8b2f112',1,'Sonar']]],
+  ['rx_5fbuf_5fadc1',['rx_buf_adc1',['../struct__ADC__DATA.html#a871b0221f9fc2a7800b8af4499125076',1,'_ADC_DATA']]],
+  ['rx_5fbuf_5fadc2',['rx_buf_adc2',['../struct__ADC__DATA.html#a853b22eb68fc621acfe4f97f4dfbd72a',1,'_ADC_DATA']]],
+  ['rx_5fbuf_5fadc3',['rx_buf_adc3',['../struct__ADC__DATA.html#a938a821964201100b4a49fa2a23ebad3',1,'_ADC_DATA']]],
+  ['rx_5fbuf_5fadc4',['rx_buf_adc4',['../struct__ADC__DATA.html#a3044c7a47a323ed6db529ed8d92f8f2d',1,'_ADC_DATA']]]
 ];

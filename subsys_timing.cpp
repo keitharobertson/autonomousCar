@@ -1,5 +1,5 @@
 #include <climits>
-
+#include <iostream>
 #include "subsys_timing.h"
 
 subsys_timing::subsys_timing(){
@@ -42,6 +42,7 @@ void subsys_timing::add_release_time(struct timespec* time){
 		if(period < min_period){
 			min_period = period;
 		}
+	}else{
 		first_time = false;
 	}
 	//replace old release time

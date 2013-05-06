@@ -28,6 +28,9 @@ class timing_analysis : system_logger {
 		void log_timing(char* message);
 		
 	private:
+	
+		void clear_queue();
+	
 		/** Message queue attributes */
 		struct mq_attr attr; 
 		

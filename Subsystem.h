@@ -4,11 +4,16 @@
 #include <mqueue.h>
 #include <stdio.h>
 #include <string>
+#include <semaphore.h>
+
+
 #include "MQ_PARAMS.h"
 #include "SUBSYS_COMMANDS.h"
 #include "TASK_NUMBERS.h"
 
 #define TIMING_ANALYSIS_BUFFER_SIZE	50
+
+#define LOG_TIMING
 
 /**
  * \class Subsystem
@@ -77,6 +82,8 @@ class Subsystem{
 		 */
 		virtual void handle_message(MESSAGE* message) = 0;
 		
+		void timing_mq_send();
+		
 		/** Subsystem name */
 		std::string subsys_name;
 		
@@ -128,8 +135,17 @@ class Subsystem{
 		/** timing message queue priority */
 		unsigned int timing_prio;
 		
+		/** the number of timing messages that have been sent. Used to put new times into the circular buffer */
 		int num_timing_messages;
+		/** the number of timing messages that have been sent. Used to put new times into the circular buffer */
+		int num_timing_messages_sent;
+		/** A circular buffer of timing information being passed to the timing analysis system */
 		struct timespec timing_analysis[TIMING_ANALYSIS_BUFFER_SIZE];
+		MESSAGE timing_message[TIMING_ANALYSIS_BUFFER_SIZE];
+		/** The timer message send semaphore */
+		sem_t timer_msg_send_sem;
+		/** Logger message queue receiver task */
+		pthread_t tMQTimingSend;
 
 };
 
