@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.1.15)  5 MAY 2013 21:19
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.1.15)  5 MAY 2013 21:51
 entering extended mode
  %&-line parsing enabled.
 **Final_Issues.tex
@@ -71,20 +71,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 LaTeX Warning: Unused global option(s):
     [singleside].
 
-(./Final_Issues.aux
-
-LaTeX Warning: Label `sub:high_level_design' multiply defined.
-
-
-LaTeX Warning: Label `fig:Alg_loud' multiply defined.
-
-
-LaTeX Warning: Label `sub:high_level_design' multiply defined.
-
-
-LaTeX Warning: Label `fig:Alg_loud' multiply defined.
-
-)
+(./Final_Issues.aux)
 \openout1 = `Final_Issues.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
@@ -143,7 +130,7 @@ File: HLD_A.png Graphic file (type png)
 <HLD_B.png, id=21, 1656.1875pt x 853.68938pt>
 File: HLD_B.png Graphic file (type png)
  <use HLD_B.png>
-<HLD_C.png, id=22, 1166.10657pt x 746.79pt>
+<HLD_C.png, id=22, 1249.66875pt x 751.30687pt>
 File: HLD_C.png Graphic file (type png)
  <use HLD_C.png> [5 <./HLD_A.png> <./HLD_B.png>] [6 <./HLD_C.png>]
 <LLD_Comp.png, id=29, 610.53094pt x 377.91188pt>
@@ -171,13 +158,13 @@ LaTeX Warning: Reference `sub:magnetometer' on page 8 undefined on input line 1
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
  1177 strings out of 495061
  14628 string characters out of 1182621
- 67060 words of memory out of 3000000
+ 66951 words of memory out of 3000000
  4381 multiletter control sequences out of 15000+50000
  9329 words of font info for 33 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
@@ -189,7 +176,7 @@ xlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts
 c/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
 m/cmsl12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pf
 b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Final_Issues.pdf (13 pages, 300973 bytes).
+Output written on Final_Issues.pdf (13 pages, 301031 bytes).
 PDF statistics:
  83 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
