@@ -16,10 +16,15 @@ Inheritance diagram for Compass\-:\begin{figure}[H]
 \includegraphics[height=3.000000cm]{classCompass}
 \end{center}
 \end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classCompass_1_1Vector3d}{Vector3d}
+\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classCompass_a68bd2a073cc0d461b2b46529aae04765}{Compass} ()
+\hyperlink{classCompass_ab4210309aac39913ac3b20a0fef51df0}{Compass} (\hyperlink{SUBSYS__COMMANDS_8h_a0be7f6e3de248ca3bdb1f3f5a0819c62}{A\-D\-C\-\_\-\-D\-A\-T\-A} $\ast$adc\-\_\-data\-\_\-ptr)
 \begin{DoxyCompactList}\small\item\em \hyperlink{classCompass}{Compass} default constructor. \end{DoxyCompactList}\item 
 float \hyperlink{classCompass_aa4132c05a4e20e95633c72776385bc42}{data\-\_\-grab} ()
 \begin{DoxyCompactList}\small\item\em grabs data from compass \end{DoxyCompactList}\item 
@@ -49,6 +54,10 @@ void $\ast$ \hyperlink{classCompass_ab55d084e2d643df0a1970f5868d0c5a8}{read\-\_\
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{SUBSYS__COMMANDS_8h_a0be7f6e3de248ca3bdb1f3f5a0819c62}{A\-D\-C\-\_\-\-D\-A\-T\-A} $\ast$ \hyperlink{classCompass_a72a3d0e853685bdbc6758120ebd10800}{adc\-\_\-data}
+\item 
+struct spi\-\_\-ioc\-\_\-transfer \hyperlink{classCompass_aed40464cb0c9203d87ab8a9127cc9080}{msg} \mbox{[}1\mbox{]}
+\item 
 float \hyperlink{classCompass_ac888a4dacdc477e53c99fe8e110966ae}{desired\-\_\-heading}
 \item 
 float \hyperlink{classCompass_af0f87a131e2c9833f7d52bed1a39bf75}{meas\-\_\-heading}
@@ -57,8 +66,42 @@ sem\-\_\-t \hyperlink{classCompass_ace6e13b91461366609f093fef09188d9}{collect\-\
 \item 
 int \hyperlink{classCompass_a44b0e4223918e3b139e54d54a0e3daad}{compass\-\_\-fd}
 \item 
+int \hyperlink{classCompass_a2a55ab6b29ea9ddca507a948cb30d42b}{accel\-\_\-fd}
+\item 
 char \hyperlink{classCompass_a6ff33d93efe79539c75dbee45efdc97c}{compass\-\_\-filepath} \mbox{[}40\mbox{]}
+\item 
+char \hyperlink{classCompass_a69f89e1a0d7c769e02cd3704904e40fd}{accel\-\_\-filepath} \mbox{[}40\mbox{]}
+\item 
+int \hyperlink{classCompass_a90f2dea7249c85f22c5bc45ed9d86b57}{min\-\_\-priority}
+\item 
+\hypertarget{classCompass_a08a0c0243b0c0dbfef446b7cdc6171a5}{int {\bfseries data\-\_\-grab\-\_\-count}}\label{classCompass_a08a0c0243b0c0dbfef446b7cdc6171a5}
+
+\item 
+\hypertarget{classCompass_ae19b46ed0c752445d27175c2205e2d6e}{int16\-\_\-t {\bfseries x}}\label{classCompass_ae19b46ed0c752445d27175c2205e2d6e}
+
+\item 
+\hypertarget{classCompass_a92ae0ec7df5da4f682653edc59a3902e}{int16\-\_\-t {\bfseries y}}\label{classCompass_a92ae0ec7df5da4f682653edc59a3902e}
+
+\item 
+\hypertarget{classCompass_ad69ac341e3d3e3c956658bb847f271d5}{int16\-\_\-t {\bfseries z}}\label{classCompass_ad69ac341e3d3e3c956658bb847f271d5}
+
+\item 
+\hypertarget{classCompass_a7b2d3072f705f74c4b9a34616cb10316}{int {\bfseries subsys\-\_\-priorities} \mbox{[}\hyperlink{group__subsys__nums_gad914679f013f117ec7470f75fee6149a}{N\-U\-M\-\_\-\-S\-U\-B\-S\-Y\-S\-T\-E\-M\-S}+1\mbox{]}}\label{classCompass_a7b2d3072f705f74c4b9a34616cb10316}
+
+\item 
+\hypertarget{classCompass_a81f32d364178d84fe50f0cc04525b343}{\hyperlink{classCompass_1_1Vector3d}{Vector3d} {\bfseries adxl\-A} \mbox{[}C\-O\-M\-P\-A\-S\-S\-\_\-\-A\-V\-E\-R\-A\-G\-E\-A\mbox{]}}\label{classCompass_a81f32d364178d84fe50f0cc04525b343}
+
+\item 
+\hypertarget{classCompass_a92846ee84028d3c778f0ff86ec665aa1}{\hyperlink{classCompass_1_1Vector3d}{Vector3d} {\bfseries magn\-A} \mbox{[}C\-O\-M\-P\-A\-S\-S\-\_\-\-A\-V\-E\-R\-A\-G\-E\mbox{]}}\label{classCompass_a92846ee84028d3c778f0ff86ec665aa1}
+
+\item 
+\hypertarget{classCompass_ad61bcefd1ac82df3cad26dc9dc09d3a8}{int {\bfseries compass\-\_\-avg}}\label{classCompass_ad61bcefd1ac82df3cad26dc9dc09d3a8}
+
+\item 
+\hypertarget{classCompass_a58f9feaf883ab8cdad53f26fbe202331}{int {\bfseries compass\-\_\-avg\-A}}\label{classCompass_a58f9feaf883ab8cdad53f26fbe202331}
+
 \end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
 
 
 \subsection{Detailed Description}
@@ -67,13 +110,13 @@ compass data collection and analysis
 Collects data from the compass and analyzes the data. Sends system messages to control actuators 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classCompass_a68bd2a073cc0d461b2b46529aae04765}{\index{Compass@{Compass}!Compass@{Compass}}
+\hypertarget{classCompass_ab4210309aac39913ac3b20a0fef51df0}{\index{Compass@{Compass}!Compass@{Compass}}
 \index{Compass@{Compass}!Compass@{Compass}}
 \subsubsection[{Compass}]{\setlength{\rightskip}{0pt plus 5cm}Compass\-::\-Compass (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf A\-D\-C\-\_\-\-D\-A\-T\-A} $\ast$}]{adc\-\_\-data\-\_\-ptr}
 \end{DoxyParamCaption}
-)}}\label{classCompass_a68bd2a073cc0d461b2b46529aae04765}
+)}}\label{classCompass_ab4210309aac39913ac3b20a0fef51df0}
 
 
 \hyperlink{classCompass}{Compass} default constructor. 
@@ -170,7 +213,16 @@ Implements \hyperlink{classSensor_acf4ff5c6c8f793ed47a8105b94ff7c3e}{Sensor}.
 
 
 \subsection{Member Data Documentation}
-\hypertarget{classCompass_ace6e13b91461366609f093fef09188d9}{\index{Compass@{Compass}!collect\-\_\-analysis\-\_\-sync@{collect\-\_\-analysis\-\_\-sync}}
+\hypertarget{classCompass_a2a55ab6b29ea9ddca507a948cb30d42b}{\index{Compass@{Compass}!accel\-\_\-fd@{accel\-\_\-fd}}
+\index{accel\-\_\-fd@{accel\-\_\-fd}!Compass@{Compass}}
+\subsubsection[{accel\-\_\-fd}]{\setlength{\rightskip}{0pt plus 5cm}int Compass\-::accel\-\_\-fd\hspace{0.3cm}{\ttfamily [protected]}}}\label{classCompass_a2a55ab6b29ea9ddca507a948cb30d42b}
+The i2c file descriptor for the compass \hypertarget{classCompass_a69f89e1a0d7c769e02cd3704904e40fd}{\index{Compass@{Compass}!accel\-\_\-filepath@{accel\-\_\-filepath}}
+\index{accel\-\_\-filepath@{accel\-\_\-filepath}!Compass@{Compass}}
+\subsubsection[{accel\-\_\-filepath}]{\setlength{\rightskip}{0pt plus 5cm}char Compass\-::accel\-\_\-filepath\mbox{[}40\mbox{]}\hspace{0.3cm}{\ttfamily [protected]}}}\label{classCompass_a69f89e1a0d7c769e02cd3704904e40fd}
+The filename for the compass device. (will be a device in /dev). \hypertarget{classCompass_a72a3d0e853685bdbc6758120ebd10800}{\index{Compass@{Compass}!adc\-\_\-data@{adc\-\_\-data}}
+\index{adc\-\_\-data@{adc\-\_\-data}!Compass@{Compass}}
+\subsubsection[{adc\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-D\-C\-\_\-\-D\-A\-T\-A}$\ast$ Compass\-::adc\-\_\-data\hspace{0.3cm}{\ttfamily [protected]}}}\label{classCompass_a72a3d0e853685bdbc6758120ebd10800}
+returns the heading corrected for tilt store the adc data here for cross subsystem access \hypertarget{classCompass_ace6e13b91461366609f093fef09188d9}{\index{Compass@{Compass}!collect\-\_\-analysis\-\_\-sync@{collect\-\_\-analysis\-\_\-sync}}
 \index{collect\-\_\-analysis\-\_\-sync@{collect\-\_\-analysis\-\_\-sync}!Compass@{Compass}}
 \subsubsection[{collect\-\_\-analysis\-\_\-sync}]{\setlength{\rightskip}{0pt plus 5cm}sem\-\_\-t Compass\-::collect\-\_\-analysis\-\_\-sync\hspace{0.3cm}{\ttfamily [protected]}}}\label{classCompass_ace6e13b91461366609f093fef09188d9}
 The collect/analysis sync semaphore \hypertarget{classCompass_a44b0e4223918e3b139e54d54a0e3daad}{\index{Compass@{Compass}!compass\-\_\-fd@{compass\-\_\-fd}}
@@ -191,7 +243,13 @@ A message that will, when sent, issue a command to the \hyperlink{classSteering}
 A message that will, when sent, issue a command to the \hyperlink{classSteering}{Steering} subsystem to turn hard right \hypertarget{classCompass_af0f87a131e2c9833f7d52bed1a39bf75}{\index{Compass@{Compass}!meas\-\_\-heading@{meas\-\_\-heading}}
 \index{meas\-\_\-heading@{meas\-\_\-heading}!Compass@{Compass}}
 \subsubsection[{meas\-\_\-heading}]{\setlength{\rightskip}{0pt plus 5cm}float Compass\-::meas\-\_\-heading\hspace{0.3cm}{\ttfamily [protected]}}}\label{classCompass_af0f87a131e2c9833f7d52bed1a39bf75}
-The last measured heading. Updated at 20\-Hz. \hypertarget{classCompass_a9e0a282c1253451fd7967646074102ee}{\index{Compass@{Compass}!slight\-\_\-left@{slight\-\_\-left}}
+The last measured heading. Updated at 20\-Hz. \hypertarget{classCompass_a90f2dea7249c85f22c5bc45ed9d86b57}{\index{Compass@{Compass}!min\-\_\-priority@{min\-\_\-priority}}
+\index{min\-\_\-priority@{min\-\_\-priority}!Compass@{Compass}}
+\subsubsection[{min\-\_\-priority}]{\setlength{\rightskip}{0pt plus 5cm}int Compass\-::min\-\_\-priority\hspace{0.3cm}{\ttfamily [protected]}}}\label{classCompass_a90f2dea7249c85f22c5bc45ed9d86b57}
+the minimum subsystem priority that can change the compass heading \hypertarget{classCompass_aed40464cb0c9203d87ab8a9127cc9080}{\index{Compass@{Compass}!msg@{msg}}
+\index{msg@{msg}!Compass@{Compass}}
+\subsubsection[{msg}]{\setlength{\rightskip}{0pt plus 5cm}struct spi\-\_\-ioc\-\_\-transfer Compass\-::msg\mbox{[}1\mbox{]}\hspace{0.3cm}{\ttfamily [protected]}}}\label{classCompass_aed40464cb0c9203d87ab8a9127cc9080}
+S\-P\-I request for sonar data from the \hyperlink{classADC}{A\-D\-C} \hypertarget{classCompass_a9e0a282c1253451fd7967646074102ee}{\index{Compass@{Compass}!slight\-\_\-left@{slight\-\_\-left}}
 \index{slight\-\_\-left@{slight\-\_\-left}!Compass@{Compass}}
 \subsubsection[{slight\-\_\-left}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-S\-S\-A\-G\-E} Compass\-::slight\-\_\-left}}\label{classCompass_a9e0a282c1253451fd7967646074102ee}
 A message that will, when sent, issue a command to the \hyperlink{classSteering}{Steering} subsystem to turn slightly left \hypertarget{classCompass_a9e9ff6610d60e6fd915984a3f3e40e13}{\index{Compass@{Compass}!slight\-\_\-right@{slight\-\_\-right}}

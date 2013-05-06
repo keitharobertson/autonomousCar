@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -152,12 +152,20 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:af9a4f30e9dc0dc37b31a421cb88ca8ba"><td class="memItemLeft" align="right" valign="top">sem_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSteering.html#af9a4f30e9dc0dc37b31a421cb88ca8ba">steer_cmd_ctrl</a></td></tr>
 <tr class="memitem:ae85b07902746525a57bf049d872b4f26"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSteering.html#ae85b07902746525a57bf049d872b4f26">steering_fd</a></td></tr>
 <tr class="memitem:adfe05011b3442b1b24cd9dfc1e24ad70"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSteering.html#adfe05011b3442b1b24cd9dfc1e24ad70">steering_filepath</a> [40]</td></tr>
+<tr class="memitem:a8372fdfcf95f814d8e6a77f10b1116fe"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSteering.html#a8372fdfcf95f814d8e6a77f10b1116fe">input_data</a> [6]</td></tr>
 <tr class="inherit_header pro_attribs_classActuator"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classActuator')"><img src="closed.png" alt="-"/>&nbsp;Protected Attributes inherited from <a class="el" href="classActuator.html">Actuator</a></td></tr>
 <tr class="memitem:a0097e8667426ce3300ad60bdb6cd9d81 inherit pro_attribs_classActuator"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActuator.html#a0097e8667426ce3300ad60bdb6cd9d81">tmech_control</a></td></tr>
 <tr class="inherit_header pro_attribs_classSubsystem"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classSubsystem')"><img src="closed.png" alt="-"/>&nbsp;Protected Attributes inherited from <a class="el" href="classSubsystem.html">Subsystem</a></td></tr>
 <tr class="memitem:abbb7a2f8cb57fa70eaf65c1b7c353e08 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">struct mq_attr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#abbb7a2f8cb57fa70eaf65c1b7c353e08">attr</a></td></tr>
 <tr class="memitem:a3ef2ff7ded6b1623fae096828d549369 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">mqd_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a3ef2ff7ded6b1623fae096828d549369">sys_mq</a></td></tr>
 <tr class="memitem:a71c9d55e3baa41c75bbc54e9e4407bdd inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a71c9d55e3baa41c75bbc54e9e4407bdd">prio</a></td></tr>
+<tr class="memitem:a32fe49f94c0098b8cdb1983c162c0c73 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">struct mq_attr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a32fe49f94c0098b8cdb1983c162c0c73">timing_attr</a></td></tr>
+<tr class="memitem:ab9d87a0c93b2cc65b0a053c325422c1c inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">mqd_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#ab9d87a0c93b2cc65b0a053c325422c1c">timing_mq</a></td></tr>
+<tr class="memitem:aaf8fd18a5c37ec1510869a23ec0feb5f inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#aaf8fd18a5c37ec1510869a23ec0feb5f">timing_prio</a></td></tr>
+<tr class="memitem:ae9c30b7c1ebe18eee34d1dca1530abb7 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9c30b7c1ebe18eee34d1dca1530abb7"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>num_timing_messages</b></td></tr>
+<tr class="memitem:a0eccf033d19cca954aac5fb0d0cc51bf inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0eccf033d19cca954aac5fb0d0cc51bf"></a>
+struct timespec&#160;</td><td class="memItemRight" valign="bottom"><b>timing_analysis</b> [TIMING_ANALYSIS_BUFFER_SIZE]</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -378,6 +386,27 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2>Member Data Documentation</h2>
+<a class="anchor" id="a8372fdfcf95f814d8e6a77f10b1116fe"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char Steering::input_data[6]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>a string to store input data read in by the steering subsystem until it is ready for processing </p>
+
+</div>
+</div>
 <a class="anchor" id="ab31761e4665bf81e580f1bc32c9fff79"></a>
 <div class="memitem">
 <div class="memproto">
@@ -490,7 +519,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 22 2013 22:02:40 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun May 5 2013 16:39:12 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

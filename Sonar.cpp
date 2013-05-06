@@ -7,7 +7,7 @@
 
 #define NS_PER_MS	1000000
 #define NS_PER_S	1000000000
-#define DATA_COL_PERIOD_MS	50
+#define DATA_COL_PERIOD_MS	20
 #define AVOIDANCE_TIME_SEC	1
 
 #define	DEFAULT_TURN_THRESH		65.0
@@ -126,6 +126,9 @@ void Sonar::collector(){
 	int count = 0;
 	struct timespec t;
 	clock_gettime(CLOCK_MONOTONIC ,&t);
+	#ifdef LOG_TIMING
+		struct timespec timing;
+	#endif
 	while(1){
 		t.tv_nsec+= DATA_COL_PERIOD_MS*NS_PER_MS;
 		while(t.tv_nsec > NS_PER_S){
@@ -133,6 +136,10 @@ void Sonar::collector(){
 			t.tv_nsec -= NS_PER_S;
 		}
 		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+		#ifdef LOG_TIMING
+			clock_gettime(CLOCK_MONOTONIC ,&timing);
+			log_release_time(&timing, COLLECTOR);
+		#endif
 		if(enabled){
 			reading_sum += data_grab();
 			count++;
@@ -153,6 +160,10 @@ void Sonar::collector(){
 			data_grab();
 		}
 	}
+	#ifdef LOG_TIMING
+		clock_gettime(CLOCK_MONOTONIC ,&timing);
+		log_end_time(&timing, COLLECTOR);
+	#endif
 }
 
 void Sonar::reset_heading() {
@@ -250,9 +261,16 @@ void Sonar::analysis(){
 	struct timespec t;
 	char mot_speed_rev[6];
 	int mot_speed_int = 15500;
+	#ifdef LOG_TIMING
+		struct timespec timing;
+	#endif
 	while(1) {
 		//wait for data
 		sem_wait(&collect_analysis_sync);
+		#ifdef LOG_TIMING
+			clock_gettime(CLOCK_MONOTONIC ,&timing);
+			log_release_time(&timing, ANALYSIS);
+		#endif
 		//analyze data
 		if(sonar_reading < reverse_threshold) {
 			avoidance_mode = false;
@@ -319,6 +337,10 @@ void Sonar::analysis(){
 			}
 		}
 	}
+	#ifdef LOG_TIMING
+		clock_gettime(CLOCK_MONOTONIC ,&timing);
+		log_end_time(&timing, ANALYSIS);
+	#endif
 }
 
 void* Sonar::read_data(int command) {

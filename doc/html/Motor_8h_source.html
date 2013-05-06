@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -117,7 +117,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                </div>
 <div class="line"><a name="l00089"></a><span class="lineno"><a class="code" href="classMotor.html#a0125717053068acb08b430d820bfc413">   89</a></span>&#160;                <span class="keywordtype">int</span> <a class="code" href="classMotor.html#a0125717053068acb08b430d820bfc413">min_priority</a>;</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                </div>
-<div class="line"><a name="l00092"></a><span class="lineno"><a class="code" href="classMotor.html#aac6cb55808e4f1da0506d0cc6c314e41">   92</a></span>&#160;                <span class="keywordtype">char</span> <a class="code" href="classMotor.html#aac6cb55808e4f1da0506d0cc6c314e41">motor_duty_cycle</a>[2];</div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="code" href="classMotor.html#a158ba3b940abdc85c7c1e4b1bf651a6e">   92</a></span>&#160;                <span class="keywordtype">char</span> <a class="code" href="classMotor.html#a158ba3b940abdc85c7c1e4b1bf651a6e">motor_duty_cycle</a>[6];</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                </div>
 <div class="line"><a name="l00095"></a><span class="lineno"><a class="code" href="classMotor.html#a7d7c98b5afa45656905708e54ff7fb9a">   95</a></span>&#160;                <span class="keywordtype">int</span> <a class="code" href="classMotor.html#a7d7c98b5afa45656905708e54ff7fb9a">direction</a>;</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                </div>
@@ -126,13 +126,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00101"></a><span class="lineno"><a class="code" href="classMotor.html#acb2ac1bd2630b05c40a64154a87ea65d">  101</a></span>&#160;                <span class="keywordtype">int</span> <a class="code" href="classMotor.html#acb2ac1bd2630b05c40a64154a87ea65d">motor_fd</a>;</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                </div>
 <div class="line"><a name="l00104"></a><span class="lineno"><a class="code" href="classMotor.html#aed42ebef60a1374fc86dd2aff59af85e">  104</a></span>&#160;                <span class="keywordtype">char</span> <a class="code" href="classMotor.html#aed42ebef60a1374fc86dd2aff59af85e">motor_filepath</a>[40];</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;};</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                </div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="code" href="classMotor.html#ab2774f3d9c41683a683f10ef20a29607">  107</a></span>&#160;                <a class="code" href="struct__MESSAGE.html" title="Defines the structure of a message to be sent to a subsystem.">MESSAGE</a> <a class="code" href="classMotor.html#ab2774f3d9c41683a683f10ef20a29607">data_request</a>;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;};</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 22 2013 22:02:36 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun May 5 2013 16:39:10 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

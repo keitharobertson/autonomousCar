@@ -6,6 +6,7 @@
 #include <string>
 #include "MQ_PARAMS.h"
 #include "Subsystem.h"
+#include "timing_analysis.h"
 
 /**
  * \brief System control is the central controller.
@@ -80,6 +81,8 @@ class SystemControl {
 		unsigned int prio;
 		/** System message queue receiver task */
 		pthread_t tMQReceiver;
+		
+		timing_analysis* system_timing;
 };
 
 #endif

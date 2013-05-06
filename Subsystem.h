@@ -4,8 +4,16 @@
 #include <mqueue.h>
 #include <stdio.h>
 #include <string>
+#include <semaphore.h>
+
+
 #include "MQ_PARAMS.h"
 #include "SUBSYS_COMMANDS.h"
+#include "TASK_NUMBERS.h"
+
+#define TIMING_ANALYSIS_BUFFER_SIZE	50
+
+#define LOG_TIMING
 
 /**
  * \class Subsystem
@@ -74,6 +82,8 @@ class Subsystem{
 		 */
 		virtual void handle_message(MESSAGE* message) = 0;
 		
+		void timing_mq_send();
+		
 		/** Subsystem name */
 		std::string subsys_name;
 		
@@ -85,6 +95,27 @@ class Subsystem{
 		
 		
 	protected:
+	
+		/**
+		 * \brief log the release time of a task
+		 * 
+		 * sends a message to the timing logger with the task number and (relative) time
+		 */
+		void log_release_time(struct timespec* release_time, int task_num);
+		
+		/**
+		 * \brief log the release time of a task
+		 * 
+		 * sends a message to the timing logger with the task number and (relative) time
+		 */
+		void log_end_time(struct timespec* end_time, int task_num);
+		
+		/**
+		 * \brief sends information to timing analysis
+		 * 
+		 * will send a MESSAGE to the timing analysis system
+		 */
+		void send_timing_message(struct timespec* time, int task_num, bool is_start);
 		
 		/** Message queue attributes */
 		struct mq_attr attr; 
@@ -94,6 +125,27 @@ class Subsystem{
 		
 		/** message queue priority */
 		unsigned int prio;
+		
+		/** Timing Message queue attributes */
+		struct mq_attr timing_attr; 
+		
+		/** timing message queue descriptor */
+		mqd_t timing_mq;
+		
+		/** timing message queue priority */
+		unsigned int timing_prio;
+		
+		/** the number of timing messages that have been sent. Used to put new times into the circular buffer */
+		int num_timing_messages;
+		/** the number of timing messages that have been sent. Used to put new times into the circular buffer */
+		int num_timing_messages_sent;
+		/** A circular buffer of timing information being passed to the timing analysis system */
+		struct timespec timing_analysis[TIMING_ANALYSIS_BUFFER_SIZE];
+		MESSAGE timing_message[TIMING_ANALYSIS_BUFFER_SIZE];
+		/** The timer message send semaphore */
+		sem_t timer_msg_send_sem;
+		/** Logger message queue receiver task */
+		pthread_t tMQTimingSend;
 
 };
 

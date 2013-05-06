@@ -16,50 +16,82 @@ Inheritance diagram for G\-P\-S\-:\begin{figure}[H]
 \includegraphics[height=3.000000cm]{classGPS}
 \end{center}
 \end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classGPS_1_1GPSWayPoint}{G\-P\-S\-Way\-Point}
+\begin{DoxyCompactList}\small\item\em Stores \hyperlink{classGPS}{G\-P\-S} Way\-Points as a linked list. \end{DoxyCompactList}\item 
+class \hyperlink{classGPS_1_1LatLon}{Lat\-Lon}
+\begin{DoxyCompactList}\small\item\em Structure that hold latitude and longitude. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classGPS_a0c347a188512d0d5cf7ed5c91b145fc4}{G\-P\-S} ()
 \begin{DoxyCompactList}\small\item\em \hyperlink{classGPS}{G\-P\-S} default constructor. \end{DoxyCompactList}\item 
-void \hyperlink{classGPS_a669ad6e30c411499d069fcb9ffeea876}{data\-\_\-grab} (float \&output\-\_\-lat, float \&output\-\_\-lon)
+\hypertarget{classGPS_afe84b00ea93254fcb8b84a0f2b240c9d}{\hyperlink{classGPS_afe84b00ea93254fcb8b84a0f2b240c9d}{$\sim$\-G\-P\-S} ()}\label{classGPS_afe84b00ea93254fcb8b84a0f2b240c9d}
+
+\begin{DoxyCompactList}\small\item\em deconstructor \end{DoxyCompactList}\item 
+void \hyperlink{classGPS_acd4e4d75709b2b897972f4ff89a2bdab}{data\-\_\-grab} (\hyperlink{classGPS_1_1LatLon}{Lat\-Lon} \&output)
 \begin{DoxyCompactList}\small\item\em grabs data from \hyperlink{classGPS}{G\-P\-S} \end{DoxyCompactList}\item 
-void \hyperlink{classGPS_aebb999362899800a7e372e873bb5b943}{init\-\_\-sensor} ()
-\begin{DoxyCompactList}\small\item\em Virtual function to initialize the sensor device. \end{DoxyCompactList}\item 
+\hypertarget{classGPS_aebb999362899800a7e372e873bb5b943}{void \hyperlink{classGPS_aebb999362899800a7e372e873bb5b943}{init\-\_\-sensor} ()}\label{classGPS_aebb999362899800a7e372e873bb5b943}
+
+\begin{DoxyCompactList}\small\item\em initialize the \hyperlink{classGPS}{G\-P\-S} connection \end{DoxyCompactList}\item 
 void \hyperlink{classGPS_a17383568c4ed86a0adfdd5c88b6591d4}{collector} ()
 \begin{DoxyCompactList}\small\item\em collects \hyperlink{classGPS}{G\-P\-S} data \end{DoxyCompactList}\item 
 void \hyperlink{classGPS_a4dca50736c5e49f831515219536823b2}{analysis} ()
 \begin{DoxyCompactList}\small\item\em data analysis \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{classGPS_aa04076536ee9f7e2679895c69b07ad58}{read\-\_\-data} (int command)
-\begin{DoxyCompactList}\small\item\em Reads in data from message to the sensor. \end{DoxyCompactList}\item 
+\item 
 \hypertarget{classGPS_a803a498352e30044136502a9e036d380}{void \hyperlink{classGPS_a803a498352e30044136502a9e036d380}{handle\-\_\-message} (\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} $\ast$message)}\label{classGPS_a803a498352e30044136502a9e036d380}
 
 \begin{DoxyCompactList}\small\item\em handles messages sent to the \hyperlink{classGPS}{G\-P\-S} subsystem \end{DoxyCompactList}\item 
-\hypertarget{classGPS_a41dc6041167ef4e2860274629392c300}{bool \hyperlink{classGPS_a41dc6041167ef4e2860274629392c300}{convert\-\_\-data} (char $\ast$input, int length, float \&output\-\_\-lat, float \&output\-\_\-lon)}\label{classGPS_a41dc6041167ef4e2860274629392c300}
+\hypertarget{classGPS_abb0d819282c6575d1c9dfadce5270238}{bool \hyperlink{classGPS_abb0d819282c6575d1c9dfadce5270238}{convert\-\_\-data} (char $\ast$input, int length, \hyperlink{classGPS_1_1LatLon}{Lat\-Lon} \&output)}\label{classGPS_abb0d819282c6575d1c9dfadce5270238}
 
-\begin{DoxyCompactList}\small\item\em Converts the input command into lat/long and stores in output. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Converts the input command into lat/long and stores in output. \end{DoxyCompactList}\item 
+\hypertarget{classGPS_ae6fac25305f26521d3cb313608224cbf}{bool \hyperlink{classGPS_ae6fac25305f26521d3cb313608224cbf}{update\-Way\-Point} ()}\label{classGPS_ae6fac25305f26521d3cb313608224cbf}
+
+\begin{DoxyCompactList}\small\item\em Update waypoint if necissary. \end{DoxyCompactList}\item 
+\hypertarget{classGPS_a2a02aee137990e44240c60148d4dd892}{bool \hyperlink{classGPS_a2a02aee137990e44240c60148d4dd892}{add\-Way\-Point} (\hyperlink{classGPS_1_1LatLon}{Lat\-Lon} latlon, double radius, int index=-\/1)}\label{classGPS_a2a02aee137990e44240c60148d4dd892}
+
+\begin{DoxyCompactList}\small\item\em Add Waypoint. \end{DoxyCompactList}\item 
+\hypertarget{classGPS_a5c2fe388fb6d9f324f9f00e1abdfd5ed}{\hyperlink{classGPS_1_1LatLon}{Lat\-Lon} \hyperlink{classGPS_a5c2fe388fb6d9f324f9f00e1abdfd5ed}{get\-Loc\-Buffer\-Avg} ()}\label{classGPS_a5c2fe388fb6d9f324f9f00e1abdfd5ed}
+
+\begin{DoxyCompactList}\small\item\em Get location from rolling buffer (averaged) \end{DoxyCompactList}\item 
+double \hyperlink{classGPS_a142cd2ff428450d1145ddaaa4e2974a8}{get\-Angle} (\hyperlink{classGPS_1_1LatLon}{Lat\-Lon} start\-Loc, \hyperlink{classGPS_1_1LatLon}{Lat\-Lon} eennd\-Loc)
+\begin{DoxyCompactList}\small\item\em Get the angle between two lat long. \end{DoxyCompactList}\item 
+\hypertarget{classGPS_a988b4a8104bc8e93d1225cad026ce578}{void \hyperlink{classGPS_a988b4a8104bc8e93d1225cad026ce578}{set\-Loc\-Buffer} (const \hyperlink{classGPS_1_1LatLon}{G\-P\-S\-::\-Lat\-Lon} location)}\label{classGPS_a988b4a8104bc8e93d1225cad026ce578}
+
+\begin{DoxyCompactList}\small\item\em Add a value to the lat long rolling buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classGPS_a8e7d8703e1974afe9819e29da13350c1}{int {\bfseries enabled}}\label{classGPS_a8e7d8703e1974afe9819e29da13350c1}
-
+int \hyperlink{classGPS_a14c36e0dcc27dfa5e1381b9a4b25c2ce}{output\-\_\-heading}
 \item 
-\hypertarget{classGPS_a14c36e0dcc27dfa5e1381b9a4b25c2ce}{int {\bfseries output\-\_\-heading}}\label{classGPS_a14c36e0dcc27dfa5e1381b9a4b25c2ce}
-
+int \hyperlink{classGPS_a62ebacee895a13c211bfd372b818b680}{serial\-\_\-port}
 \item 
-\hypertarget{classGPS_a2a3644aa4c6f60c59905b3050e4dc935}{float {\bfseries last\-\_\-lat}}\label{classGPS_a2a3644aa4c6f60c59905b3050e4dc935}
-
+\hyperlink{classGPS_1_1GPSWayPoint}{G\-P\-S\-Way\-Point} $\ast$ \hyperlink{classGPS_a9deda2a96578019d9512a8ec74a93191}{target}
 \item 
-\hypertarget{classGPS_a5be7ea29b18ea3f78cbe0323a63bc3f4}{float {\bfseries last\-\_\-lon}}\label{classGPS_a5be7ea29b18ea3f78cbe0323a63bc3f4}
-
+\hyperlink{classGPS_1_1GPSWayPoint}{G\-P\-S\-Way\-Point} $\ast$ \hyperlink{classGPS_ad1fea42571de73f9b9278cc329490457}{head\-Ptr}
 \item 
-\hypertarget{classGPS_a62ebacee895a13c211bfd372b818b680}{int {\bfseries serial\-\_\-port}}\label{classGPS_a62ebacee895a13c211bfd372b818b680}
-
+\hyperlink{classGPS_1_1LatLon}{Lat\-Lon} \hyperlink{classGPS_a78bd0e171c43d44a60349cba2d05f29b}{loc\-Buffer} \mbox{[}G\-P\-S\-\_\-\-R\-O\-L\-L\-B\-U\-F\-F\-\_\-\-S\-I\-Z\-E $\ast$2\mbox{]}
+\item 
+int \hyperlink{classGPS_a8a593af52417cf88df7c6c7172d7caf7}{loc\-Buffer\-Index}
+\item 
+int \hyperlink{classGPS_ac85c17369384b4f9ddb0d0358df9d1cf}{loc\-Buffer\-Index\-B}
+\item 
+sem\-\_\-t \hyperlink{classGPS_ab0d29060e79b34b84fa06847a36de2e7}{collect\-\_\-analysis\-\_\-sync}
+\item 
+double \hyperlink{classGPS_aa0e370ef448d131c54e3b1d626576cd2}{temp\-\_\-lat}
+\item 
+double \hyperlink{classGPS_a4b108cba87ab121532c180e214d0c7fa}{temp\-\_\-lon}
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
 \subsection{Detailed Description}
 \hyperlink{classGPS}{G\-P\-S} data collection and analysis. 
+
+Define this variable to enable printf debugging
 
 Collects data from the \hyperlink{classGPS}{G\-P\-S} and analyzes the data. Sends system messages to control actuators 
 
@@ -108,49 +140,74 @@ collects \hyperlink{classGPS}{G\-P\-S} data and averages data prior to analysis
 
 Implements \hyperlink{classSensor_ae4ec41b880d44feb898da5c62c3203c9}{Sensor}.
 
-\hypertarget{classGPS_a669ad6e30c411499d069fcb9ffeea876}{\index{G\-P\-S@{G\-P\-S}!data\-\_\-grab@{data\-\_\-grab}}
+\hypertarget{classGPS_acd4e4d75709b2b897972f4ff89a2bdab}{\index{G\-P\-S@{G\-P\-S}!data\-\_\-grab@{data\-\_\-grab}}
 \index{data\-\_\-grab@{data\-\_\-grab}!GPS@{G\-P\-S}}
 \subsubsection[{data\-\_\-grab}]{\setlength{\rightskip}{0pt plus 5cm}void G\-P\-S\-::data\-\_\-grab (
 \begin{DoxyParamCaption}
-\item[{float \&}]{output\-\_\-lat, }
-\item[{float \&}]{output\-\_\-lon}
+\item[{{\bf Lat\-Lon} \&}]{output}
 \end{DoxyParamCaption}
-)}}\label{classGPS_a669ad6e30c411499d069fcb9ffeea876}
+)}}\label{classGPS_acd4e4d75709b2b897972f4ff89a2bdab}
 
 
 grabs data from \hyperlink{classGPS}{G\-P\-S} 
 
-Gets data from \hyperlink{classGPS}{G\-P\-S} over U\-A\-R\-T \hypertarget{classGPS_aebb999362899800a7e372e873bb5b943}{\index{G\-P\-S@{G\-P\-S}!init\-\_\-sensor@{init\-\_\-sensor}}
-\index{init\-\_\-sensor@{init\-\_\-sensor}!GPS@{G\-P\-S}}
-\subsubsection[{init\-\_\-sensor}]{\setlength{\rightskip}{0pt plus 5cm}void G\-P\-S\-::init\-\_\-sensor (
+Gets data from \hyperlink{classGPS}{G\-P\-S} over U\-A\-R\-T \hypertarget{classGPS_a142cd2ff428450d1145ddaaa4e2974a8}{\index{G\-P\-S@{G\-P\-S}!get\-Angle@{get\-Angle}}
+\index{get\-Angle@{get\-Angle}!GPS@{G\-P\-S}}
+\subsubsection[{get\-Angle}]{\setlength{\rightskip}{0pt plus 5cm}double G\-P\-S\-::get\-Angle (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf Lat\-Lon}}]{start\-Loc, }
+\item[{{\bf Lat\-Lon}}]{eennd\-Loc}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classGPS_aebb999362899800a7e372e873bb5b943}
+)}}\label{classGPS_a142cd2ff428450d1145ddaaa4e2974a8}
 
 
-Virtual function to initialize the sensor device. 
+Get the angle between two lat long. 
 
-Implemented by each sensor, the init\-\_\-sensor function is responsible for setting the sensor up for data collection. For example in the case of the compass subsystem, the init\-\_\-device task will set up the i2c bus, initialize the system variables, and perform other tasks necessary before data can be collected from the compass. 
-
-Implements \hyperlink{classSensor_a11b28f6bc91d6f69e734e13ab0e64f56}{Sensor}.
-
-\hypertarget{classGPS_aa04076536ee9f7e2679895c69b07ad58}{\index{G\-P\-S@{G\-P\-S}!read\-\_\-data@{read\-\_\-data}}
+(3.\-14159); \hypertarget{classGPS_aa04076536ee9f7e2679895c69b07ad58}{\index{G\-P\-S@{G\-P\-S}!read\-\_\-data@{read\-\_\-data}}
 \index{read\-\_\-data@{read\-\_\-data}!GPS@{G\-P\-S}}
 \subsubsection[{read\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ G\-P\-S\-::read\-\_\-data (
 \begin{DoxyParamCaption}
 \item[{int}]{command}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classGPS_aa04076536ee9f7e2679895c69b07ad58}
-
-
-Reads in data from message to the sensor. 
-
-Virtual function implemented at the subsystem level. Will read data into appropriate data type and then cast to a void$\ast$ and return. The type of data received depends on the message command. For example if trying to set the motor pwm duty cycle, a three byte char$\ast$ is expected. This function will read the data in from standard in (using cin) into an appropriate datatype for the given command and will return the data to the system message handler for further processing. 
+Read the data based of a command 
 
 Implements \hyperlink{classSensor_acf4ff5c6c8f793ed47a8105b94ff7c3e}{Sensor}.
 
 
+
+\subsection{Member Data Documentation}
+\hypertarget{classGPS_ab0d29060e79b34b84fa06847a36de2e7}{\index{G\-P\-S@{G\-P\-S}!collect\-\_\-analysis\-\_\-sync@{collect\-\_\-analysis\-\_\-sync}}
+\index{collect\-\_\-analysis\-\_\-sync@{collect\-\_\-analysis\-\_\-sync}!GPS@{G\-P\-S}}
+\subsubsection[{collect\-\_\-analysis\-\_\-sync}]{\setlength{\rightskip}{0pt plus 5cm}sem\-\_\-t G\-P\-S\-::collect\-\_\-analysis\-\_\-sync\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGPS_ab0d29060e79b34b84fa06847a36de2e7}
+The collect/analysis sync semaphore \hypertarget{classGPS_ad1fea42571de73f9b9278cc329490457}{\index{G\-P\-S@{G\-P\-S}!head\-Ptr@{head\-Ptr}}
+\index{head\-Ptr@{head\-Ptr}!GPS@{G\-P\-S}}
+\subsubsection[{head\-Ptr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf G\-P\-S\-Way\-Point}$\ast$ G\-P\-S\-::head\-Ptr\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGPS_ad1fea42571de73f9b9278cc329490457}
+Use this as a head pointer (for memory clearing) \hypertarget{classGPS_a78bd0e171c43d44a60349cba2d05f29b}{\index{G\-P\-S@{G\-P\-S}!loc\-Buffer@{loc\-Buffer}}
+\index{loc\-Buffer@{loc\-Buffer}!GPS@{G\-P\-S}}
+\subsubsection[{loc\-Buffer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Lat\-Lon} G\-P\-S\-::loc\-Buffer\mbox{[}G\-P\-S\-\_\-\-R\-O\-L\-L\-B\-U\-F\-F\-\_\-\-S\-I\-Z\-E $\ast$2\mbox{]}\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGPS_a78bd0e171c43d44a60349cba2d05f29b}
+Location Buffer (used to smooth noise) \hypertarget{classGPS_a8a593af52417cf88df7c6c7172d7caf7}{\index{G\-P\-S@{G\-P\-S}!loc\-Buffer\-Index@{loc\-Buffer\-Index}}
+\index{loc\-Buffer\-Index@{loc\-Buffer\-Index}!GPS@{G\-P\-S}}
+\subsubsection[{loc\-Buffer\-Index}]{\setlength{\rightskip}{0pt plus 5cm}int G\-P\-S\-::loc\-Buffer\-Index\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGPS_a8a593af52417cf88df7c6c7172d7caf7}
+Index into Location Buffer (used to smooth noise) \hypertarget{classGPS_ac85c17369384b4f9ddb0d0358df9d1cf}{\index{G\-P\-S@{G\-P\-S}!loc\-Buffer\-Index\-B@{loc\-Buffer\-Index\-B}}
+\index{loc\-Buffer\-Index\-B@{loc\-Buffer\-Index\-B}!GPS@{G\-P\-S}}
+\subsubsection[{loc\-Buffer\-Index\-B}]{\setlength{\rightskip}{0pt plus 5cm}int G\-P\-S\-::loc\-Buffer\-Index\-B\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGPS_ac85c17369384b4f9ddb0d0358df9d1cf}
+Back buffer used for rejected data points \hypertarget{classGPS_a14c36e0dcc27dfa5e1381b9a4b25c2ce}{\index{G\-P\-S@{G\-P\-S}!output\-\_\-heading@{output\-\_\-heading}}
+\index{output\-\_\-heading@{output\-\_\-heading}!GPS@{G\-P\-S}}
+\subsubsection[{output\-\_\-heading}]{\setlength{\rightskip}{0pt plus 5cm}int G\-P\-S\-::output\-\_\-heading\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGPS_a14c36e0dcc27dfa5e1381b9a4b25c2ce}
+Set 1=cout the heading \hypertarget{classGPS_a62ebacee895a13c211bfd372b818b680}{\index{G\-P\-S@{G\-P\-S}!serial\-\_\-port@{serial\-\_\-port}}
+\index{serial\-\_\-port@{serial\-\_\-port}!GPS@{G\-P\-S}}
+\subsubsection[{serial\-\_\-port}]{\setlength{\rightskip}{0pt plus 5cm}int G\-P\-S\-::serial\-\_\-port\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGPS_a62ebacee895a13c211bfd372b818b680}
+Last latitude received. Last longitude received Serial port file descriptor that \hyperlink{classGPS}{G\-P\-S} connected to. \hypertarget{classGPS_a9deda2a96578019d9512a8ec74a93191}{\index{G\-P\-S@{G\-P\-S}!target@{target}}
+\index{target@{target}!GPS@{G\-P\-S}}
+\subsubsection[{target}]{\setlength{\rightskip}{0pt plus 5cm}{\bf G\-P\-S\-Way\-Point}$\ast$ G\-P\-S\-::target\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGPS_a9deda2a96578019d9512a8ec74a93191}
+This is the current target for the \hyperlink{classGPS}{G\-P\-S} \hypertarget{classGPS_aa0e370ef448d131c54e3b1d626576cd2}{\index{G\-P\-S@{G\-P\-S}!temp\-\_\-lat@{temp\-\_\-lat}}
+\index{temp\-\_\-lat@{temp\-\_\-lat}!GPS@{G\-P\-S}}
+\subsubsection[{temp\-\_\-lat}]{\setlength{\rightskip}{0pt plus 5cm}double G\-P\-S\-::temp\-\_\-lat\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGPS_aa0e370ef448d131c54e3b1d626576cd2}
+Temperary location of lat used when loading in lat \hypertarget{classGPS_a4b108cba87ab121532c180e214d0c7fa}{\index{G\-P\-S@{G\-P\-S}!temp\-\_\-lon@{temp\-\_\-lon}}
+\index{temp\-\_\-lon@{temp\-\_\-lon}!GPS@{G\-P\-S}}
+\subsubsection[{temp\-\_\-lon}]{\setlength{\rightskip}{0pt plus 5cm}double G\-P\-S\-::temp\-\_\-lon\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGPS_a4b108cba87ab121532c180e214d0c7fa}
+Temperary location of long used when loading in long 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 

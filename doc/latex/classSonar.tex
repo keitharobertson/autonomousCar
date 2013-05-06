@@ -19,7 +19,7 @@ Inheritance diagram for Sonar\-:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classSonar_a71ef009d138f1e372fc35ca0cb6e85e2}{Sonar} ()
+\hyperlink{classSonar_a152453d934da6d4e576f9d59dc80b762}{Sonar} (\hyperlink{SUBSYS__COMMANDS_8h_a0be7f6e3de248ca3bdb1f3f5a0819c62}{A\-D\-C\-\_\-\-D\-A\-T\-A} $\ast$adc\-\_\-data\-\_\-ptr)
 \begin{DoxyCompactList}\small\item\em sonar default constructor \end{DoxyCompactList}\item 
 float \hyperlink{classSonar_aa4e807cbed15ce1d46ddcef05b6b59fb}{data\-\_\-grab} ()
 \begin{DoxyCompactList}\small\item\em grabs data from sonar \end{DoxyCompactList}\item 
@@ -38,16 +38,29 @@ void \hyperlink{classSonar_a9648cfd15b2f2ef88c2094b0dfd19a6c}{reset\-\_\-heading
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hypertarget{classSonar_ad40aca152adc93e6a4133b6068d4f2a7}{void {\bfseries setup\-\_\-avoidance} ()}\label{classSonar_ad40aca152adc93e6a4133b6068d4f2a7}
+
+\item 
 void \hyperlink{classSonar_a2aa24ef4c9041e0db87db2eab602346d}{avoid\-\_\-obstacle} ()
+\begin{DoxyCompactList}\small\item\em Avoids an obstacle that was detected by the sonar system. \end{DoxyCompactList}\item 
+void \hyperlink{classSonar_afbda79f1a96e294fb811f03f54a49a46}{reverse\-\_\-direction} ()
 \begin{DoxyCompactList}\small\item\em Avoids an obstacle that was detected by the sonar system. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{SUBSYS__COMMANDS_8h_a0be7f6e3de248ca3bdb1f3f5a0819c62}{A\-D\-C\-\_\-\-D\-A\-T\-A} $\ast$ \hyperlink{classSonar_a9e2ea95994eefd09ec7546853ebf1cb7}{adc\-\_\-data}
+\item 
 float \hyperlink{classSonar_abd3f8ccfc42cacd700df9be06f70c6b2}{sonar\-\_\-reading}
 \item 
-float \hyperlink{classSonar_a9896ea663ac5b8c327fed879fdc6110f}{threshold}
+float \hyperlink{classSonar_a83151cbccbce08be16dfec04a53f3295}{turn\-\_\-threshold}
+\item 
+float \hyperlink{classSonar_a27714390fb769905062ae587d8b2f112}{reverse\-\_\-threshold}
+\item 
+struct spi\-\_\-ioc\-\_\-transfer \hyperlink{classSonar_a29863f7d681d8119c233aa11398f65b7}{msg} \mbox{[}1\mbox{]}
 \item 
 sem\-\_\-t \hyperlink{classSonar_a3dcf7c38af34539c68f123f073eb2f52}{collect\-\_\-analysis\-\_\-sync}
+\item 
+sem\-\_\-t \hyperlink{classSonar_a6e842fc3ef4088c987a7a348df3b75ce}{avoid\-\_\-reset\-\_\-control}
 \item 
 int \hyperlink{classSonar_a4799c8b328d7735f7e6d62d741340c6c}{sonar\-\_\-fd}
 \item 
@@ -55,11 +68,29 @@ char \hyperlink{classSonar_a7db9106da9a50d06b5f25c35f799abe5}{sonar\-\_\-filepat
 \item 
 bool \hyperlink{classSonar_a72b11a8e569125119750ee9dd094141b}{avoidance\-\_\-mode}
 \item 
+bool \hyperlink{classSonar_ad9f288f52d8d26a687a557c714d6f026}{reverse\-\_\-mode}
+\item 
 float \hyperlink{classSonar_a223e1294a7e00208efcd2a80f57e7620}{old\-\_\-compass\-\_\-heading}
 \item 
-\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} \hyperlink{classSonar_a464358d71b06ae53bd477a7b629bd16e}{request\-\_\-data}
+char \hyperlink{classSonar_a3ee55a9a946c5c00a68b3774c316728e}{old\-\_\-motor\-\_\-speed} \mbox{[}6\mbox{]}
+\item 
+bool \hyperlink{classSonar_ad51a4f80202f692e4630f74490b5ef5d}{last\-\_\-reverse\-\_\-left}
+\item 
+\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} \hyperlink{classSonar_a560057581920d76e557880135548ce46}{request\-\_\-compass\-\_\-data}
+\item 
+\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} \hyperlink{classSonar_a5326194659d6f29efa21b6eae03f6a4e}{request\-\_\-motor\-\_\-data}
+\item 
+\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} \hyperlink{classSonar_a44a265ac2b363cdd0e944285a7c07eb8}{change\-\_\-speed}
 \item 
 \hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} \hyperlink{classSonar_a27d83a5a5c4859adb65641683e964018}{inter\-\_\-subsys\-\_\-command}
+\item 
+\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} \hyperlink{classSonar_adc1ca3536457074b9ba2ca5880154ce6}{set\-\_\-cps\-\_\-prio}
+\item 
+\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} \hyperlink{classSonar_a3db9cf5f86aab72001ae088b68c0936f}{change\-\_\-direction}
+\item 
+\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} \hyperlink{classSonar_a403e0e1741cb9ff1872dbe74a7c701d6}{en\-\_\-or\-\_\-dis\-\_\-subsys}
+\item 
+\hyperlink{SUBSYS__COMMANDS_8h_ad814416fc1a8c675bea2687d96088a8f}{M\-E\-S\-S\-A\-G\-E} \hyperlink{classSonar_a9e6e96435c6767549c91d9e67d20161b}{steer\-\_\-straight}
 \item 
 pthread\-\_\-t \hyperlink{classSonar_af3ec5683614e9f1755e54da32184412a}{treset\-\_\-heading}
 \item 
@@ -74,13 +105,13 @@ sonar data collection and analysis
 Collects data from the sonar and analyzes the data. Based on analysis of collected data, sends messages (using the system message queue) to the control actuators (\hyperlink{classSteering}{Steering} and \hyperlink{classMotor}{Motor}). 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classSonar_a71ef009d138f1e372fc35ca0cb6e85e2}{\index{Sonar@{Sonar}!Sonar@{Sonar}}
+\hypertarget{classSonar_a152453d934da6d4e576f9d59dc80b762}{\index{Sonar@{Sonar}!Sonar@{Sonar}}
 \index{Sonar@{Sonar}!Sonar@{Sonar}}
 \subsubsection[{Sonar}]{\setlength{\rightskip}{0pt plus 5cm}Sonar\-::\-Sonar (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf A\-D\-C\-\_\-\-D\-A\-T\-A} $\ast$}]{adc\-\_\-data\-\_\-ptr}
 \end{DoxyParamCaption}
-)}}\label{classSonar_a71ef009d138f1e372fc35ca0cb6e85e2}
+)}}\label{classSonar_a152453d934da6d4e576f9d59dc80b762}
 
 
 sonar default constructor 
@@ -114,7 +145,7 @@ Implements \hyperlink{classSensor_a595d8d9cd87dd3704fad2a313c709a7e}{Sensor}.
 
 Avoids an obstacle that was detected by the sonar system. 
 
-Performs tasks determined by the command part of the message. For example the command S\-N\-R\-\_\-\-S\-E\-T\-\_\-\-D\-I\-S\-T\-\_\-\-T\-H\-R is used to set the distance threshold. Messages could be from command line interface or from another subsystem. \hypertarget{classSonar_a38b0e409082be17e7098b2e471bab4a8}{\index{Sonar@{Sonar}!collector@{collector}}
+turns 90 degrees left in response to an obstacle \hypertarget{classSonar_a38b0e409082be17e7098b2e471bab4a8}{\index{Sonar@{Sonar}!collector@{collector}}
 \index{collector@{collector}!Sonar@{Sonar}}
 \subsubsection[{collector}]{\setlength{\rightskip}{0pt plus 5cm}void Sonar\-::collector (
 \begin{DoxyParamCaption}
@@ -166,7 +197,7 @@ Implements \hyperlink{classSensor_a45533b253f81f85d1b6fcea902a5692b}{Sensor}.
 
 Initializes the \hyperlink{classSonar}{Sonar} subsystem. 
 
-Sets up the S\-P\-I driver (to talk to the A\-D\-C) and sets up the A\-D\-C for sonar configuration. 
+Sets up the S\-P\-I driver (to talk to the \hyperlink{classADC}{A\-D\-C}) and sets up the \hyperlink{classADC}{A\-D\-C} for sonar configuration. 
 
 Implements \hyperlink{classSensor_a11b28f6bc91d6f69e734e13ab0e64f56}{Sensor}.
 
@@ -196,28 +227,75 @@ Implements \hyperlink{classSensor_acf4ff5c6c8f793ed47a8105b94ff7c3e}{Sensor}.
 
 Resets the compass heading to its original value. 
 
-Waits an amount of time and then resets the compass heading to its value prior to obstacle avoidance (value stored in old\-\_\-compass\-\_\-heading). 
+Waits an amount of time and then resets the compass heading to its value prior to obstacle avoidance (value stored in old\-\_\-compass\-\_\-heading). \hypertarget{classSonar_afbda79f1a96e294fb811f03f54a49a46}{\index{Sonar@{Sonar}!reverse\-\_\-direction@{reverse\-\_\-direction}}
+\index{reverse\-\_\-direction@{reverse\-\_\-direction}!Sonar@{Sonar}}
+\subsubsection[{reverse\-\_\-direction}]{\setlength{\rightskip}{0pt plus 5cm}void Sonar\-::reverse\-\_\-direction (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_afbda79f1a96e294fb811f03f54a49a46}
+
+
+Avoids an obstacle that was detected by the sonar system. 
+
+Will make the car reverse until it is out of range of the obstacle. 
 
 \subsection{Member Data Documentation}
-\hypertarget{classSonar_a72b11a8e569125119750ee9dd094141b}{\index{Sonar@{Sonar}!avoidance\-\_\-mode@{avoidance\-\_\-mode}}
+\hypertarget{classSonar_a9e2ea95994eefd09ec7546853ebf1cb7}{\index{Sonar@{Sonar}!adc\-\_\-data@{adc\-\_\-data}}
+\index{adc\-\_\-data@{adc\-\_\-data}!Sonar@{Sonar}}
+\subsubsection[{adc\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-D\-C\-\_\-\-D\-A\-T\-A}$\ast$ Sonar\-::adc\-\_\-data\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a9e2ea95994eefd09ec7546853ebf1cb7}
+store the adc data here for cross subsystem access \hypertarget{classSonar_a6e842fc3ef4088c987a7a348df3b75ce}{\index{Sonar@{Sonar}!avoid\-\_\-reset\-\_\-control@{avoid\-\_\-reset\-\_\-control}}
+\index{avoid\-\_\-reset\-\_\-control@{avoid\-\_\-reset\-\_\-control}!Sonar@{Sonar}}
+\subsubsection[{avoid\-\_\-reset\-\_\-control}]{\setlength{\rightskip}{0pt plus 5cm}sem\-\_\-t Sonar\-::avoid\-\_\-reset\-\_\-control\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a6e842fc3ef4088c987a7a348df3b75ce}
+the obstacle avoidance/reset control semaphore \hypertarget{classSonar_a72b11a8e569125119750ee9dd094141b}{\index{Sonar@{Sonar}!avoidance\-\_\-mode@{avoidance\-\_\-mode}}
 \index{avoidance\-\_\-mode@{avoidance\-\_\-mode}!Sonar@{Sonar}}
 \subsubsection[{avoidance\-\_\-mode}]{\setlength{\rightskip}{0pt plus 5cm}bool Sonar\-::avoidance\-\_\-mode\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a72b11a8e569125119750ee9dd094141b}
-whether avoidance mode has been entered into \hypertarget{classSonar_a3dcf7c38af34539c68f123f073eb2f52}{\index{Sonar@{Sonar}!collect\-\_\-analysis\-\_\-sync@{collect\-\_\-analysis\-\_\-sync}}
+whether avoidance mode has been entered into \hypertarget{classSonar_a3db9cf5f86aab72001ae088b68c0936f}{\index{Sonar@{Sonar}!change\-\_\-direction@{change\-\_\-direction}}
+\index{change\-\_\-direction@{change\-\_\-direction}!Sonar@{Sonar}}
+\subsubsection[{change\-\_\-direction}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-S\-S\-A\-G\-E} Sonar\-::change\-\_\-direction\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a3db9cf5f86aab72001ae088b68c0936f}
+message used to set the motor direction \hypertarget{classSonar_a44a265ac2b363cdd0e944285a7c07eb8}{\index{Sonar@{Sonar}!change\-\_\-speed@{change\-\_\-speed}}
+\index{change\-\_\-speed@{change\-\_\-speed}!Sonar@{Sonar}}
+\subsubsection[{change\-\_\-speed}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-S\-S\-A\-G\-E} Sonar\-::change\-\_\-speed\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a44a265ac2b363cdd0e944285a7c07eb8}
+message used for changing the motor speed \hypertarget{classSonar_a3dcf7c38af34539c68f123f073eb2f52}{\index{Sonar@{Sonar}!collect\-\_\-analysis\-\_\-sync@{collect\-\_\-analysis\-\_\-sync}}
 \index{collect\-\_\-analysis\-\_\-sync@{collect\-\_\-analysis\-\_\-sync}!Sonar@{Sonar}}
 \subsubsection[{collect\-\_\-analysis\-\_\-sync}]{\setlength{\rightskip}{0pt plus 5cm}sem\-\_\-t Sonar\-::collect\-\_\-analysis\-\_\-sync\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a3dcf7c38af34539c68f123f073eb2f52}
-the colector/analysis sync semaphore used to sync the collector and analysis tasks \hypertarget{classSonar_a27d83a5a5c4859adb65641683e964018}{\index{Sonar@{Sonar}!inter\-\_\-subsys\-\_\-command@{inter\-\_\-subsys\-\_\-command}}
+the colector/analysis sync semaphore used to sync the collector and analysis tasks \hypertarget{classSonar_a403e0e1741cb9ff1872dbe74a7c701d6}{\index{Sonar@{Sonar}!en\-\_\-or\-\_\-dis\-\_\-subsys@{en\-\_\-or\-\_\-dis\-\_\-subsys}}
+\index{en\-\_\-or\-\_\-dis\-\_\-subsys@{en\-\_\-or\-\_\-dis\-\_\-subsys}!Sonar@{Sonar}}
+\subsubsection[{en\-\_\-or\-\_\-dis\-\_\-subsys}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-S\-S\-A\-G\-E} Sonar\-::en\-\_\-or\-\_\-dis\-\_\-subsys\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a403e0e1741cb9ff1872dbe74a7c701d6}
+message used to enable or disable a subsystem \hypertarget{classSonar_a27d83a5a5c4859adb65641683e964018}{\index{Sonar@{Sonar}!inter\-\_\-subsys\-\_\-command@{inter\-\_\-subsys\-\_\-command}}
 \index{inter\-\_\-subsys\-\_\-command@{inter\-\_\-subsys\-\_\-command}!Sonar@{Sonar}}
 \subsubsection[{inter\-\_\-subsys\-\_\-command}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-S\-S\-A\-G\-E} Sonar\-::inter\-\_\-subsys\-\_\-command\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a27d83a5a5c4859adb65641683e964018}
-Message used for commanding other subsystems (usually compass) \hypertarget{classSonar_a223e1294a7e00208efcd2a80f57e7620}{\index{Sonar@{Sonar}!old\-\_\-compass\-\_\-heading@{old\-\_\-compass\-\_\-heading}}
+Message used for commanding other subsystems (usually compass) \hypertarget{classSonar_ad51a4f80202f692e4630f74490b5ef5d}{\index{Sonar@{Sonar}!last\-\_\-reverse\-\_\-left@{last\-\_\-reverse\-\_\-left}}
+\index{last\-\_\-reverse\-\_\-left@{last\-\_\-reverse\-\_\-left}!Sonar@{Sonar}}
+\subsubsection[{last\-\_\-reverse\-\_\-left}]{\setlength{\rightskip}{0pt plus 5cm}bool Sonar\-::last\-\_\-reverse\-\_\-left\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_ad51a4f80202f692e4630f74490b5ef5d}
+boolean to tell if the last time we reversed, we went left \hypertarget{classSonar_a29863f7d681d8119c233aa11398f65b7}{\index{Sonar@{Sonar}!msg@{msg}}
+\index{msg@{msg}!Sonar@{Sonar}}
+\subsubsection[{msg}]{\setlength{\rightskip}{0pt plus 5cm}struct spi\-\_\-ioc\-\_\-transfer Sonar\-::msg\mbox{[}1\mbox{]}\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a29863f7d681d8119c233aa11398f65b7}
+S\-P\-I request for sonar data from the \hyperlink{classADC}{A\-D\-C} \hypertarget{classSonar_a223e1294a7e00208efcd2a80f57e7620}{\index{Sonar@{Sonar}!old\-\_\-compass\-\_\-heading@{old\-\_\-compass\-\_\-heading}}
 \index{old\-\_\-compass\-\_\-heading@{old\-\_\-compass\-\_\-heading}!Sonar@{Sonar}}
 \subsubsection[{old\-\_\-compass\-\_\-heading}]{\setlength{\rightskip}{0pt plus 5cm}float Sonar\-::old\-\_\-compass\-\_\-heading\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a223e1294a7e00208efcd2a80f57e7620}
-original compass heading prior to avoidance mode \hypertarget{classSonar_ac9ab4c77456aea18ac1eb886a5c81f4c}{\index{Sonar@{Sonar}!print\-\_\-data@{print\-\_\-data}}
+original compass heading prior to avoidance mode \hypertarget{classSonar_a3ee55a9a946c5c00a68b3774c316728e}{\index{Sonar@{Sonar}!old\-\_\-motor\-\_\-speed@{old\-\_\-motor\-\_\-speed}}
+\index{old\-\_\-motor\-\_\-speed@{old\-\_\-motor\-\_\-speed}!Sonar@{Sonar}}
+\subsubsection[{old\-\_\-motor\-\_\-speed}]{\setlength{\rightskip}{0pt plus 5cm}char Sonar\-::old\-\_\-motor\-\_\-speed\mbox{[}6\mbox{]}\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a3ee55a9a946c5c00a68b3774c316728e}
+original motor speed prior to avoidance mode \hypertarget{classSonar_ac9ab4c77456aea18ac1eb886a5c81f4c}{\index{Sonar@{Sonar}!print\-\_\-data@{print\-\_\-data}}
 \index{print\-\_\-data@{print\-\_\-data}!Sonar@{Sonar}}
 \subsubsection[{print\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}bool Sonar\-::print\-\_\-data\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_ac9ab4c77456aea18ac1eb886a5c81f4c}
-whether to print out data after each collection for debugging/testing \hypertarget{classSonar_a464358d71b06ae53bd477a7b629bd16e}{\index{Sonar@{Sonar}!request\-\_\-data@{request\-\_\-data}}
-\index{request\-\_\-data@{request\-\_\-data}!Sonar@{Sonar}}
-\subsubsection[{request\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-S\-S\-A\-G\-E} Sonar\-::request\-\_\-data\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a464358d71b06ae53bd477a7b629bd16e}
-message used for requesting data from other subsystems (usually compass) \hypertarget{classSonar_a4799c8b328d7735f7e6d62d741340c6c}{\index{Sonar@{Sonar}!sonar\-\_\-fd@{sonar\-\_\-fd}}
+whether to print out data after each collection for debugging/testing \hypertarget{classSonar_a560057581920d76e557880135548ce46}{\index{Sonar@{Sonar}!request\-\_\-compass\-\_\-data@{request\-\_\-compass\-\_\-data}}
+\index{request\-\_\-compass\-\_\-data@{request\-\_\-compass\-\_\-data}!Sonar@{Sonar}}
+\subsubsection[{request\-\_\-compass\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-S\-S\-A\-G\-E} Sonar\-::request\-\_\-compass\-\_\-data\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a560057581920d76e557880135548ce46}
+message used for requesting data from compass subsystem \hypertarget{classSonar_a5326194659d6f29efa21b6eae03f6a4e}{\index{Sonar@{Sonar}!request\-\_\-motor\-\_\-data@{request\-\_\-motor\-\_\-data}}
+\index{request\-\_\-motor\-\_\-data@{request\-\_\-motor\-\_\-data}!Sonar@{Sonar}}
+\subsubsection[{request\-\_\-motor\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-S\-S\-A\-G\-E} Sonar\-::request\-\_\-motor\-\_\-data\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a5326194659d6f29efa21b6eae03f6a4e}
+message used for requesting data from motor subsystem \hypertarget{classSonar_ad9f288f52d8d26a687a557c714d6f026}{\index{Sonar@{Sonar}!reverse\-\_\-mode@{reverse\-\_\-mode}}
+\index{reverse\-\_\-mode@{reverse\-\_\-mode}!Sonar@{Sonar}}
+\subsubsection[{reverse\-\_\-mode}]{\setlength{\rightskip}{0pt plus 5cm}bool Sonar\-::reverse\-\_\-mode\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_ad9f288f52d8d26a687a557c714d6f026}
+whether reverse mode has been entered into \hypertarget{classSonar_a27714390fb769905062ae587d8b2f112}{\index{Sonar@{Sonar}!reverse\-\_\-threshold@{reverse\-\_\-threshold}}
+\index{reverse\-\_\-threshold@{reverse\-\_\-threshold}!Sonar@{Sonar}}
+\subsubsection[{reverse\-\_\-threshold}]{\setlength{\rightskip}{0pt plus 5cm}float Sonar\-::reverse\-\_\-threshold\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a27714390fb769905062ae587d8b2f112}
+Threshold distance for sonar avoidance. If the sonar reading drops below this value, the sonar subsystem will take control of the actuators and R\-E\-V\-E\-R\-S\-E to avoid and obstacle \hypertarget{classSonar_adc1ca3536457074b9ba2ca5880154ce6}{\index{Sonar@{Sonar}!set\-\_\-cps\-\_\-prio@{set\-\_\-cps\-\_\-prio}}
+\index{set\-\_\-cps\-\_\-prio@{set\-\_\-cps\-\_\-prio}!Sonar@{Sonar}}
+\subsubsection[{set\-\_\-cps\-\_\-prio}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-S\-S\-A\-G\-E} Sonar\-::set\-\_\-cps\-\_\-prio\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_adc1ca3536457074b9ba2ca5880154ce6}
+message used to set and reset the compass min priority during obstacle avoidance \hypertarget{classSonar_a4799c8b328d7735f7e6d62d741340c6c}{\index{Sonar@{Sonar}!sonar\-\_\-fd@{sonar\-\_\-fd}}
 \index{sonar\-\_\-fd@{sonar\-\_\-fd}!Sonar@{Sonar}}
 \subsubsection[{sonar\-\_\-fd}]{\setlength{\rightskip}{0pt plus 5cm}int Sonar\-::sonar\-\_\-fd\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a4799c8b328d7735f7e6d62d741340c6c}
 The sonar file descriptor (S\-P\-I file descriptor) \hypertarget{classSonar_a7db9106da9a50d06b5f25c35f799abe5}{\index{Sonar@{Sonar}!sonar\-\_\-filepath@{sonar\-\_\-filepath}}
@@ -226,13 +304,16 @@ The sonar file descriptor (S\-P\-I file descriptor) \hypertarget{classSonar_a7db
 filepath for the S\-P\-I device (in /dev) \hypertarget{classSonar_abd3f8ccfc42cacd700df9be06f70c6b2}{\index{Sonar@{Sonar}!sonar\-\_\-reading@{sonar\-\_\-reading}}
 \index{sonar\-\_\-reading@{sonar\-\_\-reading}!Sonar@{Sonar}}
 \subsubsection[{sonar\-\_\-reading}]{\setlength{\rightskip}{0pt plus 5cm}float Sonar\-::sonar\-\_\-reading\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_abd3f8ccfc42cacd700df9be06f70c6b2}
-The most recent sonar reading \hypertarget{classSonar_a9896ea663ac5b8c327fed879fdc6110f}{\index{Sonar@{Sonar}!threshold@{threshold}}
-\index{threshold@{threshold}!Sonar@{Sonar}}
-\subsubsection[{threshold}]{\setlength{\rightskip}{0pt plus 5cm}float Sonar\-::threshold\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a9896ea663ac5b8c327fed879fdc6110f}
-Threshold distance for sonar avoidance. If the sonar reading drops below this value, the sonar subsystem will take control of the actuators to avoid and obstacle \hypertarget{classSonar_af3ec5683614e9f1755e54da32184412a}{\index{Sonar@{Sonar}!treset\-\_\-heading@{treset\-\_\-heading}}
+The most recent sonar reading \hypertarget{classSonar_a9e6e96435c6767549c91d9e67d20161b}{\index{Sonar@{Sonar}!steer\-\_\-straight@{steer\-\_\-straight}}
+\index{steer\-\_\-straight@{steer\-\_\-straight}!Sonar@{Sonar}}
+\subsubsection[{steer\-\_\-straight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-S\-S\-A\-G\-E} Sonar\-::steer\-\_\-straight\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a9e6e96435c6767549c91d9e67d20161b}
+message used to center steering \hypertarget{classSonar_af3ec5683614e9f1755e54da32184412a}{\index{Sonar@{Sonar}!treset\-\_\-heading@{treset\-\_\-heading}}
 \index{treset\-\_\-heading@{treset\-\_\-heading}!Sonar@{Sonar}}
 \subsubsection[{treset\-\_\-heading}]{\setlength{\rightskip}{0pt plus 5cm}pthread\-\_\-t Sonar\-::treset\-\_\-heading\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_af3ec5683614e9f1755e54da32184412a}
-reset\-\_\-heading thread 
+reset\-\_\-heading thread \hypertarget{classSonar_a83151cbccbce08be16dfec04a53f3295}{\index{Sonar@{Sonar}!turn\-\_\-threshold@{turn\-\_\-threshold}}
+\index{turn\-\_\-threshold@{turn\-\_\-threshold}!Sonar@{Sonar}}
+\subsubsection[{turn\-\_\-threshold}]{\setlength{\rightskip}{0pt plus 5cm}float Sonar\-::turn\-\_\-threshold\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSonar_a83151cbccbce08be16dfec04a53f3295}
+Threshold distance for sonar avoidance. If the sonar reading drops below this value, the sonar subsystem will take control of the actuators to turn and avoid and obstacle 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 

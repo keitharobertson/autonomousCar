@@ -50,6 +50,8 @@ sem\-\_\-t \hyperlink{classSteering_af9a4f30e9dc0dc37b31a421cb88ca8ba}{steer\-\_
 int \hyperlink{classSteering_ae85b07902746525a57bf049d872b4f26}{steering\-\_\-fd}
 \item 
 char \hyperlink{classSteering_adfe05011b3442b1b24cd9dfc1e24ad70}{steering\-\_\-filepath} \mbox{[}40\mbox{]}
+\item 
+char \hyperlink{classSteering_a8372fdfcf95f814d8e6a77f10b1116fe}{input\-\_\-data} \mbox{[}6\mbox{]}
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -174,7 +176,10 @@ Sets the steering P\-W\-M duty cycle.
 Sets the steering\-\_\-duty\-\_\-cycle and gives the motor\-\_\-cmd\-\_\-ctrl sync semaphore which releases the mech\-\_\-control task. 
 
 \subsection{Member Data Documentation}
-\hypertarget{classSteering_ab31761e4665bf81e580f1bc32c9fff79}{\index{Steering@{Steering}!min\-\_\-priority@{min\-\_\-priority}}
+\hypertarget{classSteering_a8372fdfcf95f814d8e6a77f10b1116fe}{\index{Steering@{Steering}!input\-\_\-data@{input\-\_\-data}}
+\index{input\-\_\-data@{input\-\_\-data}!Steering@{Steering}}
+\subsubsection[{input\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}char Steering\-::input\-\_\-data\mbox{[}6\mbox{]}\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSteering_a8372fdfcf95f814d8e6a77f10b1116fe}
+a string to store input data read in by the steering subsystem until it is ready for processing \hypertarget{classSteering_ab31761e4665bf81e580f1bc32c9fff79}{\index{Steering@{Steering}!min\-\_\-priority@{min\-\_\-priority}}
 \index{min\-\_\-priority@{min\-\_\-priority}!Steering@{Steering}}
 \subsubsection[{min\-\_\-priority}]{\setlength{\rightskip}{0pt plus 5cm}int Steering\-::min\-\_\-priority\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSteering_ab31761e4665bf81e580f1bc32c9fff79}
 minimum priority for commands from other subsystems. For example if compass has priority 5, sonar has priority 2, and min\-\_\-priority is set to 3, commands from the compass will be ignored and commands from sonar will be accepted. \hypertarget{classSteering_af9a4f30e9dc0dc37b31a421cb88ca8ba}{\index{Steering@{Steering}!steer\-\_\-cmd\-\_\-ctrl@{steer\-\_\-cmd\-\_\-ctrl}}

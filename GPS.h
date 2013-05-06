@@ -50,7 +50,7 @@
 /**
  * GPS Magnetic north correction
  */
-#define GPS_MAG_CORRECTION -20
+#define GPS_MAG_CORRECTION 0//-20
 
 /**
  *  Define this variable to enable printf debugging

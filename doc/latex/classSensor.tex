@@ -91,7 +91,7 @@ Performs the analysis of the data collected from the sensor.
 
 Virtual function implemented at the specific sensor level. The analysis function executes in the analysis thread and is synced with the collector task by the collect\-\_\-analysis\-\_\-sync semaphore. Messages will be sent to the actuators using the system message queue. 
 
-Implemented in \hyperlink{classSonar_a11a32c64528f8e69fdde4722f3b3bc7b}{Sonar}, \hyperlink{classCompass_a4dd6402d0ece9203c6b92670265b4c8d}{Compass}, and \hyperlink{classGPS_a4dca50736c5e49f831515219536823b2}{G\-P\-S}.
+Implemented in \hyperlink{classGPS_a4dca50736c5e49f831515219536823b2}{G\-P\-S}, \hyperlink{classCompass_a4dd6402d0ece9203c6b92670265b4c8d}{Compass}, and \hyperlink{classSonar_a11a32c64528f8e69fdde4722f3b3bc7b}{Sonar}.
 
 \hypertarget{classSensor_ae4ec41b880d44feb898da5c62c3203c9}{\index{Sensor@{Sensor}!collector@{collector}}
 \index{collector@{collector}!Sensor@{Sensor}}
@@ -106,7 +106,7 @@ collects data from the sensor
 
 Virtual function implemented at the specific sensor level. The collector function executes in the collector thread and executes indefinitely at a set frequency. It calls the data\-\_\-grab to do the actual communication with the hardware to provide a layer of abstraction between the software and specifics of the hardware. It can optionally average data prior to analysis if the system is expected to be under heavy load and the tasks are not schedulable with the typical release frequencies (averaging will have the effect that the analysis task will be released less frequently). 
 
-Implemented in \hyperlink{classSonar_a38b0e409082be17e7098b2e471bab4a8}{Sonar}, \hyperlink{classCompass_ae8d7f3417a27b1d18487b96ca07dd32b}{Compass}, and \hyperlink{classGPS_a17383568c4ed86a0adfdd5c88b6591d4}{G\-P\-S}.
+Implemented in \hyperlink{classGPS_a17383568c4ed86a0adfdd5c88b6591d4}{G\-P\-S}, \hyperlink{classCompass_ae8d7f3417a27b1d18487b96ca07dd32b}{Compass}, and \hyperlink{classSonar_a38b0e409082be17e7098b2e471bab4a8}{Sonar}.
 
 \hypertarget{classSensor_a45533b253f81f85d1b6fcea902a5692b}{\index{Sensor@{Sensor}!handle\-\_\-message@{handle\-\_\-message}}
 \index{handle\-\_\-message@{handle\-\_\-message}!Sensor@{Sensor}}
@@ -125,7 +125,7 @@ Implements \hyperlink{classSubsystem_a6205bccfd4906044065d25d8ab1a7bfb}{Subsyste
 
 
 
-Implemented in \hyperlink{classSonar_a5f9b0f57b5a05b03b0dcb5ab830592ff}{Sonar}, \hyperlink{classCompass_a1fb0f64b335e8f1d4f27dc2067312b4a}{Compass}, and \hyperlink{classGPS_a803a498352e30044136502a9e036d380}{G\-P\-S}.
+Implemented in \hyperlink{classGPS_a803a498352e30044136502a9e036d380}{G\-P\-S}, \hyperlink{classCompass_a1fb0f64b335e8f1d4f27dc2067312b4a}{Compass}, and \hyperlink{classSonar_a5f9b0f57b5a05b03b0dcb5ab830592ff}{Sonar}.
 
 \hypertarget{classSensor_a84bc35cfba92eb579bc311b3c8b2980d}{\index{Sensor@{Sensor}!init@{init}}
 \index{init@{init}!Sensor@{Sensor}}
@@ -155,7 +155,7 @@ Virtual function to initialize the sensor device.
 
 Implemented by each sensor, the init\-\_\-sensor function is responsible for setting the sensor up for data collection. For example in the case of the compass subsystem, the init\-\_\-device task will set up the i2c bus, initialize the system variables, and perform other tasks necessary before data can be collected from the compass. 
 
-Implemented in \hyperlink{classSonar_af91d04cbc441084ba608a49c2be88d5b}{Sonar}, \hyperlink{classCompass_a5cc2b71700af542b5aafadea4820a476}{Compass}, and \hyperlink{classGPS_aebb999362899800a7e372e873bb5b943}{G\-P\-S}.
+Implemented in \hyperlink{classGPS_aebb999362899800a7e372e873bb5b943}{G\-P\-S}, \hyperlink{classCompass_a5cc2b71700af542b5aafadea4820a476}{Compass}, and \hyperlink{classSonar_af91d04cbc441084ba608a49c2be88d5b}{Sonar}.
 
 \hypertarget{classSensor_acf4ff5c6c8f793ed47a8105b94ff7c3e}{\index{Sensor@{Sensor}!read\-\_\-data@{read\-\_\-data}}
 \index{read\-\_\-data@{read\-\_\-data}!Sensor@{Sensor}}
@@ -174,7 +174,7 @@ Implements \hyperlink{classSubsystem_a85307df3e46421814204f77929e893aa}{Subsyste
 
 
 
-Implemented in \hyperlink{classCompass_ab55d084e2d643df0a1970f5868d0c5a8}{Compass}, \hyperlink{classSonar_a54f55470741873f333ad8af8a98affc8}{Sonar}, and \hyperlink{classGPS_aa04076536ee9f7e2679895c69b07ad58}{G\-P\-S}.
+Implemented in \hyperlink{classGPS_aa04076536ee9f7e2679895c69b07ad58}{G\-P\-S}, \hyperlink{classCompass_ab55d084e2d643df0a1970f5868d0c5a8}{Compass}, and \hyperlink{classSonar_a54f55470741873f333ad8af8a98affc8}{Sonar}.
 
 \hypertarget{classSensor_a2f08975182e98e644efb226435124047}{\index{Sensor@{Sensor}!shutdown@{shutdown}}
 \index{shutdown@{shutdown}!Sensor@{Sensor}}

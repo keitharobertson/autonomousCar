@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -109,8 +109,8 @@ Inheritance diagram for Sonar:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a71ef009d138f1e372fc35ca0cb6e85e2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a71ef009d138f1e372fc35ca0cb6e85e2">Sonar</a> ()</td></tr>
-<tr class="memdesc:a71ef009d138f1e372fc35ca0cb6e85e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">sonar default constructor  <a href="#a71ef009d138f1e372fc35ca0cb6e85e2"></a><br/></td></tr>
+<tr class="memitem:a152453d934da6d4e576f9d59dc80b762"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a152453d934da6d4e576f9d59dc80b762">Sonar</a> (<a class="el" href="SUBSYS__COMMANDS_8h.html#a0be7f6e3de248ca3bdb1f3f5a0819c62">ADC_DATA</a> *adc_data_ptr)</td></tr>
+<tr class="memdesc:a152453d934da6d4e576f9d59dc80b762"><td class="mdescLeft">&#160;</td><td class="mdescRight">sonar default constructor  <a href="#a152453d934da6d4e576f9d59dc80b762"></a><br/></td></tr>
 <tr class="memitem:aa4e807cbed15ce1d46ddcef05b6b59fb"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#aa4e807cbed15ce1d46ddcef05b6b59fb">data_grab</a> ()</td></tr>
 <tr class="memdesc:aa4e807cbed15ce1d46ddcef05b6b59fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">grabs data from sonar  <a href="#aa4e807cbed15ce1d46ddcef05b6b59fb"></a><br/></td></tr>
 <tr class="memitem:af91d04cbc441084ba608a49c2be88d5b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#af91d04cbc441084ba608a49c2be88d5b">init_sensor</a> ()</td></tr>
@@ -144,20 +144,37 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:ad40aca152adc93e6a4133b6068d4f2a7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad40aca152adc93e6a4133b6068d4f2a7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setup_avoidance</b> ()</td></tr>
 <tr class="memitem:a2aa24ef4c9041e0db87db2eab602346d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a2aa24ef4c9041e0db87db2eab602346d">avoid_obstacle</a> ()</td></tr>
 <tr class="memdesc:a2aa24ef4c9041e0db87db2eab602346d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Avoids an obstacle that was detected by the sonar system.  <a href="#a2aa24ef4c9041e0db87db2eab602346d"></a><br/></td></tr>
+<tr class="memitem:afbda79f1a96e294fb811f03f54a49a46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#afbda79f1a96e294fb811f03f54a49a46">reverse_direction</a> ()</td></tr>
+<tr class="memdesc:afbda79f1a96e294fb811f03f54a49a46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Avoids an obstacle that was detected by the sonar system.  <a href="#afbda79f1a96e294fb811f03f54a49a46"></a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a9e2ea95994eefd09ec7546853ebf1cb7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="SUBSYS__COMMANDS_8h.html#a0be7f6e3de248ca3bdb1f3f5a0819c62">ADC_DATA</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a9e2ea95994eefd09ec7546853ebf1cb7">adc_data</a></td></tr>
 <tr class="memitem:abd3f8ccfc42cacd700df9be06f70c6b2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#abd3f8ccfc42cacd700df9be06f70c6b2">sonar_reading</a></td></tr>
-<tr class="memitem:a9896ea663ac5b8c327fed879fdc6110f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a9896ea663ac5b8c327fed879fdc6110f">threshold</a></td></tr>
+<tr class="memitem:a83151cbccbce08be16dfec04a53f3295"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a83151cbccbce08be16dfec04a53f3295">turn_threshold</a></td></tr>
+<tr class="memitem:a27714390fb769905062ae587d8b2f112"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a27714390fb769905062ae587d8b2f112">reverse_threshold</a></td></tr>
+<tr class="memitem:a29863f7d681d8119c233aa11398f65b7"><td class="memItemLeft" align="right" valign="top">struct spi_ioc_transfer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a29863f7d681d8119c233aa11398f65b7">msg</a> [1]</td></tr>
 <tr class="memitem:a3dcf7c38af34539c68f123f073eb2f52"><td class="memItemLeft" align="right" valign="top">sem_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a3dcf7c38af34539c68f123f073eb2f52">collect_analysis_sync</a></td></tr>
+<tr class="memitem:a6e842fc3ef4088c987a7a348df3b75ce"><td class="memItemLeft" align="right" valign="top">sem_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a6e842fc3ef4088c987a7a348df3b75ce">avoid_reset_control</a></td></tr>
 <tr class="memitem:a4799c8b328d7735f7e6d62d741340c6c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a4799c8b328d7735f7e6d62d741340c6c">sonar_fd</a></td></tr>
 <tr class="memitem:a7db9106da9a50d06b5f25c35f799abe5"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a7db9106da9a50d06b5f25c35f799abe5">sonar_filepath</a> [40]</td></tr>
 <tr class="memitem:a72b11a8e569125119750ee9dd094141b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a72b11a8e569125119750ee9dd094141b">avoidance_mode</a></td></tr>
+<tr class="memitem:ad9f288f52d8d26a687a557c714d6f026"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#ad9f288f52d8d26a687a557c714d6f026">reverse_mode</a></td></tr>
 <tr class="memitem:a223e1294a7e00208efcd2a80f57e7620"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a223e1294a7e00208efcd2a80f57e7620">old_compass_heading</a></td></tr>
-<tr class="memitem:a464358d71b06ae53bd477a7b629bd16e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a464358d71b06ae53bd477a7b629bd16e">request_data</a></td></tr>
+<tr class="memitem:a3ee55a9a946c5c00a68b3774c316728e"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a3ee55a9a946c5c00a68b3774c316728e">old_motor_speed</a> [6]</td></tr>
+<tr class="memitem:ad51a4f80202f692e4630f74490b5ef5d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#ad51a4f80202f692e4630f74490b5ef5d">last_reverse_left</a></td></tr>
+<tr class="memitem:a560057581920d76e557880135548ce46"><td class="memItemLeft" align="right" valign="top"><a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a560057581920d76e557880135548ce46">request_compass_data</a></td></tr>
+<tr class="memitem:a5326194659d6f29efa21b6eae03f6a4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a5326194659d6f29efa21b6eae03f6a4e">request_motor_data</a></td></tr>
+<tr class="memitem:a44a265ac2b363cdd0e944285a7c07eb8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a44a265ac2b363cdd0e944285a7c07eb8">change_speed</a></td></tr>
 <tr class="memitem:a27d83a5a5c4859adb65641683e964018"><td class="memItemLeft" align="right" valign="top"><a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a27d83a5a5c4859adb65641683e964018">inter_subsys_command</a></td></tr>
+<tr class="memitem:adc1ca3536457074b9ba2ca5880154ce6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#adc1ca3536457074b9ba2ca5880154ce6">set_cps_prio</a></td></tr>
+<tr class="memitem:a3db9cf5f86aab72001ae088b68c0936f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a3db9cf5f86aab72001ae088b68c0936f">change_direction</a></td></tr>
+<tr class="memitem:a403e0e1741cb9ff1872dbe74a7c701d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a403e0e1741cb9ff1872dbe74a7c701d6">en_or_dis_subsys</a></td></tr>
+<tr class="memitem:a9e6e96435c6767549c91d9e67d20161b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#a9e6e96435c6767549c91d9e67d20161b">steer_straight</a></td></tr>
 <tr class="memitem:af3ec5683614e9f1755e54da32184412a"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#af3ec5683614e9f1755e54da32184412a">treset_heading</a></td></tr>
 <tr class="memitem:ac9ab4c77456aea18ac1eb886a5c81f4c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSonar.html#ac9ab4c77456aea18ac1eb886a5c81f4c">print_data</a></td></tr>
 <tr class="inherit_header pro_attribs_classSensor"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classSensor')"><img src="closed.png" alt="-"/>&nbsp;Protected Attributes inherited from <a class="el" href="classSensor.html">Sensor</a></td></tr>
@@ -167,6 +184,13 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:abbb7a2f8cb57fa70eaf65c1b7c353e08 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">struct mq_attr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#abbb7a2f8cb57fa70eaf65c1b7c353e08">attr</a></td></tr>
 <tr class="memitem:a3ef2ff7ded6b1623fae096828d549369 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">mqd_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a3ef2ff7ded6b1623fae096828d549369">sys_mq</a></td></tr>
 <tr class="memitem:a71c9d55e3baa41c75bbc54e9e4407bdd inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a71c9d55e3baa41c75bbc54e9e4407bdd">prio</a></td></tr>
+<tr class="memitem:a32fe49f94c0098b8cdb1983c162c0c73 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">struct mq_attr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a32fe49f94c0098b8cdb1983c162c0c73">timing_attr</a></td></tr>
+<tr class="memitem:ab9d87a0c93b2cc65b0a053c325422c1c inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">mqd_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#ab9d87a0c93b2cc65b0a053c325422c1c">timing_mq</a></td></tr>
+<tr class="memitem:aaf8fd18a5c37ec1510869a23ec0feb5f inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#aaf8fd18a5c37ec1510869a23ec0feb5f">timing_prio</a></td></tr>
+<tr class="memitem:ae9c30b7c1ebe18eee34d1dca1530abb7 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9c30b7c1ebe18eee34d1dca1530abb7"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>num_timing_messages</b></td></tr>
+<tr class="memitem:a0eccf033d19cca954aac5fb0d0cc51bf inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0eccf033d19cca954aac5fb0d0cc51bf"></a>
+struct timespec&#160;</td><td class="memItemRight" valign="bottom"><b>timing_analysis</b> [TIMING_ANALYSIS_BUFFER_SIZE]</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -179,14 +203,15 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><p>sonar data collection and analysis </p>
 <p>Collects data from the sonar and analyzes the data. Based on analysis of collected data, sends messages (using the system message queue) to the control actuators (<a class="el" href="classSteering.html" title="Steering control.">Steering</a> and <a class="el" href="classMotor.html" title="motor control">Motor</a>). </p>
 </div><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a71ef009d138f1e372fc35ca0cb6e85e2"></a>
+<a class="anchor" id="a152453d934da6d4e576f9d59dc80b762"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Sonar::Sonar </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="SUBSYS__COMMANDS_8h.html#a0be7f6e3de248ca3bdb1f3f5a0819c62">ADC_DATA</a> *&#160;</td>
+          <td class="paramname"><em>adc_data_ptr</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -248,7 +273,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Avoids an obstacle that was detected by the sonar system. </p>
-<p>Performs tasks determined by the command part of the message. For example the command SNR_SET_DIST_THR is used to set the distance threshold. Messages could be from command line interface or from another subsystem. </p>
+<p>turns 90 degrees left in response to an obstacle </p>
 
 </div>
 </div>
@@ -349,7 +374,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initializes the <a class="el" href="classSonar.html" title="sonar data collection and analysis">Sonar</a> subsystem. </p>
-<p>Sets up the SPI driver (to talk to the ADC) and sets up the ADC for sonar configuration. </p>
+<p>Sets up the SPI driver (to talk to the <a class="el" href="classADC.html" title="compass data collection and analysis">ADC</a>) and sets up the <a class="el" href="classADC.html" title="compass data collection and analysis">ADC</a> for sonar configuration. </p>
 
 <p>Implements <a class="el" href="classSensor.html#a11b28f6bc91d6f69e734e13ab0e64f56">Sensor</a>.</p>
 
@@ -402,7 +427,75 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="afbda79f1a96e294fb811f03f54a49a46"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Sonar::reverse_direction </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Avoids an obstacle that was detected by the sonar system. </p>
+<p>Will make the car reverse until it is out of range of the obstacle. </p>
+
+</div>
+</div>
 <h2>Member Data Documentation</h2>
+<a class="anchor" id="a9e2ea95994eefd09ec7546853ebf1cb7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="SUBSYS__COMMANDS_8h.html#a0be7f6e3de248ca3bdb1f3f5a0819c62">ADC_DATA</a>* Sonar::adc_data</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>store the adc data here for cross subsystem access </p>
+
+</div>
+</div>
+<a class="anchor" id="a6e842fc3ef4088c987a7a348df3b75ce"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sem_t Sonar::avoid_reset_control</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>the obstacle avoidance/reset control semaphore </p>
+
+</div>
+</div>
 <a class="anchor" id="a72b11a8e569125119750ee9dd094141b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -421,6 +514,48 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>whether avoidance mode has been entered into </p>
+
+</div>
+</div>
+<a class="anchor" id="a3db9cf5f86aab72001ae088b68c0936f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a> Sonar::change_direction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>message used to set the motor direction </p>
+
+</div>
+</div>
+<a class="anchor" id="a44a265ac2b363cdd0e944285a7c07eb8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a> Sonar::change_speed</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>message used for changing the motor speed </p>
 
 </div>
 </div>
@@ -445,6 +580,27 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a403e0e1741cb9ff1872dbe74a7c701d6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a> Sonar::en_or_dis_subsys</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>message used to enable or disable a subsystem </p>
+
+</div>
+</div>
 <a class="anchor" id="a27d83a5a5c4859adb65641683e964018"></a>
 <div class="memitem">
 <div class="memproto">
@@ -463,6 +619,48 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Message used for commanding other subsystems (usually compass) </p>
+
+</div>
+</div>
+<a class="anchor" id="ad51a4f80202f692e4630f74490b5ef5d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Sonar::last_reverse_left</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>boolean to tell if the last time we reversed, we went left </p>
+
+</div>
+</div>
+<a class="anchor" id="a29863f7d681d8119c233aa11398f65b7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spi_ioc_transfer Sonar::msg[1]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>SPI request for sonar data from the <a class="el" href="classADC.html" title="compass data collection and analysis">ADC</a> </p>
 
 </div>
 </div>
@@ -487,6 +685,27 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a3ee55a9a946c5c00a68b3774c316728e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char Sonar::old_motor_speed[6]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>original motor speed prior to avoidance mode </p>
+
+</div>
+</div>
 <a class="anchor" id="ac9ab4c77456aea18ac1eb886a5c81f4c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -508,7 +727,7 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a464358d71b06ae53bd477a7b629bd16e"></a>
+<a class="anchor" id="a560057581920d76e557880135548ce46"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -516,7 +735,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a> Sonar::request_data</td>
+          <td class="memname"><a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a> Sonar::request_compass_data</td>
         </tr>
       </table>
   </td>
@@ -525,7 +744,91 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>message used for requesting data from other subsystems (usually compass) </p>
+<p>message used for requesting data from compass subsystem </p>
+
+</div>
+</div>
+<a class="anchor" id="a5326194659d6f29efa21b6eae03f6a4e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a> Sonar::request_motor_data</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>message used for requesting data from motor subsystem </p>
+
+</div>
+</div>
+<a class="anchor" id="ad9f288f52d8d26a687a557c714d6f026"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Sonar::reverse_mode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>whether reverse mode has been entered into </p>
+
+</div>
+</div>
+<a class="anchor" id="a27714390fb769905062ae587d8b2f112"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Sonar::reverse_threshold</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Threshold distance for sonar avoidance. If the sonar reading drops below this value, the sonar subsystem will take control of the actuators and REVERSE to avoid and obstacle </p>
+
+</div>
+</div>
+<a class="anchor" id="adc1ca3536457074b9ba2ca5880154ce6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a> Sonar::set_cps_prio</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>message used to set and reset the compass min priority during obstacle avoidance </p>
 
 </div>
 </div>
@@ -592,7 +895,7 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a9896ea663ac5b8c327fed879fdc6110f"></a>
+<a class="anchor" id="a9e6e96435c6767549c91d9e67d20161b"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -600,7 +903,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float Sonar::threshold</td>
+          <td class="memname"><a class="el" href="SUBSYS__COMMANDS_8h.html#ad814416fc1a8c675bea2687d96088a8f">MESSAGE</a> Sonar::steer_straight</td>
         </tr>
       </table>
   </td>
@@ -609,7 +912,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Threshold distance for sonar avoidance. If the sonar reading drops below this value, the sonar subsystem will take control of the actuators to avoid and obstacle </p>
+<p>message used to center steering </p>
 
 </div>
 </div>
@@ -634,6 +937,27 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a83151cbccbce08be16dfec04a53f3295"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Sonar::turn_threshold</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Threshold distance for sonar avoidance. If the sonar reading drops below this value, the sonar subsystem will take control of the actuators to turn and avoid and obstacle </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/keith/realtime/<a class="el" href="Sonar_8h_source.html">Sonar.h</a></li>
 <li>/home/keith/realtime/Sonar.cpp</li>
@@ -641,7 +965,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 22 2013 22:02:40 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun May 5 2013 16:39:12 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

@@ -7,7 +7,6 @@
 #include <stdlib.h>
 #include <math.h>
 #include <errno.h>
-#include <stdint.h>
 #include <linux/spi/spidev.h>
 #include <string.h>
 
@@ -21,7 +20,7 @@
 
 #define NS_PER_MS	1000000
 #define NS_PER_S	1000000000
-#define DATA_COL_PERIOD_MS	500 //20
+#define DATA_COL_PERIOD_MS	20 //20
 
 #define	HARD_TURN_THRESH	45
 #define	SLIGHT_TURN_THRESH	20
@@ -34,6 +33,8 @@
 #define SAT_LIMIT			10
 #define	CONTROL_LOWER_LIMIT	10000
 #define	CONTROL_UPPER_LIMIT	20000
+
+#define COMPASS_DECLINE -78
 
 //Compass class
 
@@ -55,6 +56,8 @@ Compass::Compass(ADC_DATA* adc_data_ptr) {
 	subsys_priorities[SUBSYS_GPS] = 1;		//gps priority
 	subsys_priorities[NUM_SUBSYSTEMS] = 0; //console priority
 	min_priority = NUM_SUBSYSTEMS;
+	compass_avg=0;
+	data_grab_count = 0;
 }
 
 void Compass::init_sensor() {
@@ -84,23 +87,23 @@ void Compass::init_sensor() {
 	}
 	
 	//SET UP MAGNETOMETER
-	struct timespec t;
+	/*struct timespec t;
 	clock_gettime(CLOCK_MONOTONIC ,&t);
 	t.tv_nsec+= 50*NS_PER_MS;
-	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);*/
 	sprintf(compass_filepath,"/dev/i2c-3");
 	if ((compass_fd = open(compass_filepath,O_RDWR)) < 0) {
 		perror("Failed to open the bus for compass read.\n");
 	}
-	clock_gettime(CLOCK_MONOTONIC ,&t);
+	/*clock_gettime(CLOCK_MONOTONIC ,&t);
 	t.tv_nsec+= 50*NS_PER_MS;
-	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);*/
 	if (ioctl(compass_fd,I2C_SLAVE,COMPASS_ADDR) < 0) {
 		perror("Failed to acquire bus access and/or talk to slave.\n");
 	}
-	clock_gettime(CLOCK_MONOTONIC ,&t);
+	/*clock_gettime(CLOCK_MONOTONIC ,&t);
 	t.tv_nsec+= 50*NS_PER_MS;
-	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);*/
 	
 	/*command[0] = 'r';
 	command[1] = 0x08;
@@ -129,20 +132,20 @@ void Compass::init_sensor() {
 	if(write(compass_fd,command,2) != 2){
 		perror("Failed to set operational byte");
 	}
-	clock_gettime(CLOCK_MONOTONIC ,&t);
+	/*clock_gettime(CLOCK_MONOTONIC ,&t);
 	t.tv_nsec+= 50*NS_PER_MS;
-	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);*/
 	
 	//command[0] = 0x3C;
 	command[0] = 0x00;
-	command[1] = 0b00010100;//1100;
+	command[1] = 0b00010000;//1100;
 
 	if(write(compass_fd,command,2) != 2){
 		perror("Failed to set operational byte");
 	}
-	clock_gettime(CLOCK_MONOTONIC ,&t);
+	/*clock_gettime(CLOCK_MONOTONIC ,&t);
 	t.tv_nsec+= 50*NS_PER_MS;
-	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);*/
 }
 
 /*
@@ -190,6 +193,7 @@ float Compass::correct_heading(int Bx, int By, int Bz, int Ax, int Ay, int Az) {
 */
 float Compass::data_grab(){
 //create tx and rx buffers for data trasmission 
+	data_grab_count++;
 	char tx_buf1[2];
 	char rx_buf1[2];
 	char tx_buf2[2];
@@ -233,25 +237,32 @@ float Compass::data_grab(){
 	
 	char command[1];
 	//command[0] = 0x3C;
-	
-	command[0] = 3;
-	if(write(compass_fd,command,1) != 1){
-		perror("Failed to request data");
-	}
-	
-	unsigned char buff[13];
-	int read_result;
-	if((read_result = read(compass_fd,buff,6)) != 6) {
-		if(errno == ETIMEDOUT){
-			
-		}else{
-			perror("Failed to read data from compass");
+	if(data_grab_count % 5 == 0){
+		data_grab_count = 0;
+		command[0] = 3;
+		if(write(compass_fd,command,1) != 1){
+			#ifdef COMPASS_DEBUG
+				perror("Failed to request data");
+			#endif
 		}
-		std::cout << "Not reading 6" << std::endl;
+		
+		unsigned char buff[13];
+		int read_result;
+		if((read_result = read(compass_fd,buff,6)) != 6) {
+			if(errno == ETIMEDOUT){
+				#ifdef COMPASS_DEBUG
+					std::cout << "compass not reading 6 characters" << std::endl;
+				#endif
+			}else{
+				#ifdef COMPASS_DEBUG
+					perror("Failed to read data from compass");
+				#endif
+			}
+		}
+		x=(buff[0] << 8) | (buff[1]);
+		y=(buff[2] << 8) | (buff[3]);
+		z=(buff[4] << 8) | (buff[5]);
 	}
-	int16_t x=(buff[0] << 8) | (buff[1]);
-	int16_t y=(buff[2] << 8) | (buff[3]);
-	int16_t z=(buff[4] << 8) | (buff[5]);
 	
 	/*x = (x << 4) >> 4;
 	y = (y << 4) >> 4;
@@ -290,7 +301,24 @@ float Compass::data_grab(){
 	double zB=z/xyzNorm;
 	*/
 	Vector3d adxl=Vector3d(-(Ax-480),-(Ay-500),-(Az-500));
-	Vector3d magn=Vector3d(x,y,z);
+	Vector3d magn=Vector3d(-y,z,-x);//x,y,z);
+	
+	adxlA[compass_avgA]=adxl;
+	magnA[compass_avg]=magn;
+	compass_avgA=(compass_avgA+1)%COMPASS_AVERAGEA;
+	compass_avg=(compass_avg+1)%COMPASS_AVERAGE;
+	Vector3d avg_adxl;
+	Vector3d avg_magn;
+	for(int i=0;i<COMPASS_AVERAGEA;i++){
+		avg_adxl+=adxlA[i];
+	}
+	for(int i=0;i<COMPASS_AVERAGE;i++){
+		avg_magn+=magnA[i];
+	}
+	avg_adxl/=COMPASS_AVERAGEA;
+	avg_magn/=COMPASS_AVERAGE;
+	adxl=avg_adxl;
+	magn=avg_magn;
 	Vector3d U=magn.normalize().cross(adxl.normalize());
 	Vector3d V=adxl.normalize().cross(U.normalize());
 	x=V.X;
@@ -300,10 +328,10 @@ float Compass::data_grab(){
 	//float ret = (float)(atan2((double)y,(double)x)*180.0/3.141592 + 180);
 	float ret = (float)(atan2(V.X,V.Y)*180.0/3.141592);
 	ret*=-1;
-	ret-=60;
+	ret+=COMPASS_DECLINE;
 	if(ret>=360){ret-=360;}if(ret<0){ret+=360;}
-	std::cout << "heading B: \t" //<< Ax  << "\t" << Ay  << "\t" << Az 
-	<< adxl << "\t" << magn << V << " \t" << ret << std::endl;
+	//std::cout << "heading B: \t" //<< Ax  << "\t" << Ay  << "\t" << Az 
+	//<< adxl << "\t" << magn << V << " \t" << ret << std::endl;
 
 
 	//double incline = 0;// asin(zB);
@@ -321,21 +349,23 @@ float Compass::data_grab(){
 
 void Compass::collector(){
 	struct timespec t;
-	#ifdef OUTPUT_TIMING
-		struct timespec start_time;
-		struct timespec end_time;
+	#ifdef LOG_TIMING
+		int num_times = 0;
+		struct timespec timing;
+		long prev_nsec;
 	#endif
-	clock_gettime(CLOCK_MONOTONIC ,&t);
 	while(1){
-		#ifdef OUTPUT_TIMING
-			clock_gettime(CLOCK_MONOTONIC ,&start_time);
-		#endif
+		clock_gettime(CLOCK_MONOTONIC ,&t);
 		t.tv_nsec+= DATA_COL_PERIOD_MS*NS_PER_MS;
 		while(t.tv_nsec > NS_PER_S){
 			t.tv_sec++;
 			t.tv_nsec -= NS_PER_S;
 		}
 		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
+		#ifdef LOG_TIMING
+			clock_gettime(CLOCK_MONOTONIC ,&timing);
+			log_release_time(&timing, COLLECTOR);
+		#endif
 		if(enabled){
 			meas_heading = data_grab();
 			#ifdef COMPASS_DEBUG
@@ -343,9 +373,9 @@ void Compass::collector(){
 			#endif
 			sem_post(&collect_analysis_sync);
 		}
-		#ifdef OUTPUT_TIMING
-			clock_gettime(CLOCK_MONOTONIC ,&end_time);
-			std::cout << "Compass Collector Time (ms): " << ms_time_diff(&start_time, &end_time) << std::endl;
+		#ifdef LOG_TIMING
+			clock_gettime(CLOCK_MONOTONIC ,&timing);
+			log_end_time(&timing, COLLECTOR);
 		#endif
 	}
 }
@@ -358,17 +388,17 @@ void Compass::analysis(){
 	//the steering command
 	char u[STR_CMD_LEN];
 	
-	#ifdef OUTPUT_TIMING
-		struct timespec start_time;
-		struct timespec end_time;
+	#ifdef LOG_TIMING
+		struct timespec timing;
 	#endif
 	
 	while(1) {
-		#ifdef OUTPUT_TIMING
-			clock_gettime(CLOCK_MONOTONIC ,&start_time);
-		#endif
 		//wait for data
 		sem_wait(&collect_analysis_sync);
+		#ifdef LOG_TIMING
+			clock_gettime(CLOCK_MONOTONIC ,&timing);
+			log_release_time(&timing, ANALYSIS);
+		#endif
 		//------------------
 		//---analyze data---
 		//------------------
@@ -394,9 +424,9 @@ void Compass::analysis(){
 		steer.data = ((void*)(u));
 		//send command to steering subsystem
 		send_sys_message(&steer);
-		#ifdef OUTPUT_TIMING
-			clock_gettime(CLOCK_MONOTONIC ,&end_time);
-			std::cout << "Compass Analysis Time (ms): " << ms_time_diff(&start_time, &end_time) << std::endl;
+		#ifdef LOG_TIMING
+			clock_gettime(CLOCK_MONOTONIC ,&timing);
+			log_end_time(&timing, ANALYSIS);
 		#endif
 	}
 }

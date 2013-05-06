@@ -64,6 +64,8 @@ void SystemControl::shutdown() {
 }
 
 void SystemControl::init() {
+	
+	system_timing = new timing_analysis();
 
 	subsys[SUBSYS_MOTOR] = new Motor();
 	subsys[SUBSYS_MOTOR]->init();

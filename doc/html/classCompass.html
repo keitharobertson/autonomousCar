@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -83,6 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
@@ -107,10 +108,14 @@ Inheritance diagram for Compass:</div>
 </map>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass_1_1Vector3d.html">Vector3d</a></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a68bd2a073cc0d461b2b46529aae04765"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#a68bd2a073cc0d461b2b46529aae04765">Compass</a> ()</td></tr>
-<tr class="memdesc:a68bd2a073cc0d461b2b46529aae04765"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCompass.html" title="compass data collection and analysis">Compass</a> default constructor.  <a href="#a68bd2a073cc0d461b2b46529aae04765"></a><br/></td></tr>
+<tr class="memitem:ab4210309aac39913ac3b20a0fef51df0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#ab4210309aac39913ac3b20a0fef51df0">Compass</a> (<a class="el" href="SUBSYS__COMMANDS_8h.html#a0be7f6e3de248ca3bdb1f3f5a0819c62">ADC_DATA</a> *adc_data_ptr)</td></tr>
+<tr class="memdesc:ab4210309aac39913ac3b20a0fef51df0"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCompass.html" title="compass data collection and analysis">Compass</a> default constructor.  <a href="#ab4210309aac39913ac3b20a0fef51df0"></a><br/></td></tr>
 <tr class="memitem:aa4132c05a4e20e95633c72776385bc42"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#aa4132c05a4e20e95633c72776385bc42">data_grab</a> ()</td></tr>
 <tr class="memdesc:aa4132c05a4e20e95633c72776385bc42"><td class="mdescLeft">&#160;</td><td class="mdescRight">grabs data from compass  <a href="#aa4132c05a4e20e95633c72776385bc42"></a><br/></td></tr>
 <tr class="memitem:a5cc2b71700af542b5aafadea4820a476"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#a5cc2b71700af542b5aafadea4820a476">init_sensor</a> ()</td></tr>
@@ -150,11 +155,34 @@ Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a72a3d0e853685bdbc6758120ebd10800"><td class="memItemLeft" align="right" valign="top"><a class="el" href="SUBSYS__COMMANDS_8h.html#a0be7f6e3de248ca3bdb1f3f5a0819c62">ADC_DATA</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#a72a3d0e853685bdbc6758120ebd10800">adc_data</a></td></tr>
+<tr class="memitem:aed40464cb0c9203d87ab8a9127cc9080"><td class="memItemLeft" align="right" valign="top">struct spi_ioc_transfer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#aed40464cb0c9203d87ab8a9127cc9080">msg</a> [1]</td></tr>
 <tr class="memitem:ac888a4dacdc477e53c99fe8e110966ae"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#ac888a4dacdc477e53c99fe8e110966ae">desired_heading</a></td></tr>
 <tr class="memitem:af0f87a131e2c9833f7d52bed1a39bf75"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#af0f87a131e2c9833f7d52bed1a39bf75">meas_heading</a></td></tr>
 <tr class="memitem:ace6e13b91461366609f093fef09188d9"><td class="memItemLeft" align="right" valign="top">sem_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#ace6e13b91461366609f093fef09188d9">collect_analysis_sync</a></td></tr>
 <tr class="memitem:a44b0e4223918e3b139e54d54a0e3daad"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#a44b0e4223918e3b139e54d54a0e3daad">compass_fd</a></td></tr>
+<tr class="memitem:a2a55ab6b29ea9ddca507a948cb30d42b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#a2a55ab6b29ea9ddca507a948cb30d42b">accel_fd</a></td></tr>
 <tr class="memitem:a6ff33d93efe79539c75dbee45efdc97c"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#a6ff33d93efe79539c75dbee45efdc97c">compass_filepath</a> [40]</td></tr>
+<tr class="memitem:a69f89e1a0d7c769e02cd3704904e40fd"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#a69f89e1a0d7c769e02cd3704904e40fd">accel_filepath</a> [40]</td></tr>
+<tr class="memitem:a90f2dea7249c85f22c5bc45ed9d86b57"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompass.html#a90f2dea7249c85f22c5bc45ed9d86b57">min_priority</a></td></tr>
+<tr class="memitem:a08a0c0243b0c0dbfef446b7cdc6171a5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a08a0c0243b0c0dbfef446b7cdc6171a5"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>data_grab_count</b></td></tr>
+<tr class="memitem:ae19b46ed0c752445d27175c2205e2d6e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae19b46ed0c752445d27175c2205e2d6e"></a>
+int16_t&#160;</td><td class="memItemRight" valign="bottom"><b>x</b></td></tr>
+<tr class="memitem:a92ae0ec7df5da4f682653edc59a3902e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92ae0ec7df5da4f682653edc59a3902e"></a>
+int16_t&#160;</td><td class="memItemRight" valign="bottom"><b>y</b></td></tr>
+<tr class="memitem:ad69ac341e3d3e3c956658bb847f271d5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad69ac341e3d3e3c956658bb847f271d5"></a>
+int16_t&#160;</td><td class="memItemRight" valign="bottom"><b>z</b></td></tr>
+<tr class="memitem:a7b2d3072f705f74c4b9a34616cb10316"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b2d3072f705f74c4b9a34616cb10316"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>subsys_priorities</b> [<a class="el" href="group__subsys__nums.html#gad914679f013f117ec7470f75fee6149a">NUM_SUBSYSTEMS</a>+1]</td></tr>
+<tr class="memitem:a81f32d364178d84fe50f0cc04525b343"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a81f32d364178d84fe50f0cc04525b343"></a>
+<a class="el" href="classCompass_1_1Vector3d.html">Vector3d</a>&#160;</td><td class="memItemRight" valign="bottom"><b>adxlA</b> [COMPASS_AVERAGEA]</td></tr>
+<tr class="memitem:a92846ee84028d3c778f0ff86ec665aa1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92846ee84028d3c778f0ff86ec665aa1"></a>
+<a class="el" href="classCompass_1_1Vector3d.html">Vector3d</a>&#160;</td><td class="memItemRight" valign="bottom"><b>magnA</b> [COMPASS_AVERAGE]</td></tr>
+<tr class="memitem:ad61bcefd1ac82df3cad26dc9dc09d3a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad61bcefd1ac82df3cad26dc9dc09d3a8"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>compass_avg</b></td></tr>
+<tr class="memitem:a58f9feaf883ab8cdad53f26fbe202331"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a58f9feaf883ab8cdad53f26fbe202331"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>compass_avgA</b></td></tr>
 <tr class="inherit_header pro_attribs_classSensor"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classSensor')"><img src="closed.png" alt="-"/>&nbsp;Protected Attributes inherited from <a class="el" href="classSensor.html">Sensor</a></td></tr>
 <tr class="memitem:a881761631861338b335680ab1e618277 inherit pro_attribs_classSensor"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensor.html#a881761631861338b335680ab1e618277">tCollector</a></td></tr>
 <tr class="memitem:afce21e3a689654c7d165f2a0e01ab86c inherit pro_attribs_classSensor"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensor.html#afce21e3a689654c7d165f2a0e01ab86c">tAnalysis</a></td></tr>
@@ -162,19 +190,37 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:abbb7a2f8cb57fa70eaf65c1b7c353e08 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">struct mq_attr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#abbb7a2f8cb57fa70eaf65c1b7c353e08">attr</a></td></tr>
 <tr class="memitem:a3ef2ff7ded6b1623fae096828d549369 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">mqd_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a3ef2ff7ded6b1623fae096828d549369">sys_mq</a></td></tr>
 <tr class="memitem:a71c9d55e3baa41c75bbc54e9e4407bdd inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a71c9d55e3baa41c75bbc54e9e4407bdd">prio</a></td></tr>
+<tr class="memitem:a32fe49f94c0098b8cdb1983c162c0c73 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">struct mq_attr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a32fe49f94c0098b8cdb1983c162c0c73">timing_attr</a></td></tr>
+<tr class="memitem:ab9d87a0c93b2cc65b0a053c325422c1c inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">mqd_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#ab9d87a0c93b2cc65b0a053c325422c1c">timing_mq</a></td></tr>
+<tr class="memitem:aaf8fd18a5c37ec1510869a23ec0feb5f inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#aaf8fd18a5c37ec1510869a23ec0feb5f">timing_prio</a></td></tr>
+<tr class="memitem:ae9c30b7c1ebe18eee34d1dca1530abb7 inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9c30b7c1ebe18eee34d1dca1530abb7"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>num_timing_messages</b></td></tr>
+<tr class="memitem:a0eccf033d19cca954aac5fb0d0cc51bf inherit pro_attribs_classSubsystem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0eccf033d19cca954aac5fb0d0cc51bf"></a>
+struct timespec&#160;</td><td class="memItemRight" valign="bottom"><b>timing_analysis</b> [TIMING_ANALYSIS_BUFFER_SIZE]</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_classSubsystem"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classSubsystem')"><img src="closed.png" alt="-"/>&nbsp;Protected Member Functions inherited from <a class="el" href="classSubsystem.html">Subsystem</a></td></tr>
+<tr class="memitem:aaa5c98618b06473ac3e88ad658f804ec inherit pro_methods_classSubsystem"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#aaa5c98618b06473ac3e88ad658f804ec">log_release_time</a> (struct timespec *release_time, int task_num)</td></tr>
+<tr class="memdesc:aaa5c98618b06473ac3e88ad658f804ec inherit pro_methods_classSubsystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">log the release time of a task  <a href="#aaa5c98618b06473ac3e88ad658f804ec"></a><br/></td></tr>
+<tr class="memitem:ac3e8ba69ef5cf814f19b6a5ee25473ca inherit pro_methods_classSubsystem"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#ac3e8ba69ef5cf814f19b6a5ee25473ca">log_end_time</a> (struct timespec *end_time, int task_num)</td></tr>
+<tr class="memdesc:ac3e8ba69ef5cf814f19b6a5ee25473ca inherit pro_methods_classSubsystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">log the release time of a task  <a href="#ac3e8ba69ef5cf814f19b6a5ee25473ca"></a><br/></td></tr>
+<tr class="memitem:a2cd6f9f05fecd33d8d362cd5c28f4e71 inherit pro_methods_classSubsystem"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubsystem.html#a2cd6f9f05fecd33d8d362cd5c28f4e71">send_timing_message</a> (struct timespec *time, int task_num, bool is_start)</td></tr>
+<tr class="memdesc:a2cd6f9f05fecd33d8d362cd5c28f4e71 inherit pro_methods_classSubsystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">sends information to timing analysis  <a href="#a2cd6f9f05fecd33d8d362cd5c28f4e71"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>compass data collection and analysis </p>
 <p>Collects data from the compass and analyzes the data. Sends system messages to control actuators </p>
 </div><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a68bd2a073cc0d461b2b46529aae04765"></a>
+<a class="anchor" id="ab4210309aac39913ac3b20a0fef51df0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Compass::Compass </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="SUBSYS__COMMANDS_8h.html#a0be7f6e3de248ca3bdb1f3f5a0819c62">ADC_DATA</a> *&#160;</td>
+          <td class="paramname"><em>adc_data_ptr</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -347,6 +393,69 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2>Member Data Documentation</h2>
+<a class="anchor" id="a2a55ab6b29ea9ddca507a948cb30d42b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Compass::accel_fd</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The i2c file descriptor for the compass </p>
+
+</div>
+</div>
+<a class="anchor" id="a69f89e1a0d7c769e02cd3704904e40fd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char Compass::accel_filepath[40]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The filename for the compass device. (will be a device in /dev). </p>
+
+</div>
+</div>
+<a class="anchor" id="a72a3d0e853685bdbc6758120ebd10800"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="SUBSYS__COMMANDS_8h.html#a0be7f6e3de248ca3bdb1f3f5a0819c62">ADC_DATA</a>* Compass::adc_data</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>returns the heading corrected for tilt store the adc data here for cross subsystem access </p>
+
+</div>
+</div>
 <a class="anchor" id="ace6e13b91461366609f093fef09188d9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -478,6 +587,48 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a90f2dea7249c85f22c5bc45ed9d86b57"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Compass::min_priority</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>the minimum subsystem priority that can change the compass heading </p>
+
+</div>
+</div>
+<a class="anchor" id="aed40464cb0c9203d87ab8a9127cc9080"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spi_ioc_transfer Compass::msg[1]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>SPI request for sonar data from the <a class="el" href="classADC.html" title="compass data collection and analysis">ADC</a> </p>
+
+</div>
+</div>
 <a class="anchor" id="a9e0a282c1253451fd7967646074102ee"></a>
 <div class="memitem">
 <div class="memproto">
@@ -524,7 +675,7 @@ Protected Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 22 2013 22:02:37 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun May 5 2013 16:39:10 for Real-Time Embedded Autonomous Car by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
